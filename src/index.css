@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: "Title";
+    src: url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
+}
+
+
+body {
+ font-family: "Title";   
+}
