@@ -7,7 +7,16 @@
     src: url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
 }
 
+@font-face {
+    font-family: "Body";
+    src: url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Eczar:wght@400..800&display=swap");
+}
 
+.font-title {
+    font-family: "Title";
+}
+
+.font-body,
 body {
- font-family: "Title";   
+    font-family: "Body";
 }
