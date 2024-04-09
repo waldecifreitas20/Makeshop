@@ -80,9 +80,13 @@ export function Navbar() {
 
 
 						<div className="ml-auto flex">
-							<span onClick={toggleSearchBarView}>lupa</span>
+							<button onClick={toggleSearchBarView}>
+								<i className="fa-solid fa-magnifying-glass fa-xl"></i>
+							</button>
 							<div className="border-gray-400 border-l mx-3"></div>
-							<span>kart</span>
+							<button>
+								<i className="fa-solid fa-cart-shopping fa-xl"></i>
+							</button>
 						</div>
 					</div>
 
@@ -90,7 +94,7 @@ export function Navbar() {
 					{showSearchBar ? <form id="search-form" className="bg-white mt-5 border-2 h-12 flex items-center justify-between px-5 rounded-full">
 						<input className="h-full w-full outline-none text-lg" type="search" id="input-search" placeholder="Pesquise produtos e marcas" />
 						<label htmlFor="input-search">
-							<span>Lupa</span>
+							<i className="fa-solid fa-magnifying-glass"></i>
 						</label>
 					</form> : <></>}
 				</nav>
