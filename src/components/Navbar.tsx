@@ -26,17 +26,26 @@ const menuOptions: MenuOption[] = [
 ]
 
 
+
 export function Navbar() {
-	let isLogged = true;
+	let isLogged: boolean = true;
 	let [showSearchBar, setSearchBarView] = useState(true);
-	let [showMenu, setSMenuView] = useState(false);
+	let [menuClass, setMenuClass] = useState('close-menu');
+
+	let showMenu: boolean = false;
+
 
 	function toggleSearchBarView() {
 		setSearchBarView(!showSearchBar);
 	}
 
 	function toggleMenuView() {
-		setSMenuView(!showMenu);
+		showMenu = !showMenu;
+		if (showMenu) {
+			setMenuClass('open-menu')
+		} else {
+			setMenuClass('close-menu')
+		}
 	}
 
 	return (
@@ -56,7 +65,7 @@ export function Navbar() {
 						<a href="" className="text-3xl font-title tracking-tightest font-extrabold text-gray-650">Makeshop</a>
 
 						{/* Menu */}
-						{showMenu ? <div id="menu">
+						<div id="menu" className={`absolute transition-all w-8/12 duration-500 top-0 left-0 bg-white h-screen ${menuClass}`}>
 							<div className="bg-black">
 								<h2>Bem-vindo</h2>
 								<p>Faça login ou cadastre-se para aproveitar as nossas ofertas </p>
@@ -76,7 +85,8 @@ export function Navbar() {
 									return menuOption.child;
 								})}
 							</ul>
-						</div> : <></>}
+						</div>
+
 
 
 						<div className="ml-auto flex">

@@ -22,4 +22,12 @@
     body {
         font-family: "Body";
     }
+
+    .open-menu {
+        left: 0;
+    }
+
+    .close-menu {
+        left: -500px;
+    }
 }
