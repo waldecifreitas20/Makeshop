@@ -1,4 +1,4 @@
-import { ReactElement, useState } from "react";
+import { ReactElement, useRef, useState } from "react";
 
 interface MenuOption {
 	child: ReactElement;
@@ -26,26 +26,37 @@ const menuOptions: MenuOption[] = [
 ]
 
 
-
 export function Navbar() {
 	let isLogged: boolean = true;
 	let [showSearchBar, setSearchBarView] = useState(true);
 	let [menuClass, setMenuClass] = useState('close-menu');
 
-	let showMenu: boolean = false;
+	/* Close menu when user click outside it */
+	document.addEventListener('click', (event: MouseEvent) => {
+		
+		event.stopPropagation();
+
+		const menu = document.getElementById("menu");
+		const element = event.target as HTMLElement;
+
+		const isOutsideClick = menu?.contains(element) == false;
+		const isMenuButton = element.id == "menu-icon";
+		
+		if (isOutsideClick == true && isMenuButton == false) {
+			console.log(element.id);
+			setMenuClass('close-menu');
+		}
+
+	});
 
 
 	function toggleSearchBarView() {
 		setSearchBarView(!showSearchBar);
 	}
 
-	function toggleMenuView() {
-		showMenu = !showMenu;
-		if (showMenu) {
-			setMenuClass('open-menu')
-		} else {
-			setMenuClass('close-menu')
-		}
+	function openMenuView() {
+
+		setMenuClass('open-menu')
 	}
 
 	return (
@@ -56,8 +67,8 @@ export function Navbar() {
 					<div className="flex items-center">
 
 						{/* Menu button */}
-						<button onClick={toggleMenuView} className="mr-5">
-							<i className="fa-solid fa-bars fa-2xl"></i>
+						<button onClick={openMenuView} className="mr-5">
+							<i id="menu-icon" className="fa-solid fa-bars fa-2xl"></i>
 						</button>
 
 
