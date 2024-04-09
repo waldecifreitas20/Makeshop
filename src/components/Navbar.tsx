@@ -28,12 +28,14 @@ const menuOptions: MenuOption[] = [
 
 export function Navbar() {
 	let isLogged: boolean = true;
-	let [showSearchBar, setSearchBarView] = useState(true);
+	let [showSearchBar, setSearchBarView] = useState(false);
 	let [menuClass, setMenuClass] = useState('close-menu');
 
-	/* Close menu when user click outside it */
-	document.addEventListener('click', (event: MouseEvent) => {
-		
+	/* Close menu when user click outside menu area */
+	document.addEventListener('click', closeMenuView);
+
+	
+	function closeMenuView(event: MouseEvent) {
 		event.stopPropagation();
 
 		const menu = document.getElementById("menu");
@@ -41,13 +43,12 @@ export function Navbar() {
 
 		const isOutsideClick = menu?.contains(element) == false;
 		const isMenuButton = element.id == "menu-icon";
-		
-		if (isOutsideClick == true && isMenuButton == false) {
-			console.log(element.id);
+
+		/* close menu if not click on menu button */
+		if (isOutsideClick && !isMenuButton) {
 			setMenuClass('close-menu');
 		}
-
-	});
+	}
 
 
 	function toggleSearchBarView() {
