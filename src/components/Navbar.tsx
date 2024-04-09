@@ -91,10 +91,10 @@ export function Navbar() {
 					</div>
 
 					{/* navbar bottom */}
-					{showSearchBar ? <form id="search-form" className="bg-white mt-5 border-2 h-12 flex items-center justify-between px-5 rounded-full">
+					{showSearchBar ? <form id="search-form" className="bg-white mt-5 border-2 h-12 flex items-center justify-between px-5 rounded-full focus-within:border-fuchsia-500 transition-all duration-300">
 						<input className="h-full w-full outline-none text-lg" type="search" id="input-search" placeholder="Pesquise produtos e marcas" />
 						<label htmlFor="input-search">
-							<i className="fa-solid fa-magnifying-glass"></i>
+							<i className="fa-solid fa-magnifying-glass fa-lg text-gray-500"></i>
 						</label>
 					</form> : <></>}
 				</nav>
