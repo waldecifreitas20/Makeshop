@@ -27,11 +27,16 @@ const menuOptions: MenuOption[] = [
 
 
 export function Navbar() {
-	let [isLogged, setLogin] = useState(false);
+	let isLogged = true;
 	let [showSearchBar, setSearchBarView] = useState(true);
-	
+	let [showMenu, setSMenuView] = useState(false);
+
 	function toggleSearchBarView() {
 		setSearchBarView(!showSearchBar);
+	}
+
+	function toggleMenuView() {
+		setSMenuView(!showMenu);
 	}
 
 	return (
@@ -42,18 +47,16 @@ export function Navbar() {
 					<div>
 
 						{/* Menu button */}
-						<div id="menu-toggler">
-							<input type="checkbox" id="toggle" />
-							<label htmlFor="toggle">
-								<i className="fa-solid fa-bars fa-lg"></i>
-							</label>
-						</div>
+						<button onClick={toggleMenuView}>
+							<i className="fa-solid fa-bars fa-lg"></i>
+						</button>
+
 
 						{/* Logo */}
 						<a href="">Makeshop</a>
 
 						{/* Menu */}
-						<div id="menu">
+						{showMenu ? <div id="menu">
 							<div className="bg-black">
 								<h2>Bem-vindo</h2>
 								<p>Faça login ou cadastre-se para aproveitar as nossas ofertas </p>
@@ -73,7 +76,7 @@ export function Navbar() {
 									return menuOption.child;
 								})}
 							</ul>
-						</div>
+						</div> : <></>}
 
 
 						<div>
