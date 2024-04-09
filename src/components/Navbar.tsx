@@ -41,19 +41,19 @@ export function Navbar() {
 
 	return (
 		<>
-			<header className="bg-slate-50 border-b-2 p-5">
+			<header className="border-b-2 py-4 px-5">
 				<nav>
 					{/* navbar top */}
 					<div className="flex items-center">
 
 						{/* Menu button */}
-						<button onClick={toggleMenuView} className="mr-4">
+						<button onClick={toggleMenuView} className="mr-5">
 							<i className="fa-solid fa-bars fa-2xl"></i>
 						</button>
 
 
 						{/* Logo */}
-						<a href="" className="text-4xl font-title tracking-tightest font-extrabold text-gray-650">Makeshop</a>
+						<a href="" className="text-3xl font-title tracking-tightest font-extrabold text-gray-650">Makeshop</a>
 
 						{/* Menu */}
 						{showMenu ? <div id="menu">
@@ -91,11 +91,11 @@ export function Navbar() {
 					</div>
 
 					{/* navbar bottom */}
-					{showSearchBar ? <form id="search-form" className="bg-white mt-5 border-2 h-12 flex items-center justify-between px-5 rounded-full focus-within:border-fuchsia-500 transition-all duration-300">
-						<input className="h-full w-full outline-none text-lg" type="search" id="input-search" placeholder="Pesquise produtos e marcas" />
-						<label htmlFor="input-search">
+					{showSearchBar ? <form id="search-form" className="bg-white mt-5 border-2 h-12 flex items-center justify-between px-5 rounded-full focus-within:border-fuchsia-300 transition-all duration-300">
+						<input className="h-full w-full outline-none text-lg mr-4" type="search" id="input-search" placeholder="Pesquise produtos e marcas" />
+						<button>
 							<i className="fa-solid fa-magnifying-glass fa-lg text-gray-500"></i>
-						</label>
+						</button>
 					</form> : <></>}
 				</nav>
 			</header>
