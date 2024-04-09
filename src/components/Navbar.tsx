@@ -48,23 +48,6 @@ export function Navbar() {
 						</div>
 
 						<ul>
-							{/* <li><a href="">Home</a></li>
-							<li>
-								Categorias
-								<span>
-
-								</span>
-								<ul>
-									<li>Maquiagem</li>
-									<li>Cosméticos</li>
-									<li>Perfumes</li>
-								</ul>
-							</li>
-							<li><a href="">Sessão VIP</a></li>
-							<li><a href="">Ofertas</a></li>
-							<li><a href="">Marcas</a></li>
-							<li><a href="">Sobre a Makeshop</a></li> */}
-
 							{menuOptions.map((menuOption: MenuOption) => {
 								if (menuOption.loginRequired && !isLogged) {
 									return <></>;
