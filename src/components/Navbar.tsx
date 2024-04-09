@@ -41,19 +41,19 @@ export function Navbar() {
 
 	return (
 		<>
-			<header className="bg-slate-50 border-b-2">
+			<header className="bg-slate-50 border-b-2 p-5">
 				<nav>
 					{/* navbar top */}
-					<div>
+					<div className="flex items-center">
 
 						{/* Menu button */}
-						<button onClick={toggleMenuView}>
-							<i className="fa-solid fa-bars fa-lg"></i>
+						<button onClick={toggleMenuView} className="mr-4">
+							<i className="fa-solid fa-bars fa-2xl"></i>
 						</button>
 
 
 						{/* Logo */}
-						<a href="">Makeshop</a>
+						<a href="" className="text-4xl font-title tracking-tightest font-extrabold text-gray-650">Makeshop</a>
 
 						{/* Menu */}
 						{showMenu ? <div id="menu">
@@ -79,16 +79,16 @@ export function Navbar() {
 						</div> : <></>}
 
 
-						<div>
+						<div className="ml-auto flex">
 							<span onClick={toggleSearchBarView}>lupa</span>
-							<div></div>
+							<div className="border-gray-400 border-l mx-3"></div>
 							<span>kart</span>
 						</div>
 					</div>
 
 					{/* navbar bottom */}
-					{showSearchBar ? <form id="search-form" className="">
-						<input type="search" id="input-search" placeholder="Pesquise produtos e marcas" />
+					{showSearchBar ? <form id="search-form" className="bg-white mt-5 border-2 h-12 flex items-center justify-between px-5 rounded-full">
+						<input className="h-full w-full outline-none text-lg" type="search" id="input-search" placeholder="Pesquise produtos e marcas" />
 						<label htmlFor="input-search">
 							<span>Lupa</span>
 						</label>
