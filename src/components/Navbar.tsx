@@ -97,8 +97,25 @@ export function Navbar() {
 
 								<div className="mt-4">
 									<a className="
-									block py-2 mb-2 border-2 border-gray-100  rounded-full text-white hover:text-black hover:bg-white transition-all duration-300" href="">Fazer Login</a>
-									<a className="block py-2 rounded-full bg-white hover:bg-fuchsia-400 transition-all duration-300 " href="">Cadastre-se</a>
+									block py-2 mb-2 
+									rounded-full
+									border 
+									border-pink-400  
+									hover:bg-pink-400 
+									text-white 
+									
+									transition-all duration-300" href="">Fazer Login</a>
+									<a className="
+									block py-2 
+									text-white  
+									rounded-full 
+									border 
+									border-pink-500 
+									hover:border-pink-500 
+									bg-pink-500 
+									hover:bg-pink-500 
+
+									transition-all duration-300 " href="">Cadastre-se</a>
 								</div>
 							</div>
 
