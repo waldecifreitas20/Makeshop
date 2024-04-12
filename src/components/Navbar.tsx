@@ -5,6 +5,11 @@ interface MenuOption {
 	loginRequired: boolean;
 }
 
+const MENU_STATE = {
+	OPEN: true,
+	CLOSE: false
+}
+
 const menuOptions: MenuOption[] = [
 	{ child: <li>Home</li>, loginRequired: false, },
 	{
@@ -28,13 +33,14 @@ const menuOptions: MenuOption[] = [
 
 export function Navbar() {
 	let isLogged: boolean = true;
+	let menuState = useRef(MENU_STATE.CLOSE);
 	let [showSearchBar, setSearchBarView] = useState(false);
 	let [menuClass, setMenuClass] = useState('close-menu');
 
 	/* Close menu when user click outside menu area */
 	document.addEventListener('click', closeMenuView);
 
-	
+
 	function closeMenuView(event: MouseEvent) {
 		event.stopPropagation();
 
@@ -46,6 +52,7 @@ export function Navbar() {
 
 		/* close menu if not click on menu button */
 		if (isOutsideClick && !isMenuButton) {
+			menuState.current = MENU_STATE.CLOSE;
 			setMenuClass('close-menu');
 		}
 	}
@@ -55,10 +62,16 @@ export function Navbar() {
 		setSearchBarView(!showSearchBar);
 	}
 
-	function openMenuView() {
-
-		setMenuClass('open-menu')
+	function toggleMenuView() {		
+		menuState.current = !menuState.current;
+	
+		if (menuState.current == MENU_STATE.OPEN) {
+			return setMenuClass('open-menu');
+		}
+		return setMenuClass('close-menu');
 	}
+
+	
 
 	return (
 		<>
@@ -68,7 +81,7 @@ export function Navbar() {
 					<div className="flex items-center">
 
 						{/* Menu button */}
-						<button onClick={openMenuView} className="mr-5">
+						<button onClick={toggleMenuView} className={`mr-5 ${menuClass === 'open-menu' ? 'relative z-50 text-white' : ''}`}>
 							<i id="menu-icon" className="fa-solid fa-bars fa-2xl"></i>
 						</button>
 
