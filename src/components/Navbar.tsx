@@ -7,14 +7,14 @@ interface MenuOption {
 
 const MENU_STATE = {
 	OPEN: true,
-	CLOSE: false
+	CLOSE: true
 }
 
 const menuOptions: MenuOption[] = [
-	{ child: <li>Home</li>, loginRequired: false, },
+	{ child: <li className="">Home</li>, loginRequired: false, },
 	{
 		child: <li>Categorias
-			<span>{'>'}</span>
+			<span><i className="fa-solid fa-caret-right fa-sm opacity-60"></i></span>
 			<ul>
 				<li><a href="">Maquiagem</a></li>
 				<li><a href="">Cosméticos</a></li>
@@ -35,7 +35,7 @@ export function Navbar() {
 	let isLogged: boolean = true;
 	let menuState = useRef(MENU_STATE.CLOSE);
 	let [showSearchBar, setSearchBarView] = useState(false);
-	let [menuClass, setMenuClass] = useState('close-menu');
+	let [menuClass, setMenuClass] = useState('open-menu');
 
 	/* Close menu when user click outside menu area */
 	document.addEventListener('click', closeMenuView);
@@ -62,16 +62,16 @@ export function Navbar() {
 		setSearchBarView(!showSearchBar);
 	}
 
-	function toggleMenuView() {		
+	function toggleMenuView() {
 		menuState.current = !menuState.current;
-	
+
 		if (menuState.current == MENU_STATE.OPEN) {
 			return setMenuClass('open-menu');
 		}
 		return setMenuClass('close-menu');
 	}
 
-	
+
 
 	return (
 		<>
@@ -90,14 +90,15 @@ export function Navbar() {
 						<a href="" className="text-3xl font-title tracking-tightest font-extrabold text-gray-650">Makeshop</a>
 
 						{/* Menu */}
-						<div id="menu" className={`absolute transition-all w-8/12 duration-500 top-0 left-0 bg-white h-screen ${menuClass}`}>
-							<div className="bg-black">
-								<h2>Bem-vindo</h2>
-								<p>Faça login ou cadastre-se para aproveitar as nossas ofertas </p>
+						<div id="menu" className={`absolute transition-all w-3/4 duration-500 top-0 left-0 bg-white h-screen ${menuClass}`}>
+							<div className="bg-zinc-950 px-5 pt-16 pb-6 text-center">
+								<h2 className="text-white text-xl">Bem-vindo!</h2>
+								<p className="text-white text-sm mt-2">Faça login ou cadastre-se para aproveitar as nossas ofertas </p>
 
-								<div>
-									<a href="">Fazer Login</a>
-									<a href="">Cadastre-se</a>
+								<div className="mt-4">
+									<a className="
+									block py-2 mb-2 border-2 border-gray-100  rounded-full text-white hover:text-black hover:bg-white transition-all duration-300" href="">Fazer Login</a>
+									<a className="block py-2 rounded-full bg-white hover:bg-fuchsia-400 transition-all duration-300 " href="">Cadastre-se</a>
 								</div>
 							</div>
 
