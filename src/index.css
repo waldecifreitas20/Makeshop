@@ -31,11 +31,20 @@
         left: -100vw;
     }
 
-    .child {
-       display: none;
+    .ancestor {
+        z-index: 10;
+    }
+
+    .ancestor ~ .brother {
+        position: absolute;
+        z-index: -100;
+        top: -150px;
     }
     
-    .ancestor:hover > .child{
-        display: block;        
+    .ancestor:hover ~ .brother {    
+        top: 0px;
+        position: relative;
+        z-index: 0;
     }
+
 }

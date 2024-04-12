@@ -14,19 +14,26 @@ const menuOptionStyle = `
 	px-5
 	py-4
 	block
-	hover:bg-zinc-100
+	relative
 	uppercase
+	z-10
+	bg-white
 	`;
+
+
 
 const menuOptions: MenuOption[] = [
 	{ child: <li className={menuOptionStyle}>Home</li>, loginRequired: false, },
 	{
-		child: <li className={menuOptionStyle + "ancestor relative flex z-10 items-center justify-between"} >Categorias
-			<i className="fa-solid fa-caret-right fa-sm opacity-60 z-20"></i>
-			<ul className="child">
-				<li><a href="">Maquiagem</a></li>
-				<li><a href="">Cosméticos</a></li>
-				<li><a href="">Perfumes</a></li>
+		child: <li className="">
+			<div className={menuOptionStyle + "ancestor flex justify-between items-center"}>
+				Categorias
+				<i className="fa-solid fa-caret-right fa-sm opacity-60"></i>
+			</div>
+			<ul className="brother w-full ps-4 bg-zinc-100 transition-all duration-500">
+				<li className={"px-5 py-4 block uppercase bg-transparent text-gray-600 text-sm"}><a href="">Maquiagem</a></li>
+				<li className={"px-5 py-4 block uppercase bg-transparent text-gray-600 text-sm"}><a href="">Cosméticos</a></li>
+				<li className={"px-5 py-4 block uppercase bg-transparent text-gray-600 text-sm"}><a href="">Perfumes</a></li>
 			</ul>
 		</li>, loginRequired: false,
 	},
@@ -99,7 +106,7 @@ export function Navbar() {
 
 						{/* Menu */}
 						<div id="menu" className={`absolute transition-all w-3/4 duration-500 top-0 left-0 bg-white min-h-screen  ${menuClass}`}>
-							<div className="bg-zinc-950 px-5 pt-16 pb-6 text-center">
+							<div className="bg-zinc-950 px-5 pt-16 pb-6 text-center relative z-10">
 								<h2 className="text-white text-xl">Bem-vindo!</h2>
 								<p className="text-white text-sm mt-2">Faça login ou cadastre-se para aproveitar as nossas ofertas </p>
 
@@ -128,7 +135,7 @@ export function Navbar() {
 							</div>
 
 							{/* Menu options*/}
-							<ul>
+							<ul className="-z-0 relative">
 								{menuOptions.map((menuOption: MenuOption) => {
 									if (menuOption.loginRequired && !isLogged) {
 										return <></>;
