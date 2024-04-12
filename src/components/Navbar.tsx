@@ -10,29 +10,37 @@ const MENU_STATE = {
 	CLOSE: true
 }
 
+const menuOptionStyle = `
+	px-5
+	py-4
+	block
+	hover:bg-zinc-100
+	uppercase
+	`;
+
 const menuOptions: MenuOption[] = [
-	{ child: <li className="">Home</li>, loginRequired: false, },
+	{ child: <li className={menuOptionStyle}>Home</li>, loginRequired: false, },
 	{
-		child: <li>Categorias
-			<span><i className="fa-solid fa-caret-right fa-sm opacity-60"></i></span>
-			<ul>
+		child: <li className={menuOptionStyle + "ancestor relative flex z-10 items-center justify-between"} >Categorias
+			<i className="fa-solid fa-caret-right fa-sm opacity-60 z-20"></i>
+			<ul className="child">
 				<li><a href="">Maquiagem</a></li>
 				<li><a href="">Cosméticos</a></li>
 				<li><a href="">Perfumes</a></li>
 			</ul>
 		</li>, loginRequired: false,
 	},
-	{ child: <li>Sessão VIP</li>, loginRequired: false, },
-	{ child: <li>Ofertas</li>, loginRequired: false, },
-	{ child: <li>Marcas</li>, loginRequired: false, },
-	{ child: <li>Minha Conta</li>, loginRequired: true, },
-	{ child: <li>Sobre a Makeshop</li>, loginRequired: false, },
-	{ child: <li>Sair</li>, loginRequired: true, },
+	{ child: <li className={menuOptionStyle}>Sessão VIP</li>, loginRequired: false, },
+	{ child: <li className={menuOptionStyle}>Ofertas</li>, loginRequired: false, },
+	{ child: <li className={menuOptionStyle}>Marcas</li>, loginRequired: false, },
+	{ child: <li className={menuOptionStyle}>Minha Conta</li>, loginRequired: true, },
+	{ child: <li className={menuOptionStyle}>Sobre a Makeshop</li>, loginRequired: false, },
+	{ child: <li className={menuOptionStyle}>Sair</li>, loginRequired: true, },
 ]
 
 
 export function Navbar() {
-	let isLogged: boolean = true;
+	let isLogged: boolean = false;
 	let menuState = useRef(MENU_STATE.CLOSE);
 	let [showSearchBar, setSearchBarView] = useState(false);
 	let [menuClass, setMenuClass] = useState('open-menu');
@@ -90,7 +98,7 @@ export function Navbar() {
 						<a href="" className="text-3xl font-title tracking-tightest font-extrabold text-gray-650">Makeshop</a>
 
 						{/* Menu */}
-						<div id="menu" className={`absolute transition-all w-3/4 duration-500 top-0 left-0 bg-white h-screen ${menuClass}`}>
+						<div id="menu" className={`absolute transition-all w-3/4 duration-500 top-0 left-0 bg-white min-h-screen  ${menuClass}`}>
 							<div className="bg-zinc-950 px-5 pt-16 pb-6 text-center">
 								<h2 className="text-white text-xl">Bem-vindo!</h2>
 								<p className="text-white text-sm mt-2">Faça login ou cadastre-se para aproveitar as nossas ofertas </p>
@@ -128,6 +136,7 @@ export function Navbar() {
 									return menuOption.child;
 								})}
 							</ul>
+
 						</div>
 
 

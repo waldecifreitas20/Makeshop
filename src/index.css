@@ -30,4 +30,12 @@
     .close-menu {
         left: -100vw;
     }
+
+    .child {
+       display: none;
+    }
+    
+    .ancestor:hover > .child{
+        display: block;        
+    }
 }
