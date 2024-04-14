@@ -4,12 +4,16 @@
 
 @font-face {
     font-family: "Title";
-    src: url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
+    src: url("../public/fonts/AbrilFatface-Regular.ttf");
 }
 
 @font-face {
     font-family: "Body";
-    src: url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Eczar:wght@400..800&display=swap");
+    src: url("../public/fonts/Baskervville-Regular.ttf");
+}
+@font-face {
+    font-family: "Body-italic";
+    src: url("../public/fonts/Baskervville-Italic.ttf");
 }
 
 @layer utilities {
@@ -31,7 +35,7 @@
         left: -100vw;
     }
 
-    .ancestor {
+  /*   .ancestor {
         z-index: 10;
     }
 
@@ -45,6 +49,6 @@
         top: 0px;
         position: relative;
         z-index: 0;
-    }
+    } */
 
 }

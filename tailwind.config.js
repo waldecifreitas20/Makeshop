@@ -6,7 +6,7 @@ export default {
   ],
   theme: {
     letterSpacing: {
-      tightest : '-.1em',
+      tightest : '-.065em',
     },
     extend: {},
   },

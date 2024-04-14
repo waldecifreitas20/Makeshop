@@ -28,12 +28,12 @@ const menuOptions: MenuOption[] = [
 		child: <li className="">
 			<div className={menuOptionStyle + "ancestor flex justify-between items-center"}>
 				Categorias
-				<i className="fa-solid fa-caret-right fa-sm opacity-60"></i>
+				<i className="hidden md:block fa-solid fa-caret-down fa-sm opacity-60"></i>
 			</div>
-			<ul className="brother w-full ps-4 bg-zinc-100 transition-all duration-500">
-				<li className={"px-5 py-4 block uppercase bg-transparent text-gray-600 text-sm"}><a href="">Maquiagem</a></li>
-				<li className={"px-5 py-4 block uppercase bg-transparent text-gray-600 text-sm"}><a href="">Cosméticos</a></li>
-				<li className={"px-5 py-4 block uppercase bg-transparent text-gray-600 text-sm"}><a href="">Perfumes</a></li>
+			<ul className="brother w-full ps-4 bg-slater-50 transition-all duration-500">
+				<li className={"px-5 py-4 block uppercase bg-transparent text-gray-800 text-sm"}><a href="">Maquiagem</a></li>
+				<li className={"px-5 py-4 block uppercase bg-transparent text-gray-800 text-sm"}><a href="">Cosméticos</a></li>
+				<li className={"px-5 py-4 block uppercase bg-transparent text-gray-800 text-sm"}><a href="">Perfumes</a></li>
 			</ul>
 		</li>, loginRequired: false,
 	},
@@ -102,7 +102,7 @@ export function Navbar() {
 
 
 						{/* Logo */}
-						<a href="" className="text-3xl font-title tracking-tightest font-extrabold text-gray-650">Makeshop</a>
+						<a href="" className="text-3xl font-title tracking-tightest text-gray-650">Makeshop</a>
 
 						{/* Menu */}
 						<div id="menu" className={`absolute transition-all w-3/4 duration-500 top-0 left-0 bg-white min-h-screen  ${menuClass}`}>
