@@ -19,8 +19,10 @@ const menuOptionStyle = `
 	z-10
 	bg-white
 	text-sm
-	text-zinc-950
-	cursor-pointer	
+	text-zinc-600
+	cursor-pointer
+	hover:text-black
+	hover:bg-gray-100
 	`;
 
 
@@ -34,9 +36,9 @@ const menuOptions: MenuOption[] = [
 				<i className="hidden md:block fa-solid fa-caret-down fa-sm opacity-60"></i>
 			</div>
 			<ul className="brother w-full ps-4 bg-slater-50 transition-all duration-500">
-				<li className={"ms-5 py-4 uppercase bg-transparent text-gray-400 text-sm"}><a href="">Maquiagem</a></li>
-				<li className={"ms-5 py-4 uppercase bg-transparent text-gray-400 text-sm"}><a href="">Cosméticos</a></li>
-				<li className={"ms-5 py-4 uppercase bg-transparent text-gray-400 text-sm"}><a href="">Perfumes</a></li>
+				<li className={"ms-5 py-4 hover:text-black uppercase bg-transparent text-gray-400 text-sm"}><a href="">Maquiagem</a></li>
+				<li className={"ms-5 py-4 hover:text-black uppercase bg-transparent text-gray-400 text-sm"}><a href="">Cosméticos</a></li>
+				<li className={"ms-5 py-4 hover:text-black uppercase bg-transparent text-gray-400 text-sm"}><a href="">Perfumes</a></li>
 			</ul>
 		</li>, loginRequired: false,
 	},
