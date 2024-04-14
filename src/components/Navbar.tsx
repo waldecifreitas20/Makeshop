@@ -7,7 +7,7 @@ interface MenuOption {
 
 const MENU_STATE = {
 	OPEN: true,
-	CLOSE: true
+	CLOSE: false
 }
 
 const menuOptionStyle = `
@@ -55,7 +55,7 @@ export function Navbar() {
 	let isLogged: boolean = false;
 	let menuState = useRef(MENU_STATE.CLOSE);
 	let [showSearchBar, setSearchBarView] = useState(false);
-	let [menuClass, setMenuClass] = useState('open-menu');
+	let [menuClass, setMenuClass] = useState('close-menu');
 
 	/* Close menu when user click outside menu area */
 	document.addEventListener('click', closeMenuView);
