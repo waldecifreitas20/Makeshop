@@ -44,7 +44,7 @@ export function Carousel(props: CarouselProps) {
                 <ul id={THIS_KEY} className="slider transition-all duration-700">
                     {props.items.map((item, i) => {
                         return <>
-                            <li className="carousel-item">
+                            <li key={Math.random().toString()} className="carousel-item">
                                 {item}
                             </li>
                         </>;
