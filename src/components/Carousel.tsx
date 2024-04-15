@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 interface CarouselProps {
     items: Array<any>;
@@ -7,10 +7,10 @@ interface CarouselProps {
 }
 
 
-
 export function Carousel(props: CarouselProps) {
     let active = useRef(0);
-
+    
+    const THIS_KEY = Math.random().toString();
 
     function next() {
         if (active.current < props.itemsCount - 1) {
@@ -31,17 +31,17 @@ export function Carousel(props: CarouselProps) {
     }
 
     function translateSlide(slideTo: number) {
-        const slider = document.getElementById("slider") ?? new HTMLElement();
+        const slider = document.getElementById(THIS_KEY) ?? new HTMLElement();
         slider.style.left = `-${props.itemWidth * slideTo}px`;
         console.log(active.current);
     }
 
     return <>
-        <div id="carousel">
+        <div className="carousel">
             <button onClick={prev}>Voltar</button>
 
-            <div id="carousel-view">
-                <div id="slider" className="transition-all duration-700">
+            <div className="carousel-view">
+                <div id={THIS_KEY} className="slider transition-all duration-700">
                     {props.items.map((item, i) => {
                         return <>
                             {item}
