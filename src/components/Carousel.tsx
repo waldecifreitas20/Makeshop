@@ -9,7 +9,7 @@ interface CarouselProps {
 
 export function Carousel(props: CarouselProps) {
     let active = useRef(0);
-    
+
     const THIS_KEY = Math.random().toString();
 
     function next() {
@@ -41,13 +41,15 @@ export function Carousel(props: CarouselProps) {
             <button onClick={prev}>Voltar</button>
 
             <div className="carousel-view">
-                <div id={THIS_KEY} className="slider transition-all duration-700">
+                <ul id={THIS_KEY} className="slider transition-all duration-700">
                     {props.items.map((item, i) => {
                         return <>
-                            {item}
+                            <li className="carousel-item">
+                                {item}
+                            </li>
                         </>;
                     })}
-                </div>
+                </ul>
             </div>
 
             <button onClick={next}>Proxima</button>

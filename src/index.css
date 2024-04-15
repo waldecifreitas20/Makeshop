@@ -55,7 +55,6 @@
     .carousel {
         margin: 0 auto;
         width: 400px;
-        height: 240px;
         display: flex;
     }
 
@@ -69,20 +68,27 @@
         left: 0;
         position: relative;
 
+        width: max-content;
+
         justify-content: space-between;
         align-items: center;
     }
-
-
+    
+    
     .carousel-item {
-        display: block;
-        width: 300px;
-        height: 100%;
-
         position: relative;
-        scroll-snap-align: center;
-
+        width: 300px;
+        height: 200px;
+        
+        display: flex;
+        align-items: center;
+        justify-content: center;
         margin-right: 50px;
     }
+
+    .carousel-item img {
+        height: 100%;
+    }
+   
 
 }

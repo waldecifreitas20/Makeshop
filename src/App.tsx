@@ -9,11 +9,18 @@ export function App() {
     <img src="../../public/images/product3.png" alt="" />,
   ];
 
+  const carousel2 = [
+    <li>a</li>,
+    <li>b</li>,
+    <li>a</li>,
+    <li>a</li>,
+  ]
+
   return (
     <>
       <Navbar />
       <Carousel itemWidth={350} items={carouselItems} itemsCount={carouselItems.length}/>
-      <Carousel itemWidth={350} items={carouselItems} itemsCount={carouselItems.length}/>
+      <Carousel itemWidth={350} items={carousel2} itemsCount={carouselItems.length}/>
     </>
   )
 }
