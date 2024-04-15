@@ -1,18 +1,19 @@
 import { useRef, useState } from "react";
 
 interface CarouselProps {
-    itemWidth: Number;
+    items: Array<any>;
+    itemsCount: number;
+    itemWidth: number;
 }
 
 
 
 export function Carousel(props: CarouselProps) {
-    const itemWidth = 400;
     let active = useRef(0);
 
 
     function next() {
-        if (active.current < 3) {
+        if (active.current < props.itemsCount - 1) {
             active.current += 1
         } else {
             active.current = 0
@@ -24,14 +25,14 @@ export function Carousel(props: CarouselProps) {
         if (active.current > 0) {
             active.current -= 1
         } else {
-            active.current = 3
+            active.current = props.itemsCount - 1
         }
         translateSlide(active.current);
     }
 
     function translateSlide(slideTo: number) {
         const slider = document.getElementById("slider") ?? new HTMLElement();
-        slider.style.left = `-${350 * slideTo}px`;
+        slider.style.left = `-${props.itemWidth * slideTo}px`;
         console.log(active.current);
     }
 
@@ -41,10 +42,11 @@ export function Carousel(props: CarouselProps) {
 
             <div id="carousel-view">
                 <div id="slider" className="transition-all duration-700">
-                    <img className="carousel-item" src="../../public/images/banner1.png" alt="" />
-                    <img className="carousel-item" src="../../public/images/product1.png" alt="" />
-                    <img className="carousel-item" src="../../public/images/product2.png" alt="" />
-                    <img className="carousel-item" src="../../public/images/product3.png" alt="" />
+                    {props.items.map((item, i) => {
+                        return <>
+                            {item}
+                        </>;
+                    })}
                 </div>
             </div>
 
