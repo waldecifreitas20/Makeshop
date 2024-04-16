@@ -12,6 +12,15 @@ export function Carousel(props: CarouselProps) {
 
     const THIS_KEY = Math.random().toString();
 
+    const carouselItems = document.getElementsByClassName("carousel-item") as HTMLCollectionOf<HTMLElement>;
+
+    console.log(carouselItems.length);
+    
+    for (const item of carouselItems) {
+        item.style.width = `${props.itemWidth}px`;
+        console.log(1);
+    }
+
     function next() {
         if (active.current < props.itemsCount - 1) {
             active.current += 1
