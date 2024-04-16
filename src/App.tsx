@@ -11,11 +11,10 @@ export function App() {
 
 
   let x: number = 0;
-  let slideX = 50;
+  let slideX = 100;
 
-  function prev(event: any) {
+  function prev() {
     const slider = document.getElementById("slider") as HTMLElement;
-
     if (x - slideX > 0 - slideX) {
 
       x -= slideX;
@@ -24,14 +23,12 @@ export function App() {
   }
 
 
-  function next(event: any) {
+  function next() {
     const container = document.getElementById("container") as HTMLElement;
     const slider = document.getElementById("slider") as HTMLElement;
-
-    let overflow = slider.offsetWidth - container.offsetWidth;
+    const overflow = slider.offsetWidth - container.offsetWidth;
 
     if (x + slideX <= overflow + slideX) {
-
       x += slideX;
       slider.style.left = `-${x}px`;
     }
@@ -43,10 +40,10 @@ export function App() {
       <Navbar />
       <div className="flex w-[90%] mx-auto mt-2">
 
-        <button onClick={prev}>voltar</button>
+        <button onClick={prev} className="w-10 bg-white text-center border rounded-full"><i className="fa-solid fa-chevron-left"></i></button>
 
         <div id="container" className="relative overflow-hidden w-full flex items-center mx-2">
-          <div id="slider" className="flex relative flex-nowrap p-0 ">
+          <div id="slider" className="flex relative md:static flex-nowrap p-0 transition-all duration-500">
             {SHORTCUTS_OPTIONS.map((option, i) => {
               return <>
                 {option}
@@ -55,7 +52,7 @@ export function App() {
           </div>
         </div>
 
-        <button onClick={next} >prox</button>
+        <button onClick={next} className="w-10 bg-white text-center border rounded-full" ><i className="fa-solid fa-chevron-right"></i></button>
 
       </div>
     </>
