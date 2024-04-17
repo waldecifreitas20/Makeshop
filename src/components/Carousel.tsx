@@ -23,12 +23,12 @@ export class Carousel extends React.Component {
 
 
         this.next = () => {
+           const ITEMS_QTD = this.props.items.length;
+            
             this.index++;
 
-            const slider = this.getSlider();
-            slider.style.left = `-${this.viewWidth * this.index}px`;
-
-            console.log(slider.style.left);
+            const SLIDER = this.getSlider();
+            SLIDER.style.left = `-${this.viewWidth * this.index}px`;
 
         }
     }
@@ -62,21 +62,19 @@ export class Carousel extends React.Component {
     public componentDidMount() {
         this.updateCarouselItemsWidth();
 
-        const slider = this.getSlider();
-
-        slider.style.left = '0px';
+        this.getSlider().style.left = '0px';
     }
 
     private updateCarouselItemsWidth() {
-        const carouselViewPortWidth = document
+        const CAROUSEL_VIEW_WIDTH = document
             .getElementById(`carousel-view-${this.key}`)?.offsetWidth ?? -1;
 
-        const items = document
+        const CAROUSEL_ITEMS = document
             .getElementsByClassName(`carousel-item-${this.key}`) as HTMLCollectionOf<HTMLElement>;
 
-        this.viewWidth = carouselViewPortWidth;
-        for (const item of items) {
-            item.style.width = `${carouselViewPortWidth}px`;
+        this.viewWidth = CAROUSEL_VIEW_WIDTH;
+        for (const ITEM of CAROUSEL_ITEMS) {
+            ITEM.style.width = `${CAROUSEL_VIEW_WIDTH}px`;
         }
     }
 

@@ -17,31 +17,27 @@ export function App() {
         <img src="../public/images/banner1.png" alt="" />,
     ];
 
-    const bannerCarousel = new Carousel({
-        items: BANNERS
-    });
-
     let x: number = 0;
     let slideX = 100;
 
     function prev() {
-        const slider = document.getElementById("slider") as HTMLElement;
+        const SLIDER = document.getElementById("slider") as HTMLElement;
         if (x - slideX > 0 - slideX) {
 
             x -= slideX;
-            slider.style.left = `-${x}px`;
+            SLIDER.style.left = `-${x}px`;
         }
     }
 
 
     function next() {
-        const container = document.getElementById("container") as HTMLElement;
-        const slider = document.getElementById("slider") as HTMLElement;
-        const overflow = slider.offsetWidth - container.offsetWidth;
+        const CONTAINER = document.getElementById("container") as HTMLElement;
+        const SLIDER = document.getElementById("slider") as HTMLElement;
+        const OVERFLOW = SLIDER.offsetWidth - CONTAINER.offsetWidth;
 
-        if (x + slideX <= overflow + slideX) {
+        if (x + slideX <= OVERFLOW + slideX) {
             x += slideX;
-            slider.style.left = `-${x}px`;
+            SLIDER.style.left = `-${x}px`;
         }
     }
 

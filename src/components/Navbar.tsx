@@ -10,7 +10,7 @@ const MENU_STATE = {
 	CLOSE: false
 }
 
-const menuOptionStyle = `
+const MENU_OPTION_STYLE = `
 	px-5
 	py-5
 	block
@@ -27,11 +27,11 @@ const menuOptionStyle = `
 
 
 
-const menuOptions: MenuOption[] = [
-	{ child: <li className={menuOptionStyle}>Home</li>, loginRequired: false, },
+const MENU_OPTIONS: MenuOption[] = [
+	{ child: <li className={MENU_OPTION_STYLE}>Home</li>, loginRequired: false, },
 	{
 		child: <li>
-			<div className={menuOptionStyle + "ancestor flex justify-between items-center"}>
+			<div className={MENU_OPTION_STYLE + "ancestor flex justify-between items-center"}>
 				Categorias
 				<i className="hidden md:block fa-solid fa-caret-down fa-sm opacity-60"></i>
 			</div>
@@ -42,12 +42,12 @@ const menuOptions: MenuOption[] = [
 			</ul>
 		</li>, loginRequired: false,
 	},
-	{ child: <li className={menuOptionStyle}>Sessão VIP</li>, loginRequired: false, },
-	{ child: <li className={menuOptionStyle}>Ofertas</li>, loginRequired: false, },
-	{ child: <li className={menuOptionStyle}>Marcas</li>, loginRequired: false, },
-	{ child: <li className={menuOptionStyle}>Minha Conta</li>, loginRequired: true, },
-	{ child: <li className={menuOptionStyle}>Sobre a Makeshop</li>, loginRequired: false, },
-	{ child: <li className={menuOptionStyle}>Sair</li>, loginRequired: true, },
+	{ child: <li className={MENU_OPTION_STYLE}>Sessão VIP</li>, loginRequired: false, },
+	{ child: <li className={MENU_OPTION_STYLE}>Ofertas</li>, loginRequired: false, },
+	{ child: <li className={MENU_OPTION_STYLE}>Marcas</li>, loginRequired: false, },
+	{ child: <li className={MENU_OPTION_STYLE}>Minha Conta</li>, loginRequired: true, },
+	{ child: <li className={MENU_OPTION_STYLE}>Sobre a Makeshop</li>, loginRequired: false, },
+	{ child: <li className={MENU_OPTION_STYLE}>Sair</li>, loginRequired: true, },
 ]
 
 
@@ -64,14 +64,14 @@ export function Navbar() {
 	function closeMenuView(event: MouseEvent) {
 		event.stopPropagation();
 
-		const menu = document.getElementById("menu");
-		const element = event.target as HTMLElement;
+		const MENU = document.getElementById("menu");
+		const ELEMENT = event.target as HTMLElement;
 
-		const isOutsideClick = menu?.contains(element) == false;
-		const isMenuButton = element.id == "menu-icon";
+		const IS_OUTSIDE_CLICK = MENU?.contains(ELEMENT) == false;
+		const IS_MENU_BUTTON = ELEMENT.id == "menu-icon";
 
 		/* close menu if not click on menu button */
-		if (isOutsideClick && !isMenuButton) {
+		if (IS_OUTSIDE_CLICK && !IS_MENU_BUTTON) {
 			menuState.current = MENU_STATE.CLOSE;
 			setMenuClass('close-menu');
 		}
@@ -141,7 +141,7 @@ export function Navbar() {
 
 							{/* Menu options*/}
 							<ul className="-z-0 relative">
-								{menuOptions.map((menuOption: MenuOption) => {
+								{MENU_OPTIONS.map((menuOption: MenuOption) => {
 									if (menuOption.loginRequired && !isLogged) {
 										return <></>;
 									}
