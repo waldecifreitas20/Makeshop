@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from "react";
+import React, { MouseEventHandler, } from "react";
 
 interface CarouselProps {
     items: Array<any>;
@@ -23,7 +23,7 @@ export class Carousel extends React.Component {
         this.viewWidth = -1;
 
 
-        this.nextItem = () => {
+        this.nextItem = (): void => {
             const ITEMS_QTD = this.props.items.length;
 
             this.index++;
@@ -36,7 +36,7 @@ export class Carousel extends React.Component {
 
         }
 
-        this.previousItem = () => {
+        this.previousItem = (): void => {
             const ITEMS_QTD = this.props.items.length;
 
             if (this.index <= 0) {
@@ -50,7 +50,7 @@ export class Carousel extends React.Component {
         }
     }
 
-    public render() {
+    public render(): JSX.Element {
         window.addEventListener("resize", () => {
             this.updateCarouselItemsWidth();
         });
@@ -77,13 +77,13 @@ export class Carousel extends React.Component {
     }
 
 
-    public componentDidMount() {
+    public componentDidMount(): void {
         this.updateCarouselItemsWidth();
 
         this.getSlider().style.left = '0px';
     }
 
-    private updateCarouselItemsWidth() {
+    private updateCarouselItemsWidth(): void {
         const CAROUSEL_VIEW_WIDTH = document
             .getElementById(`carousel-view-${this.key}`)?.offsetWidth ?? -1;
 
