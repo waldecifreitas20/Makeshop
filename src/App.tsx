@@ -63,7 +63,7 @@ export function App() {
                 <button onClick={next} className="w-10 bg-white text-center border rounded-full"><i className="fa-solid fa-chevron-right"></i></button>
             </div>
 
-            <Carousel items={BANNERS} />
+            <Carousel items={BANNERS} delay={5000} />
         </>
     );
 }

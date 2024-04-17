@@ -2,6 +2,7 @@ import React from "react";
 
 interface CarouselProps {
     items: Array<any>;
+    delay: number;
 }
 
 
@@ -11,8 +12,10 @@ export class Carousel extends React.Component {
     private readonly previousItem: VoidFunction;
     private viewWidth: number;
     private index: number;
+    private hasEventTriggered: boolean;
 
     public readonly props: CarouselProps;
+
 
 
     public constructor(props: CarouselProps) {
@@ -21,7 +24,7 @@ export class Carousel extends React.Component {
         this.props = props;
         this.index = 0;
         this.viewWidth = -1;
-
+        this.hasEventTriggered = false;
 
         this.nextItem = (): void => {
             const ITEMS_QTD = this.props.items.length;
@@ -31,12 +34,8 @@ export class Carousel extends React.Component {
                 this.index = 0;
             }
 
-            console.log(this.index);
-
-
             const SLIDER = this.getSlider();
             SLIDER.style.left = `-${this.viewWidth * this.index}px`;
-
         }
 
         this.previousItem = (): void => {
@@ -49,7 +48,6 @@ export class Carousel extends React.Component {
 
             const SLIDER = this.getSlider();
             SLIDER.style.left = `-${this.viewWidth * this.index}px`;
-
         }
     }
 
@@ -61,7 +59,14 @@ export class Carousel extends React.Component {
         return <>
 
             <div id={`carousel-${this.key}`} className="flex justify-between px-5">
-                <button className="" onClick={() => this.previousItem()}>Voltar</button>
+                <button className="" onClick={() => {
+                    this.hasEventTriggered = true;
+                    this.previousItem();
+
+                    this.hasEventTriggered = false;
+                    
+                }
+                }>Voltar</button>
 
                 <div id={`carousel-view-${this.key}`} className="relative flex overflow-hidden w-[90%]">
                     <ul id={`slider-${this.key}`} className="slider relative transition-all duration-1000 flex h-full">
@@ -73,7 +78,12 @@ export class Carousel extends React.Component {
                     </ul>
                 </div>
 
-                <button onClick={() => this.nextItem()}>Proxima</button>
+                <button onClick={() => {
+                    this.hasEventTriggered = true;
+                    this.nextItem();
+                    this.hasEventTriggered = false;
+                }
+                }>Proxima</button>
             </div>
         </>;
 
@@ -84,7 +94,6 @@ export class Carousel extends React.Component {
         this.getSlider().style.left = '0px';
         this.updateCarouselItemsWidth();
         this.runAutoPlay();
-
     }
 
     private updateCarouselItemsWidth(): void {
@@ -102,9 +111,14 @@ export class Carousel extends React.Component {
 
 
     private runAutoPlay() {
-        setInterval(() => {
-            this.nextItem();
-        }, 5000);
+        const autoPlayId = setInterval(() => {
+
+            if (!this.hasEventTriggered) {
+                this.nextItem();
+            }
+        }, this.props.delay);
+
+
     }
 
     private getSlider(): HTMLElement {
