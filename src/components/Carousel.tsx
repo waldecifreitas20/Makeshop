@@ -23,9 +23,12 @@ export class Carousel extends React.Component {
 
 
         this.next = () => {
-           const ITEMS_QTD = this.props.items.length;
-            
+            const ITEMS_QTD = this.props.items.length;
+
             this.index++;
+            if (this.index >= ITEMS_QTD) {
+                this.index = 0;
+            } 
 
             const SLIDER = this.getSlider();
             SLIDER.style.left = `-${this.viewWidth * this.index}px`;
@@ -44,15 +47,15 @@ export class Carousel extends React.Component {
                 <button className="" onClick={this.prev}>Voltar</button>
 
                 <div id={`carousel-view-${this.key}`} className="relative flex overflow-hidden w-[90%]">
-                    <ul id={`slider-${this.key}`} className="slider relative transition-all duration-700 flex">
+                    <ul id={`slider-${this.key}`} className="slider relative transition-all duration-1000 flex h-full">
                         {this.props.items.map((item, i) => {
                             return <>
-                                <li className={`carousel-item-${this.key}`}>{item}</li>
+                                <li className={`carousel-item-${this.key} bg-blue-500 text-center`}>{item}</li>
                             </>
                         })}
                     </ul>
                 </div>
-
+                                
                 <button onClick={this.next}>Proxima</button>
             </div>
         </>;
