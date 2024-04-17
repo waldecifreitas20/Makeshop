@@ -1,4 +1,4 @@
-import React, { EventHandler } from "react";
+import React from "react";
 
 interface CarouselProps {
     items: Array<any>;
