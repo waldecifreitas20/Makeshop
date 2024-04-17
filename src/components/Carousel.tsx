@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 
 interface CarouselProps {
     items: Array<any>;
@@ -6,12 +6,13 @@ interface CarouselProps {
 
 
 export class Carousel extends React.Component {
-    private key: string;
+    private readonly key: string;
+    private readonly nextItem: MouseEventHandler<Element>;
+    private readonly previousItem: MouseEventHandler<Element>;
     private viewWidth: number;
     private index: number;
-    private next;
 
-    public props: CarouselProps;
+    public readonly props: CarouselProps;
 
 
     public constructor(props: CarouselProps) {
@@ -22,13 +23,26 @@ export class Carousel extends React.Component {
         this.viewWidth = -1;
 
 
-        this.next = () => {
+        this.nextItem = () => {
             const ITEMS_QTD = this.props.items.length;
 
             this.index++;
             if (this.index >= ITEMS_QTD) {
                 this.index = 0;
-            } 
+            }
+
+            const SLIDER = this.getSlider();
+            SLIDER.style.left = `-${this.viewWidth * this.index}px`;
+
+        }
+
+        this.previousItem = () => {
+            const ITEMS_QTD = this.props.items.length;
+
+            if (this.index <= 0) {
+                this.index = ITEMS_QTD;
+            }
+            this.index--;
 
             const SLIDER = this.getSlider();
             SLIDER.style.left = `-${this.viewWidth * this.index}px`;
@@ -44,7 +58,7 @@ export class Carousel extends React.Component {
         return <>
 
             <div id={`carousel-${this.key}`} className="flex justify-between px-5">
-                <button className="" onClick={this.prev}>Voltar</button>
+                <button className="" onClick={this.previousItem}>Voltar</button>
 
                 <div id={`carousel-view-${this.key}`} className="relative flex overflow-hidden w-[90%]">
                     <ul id={`slider-${this.key}`} className="slider relative transition-all duration-1000 flex h-full">
@@ -55,12 +69,13 @@ export class Carousel extends React.Component {
                         })}
                     </ul>
                 </div>
-                                
-                <button onClick={this.next}>Proxima</button>
+
+                <button onClick={this.nextItem}>Proxima</button>
             </div>
         </>;
 
     }
+
 
     public componentDidMount() {
         this.updateCarouselItemsWidth();
@@ -79,10 +94,6 @@ export class Carousel extends React.Component {
         for (const ITEM of CAROUSEL_ITEMS) {
             ITEM.style.width = `${CAROUSEL_VIEW_WIDTH}px`;
         }
-    }
-
-    private prev() {
-
     }
 
 
