@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, } from "react";
+import React from "react";
 
 interface CarouselProps {
     items: Array<any>;
@@ -7,8 +7,8 @@ interface CarouselProps {
 
 export class Carousel extends React.Component {
     private readonly key: string;
-    private readonly nextItem: MouseEventHandler<Element>;
-    private readonly previousItem: MouseEventHandler<Element>;
+    private readonly nextItem: VoidFunction;
+    private readonly previousItem: VoidFunction;
     private viewWidth: number;
     private index: number;
 
@@ -30,6 +30,9 @@ export class Carousel extends React.Component {
             if (this.index >= ITEMS_QTD) {
                 this.index = 0;
             }
+
+            console.log(this.index);
+
 
             const SLIDER = this.getSlider();
             SLIDER.style.left = `-${this.viewWidth * this.index}px`;
@@ -58,19 +61,19 @@ export class Carousel extends React.Component {
         return <>
 
             <div id={`carousel-${this.key}`} className="flex justify-between px-5">
-                <button className="" onClick={this.previousItem}>Voltar</button>
+                <button className="" onClick={() => this.previousItem()}>Voltar</button>
 
                 <div id={`carousel-view-${this.key}`} className="relative flex overflow-hidden w-[90%]">
                     <ul id={`slider-${this.key}`} className="slider relative transition-all duration-1000 flex h-full">
                         {this.props.items.map((item, i) => {
                             return <>
-                                <li className={`carousel-item-${this.key} bg-blue-500 text-center`}>{item}</li>
+                                <li className={`carousel-item-${this.key} text-center h-[200px] flex justify-center`}>{item}</li>
                             </>
                         })}
                     </ul>
                 </div>
 
-                <button onClick={this.nextItem}>Proxima</button>
+                <button onClick={() => this.nextItem()}>Proxima</button>
             </div>
         </>;
 
@@ -78,9 +81,10 @@ export class Carousel extends React.Component {
 
 
     public componentDidMount(): void {
-        this.updateCarouselItemsWidth();
-
         this.getSlider().style.left = '0px';
+        this.updateCarouselItemsWidth();
+        this.runAutoPlay();
+
     }
 
     private updateCarouselItemsWidth(): void {
@@ -96,6 +100,12 @@ export class Carousel extends React.Component {
         }
     }
 
+
+    private runAutoPlay() {
+        setInterval(() => {
+            this.nextItem();
+        }, 5000);
+    }
 
     private getSlider(): HTMLElement {
         return document.getElementById(`slider-${this.key}`) as HTMLElement;

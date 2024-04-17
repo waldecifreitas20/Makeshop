@@ -13,8 +13,8 @@ export function App() {
 
     const BANNERS = [
         <img src="../public/images/banner1.png" alt="" />,
-        <img src="../public/images/banner1.png" alt="" />,
-        <img src="../public/images/banner1.png" alt="" />,
+        <img src="../public/images/product1.png" alt="" />,
+        <img src="../public/images/product2.png" alt="" />,
     ];
 
     let x: number = 0;
