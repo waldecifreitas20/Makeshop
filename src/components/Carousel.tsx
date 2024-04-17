@@ -1,67 +1,55 @@
-import { useRef } from "react";
+import React from "react";
 
 interface CarouselProps {
     items: Array<any>;
-    itemsCount: number;
-    itemWidth: number;
 }
 
 
-export function Carousel(props: CarouselProps) {
-    let active = useRef(0);
+export class Carousel extends React.Component {
+    private key: string;
 
-    const THIS_KEY = Math.random().toString();
+    public props : CarouselProps;
 
-    const carouselItems = document.getElementsByClassName("carousel-item") as HTMLCollectionOf<HTMLElement>;
-
-    console.log(carouselItems.length);
-    
-    for (const item of carouselItems) {
-        item.style.width = `${props.itemWidth}px`;
-        console.log(1);
+    constructor(props: CarouselProps) {
+        super(props);
+        this.key = Math.random().toString();
+        this.props = props;
     }
 
-    function next() {
-        if (active.current < props.itemsCount - 1) {
-            active.current += 1
-        } else {
-            active.current = 0
-        }
-        translateSlide(active.current);
+    render() {
+        return <>
 
-    }
-    function prev() {
-        if (active.current > 0) {
-            active.current -= 1
-        } else {
-            active.current = props.itemsCount - 1
-        }
-        translateSlide(active.current);
-    }
+              <div className="carousel flex justify-between px-5">
+                <button className="" onClick={this.prev}>Voltar</button>
 
-    function translateSlide(slideTo: number) {
-        const slider = document.getElementById(THIS_KEY) ?? new HTMLElement();
-        slider.style.left = `-${props.itemWidth * slideTo}px`;
-        console.log(active.current);
-    }
-
-    return <>
-        <div className="carousel">
-            <button onClick={prev}>Voltar</button>
-
-            <div className="carousel-view">
-                <ul id={THIS_KEY} className="slider transition-all duration-700">
-                    {props.items.map((item, i) => {
+                <div id={`carousel-view-${this.key}`} className="relative flex overflow-hidden w-[300px]">
+                    <ul id={`slider-${this.key}`} className="slider transition-all duration-700 flex">
+                       {this.props.items.map((item, i) => {
                         return <>
-                            <li key={Math.random().toString()} className="carousel-item">
-                                {item}
-                            </li>
-                        </>;
-                    })}
-                </ul>
-            </div>
+                            <li className="w-[300px]">{item}</li>
+                        </>
+                       })}
+                    </ul>
+                </div>
 
-            <button onClick={next}>Proxima</button>
-        </div>
-    </>;
+                <button onClick={this.next}>Proxima</button>
+            </div> 
+        </>;
+
+    }
+
+    componentDidMount() {
+        const carouselView = document.getElementById(`carousel-view-${this.key}`);
+        console.log(carouselView?.offsetWidth);
+    }
+
+    next() {
+
+    }
+
+    prev() {
+
+    }
+
+
 }

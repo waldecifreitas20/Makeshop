@@ -33,8 +33,7 @@
     }
 
     .close-menu {
-        left: -200vw;
-    
+        left: -100vw;
     }
 
     /*   .ancestor {
@@ -52,4 +51,6 @@
         position: relative;
         z-index: 0;
     } */
+
+
 }
