@@ -69,7 +69,7 @@ export class Carousel extends React.Component {
 
         return <>
 
-            <div id={`carousel-${this.key}`} className="flex justify-center relative">
+            <div id={`carousel-${this.key}`} className="flex justify-center relative h-[300px]">
 
                 <button className={`absolute left-0 h-full ms-2 z-20`} onClick={() => {
                     this.hasEventTriggered = true;
@@ -83,7 +83,7 @@ export class Carousel extends React.Component {
                     </span>
                 </button>
 
-                <div id={`carousel-view-${this.key}`} className="flex overflow-hidden w-[500px] border border-green-500">
+                <div id={`carousel-view-${this.key}`} className="flex overflow-hidden w-full">
                     <ul id={`slider-${this.key}`} className="slider relative transition-all duration-1000 flex h-full">
                         {this.props.items.map((item, i) => {
                             return <>
@@ -93,7 +93,7 @@ export class Carousel extends React.Component {
                     </ul>
                 </div>
 
-                <button className={`absolute right-0 h-full ms-2 z-20`} onClick={() => {
+                <button className={`absolute right-2 h-full ms-2 z-20`} onClick={() => {
                     this.hasEventTriggered = true;
                     this.nextItem();
                     this.hasEventTriggered = false;
