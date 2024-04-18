@@ -12,7 +12,12 @@ export function App() {
     ];
 
     const BANNERS = [
-        <img src="../public/images/banner1.png" alt="" />,
+        <span className="relative bg-green-500 flex justify-center">
+            <img className="block" src="../public/images/banner1.png" alt="" />
+            <div onClick={() => copyToClipboard("MAKE15OFF")} className="absolute bottom-4 text-2xl text-white border-2 border-dashed p-2 bg-white bg-opacity-20 hover:bg-opacity-40 cursor-pointer">
+                MAKE15OFF
+            </div>
+        </span>,
         <img src="../public/images/product1.png" alt="" />,
         <img src="../public/images/product2.png" alt="" />,
     ];
@@ -42,11 +47,16 @@ export function App() {
     }
 
 
+    function copyToClipboard(value: string) {
+        navigator.clipboard.writeText(value);
+        alert("Texto foi copiado")
+    }
+
     return (
         <>
             <Navbar />
             {/* pill carousel */}
-            <div className="flex w-[90%] mx-auto mt-2">
+            <section className="flex px-4 mx-auto my-4">
 
                 <button onClick={prev} className="w-10 bg-white text-center border rounded-full"><i className="fa-solid fa-chevron-left"></i></button>
 
@@ -61,9 +71,10 @@ export function App() {
                 </div>
 
                 <button onClick={next} className="w-10 bg-white text-center border rounded-full"><i className="fa-solid fa-chevron-right"></i></button>
-            </div>
-
-            <Carousel items={BANNERS} delay={5000} />
+            </section>
+            <section className="mt-4">
+                <Carousel items={BANNERS} delay={5000} />
+            </section>
         </>
     );
 }
