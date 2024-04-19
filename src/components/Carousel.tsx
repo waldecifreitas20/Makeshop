@@ -1,4 +1,5 @@
 import React from "react";
+import { FloatingButton } from "./FloatingButton";
 
 interface CarouselProps {
     items: Array<any>;
@@ -71,17 +72,24 @@ export class Carousel extends React.Component {
 
             <div id={`carousel-${this.key}`} className="flex justify-center relative h-[300px]">
 
-                <button className={`absolute left-0 h-full ms-2 z-20`} onClick={() => {
-                    this.hasEventTriggered = true;
-                    this.previousItem();
+                <FloatingButton
+                    key={"floating-01"}
+                    positionClass="left-0"
+                    child={
+                        <i className="fa-solid fa-chevron-left fa-xl"></i>
+                    }
+                    onClick={
+                        () => {
+                            this.hasEventTriggered = true;
+                            this.previousItem();
 
-                    this.hasEventTriggered = false;
-                }
-                }>
-                    <span className="block  bg-black  transition-all duration-300 opacity-20 hover:opacity-60 text-white rounded-full p-4">
-                        <i className="fa-solid fa-chevron-left fa-2xl"></i>
-                    </span>
-                </button>
+                            setTimeout(() => {
+                                this.hasEventTriggered = false;
+
+                            }, this.props.delay);
+                        }
+                    }
+                />
 
                 <div id={`carousel-view-${this.key}`} className="flex overflow-hidden w-full">
                     <ul id={`slider-${this.key}`} className="slider relative transition-all duration-1000 flex h-full">
@@ -93,17 +101,26 @@ export class Carousel extends React.Component {
                     </ul>
                 </div>
 
-                <button className={`absolute right-2 h-full ms-2 z-20`} onClick={() => {
-                    this.hasEventTriggered = true;
-                    this.nextItem();
-                    this.hasEventTriggered = false;
-                }
-                }>
-                    <span className="block  bg-black  transition-all duration-300 opacity-20 hover:opacity-60 text-white rounded-full p-4">
-                        <i className="fa-solid fa-chevron-right fa-2xl"></i>
-                    </span>
-                </button>
-            </div>
+                <FloatingButton
+                    key={"floating-02"}
+                    positionClass="right-0"
+                    child={
+                        <i className="fa-solid fa-chevron-right fa-xlj"></i>
+                    }
+                    onClick={
+                        () => {
+                            this.hasEventTriggered = true;
+                            this.previousItem();
+
+                            setTimeout(() => {
+                                this.hasEventTriggered = false;
+
+                            }, this.props.delay);
+                        }
+                    }
+                />
+
+            </div >
         </>;
 
     }
