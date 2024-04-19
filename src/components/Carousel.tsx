@@ -60,14 +60,14 @@ export class Carousel extends React.Component {
 
         return <>
 
-            <div id={`carousel-${this.key}`} className="flex justify-center relative h-[300px]">
+            <div id={`carousel-${this.key}`} className="flex justify-center relative h-[270px]">
 
                 <FloatingButton
                     key={"floating-01"}
                     positionClass="left-0"
                     child={
                         <i className="fa-solid fa-chevron-left fa-lg"></i>
-                    }
+                    }               
                     onClick={
                         () => {
                             this.hasEventTriggered = true;
@@ -81,11 +81,11 @@ export class Carousel extends React.Component {
                     }
                 />
 
-                <div id={`carousel-view-${this.key}`} className="flex overflow-hidden w-full">
+                <div id={`carousel-view-${this.key}`} className="flex overflow-hidden w-full h-full">
                     <ul id={`slider-${this.key}`} className="slider relative transition-all duration-1000 flex h-full">
                         {this.props.items.map((item, i) => {
                             return <>
-                                <li className={`carousel-item-${this.key} text-center flex justify-center w-full`}>{item}</li>
+                                <li className={`carousel-item-${this.key} text-center flex justify-center w-full h-full bg-white `}>{item}</li>
                             </>
                         })}
                     </ul>
@@ -118,7 +118,7 @@ export class Carousel extends React.Component {
     public componentDidMount(): void {
         this.getSlider().style.left = '0px';
         this.updateCarouselItemsWidth();
-        this.runAutoPlay();
+        // this.runAutoPlay();
     }
 
     private updateCarouselItemsWidth(): void {

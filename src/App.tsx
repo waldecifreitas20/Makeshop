@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Carousel } from "./components/Carousel";
 import { Navbar } from "./components/Navbar";
 
@@ -10,31 +11,36 @@ export function App() {
         <a className="border border-gray-200 bg-white rounded-full mx-1 px-3 py-1 text-sm text-nowrap" href="">Promoçao</a>,
         <a className="border border-gray-200 bg-white rounded-full mx-1 px-3 py-1 text-sm text-nowrap" href="">Frete Grátis</a>,
     ];
+    let [buttonCopyIcon, setButtonCopyIcon] = useState(<i className="fa-regular fa-copy fa-lg"></i>);
 
     const BANNERS = [
-        <span className="relative bg-green-500 flex justify-center">
-            <img className="block" src="../public/images/banner1.png" alt="" />
+        <span className="relative bg-green-500 flex justify-center h-full w-full">
+            <img className="block w-full" src="../public/images/banner1.png" alt="" />
 
-            <input type="text"
-                value="MAKE15OFF"
-                readOnly disabled
-                onClick={() => copyToClipboard("MAKE15OFF")}
-                className="
-                absolute 
-                bottom-4 
-                p-2 
-                w-2/4
-                cursor-pointer
-                border-2 border-dashed 
-                text-2xl text-white 
-                bg-white bg-opacity-20 
-                hover:bg-opacity-40 
+            <div className="absolute bottom-2 w-2/4 flex justify-center">
+                <input type="text"
+                    value="MAKE15OFF"
+                    readOnly disabled
+
+                    className="
+                    rounded-l-md
+                    p-2 
+                    w-full
+                    cursor-pointer
+                    border-y-2 border-l-2 border-dashed border-gray-100
+                    text-white text-center
+                    bg-white bg-opacity-20 
+                    mr
             "/>
+                <button className="bg-white hover:bg-gray-200 text-pink-600 border rounded-r-md p-2 text-sm w-1/4" onClick={() => copyToClipboard("MAKE15OFF")}>
+                    {buttonCopyIcon}
+                </button>
+            </div>
 
 
         </span>,
-        <img src="../public/images/product1.png" alt="" />,
-        <img src="../public/images/product2.png" alt="" />,
+        <img className="block h-full" src="../public/images/product1.png" alt="" />,
+        <img className="block h-full" src="../public/images/product2.png" alt="" />,
     ];
 
     let x: number = 0;
@@ -64,7 +70,8 @@ export function App() {
 
     function copyToClipboard(value: string) {
         navigator.clipboard.writeText(value);
-        alert("Texto foi copiado")
+       
+        setButtonCopyIcon(<i className="fa-solid fa-check fa-xl text-green-500"></i>)
     }
 
     return (
