@@ -14,9 +14,24 @@ export function App() {
     const BANNERS = [
         <span className="relative bg-green-500 flex justify-center">
             <img className="block" src="../public/images/banner1.png" alt="" />
-            <div onClick={() => copyToClipboard("MAKE15OFF")} className="absolute bottom-4 text-2xl text-white border-2 border-dashed p-2 bg-white bg-opacity-20 hover:bg-opacity-40 cursor-pointer">
-                MAKE15OFF
-            </div>
+
+            <input type="text"
+                value="MAKE15OFF"
+                readOnly disabled
+                onClick={() => copyToClipboard("MAKE15OFF")}
+                className="
+                absolute 
+                bottom-4 
+                p-2 
+                w-2/4
+                cursor-pointer
+                border-2 border-dashed 
+                text-2xl text-white 
+                bg-white bg-opacity-20 
+                hover:bg-opacity-40 
+            "/>
+
+
         </span>,
         <img src="../public/images/product1.png" alt="" />,
         <img src="../public/images/product2.png" alt="" />,

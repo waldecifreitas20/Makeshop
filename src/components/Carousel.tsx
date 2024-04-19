@@ -66,7 +66,7 @@ export class Carousel extends React.Component {
                     key={"floating-01"}
                     positionClass="left-0"
                     child={
-                        <i className="fa-solid fa-chevron-left fa-xl"></i>
+                        <i className="fa-solid fa-chevron-left fa-lg"></i>
                     }
                     onClick={
                         () => {
@@ -95,12 +95,12 @@ export class Carousel extends React.Component {
                     key={"floating-02"}
                     positionClass="right-2"
                     child={
-                        <i className="fa-solid fa-chevron-right fa-xlj"></i>
+                        <i className="fa-solid fa-chevron-right fa-lg"></i>
                     }
                     onClick={
                         () => {
                             this.hasEventTriggered = true;
-                            this.previousItem();
+                            this.nextItem();
 
                             setTimeout(() => {
                                 this.hasEventTriggered = false;
