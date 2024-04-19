@@ -6,16 +6,6 @@ interface CarouselProps {
     delay: number;
 }
 
-
-const FLOAT_BUTTON_STYLE = `
-    absolute
-    z-index
-    h-full
-    block
-    border border-blue-500
-
-`;
-
 export class Carousel extends React.Component {
     private readonly key: string;
     private readonly nextItem: VoidFunction;
