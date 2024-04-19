@@ -103,7 +103,7 @@ export class Carousel extends React.Component {
 
                 <FloatingButton
                     key={"floating-02"}
-                    positionClass="right-0"
+                    positionClass="right-2"
                     child={
                         <i className="fa-solid fa-chevron-right fa-xlj"></i>
                     }
