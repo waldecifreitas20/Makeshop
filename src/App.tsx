@@ -69,9 +69,11 @@ export function App() {
 
 
     function copyToClipboard(value: string) {
-        navigator.clipboard.writeText(value);
-       
-        setButtonCopyIcon(<i className="fa-solid fa-check fa-xl text-green-500"></i>)
+        window.navigator.clipboard.writeText(value)
+        .then(() => {
+            setButtonCopyIcon(<i className="fa-solid fa-check text-green-500 fa-lg"></i>)
+        })
+
     }
 
     return (
