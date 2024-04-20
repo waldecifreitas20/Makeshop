@@ -4,6 +4,7 @@ import { FloatingButton } from "./FloatingButton";
 interface CarouselProps {
     items: Array<any>;
     delay: number;
+    height: number;
 }
 
 export class Carousel extends React.Component {
@@ -60,7 +61,7 @@ export class Carousel extends React.Component {
 
         return <>
 
-            <div id={`carousel-${this.key}`} className="flex justify-center relative h-[270px]">
+            <div id={`carousel-${this.key}`} className={`flex justify-center relative h-[${this.props.height}px]`}>
 
                 <FloatingButton
                     key={"floating-01"}

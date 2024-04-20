@@ -97,7 +97,7 @@ export function App() {
                 <button onClick={next} className="w-10 bg-white text-center border rounded-full"><i className="fa-solid fa-chevron-right"></i></button>
             </section>
             <section className="mt-4">
-                <Carousel items={BANNERS} delay={5000} />
+                <Carousel items={BANNERS} delay={5000} height={250} />
             </section>
         </>
     );
