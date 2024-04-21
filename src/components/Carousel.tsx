@@ -5,6 +5,7 @@ interface CarouselProps {
     items: Array<any>;
     delay: number;
     height: number;
+    autoSlide: boolean;
 }
 
 export class Carousel extends React.Component {
@@ -64,14 +65,14 @@ export class Carousel extends React.Component {
 
             {/* Carousel */}
             <div id={`carousel-${this.key}`} className={`flex justify-center relative h-[${height}px]  `}>
-                
+
                 {/* Button to view the previous item */}
                 <FloatingButton
                     key={"floating-01"}
                     positionClass="left-0"
                     child={
                         <i className="fa-solid fa-chevron-left fa-lg"></i>
-                    }               
+                    }
                     onClick={
                         () => {
                             this.hasEventTriggered = true;
@@ -123,7 +124,9 @@ export class Carousel extends React.Component {
     public componentDidMount(): void {
         this.getSlider().style.left = '0px';
         this.updateCarouselItemsWidth();
-        // this.runAutoPlay();
+        if (this.props.autoSlide) {
+            this.runAutoPlay();
+        }
     }
 
     private updateCarouselItemsWidth(): void {

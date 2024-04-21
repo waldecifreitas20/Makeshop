@@ -70,9 +70,9 @@ export function App() {
 
     function copyToClipboard(value: string) {
         window.navigator.clipboard.writeText(value)
-        .then(() => {
-            setButtonCopyIcon(<i className="fa-solid fa-check text-green-500 fa-lg"></i>)
-        })
+            .then(() => {
+                setButtonCopyIcon(<i className="fa-solid fa-check text-green-500 fa-lg"></i>)
+            })
 
     }
 
@@ -96,8 +96,14 @@ export function App() {
 
                 <button onClick={next} className="w-10 bg-white text-center border rounded-full"><i className="fa-solid fa-chevron-right"></i></button>
             </section>
+
             <section className="mt-4">
-                <Carousel items={BANNERS} delay={5000} height={250} />
+                <Carousel
+                    autoSlide={false}
+                    delay={5000}
+                    height={250}
+                    items={BANNERS}
+                />
             </section>
         </>
     );
