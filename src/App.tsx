@@ -117,22 +117,22 @@ export function App() {
                     delay={5000}
                     height={450}
                     items={[
-                        <div className="bg-white border px-4 py-5 rounded-lg">
+                        <a href="" className="bg-white block border px-4 py-5 rounded-lg w-64">
 
-                            <div className="h-[50%] w-64 mx-auto text-center">
-                                <img className="block h-full" src="../public/images/product1.png" alt="" />,
-                            </div>
-                            <div>
-                                <h3>Lancôme</h3>
-                                <p>Kit de olhos lancôme monsieur big set</p>
+                            <img className="block w-full mx-auto mb-4" src="../public/images/product1.png" alt="" />
+                            
+                            <div className="text-left capitalize">
+                                <h3 className="text-xl font-medium">Lancôme</h3>
+                                <p className="text-sm capitalize">Kit de olhos lancôme monsieur big set</p>
 
-                                <div>
-                                    <p>R$ 199,97</p>
-                                    <p>R$ 199,97</p>
-                                    <p>ou 10x de 19,99</p>
+                                <div className="mt-3">
+                                    <p className="text-sm text-gray-500 text-line-through">R$ 199,97</p>
+                                    <p className="text-lg font-bold">R$ 199,97</p>
+                                    <p className="text-sm">ou 10x de 19,99</p>
                                 </div>
                             </div>
-                        </div>,
+                        </a>
+                       
 
                     ]}
                 />
