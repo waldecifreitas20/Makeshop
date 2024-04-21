@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Carousel } from "./components/Carousel";
 import { Navbar } from "./components/Navbar";
+import { ProductCard } from "./components/ProductCard";
 
 
 export function App() {
@@ -117,22 +118,11 @@ export function App() {
                     delay={5000}
                     height={450}
                     items={[
-                        <a href="" className="bg-white block border px-4 py-5 rounded-lg w-64">
-
-                            <img className="block w-full mx-auto mb-4" src="../public/images/product1.png" alt="" />
-                            
-                            <div className="text-left capitalize">
-                                <h3 className="text-xl font-medium">Lancôme</h3>
-                                <p className="text-sm capitalize">Kit de olhos lancôme monsieur big set</p>
-
-                                <div className="mt-3">
-                                    <p className="text-sm text-gray-500 text-line-through">R$ 199,97</p>
-                                    <p className="text-lg font-bold">R$ 199,97</p>
-                                    <p className="text-sm">ou 10x de 19,99</p>
-                                </div>
-                            </div>
-                        </a>
-                       
+                        <ProductCard
+                            name={"Lancôme"}
+                            description={"Kit de olhos lancôme monsieur big set"}
+                            price={199.97}
+                        />,                      
 
                     ]}
                 />
