@@ -31,4 +31,7 @@
         left: -200vw;
     }
 
+    .text-line-through {
+        text-decoration: line-through;
+    }
 }
