@@ -98,6 +98,7 @@ export function App() {
     return (
         <>
             <Navbar />
+
             {PILL_CAROUSEL}
 
             <section className="mt-4">
@@ -106,6 +107,34 @@ export function App() {
                     delay={5000}
                     height={250}
                     items={BANNERS}
+                />
+            </section>
+
+            <section className="mt-12 px-2">
+                <h2 className="uppercase text-2xl ml-4">para você</h2>
+                <Carousel
+                    autoSlide={false}
+                    delay={5000}
+                    height={450}
+                    items={[
+                        <div className="bg-white border px-4 py-5 rounded-lg">
+
+                            <div className="h-[50%] w-64 mx-auto text-center">
+                                <img className="block h-full" src="../public/images/product1.png" alt="" />,
+                            </div>
+                            <div>
+                                <h3>Lancôme</h3>
+                                <p>Kit de olhos lancôme monsieur big set</p>
+
+                                <div>
+                                    <p>R$ 199,97</p>
+                                    <p>R$ 199,97</p>
+                                    <p>ou 10x de 19,99</p>
+                                </div>
+                            </div>
+                        </div>,
+
+                    ]}
                 />
             </section>
         </>
