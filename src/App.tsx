@@ -119,10 +119,11 @@ export function App() {
                     height={450}
                     items={[
                         <ProductCard
-                            name={"Lancôme"}
-                            description={"Kit de olhos lancôme monsieur big set"}
+                            name="Lancôme"
+                            description="Kit de olhos lancôme monsieur big set"
                             price={199.97}
-                        />,                      
+                            imgURL="../public/images/product1.png"
+                        />,
 
                     ]}
                 />
