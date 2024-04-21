@@ -58,11 +58,14 @@ export class Carousel extends React.Component {
         window.addEventListener("resize", () => {
             this.updateCarouselItemsWidth();
         });
-
+        const height = this.props.height;
+        
         return <>
 
-            <div id={`carousel-${this.key}`} className={`flex justify-center relative h-[${this.props.height}px]`}>
-
+            {/* Carousel */}
+            <div id={`carousel-${this.key}`} className={`flex justify-center relative h-[${height}px]  `}>
+                
+                {/* Button to view the previous item */}
                 <FloatingButton
                     key={"floating-01"}
                     positionClass="left-0"
@@ -86,12 +89,13 @@ export class Carousel extends React.Component {
                     <ul id={`slider-${this.key}`} className="slider relative transition-all duration-1000 flex h-full">
                         {this.props.items.map((item, i) => {
                             return <>
-                                <li className={`carousel-item-${this.key} text-center flex justify-center w-full h-full bg-white `}>{item}</li>
+                                <li className={`carousel-item-${this.key} text-center flex justify-center w-full h-full`}>{item}</li>
                             </>
                         })}
                     </ul>
                 </div>
 
+                {/* Button to view the next item */}
                 <FloatingButton
                     key={"floating-02"}
                     positionClass="right-2"
