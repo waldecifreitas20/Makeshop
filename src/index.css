@@ -9,12 +9,7 @@
 
 @font-face {
     font-family: "Body";
-    src: url("../public/fonts/Baskervville-Regular.ttf");
-}
-
-@font-face {
-    font-family: "Body-italic";
-    src: url("../public/fonts/Baskervville-Italic.ttf");
+    src: url("../public/fonts/Brygada1918-VariableFont_wght.ttf");
 }
 
 @layer utilities {

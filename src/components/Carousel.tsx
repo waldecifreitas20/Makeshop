@@ -59,7 +59,7 @@ export class Carousel extends React.Component {
             this.updateCarouselItemsWidth();
         });
         const height = this.props.height;
-        
+
         return <>
 
             {/* Carousel */}
