@@ -13,6 +13,25 @@ export function App() {
     ];
     let [buttonCopyIcon, setButtonCopyIcon] = useState(<i className="fa-regular fa-copy fa-lg"></i>);
 
+    const PILL_CAROUSEL = <>
+        <section className="flex px-4 mx-auto my-4">
+
+            <button onClick={prev} className="w-10 bg-white text-center border rounded-full"><i className="fa-solid fa-chevron-left"></i></button>
+
+            <div id="container" className="relative overflow-hidden w-full flex items-center mx-2">
+                <div id="slider" className="flex relative md:static flex-nowrap p-0 transition-all duration-500">
+                    {SHORTCUTS_OPTIONS.map((option, i) => {
+                        return <>
+                            <span key={Math.random() + i}>{option}</span>
+                        </>;
+                    })}
+                </div>
+            </div>
+
+            <button onClick={next} className="w-10 bg-white text-center border rounded-full"><i className="fa-solid fa-chevron-right"></i></button>
+        </section>
+    </>
+
     const BANNERS = [
         <span className="relative bg-green-500 flex justify-center h-full w-full">
             <img className="block w-full" src="../public/images/banner1.png" alt="" />
@@ -79,23 +98,7 @@ export function App() {
     return (
         <>
             <Navbar />
-            {/* pill carousel */}
-            <section className="flex px-4 mx-auto my-4">
-
-                <button onClick={prev} className="w-10 bg-white text-center border rounded-full"><i className="fa-solid fa-chevron-left"></i></button>
-
-                <div id="container" className="relative overflow-hidden w-full flex items-center mx-2">
-                    <div id="slider" className="flex relative md:static flex-nowrap p-0 transition-all duration-500">
-                        {SHORTCUTS_OPTIONS.map((option, i) => {
-                            return <>
-                                <span key={Math.random() + i}>{option}</span>
-                            </>;
-                        })}
-                    </div>
-                </div>
-
-                <button onClick={next} className="w-10 bg-white text-center border rounded-full"><i className="fa-solid fa-chevron-right"></i></button>
-            </section>
+            {PILL_CAROUSEL}
 
             <section className="mt-4">
                 <Carousel

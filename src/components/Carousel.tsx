@@ -17,6 +17,7 @@ export class Carousel extends React.Component {
     private index: number;
     private hasEventTriggered: boolean;
 
+
     public readonly props: CarouselProps;
 
     public constructor(props: CarouselProps) {
@@ -24,6 +25,9 @@ export class Carousel extends React.Component {
         this.key = (Math.random()).toString();
         this.props = props;
         this.index = 0;
+        this.state = {
+            index: 0,
+        }
         this.viewWidth = -1;
         this.hasEventTriggered = false;
         this.enableFloatingButtons = true;
@@ -35,9 +39,9 @@ export class Carousel extends React.Component {
             if (this.index >= ITEMS_QTD) {
                 this.index = 0;
             }
-
             const SLIDER = this.getSlider();
             SLIDER.style.left = `-${this.viewWidth * this.index}px`;
+            this.setState({ index: this.index })
         }
 
         this.previousItem = (): void => {
@@ -50,6 +54,7 @@ export class Carousel extends React.Component {
 
             const SLIDER = this.getSlider();
             SLIDER.style.left = `-${this.viewWidth * this.index}px`;
+            this.setState({ index: this.index })
         }
     }
 
@@ -86,7 +91,7 @@ export class Carousel extends React.Component {
                 <div className="size-full block">
 
                     <div id={`carousel-view-${this.key}`} className="flex overflow-hidden size-full">
-                        <ul id={`slider-${this.key}`} className="slider relative transition-all duration-1000 flex h-full">
+                        <ul id={`slider-${this.key}`} className="slider relative transition-all duration-700 flex h-full">
                             {this.props.items.map((item, i) => {
                                 return <>
                                     <li className={`carousel-item-${this.key} text-center flex justify-center w-full h-full`}>{item}</li>
@@ -95,7 +100,21 @@ export class Carousel extends React.Component {
                         </ul>
                     </div>
 
-                   
+                    <ol className="flex justify-center gap-2 mt-2 items-center">
+                        {this.props.items.map((item, i) => {
+                            return <>
+                                <li className={
+                                    `carousel-item-${i}-index-${this.key} 
+                                    size-2 
+                                    ${this.index == i ? "bg-gray-500" : "bg-gray-200"}  
+                                    rounded-full    
+                                    transition-all
+                                    duration-700
+                                    `
+                                }></li>
+                            </>
+                        })}
+                    </ol>
                 </div>
 
                 {/* Button to view the next item */}
@@ -131,7 +150,7 @@ export class Carousel extends React.Component {
         }
     }
 
-  
+
 
     private updateCarouselItemsWidth(): void {
         const CAROUSEL_VIEW_WIDTH = document
