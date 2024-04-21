@@ -19,8 +19,6 @@ export class Carousel extends React.Component {
 
     public readonly props: CarouselProps;
 
-
-
     public constructor(props: CarouselProps) {
         super(props);
         this.key = (Math.random()).toString();
@@ -85,15 +83,19 @@ export class Carousel extends React.Component {
                         }
                     }
                 />
+                <div className="size-full block">
 
-                <div id={`carousel-view-${this.key}`} className="flex overflow-hidden w-full h-full">
-                    <ul id={`slider-${this.key}`} className="slider relative transition-all duration-1000 flex h-full">
-                        {this.props.items.map((item, i) => {
-                            return <>
-                                <li className={`carousel-item-${this.key} text-center flex justify-center w-full h-full`}>{item}</li>
-                            </>
-                        })}
-                    </ul>
+                    <div id={`carousel-view-${this.key}`} className="flex overflow-hidden size-full">
+                        <ul id={`slider-${this.key}`} className="slider relative transition-all duration-1000 flex h-full">
+                            {this.props.items.map((item, i) => {
+                                return <>
+                                    <li className={`carousel-item-${this.key} text-center flex justify-center w-full h-full`}>{item}</li>
+                                </>
+                            })}
+                        </ul>
+                    </div>
+
+                   
                 </div>
 
                 {/* Button to view the next item */}
@@ -122,12 +124,14 @@ export class Carousel extends React.Component {
     }
 
     public componentDidMount(): void {
-        this.getSlider().style.left = '0px';
         this.updateCarouselItemsWidth();
+        this.getSlider().style.left = `-${this.index * this.viewWidth}px`;
         if (this.props.autoSlide) {
             this.runAutoPlay();
         }
     }
+
+  
 
     private updateCarouselItemsWidth(): void {
         const CAROUSEL_VIEW_WIDTH = document
