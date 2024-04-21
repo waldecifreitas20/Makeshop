@@ -1,5 +1,5 @@
 import React from "react";
-import { FloatingButton } from "./FloatingButton";
+import { IconButton } from "./IconButton";
 
 interface CarouselProps {
     items: Array<any>;
@@ -12,7 +12,6 @@ export class Carousel extends React.Component {
     private readonly key: string;
     private readonly nextItem: VoidFunction;
     private readonly previousItem: VoidFunction;
-    private readonly enableFloatingButtons: boolean;
     private viewWidth: number;
     private index: number;
     private hasEventTriggered: boolean;
@@ -30,7 +29,6 @@ export class Carousel extends React.Component {
         }
         this.viewWidth = -1;
         this.hasEventTriggered = false;
-        this.enableFloatingButtons = true;
 
         this.nextItem = (): void => {
             const ITEMS_QTD = this.props.items.length;
@@ -70,7 +68,7 @@ export class Carousel extends React.Component {
             <div id={`carousel-${this.key}`} className={`flex justify-center relative h-[${height}px]  `}>
 
                 {/* Button to view the previous item */}
-                <FloatingButton
+                <IconButton
                     key={"floating-01"}
                     positionClass="left-0"
                     child={
@@ -101,7 +99,7 @@ export class Carousel extends React.Component {
                     </div>
 
                     <ol className="flex justify-center gap-2 mt-2 items-center">
-                        {this.props.items.map((item, i) => {
+                        {this.props.items.map((_, i) => {
                             return <>
                                 <li className={
                                     `carousel-item-${i}-index-${this.key} 
@@ -118,7 +116,7 @@ export class Carousel extends React.Component {
                 </div>
 
                 {/* Button to view the next item */}
-                <FloatingButton
+                <IconButton
                     key={"floating-02"}
                     positionClass="right-2"
                     child={
