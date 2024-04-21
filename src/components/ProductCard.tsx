@@ -6,8 +6,8 @@ interface ProductCardProps {
 
 export function ProductCard(props: ProductCardProps) {
     return <>
-        <a href="" className="bg-white block border px-4 py-5 rounded-lg w-64">
-
+        <a href="" className="bg-white relative block border px-4 py-5 rounded-lg w-64">
+            <span className="absolute top-4 right-0 bg-zinc-800 text-white text-sm capitalize py-1 px-5">frete grátis</span>
             <img className="block w-full mx-auto mb-4" src="../public/images/product1.png" alt="" />
 
             <div className="text-left capitalize">
