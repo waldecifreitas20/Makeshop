@@ -95,7 +95,7 @@ export function Navbar() {
 
 	return (
 		<>
-			<header className="border-b-2 py-4 px-5">
+			<header className="border-b-2 py-4 px-5 z-50">
 				<nav>
 					{/* navbar top */}
 					<div className="flex items-center">
@@ -110,7 +110,7 @@ export function Navbar() {
 						<a href="" className="text-3xl font-title tracking-tightest text-gray-650">Makeshop</a>
 
 						{/* Menu */}
-						<div id="menu" className={`absolute transition-all w-3/4 duration-500 top-0 left-0 bg-white min-h-screen  ${menuClass}`}>
+						<div id="menu" className={`shadow-2xl z-40 absolute transition-all w-3/4 duration-500 top-0 left-0 bg-white min-h-screen  ${menuClass}`}>
 							<div className="bg-zinc-950 px-5 pt-16 pb-6 text-center relative z-10">
 								<h2 className="text-white text-xl">Bem-vindo!</h2>
 								<p className="text-white text-sm mt-2">Faça login ou cadastre-se para aproveitar as nossas ofertas </p>
