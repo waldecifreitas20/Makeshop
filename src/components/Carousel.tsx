@@ -84,18 +84,23 @@ export class Carousel extends React.Component {
                         }, this.props.delay);
                     }}
                 />
-                <div className="size-full block">
 
+                <div className="size-full block">
+                    {/* Carousel view */}
                     <div id={`carousel-view-${this.key}`} className="flex overflow-hidden size-full">
                         <ul id={`slider-${this.key}`} className="slider relative transition-all duration-700 flex h-full">
                             {this.props.items.map((item, i) => {
                                 return <>
-                                    <li className={`carousel-item-${this.key} text-center flex justify-center w-full h-full`}>{item}</li>
+                                    <li className={
+                                        `carousel-item-${this.key} 
+                                        text-center 
+                                        flex justify-center 
+                                        w-full h-[${this.props.height}]`}>{item}</li>
                                 </>
                             })}
                         </ul>
                     </div>
-
+                    {/* Items index indicator */}
                     <ol className="flex justify-center gap-2 mt-2 items-center">
                         {this.props.items.map((_, i) => {
                             return <>
