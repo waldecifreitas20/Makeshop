@@ -74,17 +74,15 @@ export class Carousel extends React.Component {
                     child={
                         <i className="fa-solid fa-chevron-left fa-lg"></i>
                     }
-                    onClick={
-                        () => {
-                            this.hasEventTriggered = true;
-                            this.previousItem();
+                    onClick={() => {
+                        this.hasEventTriggered = true;
+                        this.previousItem();
 
-                            setTimeout(() => {
-                                this.hasEventTriggered = false;
+                        setTimeout(() => {
+                            this.hasEventTriggered = false;
 
-                            }, this.props.delay);
-                        }
-                    }
+                        }, this.props.delay);
+                    }}
                 />
                 <div className="size-full block">
 
@@ -122,17 +120,15 @@ export class Carousel extends React.Component {
                     child={
                         <i className="fa-solid fa-chevron-right fa-lg"></i>
                     }
-                    onClick={
-                        () => {
-                            this.hasEventTriggered = true;
-                            this.nextItem();
+                    onClick={() => {
+                        this.hasEventTriggered = true;
+                        this.nextItem();
 
-                            setTimeout(() => {
-                                this.hasEventTriggered = false;
+                        setTimeout(() => {
+                            this.hasEventTriggered = false;
 
-                            }, this.props.delay);
-                        }
-                    }
+                        }, this.props.delay);
+                    }}
                 />
 
             </div >
