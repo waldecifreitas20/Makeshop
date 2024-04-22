@@ -77,6 +77,15 @@ export function App() {
         />,
     ];
 
+    const BEST_BRANDS = [
+        { name: "absolute new york", color: "pink" },
+        { name: "lancôme", color: "lime" },
+        { name: "sisley", color: "sky" },
+        { name: "océane", color: "rose" },
+        { name: "payot", color: "yellow" },
+        { name: "la roche-posay", color: "blue" },
+    ];
+
     function copyToClipboard(value: string) {
         window.navigator.clipboard.writeText(value)
             .then(() => {
@@ -129,6 +138,74 @@ export function App() {
                     buttonsStyle="size-5"
                     items={PRODUCTS_CARDS}
                 />
+            </section>
+
+            <section className="mt-12 px-5 py-2">
+                <h2 className="uppercase text-2xl mb-4">Melhores Marcas</h2>
+
+                <div className="grid grid-cols-2 gap-2 text-center">
+                    <a href=""
+                        className={`
+                        bg-pink-200 
+                        capitalize 
+                        h-[100px] 
+                        rounded-lg 
+                        flex justify-center items-center                        
+                        `}>
+                        Absolute new york
+                    </a>
+                    <a href=""
+                        className={`
+                        bg-lime-200 
+                        capitalize 
+                        h-[100px] 
+                        rounded-lg 
+                        flex justify-center items-center                        
+                        `}>
+                        lancôme
+                    </a>
+                    <a href=""
+                        className={`
+                        bg-sky-200 
+                        capitalize 
+                        h-[100px] 
+                        rounded-lg 
+                        flex justify-center items-center                        
+                        `}>
+                        sisley
+                    </a>
+                    <a href=""
+                        className={`
+                        bg-slate-300 
+                        capitalize 
+                        h-[100px] 
+                        rounded-lg 
+                        flex justify-center items-center                        
+                        `}>
+                        payot
+                    </a>
+                    <a href=""
+                        className={`
+                        bg-violet-200 
+                        capitalize 
+                        h-[100px] 
+                        rounded-lg 
+                        flex justify-center items-center                        
+                        `}>
+                        océane
+                    </a>
+                    <a href=""
+                        className={`
+                        bg-yellow-200 
+                        capitalize 
+                        h-[100px] 
+                        rounded-lg 
+                        flex justify-center items-center                        
+                        `}>
+                        la roche-posay
+                    </a>
+                </div>
+
             </section>
 
         </>
