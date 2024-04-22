@@ -55,22 +55,24 @@ export function App() {
         />,
         <ProductCard
             badge={{
-                text: "25% off",
-                colors: "bg-lime-500",
+                text: "Exclusivo",
+                colors: "bg-yellow-500",
             }}
-            name="Lancôme"
-            description="Kit de olhos lancôme monsieur big set"
-            price={199.97}
+            isDark={true}
+            isVIP={true}
+            name="fenty beauty"
+            description="gloss labial fenty gloss bomb universal lip luminizer"
+            price={89.97}
             imgURL="../public/images/product2.png"
         />,
         <ProductCard
             badge={{
-                text: "",
-                colors: "bg-transparent",
+                text: "lançamento",
+                colors: "bg-pink-300 text-black",
             }}
-            name="Lancôme"
-            description="Kit de olhos lancôme monsieur big set"
-            price={199.97}
+            name="Carolina Herrera"
+            description="refil balm labial carolina herrena good girl mini kiss the mini tint superstar"
+            price={109.07}
             imgURL="../public/images/product3.png"
         />,
     ];
@@ -116,6 +118,18 @@ export function App() {
                     items={PRODUCTS_CARDS}
                 />
             </section>
+
+            <section className="mt-12 px-2">
+                <h2 className="uppercase text-2xl ml-4 mb-4">Lançamentos do mês</h2>
+
+                <CarouselOneByOne
+                    slidingDelay={5000}
+                    height={450}
+                    buttonsStyle="size-5"
+                    items={PRODUCTS_CARDS}
+                />
+            </section>
+
         </>
     );
 }
