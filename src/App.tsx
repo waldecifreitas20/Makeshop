@@ -42,30 +42,6 @@ export function App() {
         </span>,
     ];
 
-    let x: number = 0;
-    let slideX = 100;
-
-    function prev() {
-        const SLIDER = document.getElementById("slider") as HTMLElement;
-        if (x - slideX > 0 - slideX) {
-
-            x -= slideX;
-            SLIDER.style.left = `-${x}px`;
-        }
-    }
-
-
-    function next() {
-        const CONTAINER = document.getElementById("container") as HTMLElement;
-        const SLIDER = document.getElementById("slider") as HTMLElement;
-        const OVERFLOW = SLIDER.offsetWidth - CONTAINER.offsetWidth;
-
-        if (x + slideX <= OVERFLOW + slideX) {
-            x += slideX;
-            SLIDER.style.left = `-${x}px`;
-        }
-    }
-
 
     function copyToClipboard(value: string) {
         window.navigator.clipboard.writeText(value)
@@ -83,7 +59,7 @@ export function App() {
                 <PillCarousel
                     autoSlide={false}
                     buttonsStyle=""
-                    delay={700}
+                    slidingDelay={700}
                     height={0}
                     items={SHORTCUTS_OPTIONS} />
             </section>
@@ -91,7 +67,7 @@ export function App() {
             <section className="mt-4">
                 <CarouselOneByOne
                     autoSlide={false}
-                    delay={5000}
+                    slidingDelay={5000}
                     height={250}
                     buttonsStyle="
                     bg-black 
@@ -106,9 +82,10 @@ export function App() {
 
             <section className="mt-12 px-2">
                 <h2 className="uppercase text-2xl ml-4">para você</h2>
+
                 <CarouselOneByOne
-                    autoSlide={false}
-                    delay={5000}
+                    autoSlide={true}
+                    slidingDelay={5000}
                     height={450}
                     buttonsStyle="size-5"
                     items={[
@@ -124,13 +101,23 @@ export function App() {
                         />,
                         <ProductCard
                             badge={{
-                                text: "Frete Grátis",
+                                text: "25% off",
                                 colors: "bg-lime-500",
                             }}
                             name="Lancôme"
                             description="Kit de olhos lancôme monsieur big set"
                             price={199.97}
                             imgURL="../public/images/product2.png"
+                        />,
+                        <ProductCard
+                            badge={{
+                                text: "",
+                                colors: "bg-transparent",
+                            }}
+                            name="Lancôme"
+                            description="Kit de olhos lancôme monsieur big set"
+                            price={199.97}
+                            imgURL="../public/images/product3.png"
                         />,
 
                     ]}
