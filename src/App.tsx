@@ -78,12 +78,12 @@ export function App() {
     ];
 
     const BEST_BRANDS = [
-        { name: "absolute new york", color: "pink" },
-        { name: "lancôme", color: "lime" },
-        { name: "sisley", color: "sky" },
-        { name: "océane", color: "rose" },
-        { name: "payot", color: "yellow" },
-        { name: "la roche-posay", color: "blue" },
+        { name: "absolute new york", color: "bg-pink-200" },
+        { name: "lancôme", color: "bg-lime-200" },
+        { name: "sisley", color: "bg-sky-200" },
+        { name: "océane", color: "bg-slate-300 " },
+        { name: "payot", color: "bg-violet-200" },
+        { name: "la roche-posay", color: "bg-yellow-200" },
     ];
 
     function copyToClipboard(value: string) {
@@ -144,66 +144,20 @@ export function App() {
                 <h2 className="uppercase text-2xl mb-4">Melhores Marcas</h2>
 
                 <div className="grid grid-cols-2 gap-2 text-center">
-                    <a href=""
-                        className={`
-                        bg-pink-200 
-                        capitalize 
-                        h-[100px] 
-                        rounded-lg 
-                        flex justify-center items-center                        
-                        `}>
-                        Absolute new york
-                    </a>
-                    <a href=""
-                        className={`
-                        bg-lime-200 
-                        capitalize 
-                        h-[100px] 
-                        rounded-lg 
-                        flex justify-center items-center                        
-                        `}>
-                        lancôme
-                    </a>
-                    <a href=""
-                        className={`
-                        bg-sky-200 
-                        capitalize 
-                        h-[100px] 
-                        rounded-lg 
-                        flex justify-center items-center                        
-                        `}>
-                        sisley
-                    </a>
-                    <a href=""
-                        className={`
-                        bg-slate-300 
-                        capitalize 
-                        h-[100px] 
-                        rounded-lg 
-                        flex justify-center items-center                        
-                        `}>
-                        payot
-                    </a>
-                    <a href=""
-                        className={`
-                        bg-violet-200 
-                        capitalize 
-                        h-[100px] 
-                        rounded-lg 
-                        flex justify-center items-center                        
-                        `}>
-                        océane
-                    </a>
-                    <a href=""
-                        className={`
-                        bg-yellow-200 
-                        capitalize 
-                        h-[100px] 
-                        rounded-lg 
-                        flex justify-center items-center                        
-                        `}>
-                        la roche-posay
-                    </a>
+                    {BEST_BRANDS.map((brand, i) => {
+                        return <>
+                            <a href=""
+                                className={`
+                                ${brand.color} 
+                                capitalize 
+                                h-[100px] 
+                                rounded-lg 
+                                flex justify-center items-center                        
+                                `}>
+                                {brand.name}
+                            </a>
+                        </>
+                    })}
                 </div>
 
             </section>
