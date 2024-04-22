@@ -49,7 +49,7 @@ export class PillCarousel extends React.Component implements Carousel {
                 </button>
 
                 <div id="container" className="relative overflow-hidden w-full flex items-center mx-2">
-                    <div id="slider" className={`flex relative md:static flex-nowrap p-0 transition-all duration-${this.props.delay}`}>
+                    <div id="slider" className={`flex relative md:static flex-nowrap p-0 transition-all duration-700`}>
                         {this.props.items.map((option, i) => {
                             return <>
                                 <span key={Math.random() + i}>{option}</span>
