@@ -109,6 +109,7 @@ export function App() {
                     bg-opacity-20 
                     hover:bg-opacity-60
                     text-white  
+                    size-12
                     "
                     items={BANNERS}
                 />
@@ -120,7 +121,7 @@ export function App() {
                     autoSlide={false}
                     delay={5000}
                     height={450}
-                    buttonsStyle="p-0"
+                    buttonsStyle="size-5"
                     items={[
                         <ProductCard
                             name="Lancôme"

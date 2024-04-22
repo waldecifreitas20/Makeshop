@@ -16,11 +16,10 @@ export function IconButton(props: FloatingButtonProps) {
                 ${props.style}
                 cursor-pointer 
                 transition-all 
-                duration-300 h-12 w-12 
-                flex items-center justify-center 
-                
+                duration-300
+                flex items-center justify-center
                 rounded-full 
-                p-4`
+                `
             }
 
                 onClick={() => props.onClick()}
