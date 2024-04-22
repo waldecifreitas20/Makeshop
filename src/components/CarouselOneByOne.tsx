@@ -16,10 +16,10 @@ export class CarouselOneByOne extends React.Component implements Carousel {
         super(props);
         this.key = (Math.random()).toString();
         this.props = props;
-        this.index = 0;
+        this.index = props.initialIndex ?? 0;
         
         this.state = {
-            index: 0,
+            index: this.index,
         }
 
         this.viewWidth = -1;

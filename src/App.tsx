@@ -125,6 +125,7 @@ export function App() {
                 <CarouselOneByOne
                     slidingDelay={5000}
                     height={450}
+                    initialIndex={2}
                     buttonsStyle="size-5"
                     items={PRODUCTS_CARDS}
                 />

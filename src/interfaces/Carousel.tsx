@@ -8,5 +8,6 @@ interface CarouselProps {
     slidingDelay?: number;
     height?: number;
     autoSlide?: boolean;
-    buttonsStyle?: string
+    buttonsStyle?: string;
+    initialIndex? : number;
 }
