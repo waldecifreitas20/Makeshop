@@ -6,6 +6,7 @@ interface CarouselProps {
     delay: number;
     height: number;
     autoSlide: boolean;
+    buttonsStyle: string
 }
 
 export class Carousel extends React.Component {
@@ -27,6 +28,7 @@ export class Carousel extends React.Component {
         this.state = {
             index: 0,
         }
+
         this.viewWidth = -1;
         this.hasEventTriggered = false;
 
@@ -60,17 +62,18 @@ export class Carousel extends React.Component {
         window.addEventListener("resize", () => {
             this.updateCarouselItemsWidth();
         });
-        const height = this.props.height;
-
+        const height = this.props.height.toString();
+      
         return <>
 
             {/* Carousel */}
-            <div id={`carousel-${this.key}`} className={`flex justify-center relative h-[${250}px]  `}>
+            <div id={`carousel-${this.key}`} className={`flex justify-center relative h-[${height}px]  `}>
 
                 {/* Button to view the previous item */}
                 <IconButton
                     key={"floating-01"}
                     positionClass="left-0"
+                    style={this.props.buttonsStyle}
                     child={
                         <i className="fa-solid fa-chevron-left fa-lg"></i>
                     }
@@ -84,6 +87,7 @@ export class Carousel extends React.Component {
                         }, this.props.delay);
                     }}
                 />
+
 
                 <div className="size-full block">
                     {/* Carousel view */}
@@ -122,6 +126,7 @@ export class Carousel extends React.Component {
                 <IconButton
                     key={"floating-02"}
                     positionClass="right-2"
+                    style={this.props.buttonsStyle}
                     child={
                         <i className="fa-solid fa-chevron-right fa-lg"></i>
                     }

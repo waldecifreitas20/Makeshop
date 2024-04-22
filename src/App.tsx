@@ -35,7 +35,7 @@ export function App() {
 
     const BANNERS = [
         <span className="relative bg-green-500 block mx-auto h-full w-full">
-            <img className="block w-full mx-auto" src="../public/images/banner1.png" alt="" />
+            <img className="block w-full h-full mx-auto" src="../public/images/banner1.png" alt="" />
 
             <div className="w-full flex justify-center">
                 <div className="absolute bottom-2 w-2/4 flex self-center justify-center">
@@ -103,7 +103,13 @@ export function App() {
                 <Carousel
                     autoSlide={false}
                     delay={5000}
-                    height={200}
+                    height={250}
+                    buttonsStyle="
+                    bg-black 
+                    bg-opacity-20 
+                    hover:bg-opacity-60
+                    text-white  
+                    "
                     items={BANNERS}
                 />
             </section>
@@ -114,12 +120,19 @@ export function App() {
                     autoSlide={false}
                     delay={5000}
                     height={450}
+                    buttonsStyle=""
                     items={[
                         <ProductCard
                             name="Lancôme"
                             description="Kit de olhos lancôme monsieur big set"
                             price={199.97}
                             imgURL="../public/images/product1.png"
+                        />,
+                        <ProductCard
+                            name="Lancôme"
+                            description="Kit de olhos lancôme monsieur big set"
+                            price={199.97}
+                            imgURL="../public/images/product2.png"
                         />,
 
                     ]}
