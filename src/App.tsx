@@ -120,15 +120,23 @@ export function App() {
                     autoSlide={false}
                     delay={5000}
                     height={450}
-                    buttonsStyle=""
+                    buttonsStyle="p-0"
                     items={[
                         <ProductCard
                             name="Lancôme"
+                            badge={{
+                                text: "Frete Grátis",
+                                colors: "bg-lime-500",
+                            }}
                             description="Kit de olhos lancôme monsieur big set"
                             price={199.97}
                             imgURL="../public/images/product1.png"
                         />,
                         <ProductCard
+                            badge={{
+                                text: "Frete Grátis",
+                                colors: "bg-lime-500",
+                            }}
                             name="Lancôme"
                             description="Kit de olhos lancôme monsieur big set"
                             price={199.97}

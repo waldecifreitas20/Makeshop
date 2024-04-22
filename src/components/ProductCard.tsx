@@ -3,12 +3,16 @@ interface ProductCardProps {
     description: string;
     price: number;
     imgURL: string;
+    badge: {
+        text: string,
+        colors: string,
+    };
 }
 
 export function ProductCard(props: ProductCardProps) {
     return <>
-        <a href="" className="bg-white relative block border px-4 py-5 rounded-lg w-64">
-            <span className="absolute top-4 right-0 bg-zinc-800 text-white text-sm capitalize py-1 px-5">frete grátis</span>
+        <a href="" className="bg-white relative block border px-4 py-5 rounded-lg w-72">
+            <span className={`absolute top-4 right-0 ${props.badge.colors} text-white text-sm capitalize py-1 px-5`}>{props.badge.text}</span>
             <img className="block w-full mx-auto mb-4" src={props.imgURL} alt="" />
 
             <div className="text-left capitalize">
