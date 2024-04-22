@@ -98,10 +98,12 @@ export function App() {
         <>
             <Navbar />
 
+            {/* Shortcuts links */}
             <section className="mx-auto my-4">
                 <PillCarousel items={SHORTCUTS_OPTIONS} />
             </section>
 
+            {/* Carousel of banners */}
             <section className="mt-4">
                 <CarouselOneByOne
                     slidingDelay={5000}
@@ -117,6 +119,7 @@ export function App() {
                 />
             </section>
 
+            {/* For you section */}
             <section className="mt-12 px-2">
                 <h2 className="uppercase text-2xl ml-4 mb-4">para você</h2>
 
@@ -128,6 +131,7 @@ export function App() {
                 />
             </section>
 
+            {/* just launched section*/}
             <section className="mt-12 px-2">
                 <h2 className="uppercase text-2xl ml-4 mb-4">Lançamentos do mês</h2>
 
@@ -140,6 +144,7 @@ export function App() {
                 />
             </section>
 
+            {/* best brands section */}
             <section className="mt-12 px-5 py-2">
                 <h2 className="uppercase text-2xl mb-4">Melhores Marcas</h2>
 
@@ -167,6 +172,7 @@ export function App() {
 
             </section>
 
+            {/* only vip section */}
             <section className="mt-12 px-2">
                 <h2 className="uppercase text-2xl ml-4 mb-4">Só para vips</h2>
 
