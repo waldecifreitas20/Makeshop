@@ -167,6 +167,18 @@ export function App() {
 
             </section>
 
+            <section className="mt-12 px-2">
+                <h2 className="uppercase text-2xl ml-4 mb-4">Só para vips</h2>
+
+                <CarouselOneByOne
+                    slidingDelay={5000}
+                    height={450}
+                    initialIndex={1}
+                    buttonsStyle="size-5"
+                    items={PRODUCTS_CARDS}
+                />
+            </section>
+
         </>
     );
 }
