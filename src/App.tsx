@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Carousel } from "./components/Carousel";
+import { CarouselOneByOne } from "./components/CarouselOneByOne";
 import { Navbar } from "./components/Navbar";
 import { ProductCard } from "./components/ProductCard";
+import { PillCarousel } from "./components/PillCarousel";
 
 
 export function App() {
@@ -13,25 +14,6 @@ export function App() {
         <a className="border border-gray-200 bg-white rounded-full mx-1 px-3 py-1 text-sm text-nowrap" href="">Frete Grátis</a>,
     ];
     let [buttonCopyIcon, setButtonCopyIcon] = useState(<i className="fa-regular fa-copy fa-lg"></i>);
-
-    const PILL_CAROUSEL = <>
-        <section className="flex px-4 mx-auto my-4">
-
-            <button onClick={prev} className="w-10 bg-white text-center border rounded-full"><i className="fa-solid fa-chevron-left"></i></button>
-
-            <div id="container" className="relative overflow-hidden w-full flex items-center mx-2">
-                <div id="slider" className="flex relative md:static flex-nowrap p-0 transition-all duration-500">
-                    {SHORTCUTS_OPTIONS.map((option, i) => {
-                        return <>
-                            <span key={Math.random() + i}>{option}</span>
-                        </>;
-                    })}
-                </div>
-            </div>
-
-            <button onClick={next} className="w-10 bg-white text-center border rounded-full"><i className="fa-solid fa-chevron-right"></i></button>
-        </section>
-    </>
 
     const BANNERS = [
         <span className="relative bg-green-500 block mx-auto h-full w-full">
@@ -97,10 +79,17 @@ export function App() {
         <>
             <Navbar />
 
-            {PILL_CAROUSEL}
+            <section className="mx-auto my-4">
+                <PillCarousel
+                    autoSlide={false}
+                    buttonsStyle=""
+                    delay={700}
+                    height={0}
+                    items={SHORTCUTS_OPTIONS} />
+            </section>
 
             <section className="mt-4">
-                <Carousel
+                <CarouselOneByOne
                     autoSlide={false}
                     delay={5000}
                     height={250}
@@ -117,7 +106,7 @@ export function App() {
 
             <section className="mt-12 px-2">
                 <h2 className="uppercase text-2xl ml-4">para você</h2>
-                <Carousel
+                <CarouselOneByOne
                     autoSlide={false}
                     delay={5000}
                     height={450}

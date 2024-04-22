@@ -1,30 +1,23 @@
 import React from "react";
 import { IconButton } from "./IconButton";
 
-interface CarouselProps {
-    items: Array<any>;
-    delay: number;
-    height: number;
-    autoSlide: boolean;
-    buttonsStyle: string
-}
 
-export class Carousel extends React.Component {
+export class CarouselOneByOne extends React.Component implements Carousel {
     private readonly key: string;
-    private readonly nextItem: VoidFunction;
-    private readonly previousItem: VoidFunction;
     private viewWidth: number;
     private index: number;
     private hasEventTriggered: boolean;
 
-
     public readonly props: CarouselProps;
+    public readonly nextItem: CallableFunction;
+    public readonly previousItem: CallableFunction;
 
     public constructor(props: CarouselProps) {
         super(props);
         this.key = (Math.random()).toString();
         this.props = props;
         this.index = 0;
+        
         this.state = {
             index: 0,
         }
@@ -63,7 +56,7 @@ export class Carousel extends React.Component {
             this.updateCarouselItemsWidth();
         });
         const height = this.props.height.toString();
-      
+
         return <>
 
             {/* Carousel */}
