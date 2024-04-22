@@ -78,12 +78,12 @@ export function App() {
     ];
 
     const BEST_BRANDS = [
-        { name: "absolute new york", color: "bg-pink-200" },
-        { name: "lancôme", color: "bg-lime-200" },
-        { name: "sisley", color: "bg-sky-200" },
-        { name: "océane", color: "bg-slate-300 " },
-        { name: "payot", color: "bg-violet-200" },
-        { name: "la roche-posay", color: "bg-yellow-200" },
+        { name: "absolute new york", color: "bg-pink-500" },
+        { name: "lancôme", color: "bg-lime-500" },
+        { name: "sisley", color: "bg-sky-500" },
+        { name: "océane", color: "bg-slate-500" },
+        { name: "payot", color: "bg-violet-500" },
+        { name: "la roche-posay", color: "bg-yellow-500" },
     ];
 
     function copyToClipboard(value: string) {
@@ -149,10 +149,15 @@ export function App() {
                             <a href=""
                                 className={`
                                 ${brand.color} 
+                                bg-opacity-40 
+                                hover:bg-opacity-70 
+                                transition-all
+                                duration-300
                                 capitalize 
                                 h-[100px] 
                                 rounded-lg 
-                                flex justify-center items-center                        
+                                flex justify-center items-center 
+                                                       
                                 `}>
                                 {brand.name}
                             </a>
