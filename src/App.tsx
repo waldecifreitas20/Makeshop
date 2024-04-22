@@ -3,6 +3,7 @@ import { CarouselOneByOne } from "./components/CarouselOneByOne";
 import { Navbar } from "./components/Navbar";
 import { ProductCard } from "./components/ProductCard";
 import { PillCarousel } from "./components/PillCarousel";
+import { Section } from "./components/Section";
 
 
 export function App() {
@@ -104,55 +105,66 @@ export function App() {
             </section>
 
             {/* Carousel of banners */}
-            <section className="mt-4">
-                <CarouselOneByOne
-                    slidingDelay={5000}
-                    height={250}
-                    buttonsStyle="
+            <Section
+                key={"section-1"}
+                child={
+                    <CarouselOneByOne
+                        slidingDelay={5000}
+                        height={250}
+                        buttonsStyle="
                     bg-black 
                     bg-opacity-20 
                     hover:bg-opacity-60
                     text-white  
                     size-12
                     "
-                    items={BANNERS}
-                />
-            </section>
+                        items={BANNERS}
+                    />
+                }
+            />
+
 
             {/* For you section */}
-            <section className="mt-12 px-2">
-                <h2 className="uppercase text-2xl ml-4 mb-4">para você</h2>
-
-                <CarouselOneByOne
-                    slidingDelay={5000}
-                    height={450}
-                    buttonsStyle="size-5"
-                    items={PRODUCTS_CARDS}
-                />
-            </section>
+            <Section
+                key={"section-2"}
+                title="para você"
+                child={
+                    <CarouselOneByOne
+                        slidingDelay={5000}
+                        height={450}
+                        buttonsStyle="size-5"
+                        items={PRODUCTS_CARDS}
+                    />
+                }
+            />
 
             {/* just launched section*/}
-            <section className="mt-12 px-2">
-                <h2 className="uppercase text-2xl ml-4 mb-4">Lançamentos do mês</h2>
-
-                <CarouselOneByOne
-                    slidingDelay={5000}
-                    height={450}
-                    initialIndex={2}
-                    buttonsStyle="size-5"
-                    items={PRODUCTS_CARDS}
-                />
-            </section>
+            <Section
+                key={"section-3"}
+                title="Lançamentos do mês"
+                child={
+                    <CarouselOneByOne
+                        slidingDelay={5000}
+                        height={450}
+                        initialIndex={2}
+                        buttonsStyle="size-5"
+                        items={PRODUCTS_CARDS}
+                    />
+                }
+            />
 
             {/* best brands section */}
-            <section className="mt-12 px-5 py-2">
-                <h2 className="uppercase text-2xl mb-4">Melhores Marcas</h2>
-
-                <div className="grid grid-cols-2 gap-2 text-center">
-                    {BEST_BRANDS.map((brand, i) => {
-                        return <>
-                            <a href=""
-                                className={`
+            <Section
+                key={"section-4"}
+                title="Melhores Marcas"
+                style="px-5"
+                child={
+                    <>
+                        <div className="grid grid-cols-2 gap-2 text-center">
+                            {BEST_BRANDS.map((brand, i) => {
+                                return <>
+                                    <a href=""
+                                        className={`
                                 ${brand.color} 
                                 bg-opacity-40 
                                 hover:bg-opacity-70 
@@ -164,26 +176,28 @@ export function App() {
                                 flex justify-center items-center 
                                                        
                                 `}>
-                                {brand.name}
-                            </a>
-                        </>
-                    })}
-                </div>
-
-            </section>
+                                        {brand.name}
+                                    </a>
+                                </>
+                            })}
+                        </div>
+                    </>
+                }
+            />
 
             {/* only vip section */}
-            <section className="mt-12 px-2">
-                <h2 className="uppercase text-2xl ml-4 mb-4">Só para vips</h2>
-
-                <CarouselOneByOne
-                    slidingDelay={5000}
-                    height={450}
-                    initialIndex={1}
-                    buttonsStyle="size-5"
-                    items={PRODUCTS_CARDS}
-                />
-            </section>
+            < Section
+                key={"section-5"}
+                title="Só para vips"
+                child={
+                    <CarouselOneByOne
+                        slidingDelay={5000}
+                        height={450}
+                        initialIndex={1}
+                        buttonsStyle="size-5"
+                        items={PRODUCTS_CARDS}
+                    />}
+            />
 
         </>
     );
