@@ -55,7 +55,7 @@ export class CarouselOneByOne extends React.Component implements Carousel {
         window.addEventListener("resize", () => {
             this.updateCarouselItemsWidth();
         });
-        const height = this.props.height.toString();
+        const height = this.props.height?.toString();
 
         return <>
 
@@ -77,7 +77,7 @@ export class CarouselOneByOne extends React.Component implements Carousel {
                         setTimeout(() => {
                             this.hasEventTriggered = false;
 
-                        }, this.props.delay);
+                        }, this.props.slidingDelay);
                     }}
                 />
 
@@ -130,7 +130,7 @@ export class CarouselOneByOne extends React.Component implements Carousel {
                         setTimeout(() => {
                             this.hasEventTriggered = false;
 
-                        }, this.props.delay);
+                        }, this.props.slidingDelay);
                     }}
                 />
 
@@ -168,7 +168,7 @@ export class CarouselOneByOne extends React.Component implements Carousel {
             if (!this.hasEventTriggered) {
                 this.nextItem();
             }
-        }, this.props.delay);
+        }, this.props.slidingDelay);
 
 
     }

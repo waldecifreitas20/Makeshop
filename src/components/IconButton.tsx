@@ -4,7 +4,7 @@ interface FloatingButtonProps {
     onClick: VoidFunction;
     child: ReactElement;
     positionClass: string
-    style:string
+    style?:string
 }
 
 

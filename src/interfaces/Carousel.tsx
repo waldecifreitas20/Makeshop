@@ -5,8 +5,8 @@ interface Carousel {
 
 interface CarouselProps {
     items: Array<any>;
-    slidingDelay: number;
-    height: number;
-    autoSlide: boolean;
-    buttonsStyle: string
+    slidingDelay?: number;
+    height?: number;
+    autoSlide?: boolean;
+    buttonsStyle?: string
 }

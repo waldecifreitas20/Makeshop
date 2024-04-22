@@ -42,6 +42,38 @@ export function App() {
         </span>,
     ];
 
+    const PRODUCTS_CARDS = [
+        <ProductCard
+            name="Lancôme"
+            badge={{
+                text: "Frete Grátis",
+                colors: "bg-lime-500",
+            }}
+            description="Kit de olhos lancôme monsieur big set"
+            price={199.97}
+            imgURL="../public/images/product1.png"
+        />,
+        <ProductCard
+            badge={{
+                text: "25% off",
+                colors: "bg-lime-500",
+            }}
+            name="Lancôme"
+            description="Kit de olhos lancôme monsieur big set"
+            price={199.97}
+            imgURL="../public/images/product2.png"
+        />,
+        <ProductCard
+            badge={{
+                text: "",
+                colors: "bg-transparent",
+            }}
+            name="Lancôme"
+            description="Kit de olhos lancôme monsieur big set"
+            price={199.97}
+            imgURL="../public/images/product3.png"
+        />,
+    ];
 
     function copyToClipboard(value: string) {
         window.navigator.clipboard.writeText(value)
@@ -56,17 +88,11 @@ export function App() {
             <Navbar />
 
             <section className="mx-auto my-4">
-                <PillCarousel
-                    autoSlide={false}
-                    buttonsStyle=""
-                    slidingDelay={700}
-                    height={0}
-                    items={SHORTCUTS_OPTIONS} />
+                <PillCarousel items={SHORTCUTS_OPTIONS} />
             </section>
 
             <section className="mt-4">
                 <CarouselOneByOne
-                    autoSlide={false}
                     slidingDelay={5000}
                     height={250}
                     buttonsStyle="
@@ -81,46 +107,13 @@ export function App() {
             </section>
 
             <section className="mt-12 px-2">
-                <h2 className="uppercase text-2xl ml-4">para você</h2>
+                <h2 className="uppercase text-2xl ml-4 mb-4">para você</h2>
 
                 <CarouselOneByOne
-                    autoSlide={true}
                     slidingDelay={5000}
                     height={450}
                     buttonsStyle="size-5"
-                    items={[
-                        <ProductCard
-                            name="Lancôme"
-                            badge={{
-                                text: "Frete Grátis",
-                                colors: "bg-lime-500",
-                            }}
-                            description="Kit de olhos lancôme monsieur big set"
-                            price={199.97}
-                            imgURL="../public/images/product1.png"
-                        />,
-                        <ProductCard
-                            badge={{
-                                text: "25% off",
-                                colors: "bg-lime-500",
-                            }}
-                            name="Lancôme"
-                            description="Kit de olhos lancôme monsieur big set"
-                            price={199.97}
-                            imgURL="../public/images/product2.png"
-                        />,
-                        <ProductCard
-                            badge={{
-                                text: "",
-                                colors: "bg-transparent",
-                            }}
-                            name="Lancôme"
-                            description="Kit de olhos lancôme monsieur big set"
-                            price={199.97}
-                            imgURL="../public/images/product3.png"
-                        />,
-
-                    ]}
+                    items={PRODUCTS_CARDS}
                 />
             </section>
         </>
