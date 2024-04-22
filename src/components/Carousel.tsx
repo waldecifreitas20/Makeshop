@@ -65,7 +65,7 @@ export class Carousel extends React.Component {
         return <>
 
             {/* Carousel */}
-            <div id={`carousel-${this.key}`} className={`flex justify-center relative h-[${height}px]  `}>
+            <div id={`carousel-${this.key}`} className={`flex justify-center relative h-[${250}px]  `}>
 
                 {/* Button to view the previous item */}
                 <IconButton

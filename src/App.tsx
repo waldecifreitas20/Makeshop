@@ -34,33 +34,30 @@ export function App() {
     </>
 
     const BANNERS = [
-        <span className="relative bg-green-500 flex justify-center h-full w-full">
-            <img className="block w-full" src="../public/images/banner1.png" alt="" />
+        <span className="relative bg-green-500 block mx-auto h-full w-full">
+            <img className="block w-full mx-auto" src="../public/images/banner1.png" alt="" />
 
-            <div className="absolute bottom-2 w-2/4 flex justify-center">
-                <input type="text"
-                    value="MAKE15OFF"
-                    readOnly disabled
+            <div className="w-full flex justify-center">
+                <div className="absolute bottom-2 w-2/4 flex self-center justify-center">
+                    <input type="text"
+                        value="MAKE15OFF"
+                        readOnly disabled
 
-                    className="
-                    rounded-l-md
-                    p-2 
-                    w-full
-                    cursor-pointer
-                    border-y-2 border-l-2 border-dashed border-gray-100
-                    text-white text-center
-                    bg-white bg-opacity-20 
-                    mr
-            "/>
-                <button className="bg-white hover:bg-gray-200 text-pink-600 border rounded-r-md p-2 text-sm w-1/4" onClick={() => copyToClipboard("MAKE15OFF")}>
-                    {buttonCopyIcon}
-                </button>
+                        className="
+                            rounded-l-md
+                            p-2 
+                            w-full
+                            cursor-pointer
+                            border-y-2 border-l-2 border-dashed border-gray-100
+                            text-white text-center
+                            bg-white bg-opacity-20 
+                    "/>
+                    <button className="bg-white hover:bg-gray-200 text-pink-600 border rounded-r-md p-2 text-sm w-1/4" onClick={() => copyToClipboard("MAKE15OFF")}>
+                        {buttonCopyIcon}
+                    </button>
+                </div>
             </div>
-
-
         </span>,
-        <img className="block" src="../public/images/product1.png" alt="" />,
-        <img className="block" src="../public/images/product2.png" alt="" />,
     ];
 
     let x: number = 0;
@@ -106,7 +103,7 @@ export function App() {
                 <Carousel
                     autoSlide={false}
                     delay={5000}
-                    height={250}
+                    height={200}
                     items={BANNERS}
                 />
             </section>
