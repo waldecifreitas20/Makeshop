@@ -122,7 +122,7 @@ export function Navbar() {
 						{/* Menu */}
 						<div id="menu" onClick={test} className={`shadow-2xl z-40 block absolute w-full transition-all duration-500 top-0 left-0 bg-black bg-opacity-25 h-screen ${menuClass}`}>
 
-							<div className="absolute top-0 left-0 bg-white overflow-y-auto h-screen w-3/4 block z-50">
+							<div className="absolute hide-scrollbar top-0 left-0 bg-white overflow-y-auto h-screen w-3/4 block z-50">
 
 								<div className="bg-zinc-950 px-5 pt-16 pb-6 text-center relative z-10">
 									<h2 className="text-white text-xl">Bem-vindo!</h2>
