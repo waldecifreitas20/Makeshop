@@ -35,7 +35,7 @@ const MENU_OPTIONS: MenuOption[] = [
 				Categorias
 				<i className="hidden md:block fa-solid fa-caret-down fa-sm opacity-60"></i>
 			</div>
-			<ul className="brother w-full ps-4 bg-slater-50 transition-all duration-500">
+			<ul className="brother w-full ps-4 bg-slater-50 transition-all duration-500 border bg-white">
 				<li className={"ms-5 py-4 hover:text-black uppercase bg-transparent text-gray-400 text-sm"}><a href="">Maquiagem</a></li>
 				<li className={"ms-5 py-4 hover:text-black uppercase bg-transparent text-gray-400 text-sm"}><a href="">Cosméticos</a></li>
 				<li className={"ms-5 py-4 hover:text-black uppercase bg-transparent text-gray-400 text-sm"}><a href="">Perfumes</a></li>
@@ -101,7 +101,7 @@ export function Navbar() {
 					<div className="flex items-center">
 
 						{/* Menu button */}
-						<button onClick={toggleMenuView} className={`mr-5 ${menuClass === 'open-menu' ? 'relative z-50 text-white' : ''}`}>
+						<button onClick={toggleMenuView} className={`mr-5 ${menuClass === 'open-menu' ? 'relative text-white' : ''}`}>
 							<i id="menu-icon" className="fa-solid fa-bars fa-2xl"></i>
 						</button>
 
@@ -110,13 +110,14 @@ export function Navbar() {
 						<a href="" className="text-3xl font-title tracking-tightest text-gray-650">Makeshop</a>
 
 						{/* Menu */}
-						<div id="menu" className={`shadow-2xl z-40 absolute transition-all w-3/4 duration-500 top-0 left-0 bg-white min-h-screen  ${menuClass}`}>
-							<div className="bg-zinc-950 px-5 pt-16 pb-6 text-center relative z-10">
-								<h2 className="text-white text-xl">Bem-vindo!</h2>
-								<p className="text-white text-sm mt-2">Faça login ou cadastre-se para aproveitar as nossas ofertas </p>
+						<div id="menu" className={`shadow-2xl z-40 absolute w-full   transition-all duration-500 top-0 left-0 bg-black bg-opacity-25 min-h-screen  ${menuClass}`}>
+							<div className=" w-3/4 overflow-y-auto h-screen">
+								<div className="bg-zinc-950 px-5 pt-16 pb-6 text-center relative z-10">
+									<h2 className="text-white text-xl">Bem-vindo!</h2>
+									<p className="text-white text-sm mt-2">Faça login ou cadastre-se para aproveitar as nossas ofertas </p>
 
-								<div className="mt-4">
-									<a className="
+									<div className="mt-4">
+										<a className="
 									block py-2 mb-2 
 									rounded-full
 									border 
@@ -125,7 +126,7 @@ export function Navbar() {
 									text-white 
 									
 									transition-all duration-300" href="">Fazer Login</a>
-									<a className="
+										<a className="
 									block py-2 
 									text-white  
 									rounded-full 
@@ -136,18 +137,19 @@ export function Navbar() {
 									hover:bg-pink-500 
 
 									transition-all duration-300 " href="">Cadastre-se</a>
+									</div>
 								</div>
-							</div>
 
-							{/* Menu options*/}
-							<ul className="-z-0 relative">
-								{MENU_OPTIONS.map((menuOption: MenuOption) => {
-									if (menuOption.loginRequired && !isLogged) {
-										return <></>;
-									}
-									return menuOption.child;
-								})}
-							</ul>
+								{/* Menu options*/}
+								<ul className="-z-0 relative">
+									{MENU_OPTIONS.map((menuOption: MenuOption) => {
+										if (menuOption.loginRequired && !isLogged) {
+											return <></>;
+										}
+										return menuOption.child;
+									})}
+								</ul>
+							</div>
 
 						</div>
 
