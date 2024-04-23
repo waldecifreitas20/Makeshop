@@ -28,26 +28,33 @@ const MENU_OPTION_STYLE = `
 
 
 const MENU_OPTIONS: MenuOption[] = [
-	{ child: <li className={MENU_OPTION_STYLE}>Home</li>, loginRequired: false, },
 	{
 		child: <li>
-			<div className={MENU_OPTION_STYLE + "ancestor flex justify-between items-center"}>
+			<a className={MENU_OPTION_STYLE} href="">Home</a>
+		</li>, loginRequired: false,
+	},
+	{
+		child: <li>
+			<div className={`${MENU_OPTION_STYLE} ancestor flex justify-between items-center`}>
 				Categorias
 				<i className="hidden md:block fa-solid fa-caret-down fa-sm opacity-60"></i>
 			</div>
 			<ul className="brother w-full ps-4 bg-slater-50 transition-all duration-500 border bg-white">
-				<li className={"ms-5 py-4 hover:text-black uppercase bg-transparent text-gray-400 text-sm"}><a href="">Maquiagem</a></li>
-				<li className={"ms-5 py-4 hover:text-black uppercase bg-transparent text-gray-400 text-sm"}><a href="">Cosméticos</a></li>
-				<li className={"ms-5 py-4 hover:text-black uppercase bg-transparent text-gray-400 text-sm"}><a href="">Perfumes</a></li>
+				<li className={"ms-5 py-4 hover:text-black uppercase bg-transparent text-gray-400 text-sm"}>
+					<a className="block h-full w-full" href="">Maquiagem</a></li>
+				<li className={"ms-5 py-4 hover:text-black uppercase bg-transparent text-gray-400 text-sm"}>
+					<a className="block h-full w-full" href="">Cosméticos</a></li>
+				<li className={"ms-5 py-4 hover:text-black uppercase bg-transparent text-gray-400 text-sm"}>
+					<a className="block h-full w-full" href="">Perfumes</a></li>
 			</ul>
 		</li>, loginRequired: false,
 	},
-	{ child: <li className={MENU_OPTION_STYLE}>Sessão VIP</li>, loginRequired: false, },
-	{ child: <li className={MENU_OPTION_STYLE}>Ofertas</li>, loginRequired: false, },
-	{ child: <li className={MENU_OPTION_STYLE}>Marcas</li>, loginRequired: false, },
-	{ child: <li className={MENU_OPTION_STYLE}>Minha Conta</li>, loginRequired: true, },
-	{ child: <li className={MENU_OPTION_STYLE}>Sobre a Makeshop</li>, loginRequired: false, },
-	{ child: <li className={MENU_OPTION_STYLE}>Sair</li>, loginRequired: true, },
+	{ child: <li><a className={MENU_OPTION_STYLE} href=""> Sessão VIP</a></li>, loginRequired: false, },
+	{ child: <li><a className={MENU_OPTION_STYLE} href=""> Ofertas</a></li>, loginRequired: false, },
+	{ child: <li><a className={MENU_OPTION_STYLE} href=""> Marcas</a></li>, loginRequired: false, },
+	{ child: <li><a className={MENU_OPTION_STYLE} href=""> Minha Conta</a></li>, loginRequired: true, },
+	{ child: <li><a className={MENU_OPTION_STYLE} href=""> Sobre a Makeshop</a></li>, loginRequired: false, },
+	{ child: <li><a className={MENU_OPTION_STYLE} href=""> Sair</a></li>, loginRequired: true, },
 ]
 
 
@@ -91,6 +98,9 @@ export function Navbar() {
 		return setMenuClass('close-menu');
 	}
 
+	function test() {
+		setMenuClass('close-menu');
+	}
 
 
 	return (
@@ -110,8 +120,8 @@ export function Navbar() {
 						<a href="" className="text-3xl font-title tracking-tightest text-gray-650">Makeshop</a>
 
 						{/* Menu */}
-						<div id="menu" className={`shadow-2xl z-40 absolute w-full   transition-all duration-500 top-0 left-0 bg-black bg-opacity-25 min-h-screen  ${menuClass}`}>
-							<div className=" w-3/4 overflow-y-auto h-screen">
+						<div id="menu" onClick={test} className={`shadow-2xl z-40 fixed w-full   transition-all duration-500 top-0 left-0 bg-black bg-opacity-25 min-h-screen  ${menuClass}`}>
+							<div className=" w-3/4 overflow-y-auto h-screen z-50">
 								<div className="bg-zinc-950 px-5 pt-16 pb-6 text-center relative z-10">
 									<h2 className="text-white text-xl">Bem-vindo!</h2>
 									<p className="text-white text-sm mt-2">Faça login ou cadastre-se para aproveitar as nossas ofertas </p>
