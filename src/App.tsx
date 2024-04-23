@@ -101,7 +101,7 @@ export function App() {
             <Navbar />
 
             {/* Shortcuts links */}
-            <section className="mx-auto my-4">
+            <section className="mx-auto mb-2 mt-20">
                 <PillCarousel items={SHORTCUTS_OPTIONS} />
             </section>
 
