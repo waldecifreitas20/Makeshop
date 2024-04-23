@@ -4,6 +4,7 @@ import { Navbar } from "./components/Navbar";
 import { ProductCard } from "./components/ProductCard";
 import { PillCarousel } from "./components/PillCarousel";
 import { Section } from "./components/Section";
+import { PillButton } from "./components/PillButton";
 
 
 export function App() {
@@ -128,6 +129,7 @@ export function App() {
             <Section
                 key={"section-2"}
                 title="para você"
+                style="px-5"
                 child={
                     <CarouselOneByOne
                         slidingDelay={5000}
@@ -142,6 +144,7 @@ export function App() {
             <Section
                 key={"section-3"}
                 title="Lançamentos do mês"
+                style="px-5"
                 child={
                     <CarouselOneByOne
                         slidingDelay={5000}
@@ -189,6 +192,7 @@ export function App() {
             < Section
                 key={"section-5"}
                 title="Só para vips"
+                style="px-5"
                 child={
                     <CarouselOneByOne
                         slidingDelay={5000}
@@ -199,6 +203,36 @@ export function App() {
                     />}
             />
 
+            {/* Newsletter */}
+            <Section
+                key={"newsletter"}
+                title="Fique por dentro das novidades"
+                description="Cadastre seu email e fique por dentro de promoções elançamentos em primeira mão"
+                style="
+                bg-gradient-to-br from-zinc-950 to-zinc-700 
+                text-zinc-200 text-opacity-95 text-sm
+                py-6 px-5
+                mt-8
+                "
+                child={<>
+                    <input 
+                    type="email" 
+                    placeholder="Digite seu email"
+                    className="w-full rounded-full px-5 py-2 mt-4 mb-3 text-black text-lg"
+                    />
+
+                    <PillButton 
+                        text="Cadastrar"
+                        style="
+                        bg-zinc-600
+                        text-lg
+                        text-center 
+                        w-48 
+                        ml-auto
+                        "
+                    />
+                </>}
+            />
         </>
     );
 }
