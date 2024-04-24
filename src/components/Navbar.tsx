@@ -59,46 +59,19 @@ const MENU_OPTIONS: MenuOption[] = [
 
 
 export function Navbar() {
-	let isLogged: boolean = true;
-	let menuState = useRef(MENU_STATE.CLOSE);
+	let isLogged: boolean = false;
 	let [showSearchBar, setSearchBarView] = useState(false);
 	let [menuClass, setMenuClass] = useState('close-menu');
-
-	/* Close menu when user click outside menu area */
-	document.addEventListener('click', closeMenuView);
-
-
-	function closeMenuView(event: MouseEvent) {
-		event.stopPropagation();
-
-		const MENU = document.getElementById("menu");
-		const ELEMENT = event.target as HTMLElement;
-
-		const IS_OUTSIDE_CLICK = MENU?.contains(ELEMENT) == false;
-		const IS_MENU_BUTTON = ELEMENT.id == "menu-icon";
-
-		/* close menu if not click on menu button */
-		if (IS_OUTSIDE_CLICK && !IS_MENU_BUTTON) {
-			menuState.current = MENU_STATE.CLOSE;
-			setMenuClass('close-menu');
-		}
-	}
-
 
 	function toggleSearchBarView() {
 		setSearchBarView(!showSearchBar);
 	}
 
-	function toggleMenuView() {
-		menuState.current = !menuState.current;
-
-		if (menuState.current == MENU_STATE.OPEN) {
-			return setMenuClass('open-menu');
-		}
-		return setMenuClass('close-menu');
+	function openMenu() {
+		setMenuClass('open-menu');
 	}
 
-	function test() {
+	function closeMenu() {
 		setMenuClass('close-menu');
 	}
 
@@ -111,7 +84,7 @@ export function Navbar() {
 					<div className="flex items-center">
 
 						{/* Menu button */}
-						<button onClick={toggleMenuView} className={`mr-5 ${menuClass === 'open-menu' ? 'relative text-white' : ''}`}>
+						<button onClick={openMenu} className={`mr-5 ${menuClass === 'open-menu' ? 'relative text-white' : ''}`}>
 							<i id="menu-icon" className="fa-solid fa-bars fa-2xl"></i>
 						</button>
 
@@ -120,7 +93,10 @@ export function Navbar() {
 						<a href="" className="text-3xl font-title tracking-tightest text-gray-650">Makeshop</a>
 
 						{/* Menu */}
-						<div id="menu" onClick={test} className={`shadow-2xl z-40 block absolute w-full transition-all duration-500 top-0 left-0 bg-black bg-opacity-25 h-screen ${menuClass}`}>
+						<div id="menu" className={`shadow-2xl z-40 block absolute w-full transition-all duration-500 top-0 left-0 h-screen ${menuClass}`}>
+
+							{/* close menu when user clicks outside menu area */}
+							<div onClick={closeMenu} className="menu-disposer block relative bg-black bg-opacity-25 h-screen w-full"></div>
 
 							<div className="absolute hide-scrollbar top-0 left-0 bg-white overflow-y-auto h-screen w-3/4 block z-50">
 
