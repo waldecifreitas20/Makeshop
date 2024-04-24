@@ -19,7 +19,7 @@ export function App() {
 
     const BANNERS = [
         <span className="relative bg-green-500 block mx-auto h-full w-full">
-            <img className="block w-full h-full mx-auto" src="../public/images/banner1.png" alt="" />
+            <img className="block w-full h-full mx-auto" src="./assets/images/banner1.png" alt="" />
 
             <div className="w-full flex justify-center">
                 <div className="absolute bottom-2 w-2/4 flex self-center justify-center">
@@ -53,7 +53,7 @@ export function App() {
             }}
             description="Kit de olhos lancôme monsieur big set"
             price={199.97}
-            imgURL="../public/images/product1.png"
+            imgURL="./assets/images/product1.png"
         />,
         <ProductCard
             badge={{
@@ -65,7 +65,7 @@ export function App() {
             name="fenty beauty"
             description="gloss labial fenty gloss bomb universal lip luminizer"
             price={89.97}
-            imgURL="../public/images/product2.png"
+            imgURL="./assets/images/product2.png"
         />,
         <ProductCard
             badge={{
@@ -75,7 +75,7 @@ export function App() {
             name="Carolina Herrera"
             description="refil balm labial carolina herrena good girl mini kiss the mini tint superstar"
             price={109.07}
-            imgURL="../public/images/product3.png"
+            imgURL="./assets/images/product3.png"
         />,
     ];
 
@@ -255,11 +255,11 @@ export function App() {
                 <div className="my-7">
                     <h4 className="text-xl mb-3 font-medium">Redes Sociais</h4>
                     <ul className="flex justify-around">
-                        <li><a className="capitalize" href="">FB</a></li>
-                        <li><a className="capitalize" href="">Ins</a></li>
-                        <li><a className="capitalize" href="">ttk</a></li>
-                        <li><a className="capitalize" href="">X</a></li>
-                        <li><a className="capitalize" href="">yt</a></li>
+                        <li><a className="capitalize" href=""><img src="./assets/images/logo-fb.png" alt="" /></a></li>
+                        <li><a className="capitalize" href=""><img src="./assets/images/logo-fb.png" alt="" /></a></li>
+                        <li><a className="capitalize" href=""><img src="./assets/images/logo-fb.png" alt="" /></a></li>
+                        <li><a className="capitalize" href=""><img src="./assets/images/logo-fb.png" alt="" /></a></li>
+                        <li><a className="capitalize" href=""><img src="./assets/images/logo-fb.png" alt="" /></a></li>
                     </ul>
                 </div>
                 
