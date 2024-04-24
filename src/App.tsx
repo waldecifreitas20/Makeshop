@@ -233,6 +233,50 @@ export function App() {
                     />
                 </>}
             />
+
+            <footer className="px-5 py-6">
+                <div>
+                    <h4 className="text-xl mb-3 font-medium">Ajuda</h4>
+                    <ul>
+                        <li><a className="capitalize" href="">atendimento ao cliente</a></li>
+                        <li><a className="capitalize" href="">trocas e devoluções</a></li>
+                        <li><a className="capitalize" href="">perguntas frequentes</a></li>
+                    </ul>
+                </div>
+
+                <div className="my-7">
+                    <h4 className="text-xl mb-3 font-medium">Institucional</h4>
+                    <ul>
+                        <li><a className="capitalize" href="">atendimento ao cliente</a></li>
+                        <li><a className="capitalize" href="">trocas e devoluções</a></li>
+                        <li><a className="capitalize" href="">perguntas frequentes</a></li>
+                    </ul>
+                </div>
+                <div className="my-7">
+                    <h4 className="text-xl mb-3 font-medium">Redes Sociais</h4>
+                    <ul className="flex justify-around">
+                        <li><a className="capitalize" href="">FB</a></li>
+                        <li><a className="capitalize" href="">Ins</a></li>
+                        <li><a className="capitalize" href="">ttk</a></li>
+                        <li><a className="capitalize" href="">X</a></li>
+                        <li><a className="capitalize" href="">yt</a></li>
+                    </ul>
+                </div>
+                
+                <div className="my-7">
+                    <h4 className="text-xl mb-3 font-medium">Formas de Pagamento</h4>
+                    <ul className="flex flex-wrap justify-left">
+                        <li className="block bg-blue-500"><a className="border-2 border-sky-600 blockcapitalize" href="">mercado pago</a></li>
+                        <li className="block bg-blue-500"><a className="border-2 border-sky-600 blockcapitalize" href="">mercado pago</a></li>
+                        <li className="block bg-blue-500"><a className="border-2 border-sky-600 blockcapitalize" href="">mercado pago</a></li>
+                        <li className="block bg-blue-500"><a className="border-2 border-sky-600 blockcapitalize" href="">mercado pago</a></li> 
+                        <li className="block bg-blue-500"><a className="border-2 border-sky-600 blockcapitalize" href="">mercado pago</a></li>
+                        <li className="block bg-blue-500"><a className="border-2 border-sky-600 blockcapitalize" href="">mercado pago</a></li>
+                        <li className="block bg-blue-500"><a className="border-2 border-sky-600 blockcapitalize" href="">mercado pago</a></li>
+                        
+                    </ul>
+                </div>
+            </footer>
         </>
     );
 }
