@@ -215,13 +215,13 @@ export function App() {
                 mt-8
                 "
                 child={<>
-                    <input 
-                    type="email" 
-                    placeholder="Digite seu email"
-                    className="w-full rounded-full px-5 py-2 mt-4 mb-3 text-black text-lg"
+                    <input
+                        type="email"
+                        placeholder="Digite seu email"
+                        className="w-full rounded-full px-5 py-2 mt-4 mb-3 text-black text-lg"
                     />
 
-                    <PillButton 
+                    <PillButton
                         text="Cadastrar"
                         style="
                         bg-zinc-600
@@ -255,25 +255,60 @@ export function App() {
                 <div className="my-7">
                     <h4 className="text-xl mb-3 font-medium">Redes Sociais</h4>
                     <ul className="flex justify-between max-w-80">
-                        <li><a className="h-8 block" href=""><img className="block h-full" src="assets/images/logo-fb.png" alt="" /></a></li>
-                        <li><a className="h-8 block" href=""><img className="block h-full" src="assets/images/logo-insta.png" alt="" /></a></li>
-                        <li><a className="h-8 block" href=""><img className="block h-full" src="./assets/images/logo-ttk.png" alt="" /></a></li>
-                        <li><a className="h-8 block" href=""><img className="block h-full" src="./assets/images/logo-x.png" alt="" /></a></li>
-                        <li><a className="h-8 block" href=""><img className="block h-full" src="./assets/images/logo-yt.png" alt="" /></a></li>
+                        <li><a className="h-8 block" href="">
+                            <img className="block h-full" src="assets/images/logo-fb.png" alt="" />
+                        </a></li>
+
+                        <li><a className="h-8 block" href="">
+                            <img className="block h-full" src="assets/images/logo-insta.png" alt="" />
+                        </a></li>
+
+                        <li><a className="h-8 block" href="">
+                            <img className="block h-full" src="./assets/images/logo-ttk.png" alt="" />
+                        </a></li>
+
+                        <li><a className="h-8 block" href="">
+                            <img className="block h-full" src="./assets/images/logo-x.png" alt="" />
+                        </a></li>
+
+                        <li><a className="h-8 block" href="">
+                            <img className="block h-full" src="./assets/images/logo-yt.png" alt="" />
+                        </a></li>
                     </ul>
                 </div>
-                
+
                 <div className="my-7">
                     <h4 className="text-xl mb-3 font-medium">Formas de Pagamento</h4>
                     <ul className="flex flex-wrap justify-left gap-4">
-                        <li className=""><a className="h-8 block" href=""><img className="block h-full" src="../public/assets/images/pg-mastercard.png" alt="" /></a></li>
-                        <li className=""><a className="h-8 block" href=""><img className="block h-full" src="../public/assets/images/pg-visa.png" alt="" /></a></li>
-                        <li className=""><a className="h-8 block" href=""><img className="block h-full" src="../public/assets/images/pg-amex.png" alt="" /></a></li>
-                        <li className=""><a className="h-8 block" href=""><img className="block h-full" src="../public/assets/images/pg-elo.png" alt="" /></a></li> 
-                        <li className=""><a className="h-8 block" href=""><img className="block h-full" src="../public/assets/images/pg-pix.png" alt="" /></a></li>
-                        <li className=""><a className="h-8 block" href=""><img className="block h-full" src="../public/assets/images/pg-paypal.png" alt="" /></a></li>
-                        <li className=""><a className="h-8 block" href=""><img className="block h-full" src="../public/assets/images/pg-mpago.png" alt="" /></a></li>
-                        
+
+                        <li className=""><a className="h-8 block" href="">
+                            <img className="block h-full" src="../public/assets/images/pg-mastercard.png" alt="" />
+                        </a></li>
+
+                        <li className=""><a className="h-8 block" href="">
+                            <img className="block h-full" src="../public/assets/images/pg-visa.png" alt="" />
+                        </a></li>
+
+                        <li className=""><a className="h-8 block" href="">
+                            <img className="block h-full" src="../public/assets/images/pg-amex.png" alt="" />
+                        </a></li>
+
+                        <li className=""><a className="h-8 block" href="">
+                            <img className="block h-full" src="../public/assets/images/pg-elo.png" alt="" />
+                        </a></li>
+
+                        <li className=""><a className="h-8 block" href="">
+                            <img className="block h-full" src="../public/assets/images/pg-pix.png" alt="" />
+                        </a></li>
+
+                        <li className=""><a className="h-8 block" href="">
+                            <img className="block h-full" src="../public/assets/images/pg-paypal.png" alt="" />
+                        </a></li>
+
+                        <li className=""><a className="h-8 block" href="">
+                            <img className="block h-full" src="../public/assets/images/pg-mpago.png" alt="" />
+                        </a></li>
+
                     </ul>
                 </div>
             </footer>
