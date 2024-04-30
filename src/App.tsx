@@ -43,6 +43,9 @@ export function App() {
                 </div>
             </div>
         </span>,
+
+        <img className="block w-full h-full mx-auto" src="./assets/images/banner2-small.png" alt="" />
+
     ];
 
     const PRODUCTS_CARDS = [
@@ -111,7 +114,8 @@ export function App() {
                 key={"section-1"}
                 child={
                     <CarouselOneByOne
-                        slidingDelay={5000}
+                        autoSlide={true}
+                        slidingDelay={3000}
                         height={250}
                         buttonsStyle="
                     bg-black 
