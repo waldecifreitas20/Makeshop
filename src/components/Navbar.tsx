@@ -5,11 +5,6 @@ interface MenuOption {
 	loginRequired: boolean;
 }
 
-const MENU_STATE = {
-	OPEN: true,
-	CLOSE: false
-}
-
 const MENU_OPTION_STYLE = `
 	px-5
 	py-5
