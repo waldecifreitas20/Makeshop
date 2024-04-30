@@ -114,9 +114,14 @@ export function App() {
                 key={"section-1"}
                 child={
                     <CarouselOneByOne
-                        autoSlide={true}
+                        autoSlide={false}
                         slidingDelay={3000}
-                        height={250}
+                        height="
+                            h-[225px] 
+                            sm:h-[250px]
+                            md:h-[350px]
+                            lg:h-[400px]
+                        "
                         buttonsStyle="
                     bg-black 
                     bg-opacity-20 
@@ -138,7 +143,7 @@ export function App() {
                 child={
                     <CarouselOneByOne
                         slidingDelay={5000}
-                        height={450}
+                        height="h-[450px]"
                         buttonsStyle="size-5"
                         items={PRODUCTS_CARDS}
                     />
@@ -153,7 +158,7 @@ export function App() {
                 child={
                     <CarouselOneByOne
                         slidingDelay={5000}
-                        height={450}
+                        height="h-[450px]"
                         initialIndex={2}
                         buttonsStyle="size-5"
                         items={PRODUCTS_CARDS}
@@ -201,7 +206,7 @@ export function App() {
                 child={
                     <CarouselOneByOne
                         slidingDelay={5000}
-                        height={450}
+                        height="h-[450px]"
                         initialIndex={1}
                         buttonsStyle="size-5"
                         items={PRODUCTS_CARDS}

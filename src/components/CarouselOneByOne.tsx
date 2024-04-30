@@ -55,12 +55,12 @@ export class CarouselOneByOne extends React.Component implements Carousel {
         window.addEventListener("resize", () => {
             this.updateCarouselItemsWidth();
         });
-        const height = this.props.height?.toString();
+        const height = this.props.height;
 
         return <>
 
             {/* Carousel */}
-            <div id={`carousel-${this.key}`} className={`flex justify-center relative h-[${height}px]  `}>
+            <div id={`carousel-${this.key}`} className={`flex justify-cente relative ${height} `}>
 
                 {/* Button to view the previous item */}
                 <IconButton
@@ -92,11 +92,12 @@ export class CarouselOneByOne extends React.Component implements Carousel {
                                         `carousel-item-${this.key} 
                                         text-center 
                                         flex justify-center 
-                                        w-full h-[${this.props.height}]`}>{item}</li>
+                                        size-full`}>{item}</li>
                                 </>
                             })}
                         </ul>
                     </div>
+                  
                     {/* Items index indicator */}
                     <ol className="flex justify-center gap-2 mt-2 items-center">
                         {this.props.items.map((_, i) => {
