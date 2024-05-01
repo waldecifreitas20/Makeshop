@@ -219,6 +219,7 @@ export function Navbar() {
 							lg:bg-transparent
 							lg:w-full
 							lg:h-[fit-content]
+							
 							">
 
 							{/* menu header */}
@@ -260,9 +261,10 @@ export function Navbar() {
 							{/* Menu options*/}
 							<ul className="
 								-z-0 relative
-
+							
 								lg:flex
 								lg:justify-center
+								lg:w-[85%]
 								">
 								{MENU_OPTIONS.map((menuOption: MenuOption) => {
 									if (menuOption.loginRequired && !isLogged) {
