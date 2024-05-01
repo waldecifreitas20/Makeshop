@@ -6,7 +6,7 @@ import { PillCarousel } from "./components/PillCarousel";
 import { Section } from "./components/Section";
 import { PillButton } from "./components/PillButton";
 import { Footer } from "./components/Footer";
-import { isMediumDevice } from "./utils/utils";
+import { isMediumDevice, onResizeScreen } from "./utils/utils";
 
 
 export function App() {
@@ -21,12 +21,9 @@ export function App() {
 
     let [isBigBanner, setIsBigBanner] = useState(isMediumDevice());
 
-    window.addEventListener("resize", () => {
+    onResizeScreen(() => {
         setIsBigBanner(isMediumDevice());
     });
-
-
-   
 
     const BANNERS = [
         <span className="relative block mx-auto h-full w-full">
