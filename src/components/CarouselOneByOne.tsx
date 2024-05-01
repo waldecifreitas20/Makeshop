@@ -17,7 +17,7 @@ export class CarouselOneByOne extends React.Component implements Carousel {
         this.key = (Math.random()).toString();
         this.props = props;
         this.index = props.initialIndex ?? 0;
-        
+
         this.state = {
             index: this.index,
         }
@@ -97,7 +97,7 @@ export class CarouselOneByOne extends React.Component implements Carousel {
                             })}
                         </ul>
                     </div>
-                  
+
                     {/* Items index indicator */}
                     <ol className="flex justify-center gap-2 mt-2 items-center">
                         {this.props.items.map((_, i) => {
@@ -151,13 +151,16 @@ export class CarouselOneByOne extends React.Component implements Carousel {
 
 
     private updateCarouselItemsWidth(): void {
-        const CAROUSEL_VIEW_WIDTH = document
-            .getElementById(`carousel-view-${this.key}`)?.offsetWidth ?? -1;
+        const CAROUSEL_VIEW_WIDTH = document.getElementById(`carousel-view-${this.key}`)?.offsetWidth ?? -1;
 
         const CAROUSEL_ITEMS = document
             .getElementsByClassName(`carousel-item-${this.key}`) as HTMLCollectionOf<HTMLElement>;
 
         this.viewWidth = CAROUSEL_VIEW_WIDTH;
+        let slider = this.getSlider();
+
+        slider.style.left = `-${this.viewWidth * this.index}px`;
+
         for (const ITEM of CAROUSEL_ITEMS) {
             ITEM.style.width = `${CAROUSEL_VIEW_WIDTH}px`;
         }
