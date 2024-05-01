@@ -6,6 +6,7 @@ import { PillCarousel } from "./components/PillCarousel";
 import { Section } from "./components/Section";
 import { PillButton } from "./components/PillButton";
 import { Footer } from "./components/Footer";
+import { isMediumDevice } from "./utils/utils";
 
 
 export function App() {
@@ -18,16 +19,14 @@ export function App() {
     ];
     let [buttonCopyIcon, setButtonCopyIcon] = useState(<i className="fa-regular fa-copy fa-lg"></i>);
 
-    let [isBigBanner, setIsBigBanner] = useState(isMediumScreen());
+    let [isBigBanner, setIsBigBanner] = useState(isMediumDevice());
 
     window.addEventListener("resize", () => {
-        setIsBigBanner(isMediumScreen());
+        setIsBigBanner(isMediumDevice());
     });
 
 
-    function isMediumScreen() {
-        return window.innerWidth >= 768;
-    }
+   
 
     const BANNERS = [
         <span className="relative block mx-auto h-full w-full">
