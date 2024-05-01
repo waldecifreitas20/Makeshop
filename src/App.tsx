@@ -31,7 +31,7 @@ export function App() {
 
     const BANNERS = [
         <span className="relative block mx-auto h-full w-full">
-            <img className="block w-full h-full mx-auto" src={`./assets/images/banner1${isBigBanner ? "-big" : ""}.png`} alt="" />
+            <img className="block w-full h-full mx-auto" src={`./assets/images/banner1-${isBigBanner ? "big" : "small"}.png`} alt="" />
 
             <div className="w-full absolute bottom-2 lg:bottom-6 flex z-50 justify-center md:justify-end">
                 <div className="w-2/4 sm:w-[40%] lg:w-[30%] flex justify-center md:mr-[15%] lg:mr-[20%]">''
@@ -59,7 +59,7 @@ export function App() {
             </div>
         </span>,
 
-        <img className="block w-full h-full mx-auto" src="./assets/images/banner2-small.png" alt="" />
+        <img className="block w-full h-full mx-auto" src={`./assets/images/banner2-${isBigBanner ? "big" : "small"}.png`} alt="" />
 
     ];
 
@@ -134,8 +134,8 @@ export function App() {
                         height="
                             h-[225px] 
                             sm:h-[250px]
-                            md:h-[350px]
-                            lg:h-[450px]
+                            md:h-[300px]
+                            lg:h-[400px]
                         "
                         buttonsStyle="
                     bg-black 
