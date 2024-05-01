@@ -1,4 +1,4 @@
-import { ReactElement, useRef, useState } from "react";
+import { ReactElement, useState } from "react";
 
 interface MenuOption {
 	child: ReactElement;
@@ -14,10 +14,16 @@ const MENU_OPTION_STYLE = `
 	z-10
 	bg-white
 	text-sm
-	text-zinc-600
+	text-zinc-500
 	cursor-pointer
 	hover:text-black
 	hover:bg-gray-100
+	
+	lg:hover:bg-transparent
+	lg:bg-transparent
+	lg:py-0
+	lg:px-4
+	lg:capitalize
 	`;
 
 
@@ -29,12 +35,18 @@ const MENU_OPTIONS: MenuOption[] = [
 		</li>, loginRequired: false,
 	},
 	{
-		child: <li>
-			<div className={`${MENU_OPTION_STYLE} ancestor flex justify-between items-center`}>
+		child: <li className="z-50">
+			<div className={`${MENU_OPTION_STYLE} flex justify-between items-center
+			
+			`}>
 				Categorias
-				<i className="hidden md:block fa-solid fa-caret-down fa-sm opacity-60"></i>
+				<i className="hidden lg:block ml-2 fa-solid fa-caret-down fa-sm opacity-60"></i>
 			</div>
-			<ul className="brother w-full ps-4 bg-slater-50 transition-all duration-500 border bg-white">
+			<ul className="
+			w-full ps-4 bg-slater-50 transition-all duration-500 border bg-white
+			
+			lg:hidden
+			">
 				<li className={"ms-5 py-4 hover:text-black uppercase bg-transparent text-gray-400 text-sm"}>
 					<a className="block h-full w-full" href="">Maquiagem</a></li>
 				<li className={"ms-5 py-4 hover:text-black uppercase bg-transparent text-gray-400 text-sm"}>
@@ -70,6 +82,8 @@ export function Navbar() {
 		setMenuClass('close-menu');
 	}
 
+	
+
 
 	return (
 		<>
@@ -79,7 +93,11 @@ export function Navbar() {
 					<div className="flex items-center">
 
 						{/* Menu button */}
-						<button onClick={openMenu} className={`mr-5 ${menuClass === 'open-menu' ? 'relative text-white' : ''}`}>
+						<button onClick={openMenu} className={`
+						mr-5 ${menuClass === 'open-menu' ? 'relative text-white' : ''}
+						
+						lg:hidden
+						`}>
 							<i id="menu-icon" className="fa-solid fa-bars fa-2xl"></i>
 						</button>
 
@@ -88,14 +106,48 @@ export function Navbar() {
 						<a href="" className="text-3xl font-title tracking-tightest text-gray-650">Makeshop</a>
 
 						{/* Menu */}
-						<div id="menu" className={`shadow-2xl z-40 block absolute w-full transition-all duration-500 top-0 left-0 h-screen ${menuClass}`}>
+						<div id="menu" className={`
+						shadow-2xl 
+						z-40 
+						block 
+						absolute 
+						w-full 
+						transition-all duration-500 
+						${menuClass}
+						
+						lg:relative
+						lg:h-6
+						lg:open-menu
+					
+						`}>
 
 							{/* close menu when user clicks outside menu area */}
-							<div onClick={closeMenu} className="menu-disposer block relative bg-black bg-opacity-25 h-screen w-full"></div>
+							<div onClick={closeMenu} className="lg:hidden menu-disposer block relative bg-black bg-opacity-25 h-screen w-full"></div>
 
-							<div className="absolute hide-scrollbar top-0 left-0 bg-white overflow-y-auto h-screen w-3/4 block z-50">
+							<div className="
+							absolute 
+							z-50
+							hide-scrollbar 
+							top-0 left-0 
+							bg-white 
+							overflow-y-auto 
+							h-screen w-3/4 
+							block 
+							
+							lg:block
+							lg:w-full
+							lg:h-[fit-content]
+							lg:bg-transparent
+							">
+								{/* menu header */}
+								<div className="
+								bg-zinc-950 
+								px-5 pt-16 pb-6 
+								text-center 
+								relative z-10
 
-								<div className="bg-zinc-950 px-5 pt-16 pb-6 text-center relative z-10">
+								lg:hidden
+								">
 									<h2 className="text-white text-xl">Bem-vindo!</h2>
 									<p className="text-white text-sm mt-2">Faça login ou cadastre-se para aproveitar as nossas ofertas </p>
 
@@ -124,7 +176,12 @@ export function Navbar() {
 								</div>
 
 								{/* Menu options*/}
-								<ul className="-z-0 relative">
+								<ul className="
+								-z-0 relative
+
+								lg:flex
+								lg:justify-center
+								">
 									{MENU_OPTIONS.map((menuOption: MenuOption) => {
 										if (menuOption.loginRequired && !isLogged) {
 											return <></>;
@@ -150,7 +207,11 @@ export function Navbar() {
 					</div>
 
 					{/* navbar bottom */}
-					{showSearchBar ? <form id="search-form" className="bg-white mt-5 border-2 h-12 flex items-center justify-between px-5 rounded-full focus-within:border-fuchsia-300 transition-all duration-300">
+					{showSearchBar ? <form id="search-form" className="
+					bg-white mt-5 border-2 h-12 flex items-center justify-between px-5 rounded-full focus-within:border-fuchsia-300 transition-all duration-300
+
+					lg:block
+					">
 						<input className="h-full w-full outline-none text-lg mr-4" type="search" id="input-search" placeholder="Pesquise produtos e marcas" />
 						<button>
 							<i className="fa-solid fa-magnifying-glass fa-lg text-gray-500"></i>

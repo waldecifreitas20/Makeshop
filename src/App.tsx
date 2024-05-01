@@ -29,7 +29,7 @@ export function App() {
         <span className="relative block mx-auto h-full w-full">
             <img className="block w-full h-full mx-auto" src={`./assets/images/banner1-${isBigBanner ? "big" : "small"}.png`} alt="" />
 
-            <div className="w-full absolute bottom-2 lg:bottom-6 flex z-50 justify-center md:justify-end">
+            <div className="w-full absolute bottom-2 lg:bottom-6 flex z-20 justify-center md:justify-end">
                 <div className="w-2/4 sm:w-[40%] lg:w-[30%] flex justify-center md:mr-[15%] lg:mr-[20%]">''
                     <input type="text"
                         value="MAKE15OFF"
