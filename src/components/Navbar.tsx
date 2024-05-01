@@ -264,7 +264,8 @@ export function Navbar() {
 							
 								lg:flex
 								lg:justify-center
-								lg:w-[85%]
+								lg:w-[80%]
+								lg:ml-[4%]
 								">
 								{MENU_OPTIONS.map((menuOption: MenuOption) => {
 									if (menuOption.loginRequired && !isLogged) {
