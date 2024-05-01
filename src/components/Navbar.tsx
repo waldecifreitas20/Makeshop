@@ -116,15 +116,13 @@ export function Navbar() {
 					</div>
 
 					<div className="
+						flex items-center justify-between 
+						lg:relative 
+						lg:w-[80%] 
+						lg:ml-auto 
 
-					flex items-center justify-between 
-					
-					lg:relative 
-					lg:w-[73%] 
-					lg:ml-auto 
-				
 					">
-						
+
 						{/*search bar */}
 						{true ? <form id="search-form" className="
 						bg-white 
@@ -136,9 +134,11 @@ export function Navbar() {
 						focus-within:border-fuchsia-300 
 						transition-all duration-300
 
-						lg:w-[63%]
+						xl:w-[60%]
+						lg:w-[55%]
 						lg:h-10	
 						lg:m-0
+						
 					">
 							<input className="
 							h-full w-full outline-none 
@@ -152,10 +152,32 @@ export function Navbar() {
 							</button>
 						</form> : <></>}
 
-						<div className="hidden lg:flex w-[30%] bg-blue-500 justify-between">
-							<div>dasjkdlaskd-654654</div>
-							<div>dasjkdlaskd-654654</div>
-							<div>dasjkdlaskd-654654</div>
+						{/* menu badges */}
+						<div className="hidden lg:flex xl:w-[40%] lg:w-[45%] items-center justify-between ml-4">
+							{/* favorites */}
+							<div className="flex items-center">
+								<i className="fa-regular fa-heart fa-xl"></i>
+								<div className="flex flex-col items-start ml-1">
+									<p className="text-xs">Favoritos</p>
+									<a className="font-bold text-xs" href="">Meus Favoritos</a>
+								</div>
+							</div>
+							{/* cart */}
+							<div className="flex items-center">
+								<i className="fa-solid fa-cart-shopping fa-xl"></i>
+								<div className="flex flex-col items-start ml-1">
+									<p className="text-xs">Meu carrinho</p>
+									<a className="font-bold text-xs" href="">R$ 0,00</a>
+								</div>
+							</div>
+							{/* account */}
+							<div className="flex items-center">
+								<i className="fa-regular fa-user fa-xl"></i>
+								<div className="flex flex-col items-start ml-1">
+									<p className="text-xs">Faça <a className="text-pink-500 font-bold" href="">Login</a></p>
+									<p className="text-xs">ou <a className="font-bold text-pink-500" href="">cadastre-se</a></p>
+								</div>
+							</div>
 
 						</div>
 					</div>
