@@ -18,9 +18,20 @@ export function App() {
     ];
     let [buttonCopyIcon, setButtonCopyIcon] = useState(<i className="fa-regular fa-copy fa-lg"></i>);
 
+    let [isBigBanner, setIsBigBanner] = useState(isMediumScreen());
+
+    window.addEventListener("resize", () => {
+        setIsBigBanner(isMediumScreen());
+    });
+
+
+    function isMediumScreen() {
+        return window.innerWidth >= 768;
+    }
+
     const BANNERS = [
         <span className="relative bg-green-500 block mx-auto h-full w-full">
-            <img className="block w-full h-full mx-auto" src="./assets/images/banner1.png" alt="" />
+            <img className="block w-full h-full mx-auto" src={`./assets/images/banner1${isBigBanner ? "-big" : ""}.png`} alt="" />
 
             <div className="w-full flex justify-center">
                 <div className="absolute bottom-2 w-2/4 flex self-center justify-center">
@@ -120,7 +131,7 @@ export function App() {
                             h-[225px] 
                             sm:h-[250px]
                             md:h-[350px]
-                            lg:h-[400px]
+                            lg:h-[450px]
                         "
                         buttonsStyle="
                     bg-black 
