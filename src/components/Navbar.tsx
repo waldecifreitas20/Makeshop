@@ -87,24 +87,26 @@ export function Navbar() {
 			<header className="fixed top-0 z-50 w-full bg-zinc-50">
 				<nav className="border-b-2 pt-4 pb-6 px-5 z-50">
 					{/* navbar top */}
-					<div className="flex items-center lg:h-4 lg:inline">
+					<div className="flex items-center md:h-4 md:inline md:float-left">
 
 						{/* Menu button */}
 						<button onClick={openMenu} className={`
 						mr-5 ${menuClass === 'open-menu' ? 'relative text-white' : ''}
 						
 						lg:hidden
+
 						`}>
-							<i id="menu-icon" className="fa-solid fa-bars fa-2xl"></i>
+							<i id="menu-icon" className="fa-solid fa-bars fa-xl"></i>
 						</button>
 
 
 						{/* Logo */}
 						<a href="" className="
 						text-3xl font-title tracking-tightest text-gray-650 
-						float-left lg:text-4xl">Makeshop</a>
 
-						<div className="ml-auto flex lg:hidden">
+						lg:text-4xl md:text-2xl">Makeshop</a>
+
+						<div className="ml-auto flex md:hidden">
 							<button onClick={toggleSearchBarView}>
 								<i className="fa-solid fa-magnifying-glass fa-xl"></i>
 							</button>
@@ -117,9 +119,9 @@ export function Navbar() {
 
 					<div className="
 						flex items-center justify-between 
-						lg:relative 
-						lg:w-[80%] 
-						lg:ml-auto 
+						md:relative 
+						md:w-[80%] 
+						md:ml-auto 
 
 					">
 
@@ -136,8 +138,9 @@ export function Navbar() {
 
 						xl:w-[60%]
 						lg:w-[55%]
-						lg:h-10	
-						lg:m-0
+						md:w-[40%]
+						md:h-10	
+						md:m-0
 						
 					">
 							<input className="
@@ -153,7 +156,7 @@ export function Navbar() {
 						</form> : <></>}
 
 						{/* menu badges */}
-						<div className="hidden lg:flex xl:w-[40%] lg:w-[45%] items-center justify-between ml-4">
+						<div className="hidden md:flex xl:w-[40%] lg:w-[45%] md:w-[57%] items-center justify-between ml-4">
 							{/* favorites */}
 							<div className="flex items-center">
 								<i className="fa-regular fa-heart fa-xl"></i>
