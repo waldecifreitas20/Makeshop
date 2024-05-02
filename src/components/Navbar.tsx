@@ -1,5 +1,5 @@
 import { ReactElement, useState } from "react";
-import { isMediumDevice, onResizeScreen } from "../utils/utils";
+import { onResizeScreen, isSmallDevice } from "../utils/utils";
 
 interface MenuOption {
 	child: ReactElement;
@@ -68,7 +68,7 @@ const MENU_OPTIONS: MenuOption[] = [
 
 export function Navbar() {
 	let isLogged: boolean = false;
-	let [showSearchBar, setSearchBarView] = useState(isMediumDevice());
+	let [showSearchBar, setSearchBarView] = useState(!isSmallDevice());
 	let [menuClass, setMenuClass] = useState('close-menu');
 
 	function toggleSearchBarView() {
@@ -84,7 +84,7 @@ export function Navbar() {
 	}
 
 	onResizeScreen(() => {
-		setSearchBarView(isMediumDevice());
+		setSearchBarView(!isSmallDevice());
 	});
 
 	return (
