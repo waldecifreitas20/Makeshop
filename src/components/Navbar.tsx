@@ -1,4 +1,5 @@
 import { ReactElement, useState } from "react";
+import { isMediumDevice, onResizeScreen } from "../utils/utils";
 
 interface MenuOption {
 	child: ReactElement;
@@ -67,7 +68,7 @@ const MENU_OPTIONS: MenuOption[] = [
 
 export function Navbar() {
 	let isLogged: boolean = false;
-	let [showSearchBar, setSearchBarView] = useState(false);
+	let [showSearchBar, setSearchBarView] = useState(isMediumDevice());
 	let [menuClass, setMenuClass] = useState('close-menu');
 
 	function toggleSearchBarView() {
@@ -81,6 +82,10 @@ export function Navbar() {
 	function closeMenu() {
 		setMenuClass('close-menu');
 	}
+
+	onResizeScreen(() => {
+		setSearchBarView(isMediumDevice());
+	});
 
 	return (
 		<>
@@ -126,7 +131,7 @@ export function Navbar() {
 					">
 
 						{/*search bar */}
-						{true ? <form id="search-form" className="
+						{showSearchBar ? <form id="search-form" className="
 						bg-white 
 						border-2 
 						mt-5 h-12 px-5 
@@ -138,7 +143,7 @@ export function Navbar() {
 
 						xl:w-[60%]
 						lg:w-[55%]
-						md:w-[40%]
+						md:w-[35%]
 						md:h-10	
 						md:m-0
 						
@@ -148,7 +153,7 @@ export function Navbar() {
 							text-lg
 							mr-4
 
-							lg:text-sm
+							md:text-sm
 							" type="search" id="input-search" placeholder="Pesquise produtos e marcas" />
 							<button>
 								<i className="fa-solid fa-magnifying-glass fa-lg text-gray-500"></i>
@@ -156,7 +161,7 @@ export function Navbar() {
 						</form> : <></>}
 
 						{/* menu badges */}
-						<div className="hidden md:flex xl:w-[40%] lg:w-[45%] md:w-[57%] items-center justify-between ml-4">
+						<div className="hidden md:flex xl:w-[40%] lg:w-[45%] md:w-[60%] items-center justify-between ml-4">
 							{/* favorites */}
 							<div className="flex items-center">
 								<i className="fa-regular fa-heart fa-xl"></i>
