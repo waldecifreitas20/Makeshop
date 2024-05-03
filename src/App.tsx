@@ -272,6 +272,7 @@ export function App() {
                         text-center 
                         w-48 
                         ml-auto
+                        hover:bg-zinc-800
                         "
                     />
                 </>}
