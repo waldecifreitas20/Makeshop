@@ -67,7 +67,7 @@ export class PillCarousel extends Component implements Carousel {
         let showButtons = this.showButtons;
 
         return <>
-            <div className={`flex px-4 ${this.props.height}`}>
+            <div className={`flex px-4`}>
                 {showButtons ?
 
                     <button onClick={() => this.previousItem()} className="w-10 text-center ">

@@ -132,8 +132,8 @@ export function App() {
             <Navbar />
 
             {/* Shortcuts links */}
-            <section className="mx-auto mt-24 lg:mt-28">
-                <PillCarousel height="" items={[
+            <section className="mx-auto mt-20 lg:mt-28">
+                <PillCarousel items={[
                     <Pill style={PILL_STYLE} text="Maquiagem" />,
                     <Pill style={PILL_STYLE} text="Perfumes" />,
                     <Pill style={PILL_STYLE} text="Cabelos" />,
