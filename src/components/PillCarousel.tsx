@@ -68,7 +68,7 @@ export class PillCarousel extends Component implements Carousel {
         let showButtons = this.showButtons;
 
         return <>
-            <div className="flex Jpx-4 ">
+            <div className={`flex px-4 ${this.props.height}`}>
                 {showButtons ?
 
                     <button onClick={() => this.previousItem()} className="w-10 bg-white text-center border rounded-full">
@@ -77,7 +77,7 @@ export class PillCarousel extends Component implements Carousel {
                 }
 
                 <div id={`pill-carousel-view-${this.key}`} className="relative overflow-hidden w-full flex items-center mx-auto">
-                    <div id={`pill-carousel-slider-${this.key}`} className={`flex relative md:static flex-nowrap p-0 transition-all duration-700 mx-auto`}>
+                    <div id={`pill-carousel-slider-${this.key}`} className={`flex relative md:static flex-nowrap p-0 transition-all duration-700 mx-auto h-full`}>
                         {this.props.items.map((option, i) => {
                             return <>
                                 <span key={Math.random() + i}>{option}</span>
