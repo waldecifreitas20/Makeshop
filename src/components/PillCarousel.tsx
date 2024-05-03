@@ -6,7 +6,6 @@ export class PillCarousel extends Component implements Carousel {
     private x: number;
     private slideX: number;
     private showButtons: boolean;
-
     public readonly props: CarouselProps;
     public readonly nextItem: CallableFunction;
     public readonly previousItem: CallableFunction;
@@ -71,7 +70,7 @@ export class PillCarousel extends Component implements Carousel {
             <div className={`flex px-4 ${this.props.height}`}>
                 {showButtons ?
 
-                    <button onClick={() => this.previousItem()} className="w-10 bg-white text-center border rounded-full">
+                    <button onClick={() => this.previousItem()} className="w-10 text-center ">
                         <i className="fa-solid fa-chevron-left"></i>
                     </button> : <></>
                 }
@@ -88,7 +87,7 @@ export class PillCarousel extends Component implements Carousel {
 
                 {
                     showButtons ?
-                        <button onClick={() => this.nextItem()} className="w-10 bg-white text-center border rounded-full">
+                        <button onClick={() => this.nextItem()} className="w-10 text-center ">
                             <i className="fa-solid fa-chevron-right"></i>
                         </button>
                         : <></>
