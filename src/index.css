@@ -25,12 +25,10 @@
 
     .open-menu {
         left: 0;
-        opacity: 1;
     }
-
+    
     .close-menu {
-        opacity: 0;
-        left: -100vw;
+        left: -200vw;
     }
 
     .text-line-through {

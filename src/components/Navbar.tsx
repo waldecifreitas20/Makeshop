@@ -146,6 +146,8 @@ export function Navbar() {
 						md:w-[35%]
 						md:h-10	
 						md:m-0
+						md:ml-2
+						lg:ml-0
 						
 					">
 							<input className="
@@ -198,17 +200,15 @@ export function Navbar() {
 						absolute 
 						top-0
 						w-full 
-						transition-all duration-500 
+						transition-all duration-700 
 						${menuClass}
 						
 						lg:relative
-						lg:h-6
-						lg:open-menu
-					
-					
+						lg:h-6	
+						lg:open-menu				
 						`}>
 
-						{/* close menu when user clicks outside menu area */}
+						{/* menu shade*/}
 						<div onClick={closeMenu} className="lg:hidden menu-disposer block relative bg-black bg-opacity-25 h-screen w-full"></div>
 
 						{/* menu */}
@@ -222,6 +222,9 @@ export function Navbar() {
 							h-screen w-3/4 
 							block 
 							
+							sm:w-3/5
+							md:w-2/4
+
 							lg:block
 							lg:py-4
 							lg:bg-transparent
