@@ -33,16 +33,17 @@ export class PillCarousel extends Component implements Carousel {
             const CAROUSEL_VIEW = this.getCarouselView() as HTMLElement;
             const SLIDER = this.getSlider();
             const OVERFLOW = SLIDER.offsetWidth - CAROUSEL_VIEW.offsetWidth;
-
+            
             if (this.x + this.slideX <= OVERFLOW + this.slideX) {
                 this.x += this.slideX;
                 SLIDER.style.left = `-${this.x}px`;
             }
         }
+
         this.previousItem = function () {
             const SLIDER = this.getSlider();
-            if (this.x - this.slideX > 0 - this.slideX) {
 
+            if (this.x - this.slideX > 0 - this.slideX) {
                 this.x -= this.slideX;
                 SLIDER.style.left = `-${this.x}px`;
 
@@ -76,7 +77,7 @@ export class PillCarousel extends Component implements Carousel {
                 }
 
                 <div id={`pill-carousel-view-${this.key}`} className="relative overflow-hidden w-full flex items-center mx-auto">
-                    <div id={`pill-carousel-slider-${this.key}`} className={`flex relative md:static flex-nowrap p-0 transition-all duration-700 mx-auto h-full`}>
+                    <div id={`pill-carousel-slider-${this.key}`} className={`flex relative flex-nowrap p-0 transition-all duration-700 mx-auto h-full`}>
                         {this.props.items.map((option, i) => {
                             return <>
                                 <span key={Math.random() + i}>{option}</span>
