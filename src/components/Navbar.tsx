@@ -162,14 +162,14 @@ export function Navbar() {
 							</button>
 						</form> : <></>}
 
-						{/* menu badges */}
+						{/* menu badges - only from medium devices */}
 						<div className="hidden md:flex xl:w-[40%] lg:w-[45%] md:w-[60%] items-center justify-between ml-4">
 							{/* favorites */}
 							<div className="flex items-center">
 								<i className="fa-regular fa-heart fa-xl"></i>
 								<div className="flex flex-col items-start ml-1">
 									<p className="text-xs">Favoritos</p>
-									<a className="font-bold text-xs" href="">Meus Favoritos</a>
+									<a className="font-bold text-xs hover:underline" href="">Meus Favoritos</a>
 								</div>
 							</div>
 							{/* cart */}
@@ -177,22 +177,22 @@ export function Navbar() {
 								<i className="fa-solid fa-cart-shopping fa-xl"></i>
 								<div className="flex flex-col items-start ml-1">
 									<p className="text-xs">Meu carrinho</p>
-									<a className="font-bold text-xs" href="">R$ 0,00</a>
+									<a className="font-bold text-xs hover:underline" href="">R$ 0,00</a>
 								</div>
 							</div>
 							{/* account */}
 							<div className="flex items-center">
 								<i className="fa-regular fa-user fa-xl"></i>
 								<div className="flex flex-col items-start ml-1">
-									<p className="text-xs">Faça <a className="text-pink-500 font-bold" href="">Login</a></p>
-									<p className="text-xs">ou <a className="font-bold text-pink-500" href="">cadastre-se</a></p>
+									<p className="text-xs">Faça <a className="text-pink-500 font-bold hover:underline" href="">Login</a></p>
+									<p className="text-xs">ou <a className="font-bold text-pink-500 hover:underline" href="">cadastre-se</a></p>
 								</div>
 							</div>
 
 						</div>
 					</div>
 
-					{/* Menu panel*/}
+					{/* menu container*/}
 					<div id="menu" className={`
 						shadow-2xl 
 						z-40 
