@@ -147,7 +147,7 @@ export function App() {
                 key={"section-1"}
                 child={
                     <CarouselOneByOne
-                        autoSlide={false}
+                        autoSlide={true}
                         slidingDelay={3000}
                         height="
                             h-[225px] 
