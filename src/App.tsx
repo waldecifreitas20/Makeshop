@@ -6,23 +6,39 @@ import { PillCarousel } from "./components/PillCarousel";
 import { Section } from "./components/Section";
 import { PillButton } from "./components/PillButton";
 import { Footer } from "./components/Footer";
-import { isMediumDevice, onResizeScreen } from "./utils/utils";
+import { isSmallDevice, onResizeScreen } from "./utils/utils";
+import { Pill } from "./components/Pill";
 
 
 export function App() {
-    const SHORTCUTS_OPTIONS = [
-        <a className="border border-gray-200 bg-white rounded-full mx-1 px-3 py-1 text-sm text-nowrap" href="">Maquiagem</a>,
-        <a className="border border-gray-200 bg-white rounded-full mx-1 px-3 py-1 text-sm text-nowrap" href="">Perfumes</a>,
-        <a className="border border-gray-200 bg-white rounded-full mx-1 px-3 py-1 text-sm text-nowrap" href="">Cabelos</a>,
-        <a className="border border-gray-200 bg-white rounded-full mx-1 px-3 py-1 text-sm text-nowrap" href="">Promoçao</a>,
-        <a className="border border-gray-200 bg-white rounded-full mx-1 px-3 py-1 text-sm text-nowrap" href="">Frete Grátis</a>,
-    ];
+    const PILL_STYLE = `
+    transition-all
+    duration-300
+    sm:w-[100px]
+    my-3
+
+    md:w-[120px] 
+    md:hover:border-pink-200 
+    md:text-md 
+    md:h-[30px]
+    md:shadow-sm 
+    md:hover:shadow-lg 
+    md:hover:shadow-pink-200 
+    
+    lg:rounded-md 
+    lg:text-lg 
+    lg:text-zinc-600  
+    lg:w-[200px] 
+    lg:mx-4
+    lg:hover:text-pink-500
+   
+    `
     let [buttonCopyIcon, setButtonCopyIcon] = useState(<i className="fa-regular fa-copy fa-lg"></i>);
 
-    let [isBigBanner, setIsBigBanner] = useState(isMediumDevice());
+    let [isBigBanner, setIsBigBanner] = useState(isSmallDevice());
 
     onResizeScreen(() => {
-        setIsBigBanner(isMediumDevice());
+        setIsBigBanner(isSmallDevice());
     });
 
     const BANNERS = [
@@ -116,8 +132,14 @@ export function App() {
             <Navbar />
 
             {/* Shortcuts links */}
-            <section className="mx-auto mb-2 mt-20">
-                <PillCarousel items={SHORTCUTS_OPTIONS} />
+            <section className="mx-auto mt-20 lg:mt-28">
+                <PillCarousel items={[
+                    <Pill style={PILL_STYLE} text="Maquiagem" />,
+                    <Pill style={PILL_STYLE} text="Perfumes" />,
+                    <Pill style={PILL_STYLE} text="Cabelos" />,
+                    <Pill style={PILL_STYLE} text="Promoçao" />,
+                    <Pill style={PILL_STYLE} text="Frete grátis" />,
+                ]} />
             </section>
 
             {/* Carousel of banners */}
@@ -125,7 +147,7 @@ export function App() {
                 key={"section-1"}
                 child={
                     <CarouselOneByOne
-                        autoSlide={false}
+                        autoSlide={true}
                         slidingDelay={3000}
                         height="
                             h-[225px] 
@@ -250,6 +272,7 @@ export function App() {
                         text-center 
                         w-48 
                         ml-auto
+                        hover:bg-zinc-800
                         "
                     />
                 </>}
