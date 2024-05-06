@@ -35,10 +35,10 @@ export function App() {
     `
     let [buttonCopyIcon, setButtonCopyIcon] = useState(<i className="fa-regular fa-copy fa-lg"></i>);
 
-    let [isBigBanner, setIsBigBanner] = useState(isSmallDevice());
+    let [isBigBanner, setIsBigBanner] = useState(!isSmallDevice());
 
     onResizeScreen(() => {
-        setIsBigBanner(isSmallDevice());
+        setIsBigBanner(!isSmallDevice());
     });
 
     const BANNERS = [
