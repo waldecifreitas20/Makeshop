@@ -6,6 +6,8 @@ export class PillCarousel extends Component implements Carousel {
     private x: number;
     private slideX: number;
     private showButtons: boolean;
+    private maxOffset: number;
+    private offsetRate: number;
     public readonly props: CarouselProps;
     public readonly nextItem: CallableFunction;
     public readonly previousItem: CallableFunction;
@@ -16,54 +18,55 @@ export class PillCarousel extends Component implements Carousel {
         this.x = 0;
         this.slideX = 100;
         this.key = Math.random().toString();
+        this.maxOffset = 0;
+        this.offsetRate = 100;
+
         this.showButtons = true
         this.state = {
             showButtons: this.showButtons,
+
         }
 
         onResizeScreen(() => {
             this.showButtons = this.getCarouselView().offsetWidth <= this.getSlider().offsetWidth;
-
+            this.updateMaxOffset();
             this.setState({
                 showButtons: this.showButtons,
             });
         })
 
         this.nextItem = function () {
-            const CAROUSEL_VIEW = this.getCarouselView() as HTMLElement;
             const SLIDER = this.getSlider();
-            const OVERFLOW = SLIDER.offsetWidth - CAROUSEL_VIEW.offsetWidth;
-            
-            if (this.x + this.slideX <= OVERFLOW + this.slideX) {
-                this.x += this.slideX;
-                SLIDER.style.left = `-${this.x}px`;
+
+            if (SLIDER.offsetLeft > this.maxOffset) {
+                let newOffset = SLIDER.offsetLeft - 100;
+
+                if (newOffset > this.maxOffset) {
+                    newOffset = this.maxOffset;
+                }
+
+                SLIDER.style.left = `${newOffset}px`;
             }
+
         }
 
         this.previousItem = function () {
             const SLIDER = this.getSlider();
 
-            if (this.x - this.slideX > 0 - this.slideX) {
-                this.x -= this.slideX;
-                SLIDER.style.left = `-${this.x}px`;
+            if (SLIDER.offsetLeft < 0) {
+                let newOffset = SLIDER.offsetLeft + 100;
+                
+                if (newOffset < 0) {
+                    newOffset = 0;
+                }
 
+                SLIDER.style.left = `${newOffset}px`;
             }
         }
 
     }
 
-    public componentDidMount(): void {
-        this.getSlider().style.left = "0px";
-        this.showButtons = this.getCarouselView().offsetWidth <= this.getSlider().offsetWidth;
-
-        this.setState({
-            showButtons: this.showButtons,
-        });
-
-    }
-
     public render(): React.ReactNode {
-        console.log(this.state);
 
         let showButtons = this.showButtons;
 
@@ -97,6 +100,17 @@ export class PillCarousel extends Component implements Carousel {
         </>
     }
 
+    public componentDidMount(): void {
+        this.getSlider().style.left = "0px";
+        this.updateMaxOffset();
+        this.showButtons = this.getCarouselView().offsetWidth <= this.getSlider().offsetWidth;
+
+        this.setState({
+            showButtons: this.showButtons,
+        });
+
+    }
+
     private getSlider(): HTMLElement {
         return document.getElementById(`pill-carousel-slider-${this.key}`) as HTMLElement;
     }
@@ -105,4 +119,8 @@ export class PillCarousel extends Component implements Carousel {
         return document.getElementById(`pill-carousel-view-${this.key}`) as HTMLElement;
     }
 
+    private updateMaxOffset() {
+        const SLIDER = this.getSlider();
+        this.maxOffset = -1 * (SLIDER.offsetWidth - this.getCarouselView().offsetWidth);
+    }
 }
