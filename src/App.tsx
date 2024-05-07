@@ -300,7 +300,7 @@ export function App() {
                 lg:text-lg
                 "
                 child={
-                <div className="flex items-center h-12 mt-10 gap-5">
+                <div className="lg:flex lg:items-center lg:h-12 lg:mt-10 lg:gap-5">
                     <input
                         type="email"
                         placeholder="Digite seu email"
@@ -319,6 +319,7 @@ export function App() {
                         text-lg
                         text-center 
                         w-48 
+                        py-3
                         ml-auto
                         hover:bg-zinc-800
                         transition-all
