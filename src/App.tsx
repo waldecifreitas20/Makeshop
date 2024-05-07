@@ -8,6 +8,7 @@ import { PillButton } from "./components/PillButton";
 import { Footer } from "./components/Footer";
 import { isSmallDevice, onResizeScreen } from "./utils/utils";
 import { Pill } from "./components/Pill";
+import { Grid } from "./components/Grid";
 
 
 export function App() {
@@ -108,6 +109,36 @@ export function App() {
             price={109.07}
             imgURL="./assets/images/product3.png"
         />,
+        <ProductCard
+            badge={{
+                text: "lançamento",
+                colors: "bg-pink-300 text-black",
+            }}
+            name="Carolina Herrera"
+            description="refil balm labial carolina herrena good girl mini kiss the mini tint superstar"
+            price={109.07}
+            imgURL="./assets/images/product4.png"
+        />,
+        <ProductCard
+            badge={{
+                text: "lançamento",
+                colors: "bg-pink-300 text-black",
+            }}
+            name="Carolina Herrera"
+            description="refil balm labial carolina herrena good girl mini kiss the mini tint superstar"
+            price={109.07}
+            imgURL="./assets/images/product5.png"
+        />,
+        <ProductCard
+            badge={{
+                text: "lançamento",
+                colors: "bg-pink-300 text-black",
+            }}
+            name="Carolina Herrera"
+            description="refil balm labial carolina herrena good girl mini kiss the mini tint superstar"
+            price={109.07}
+            imgURL="./assets/images/product6.png"
+        />,
     ];
 
     const BEST_BRANDS = [
@@ -172,14 +203,21 @@ export function App() {
             <Section
                 key={"section-2"}
                 title="para você"
-                style="px-5"
+                style="px-5 mt-10"
                 child={
-                    <CarouselOneByOne
-                        slidingDelay={5000}
-                        height="h-[450px]"
-                        buttonsStyle="size-5"
-                        items={PRODUCTS_CARDS}
-                    />
+                    isSmallDevice() ?
+                        <CarouselOneByOne
+                            slidingDelay={5000}
+                            height="h-[450px]"
+                            buttonsStyle="size-5"
+                            items={PRODUCTS_CARDS}
+                        />
+                        :
+                        <>
+                            <Grid columns={2}>
+                                {PRODUCTS_CARDS}
+                            </Grid>
+                        </>
                 }
             />
 
@@ -187,7 +225,7 @@ export function App() {
             <Section
                 key={"section-3"}
                 title="Lançamentos do mês"
-                style="px-5"
+                style="px-5 mt-10"
                 child={
                     <CarouselOneByOne
                         slidingDelay={5000}
@@ -203,7 +241,7 @@ export function App() {
             <Section
                 key={"section-4"}
                 title="Melhores Marcas"
-                style="px-5"
+                style="px-5 mt-16"
                 child={
                     <>
                         <div className="grid grid-cols-2 gap-2 text-center">
@@ -235,7 +273,7 @@ export function App() {
             < Section
                 key={"section-5"}
                 title="Só para vips"
-                style="px-5"
+                style="px-5 mt-14"
                 child={
                     <CarouselOneByOne
                         slidingDelay={5000}
