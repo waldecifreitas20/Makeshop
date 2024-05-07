@@ -5,7 +5,7 @@ interface ProductCardProps {
     imgURL: string;
     isDark?: boolean;
     isVIP?: boolean;
-    badge: {
+    badge?: {
         text: string,
         colors: string,
     };
@@ -28,16 +28,22 @@ export function ProductCard(props: ProductCardProps) {
 
     return <>
         <a href="" className={`${getTheme(props).background} relative block border px-4 py-5 rounded-lg w-64`}>
-            <span className={`
-                absolute top-4 right-0 
-                ${props.badge.colors} 
-                ${getTheme(props).text} 
-                text-sm capitalize 
-                py-1 px-5`
-            }>{props.badge.text}</span>
+            {/* badge */}
+            {
+                props.badge ?
+                    <span className={`
+                        absolute top-4 right-0 
+                        ${props.badge.colors} 
+                        ${getTheme(props).text} 
+                        text-sm capitalize 
+                        py-1 px-5`
+                    }>{props.badge.text}</span>
+                    : <></>
+            }
 
             <img className="block w-full mx-auto mb-4" src={props.imgURL} alt="" />
 
+            {/* Product info block */}
             <div className="text-left capitalize">
                 <h3 className={`${getTheme(props).text} text-xl font-medium`}>{props.name}</h3>
                 <p className={`${getTheme(props).text} text-sm capitalize`}>{props.description}</p>
