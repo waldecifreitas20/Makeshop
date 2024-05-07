@@ -3,11 +3,10 @@ import { onResizeScreen } from "../utils/utils";
 
 export class PillCarousel extends Component implements Carousel {
     private key: string;
-    private x: number;
-    private slideX: number;
     private showButtons: boolean;
     private maxOffset: number;
     private offsetRate: number;
+
     public readonly props: CarouselProps;
     public readonly nextItem: CallableFunction;
     public readonly previousItem: CallableFunction;
@@ -15,8 +14,7 @@ export class PillCarousel extends Component implements Carousel {
     public constructor(props: CarouselProps) {
         super(props);
         this.props = props;
-        this.x = 0;
-        this.slideX = 100;
+
         this.key = Math.random().toString();
         this.maxOffset = 0;
         this.offsetRate = 100;
@@ -39,7 +37,7 @@ export class PillCarousel extends Component implements Carousel {
             const SLIDER = this.getSlider();
 
             if (SLIDER.offsetLeft > this.maxOffset) {
-                let newOffset = SLIDER.offsetLeft - 100;
+                let newOffset = SLIDER.offsetLeft - this.offsetRate;
 
                 if (newOffset > this.maxOffset) {
                     newOffset = this.maxOffset;
@@ -54,7 +52,7 @@ export class PillCarousel extends Component implements Carousel {
             const SLIDER = this.getSlider();
 
             if (SLIDER.offsetLeft < 0) {
-                let newOffset = SLIDER.offsetLeft + 100;
+                let newOffset = SLIDER.offsetLeft + this.offsetRate;
                 
                 if (newOffset < 0) {
                     newOffset = 0;
