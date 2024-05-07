@@ -214,7 +214,7 @@ export function App() {
                         />
                         :
                         <>
-                            <Grid columns={2}>
+                            <Grid>
                                 {PRODUCTS_CARDS}
                             </Grid>
                         </>
@@ -227,13 +227,19 @@ export function App() {
                 title="Lançamentos do mês"
                 style="px-5 mt-10"
                 child={
-                    <CarouselOneByOne
-                        slidingDelay={5000}
-                        height="h-[450px]"
-                        initialIndex={2}
-                        buttonsStyle="size-5"
-                        items={PRODUCTS_CARDS}
-                    />
+                    isSmallDevice() ?
+                        <CarouselOneByOne
+                            slidingDelay={5000}
+                            height="h-[450px]"
+                            buttonsStyle="size-5"
+                            items={PRODUCTS_CARDS}
+                        />
+                        :
+                        <>
+                            <Grid>
+                                {PRODUCTS_CARDS}
+                            </Grid>
+                        </>
                 }
             />
 
@@ -275,13 +281,20 @@ export function App() {
                 title="Só para vips"
                 style="px-5 mt-14"
                 child={
-                    <CarouselOneByOne
-                        slidingDelay={5000}
-                        height="h-[450px]"
-                        initialIndex={1}
-                        buttonsStyle="size-5"
-                        items={PRODUCTS_CARDS}
-                    />}
+                    isSmallDevice() ?
+                        <CarouselOneByOne
+                            slidingDelay={5000}
+                            height="h-[450px]"
+                            buttonsStyle="size-5"
+                            items={PRODUCTS_CARDS}
+                        />
+                        :
+                        <>
+                            <Grid>
+                                {PRODUCTS_CARDS}
+                            </Grid>
+                        </>
+                }
             />
 
             {/* Newsletter */}
@@ -300,20 +313,20 @@ export function App() {
                 lg:text-lg
                 "
                 child={
-                <div className="lg:flex lg:items-center lg:h-12 lg:mt-10 lg:gap-5">
-                    <input
-                        type="email"
-                        placeholder="Digite seu email"
-                        className="
+                    <div className="lg:flex lg:items-center lg:h-12 lg:mt-10 lg:gap-5">
+                        <input
+                            type="email"
+                            placeholder="Digite seu email"
+                            className="
                         w-full border-0 rounded-full px-5 py-2 mt-4 mb-3 text-black text-lg
                         lg:h-full
                         lg:py-0
                         "
-                    />
+                        />
 
-                    <Pill
-                        text="Cadastrar"
-                        style="
+                        <Pill
+                            text="Cadastrar"
+                            style="
                         border-0
                         bg-zinc-600
                         text-lg
@@ -330,8 +343,8 @@ export function App() {
                         lg:my-0
                         lg:text-lg
                         "
-                    />
-                </div>}
+                        />
+                    </div>}
             />
 
             <Footer />

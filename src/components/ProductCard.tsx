@@ -27,7 +27,8 @@ export function ProductCard(props: ProductCardProps) {
     }
 
     return <>
-        <a href="" className={`${getTheme(props).background} relative block border px-4 py-5 rounded-lg w-64`}>
+        <a href="" className={`
+        ${getTheme(props).background} relative block border px-4 py-5 rounded-lg w-64`}>
             {/* badge */}
             {
                 props.badge ?
@@ -41,7 +42,7 @@ export function ProductCard(props: ProductCardProps) {
                     : <></>
             }
 
-            <img className="block w-full mx-auto mb-4" src={props.imgURL} alt="" />
+            <img className="block w-full md:w-32 mx-auto mb-4" src={props.imgURL} alt="" />
 
             {/* Product info block */}
             <div className="text-left capitalize">
