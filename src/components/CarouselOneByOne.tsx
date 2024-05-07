@@ -27,10 +27,10 @@ export class CarouselOneByOne extends React.Component implements Carousel {
         this.hasEventTriggered = false;
 
         this.nextItem = (): void => {
-            const ITEMS_QTD = this.props.items.length;
-
+        
             this.index++;
-            if (this.index >= ITEMS_QTD) {
+
+            if (this.index >= this.getItemsQtd()) {
                 this.index = 0;
             }
             const SLIDER = this.getSlider();
@@ -39,10 +39,9 @@ export class CarouselOneByOne extends React.Component implements Carousel {
         }
 
         this.previousItem = (): void => {
-            const ITEMS_QTD = this.props.items.length;
 
             if (this.index <= 0) {
-                this.index = ITEMS_QTD;
+                this.index = this.getItemsQtd();
             }
             this.index--;
 
@@ -56,6 +55,7 @@ export class CarouselOneByOne extends React.Component implements Carousel {
         onResizeScreen(() => {
             this.updateCarouselItemsWidth();
         });
+
         const height = this.props.height;
 
         return <>
@@ -87,7 +87,7 @@ export class CarouselOneByOne extends React.Component implements Carousel {
                     {/* Carousel view */}
                     <div id={`carousel-view-${this.key}`} className="flex overflow-hidden size-full">
                         <ul id={`slider-${this.key}`} className="slider relative transition-all duration-700 flex h-full">
-                            {this.props.items.map((item, i) => {
+                            {this.getItems().map((item, i) => {
                                 return <>
                                     <li className={
                                         `carousel-item-${this.key} 
@@ -101,7 +101,7 @@ export class CarouselOneByOne extends React.Component implements Carousel {
 
                     {/* Items index indicator */}
                     <ol className="flex justify-center gap-2 mt-2 items-center">
-                        {this.props.items.map((_, i) => {
+                        {this.getItems().map((_, i) => {
                             return <>
                                 <li className={
                                     `carousel-item-${i}-index-${this.key} 
@@ -182,4 +182,12 @@ export class CarouselOneByOne extends React.Component implements Carousel {
         return document.getElementById(`slider-${this.key}`) as HTMLElement;
     }
 
+
+    private getItemsQtd() : number {
+        return this.getItems().length ?? 0;
+    }
+
+    private getItems(): Array<any> {
+        return this.props.items ?? [];
+    }
 }

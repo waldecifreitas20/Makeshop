@@ -1,5 +1,6 @@
-import { Component } from "react";
+import { Component, PropsWithChildren } from "react";
 import { onResizeScreen } from "../utils/utils";
+import { renderElementChildren } from "../utils/react";
 
 export class PillCarousel extends Component implements Carousel {
     private key: string;
@@ -7,11 +8,11 @@ export class PillCarousel extends Component implements Carousel {
     private maxOffset: number;
     private offsetRate: number;
 
-    public readonly props: CarouselProps;
+    public readonly props: PropsWithChildren<CarouselProps>;
     public readonly nextItem: CallableFunction;
     public readonly previousItem: CallableFunction;
 
-    public constructor(props: CarouselProps) {
+    public constructor(props: PropsWithChildren<CarouselProps>) {
         super(props);
         this.props = props;
 
@@ -53,7 +54,7 @@ export class PillCarousel extends Component implements Carousel {
 
             if (SLIDER.offsetLeft < 0) {
                 let newOffset = SLIDER.offsetLeft + this.offsetRate;
-                
+
                 if (newOffset < 0) {
                     newOffset = 0;
                 }
@@ -79,11 +80,7 @@ export class PillCarousel extends Component implements Carousel {
 
                 <div id={`pill-carousel-view-${this.key}`} className="relative overflow-hidden w-full flex items-center mx-auto">
                     <div id={`pill-carousel-slider-${this.key}`} className={`flex relative flex-nowrap p-0 transition-all duration-700 mx-auto h-full`}>
-                        {this.props.items.map((option, i) => {
-                            return <>
-                                <span key={Math.random() + i}>{option}</span>
-                            </>;
-                        })}
+                        {renderElementChildren(this.props.children)}
                     </div>
                 </div>
 

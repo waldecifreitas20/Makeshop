@@ -164,13 +164,13 @@ export function App() {
 
             {/* Shortcuts links */}
             <section className="mx-auto mt-20 lg:mt-28">
-                <PillCarousel items={[
-                    <Pill style={PILL_STYLE} text="Maquiagem" />,
-                    <Pill style={PILL_STYLE} text="Perfumes" />,
-                    <Pill style={PILL_STYLE} text="Cabelos" />,
-                    <Pill style={PILL_STYLE} text="Promoçao" />,
-                    <Pill style={PILL_STYLE} text="Frete grátis" />,
-                ]} />
+                <PillCarousel>
+                    <Pill style={PILL_STYLE} text="Maquiagem" />
+                    <Pill style={PILL_STYLE} text="Perfumes" />
+                    <Pill style={PILL_STYLE} text="Cabelos" />
+                    <Pill style={PILL_STYLE} text="Promoçao" />
+                    <Pill style={PILL_STYLE} text="Frete grátis" />
+                </PillCarousel>
             </section>
 
             {/* Carousel of banners */}
