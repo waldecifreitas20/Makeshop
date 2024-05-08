@@ -176,87 +176,72 @@ export function App() {
             </section>
 
             {/* Carousel of banners */}
-            <Section
-                key={"section-1"}
-                child={
-                    <CarouselOneByOne
-                        autoSlide={true}
-                        slidingDelay={5000}
-                        height="
+            <Section key={"section-1"}>
+                <CarouselOneByOne
+                    autoSlide={true}
+                    slidingDelay={5000}
+                    height="
                             h-[225px] 
                             sm:h-[250px]
                             md:h-[300px]
                             lg:h-[400px]
                         "
-                        buttonsStyle="
+                    buttonsStyle="
                     bg-black 
                     bg-opacity-20 
                     hover:bg-opacity-60
                     text-white  
                     size-12
                     "
-                        items={BANNERS()}
-                    />
-                }
-            />
+                    items={BANNERS()}
+                />
 
+            </Section>
 
             {/* For you section */}
-            <Section
-                key={"section-2"}
-                title="para você"
-                style="px-5 mt-10"
-                child={
-                    isSmallDevice() ?
-                        <CarouselOneByOne
-                            slidingDelay={5000}
-                            height="h-[450px]"
-                            buttonsStyle="size-5"
-                            items={PRODUCTS_CARDS}
-                        />
-                        :
-                        <>
-                            <Grid>
-                                {PRODUCTS_CARDS}
-                            </Grid>
-                        </>
+            <Section key={"section-2"} title="para você" style="px-5 mt-10" >
+                {isSmallDevice() ?
+                    <CarouselOneByOne
+                        slidingDelay={5000}
+                        height="h-[450px]"
+                        buttonsStyle="size-5"
+                        items={PRODUCTS_CARDS}
+                    />
+                    :
+                    <>
+                        <Grid>
+                            {PRODUCTS_CARDS}
+                        </Grid>
+                    </>
                 }
-            />
+            </Section>
 
             {/* just launched section*/}
-            <Section
-                key={"section-3"}
-                title="Lançamentos do mês"
-                style="px-5 mt-10"
-                child={
-                    isSmallDevice() ?
-                        <CarouselOneByOne
-                            slidingDelay={5000}
-                            height="h-[450px]"
-                            buttonsStyle="size-5"
-                            items={PRODUCTS_CARDS}
-                        />
-                        :
-                        <>
-                            <Grid>
-                                {PRODUCTS_CARDS}
-                            </Grid>
-                        </>
+            <Section key={"section-3"} title="Lançamentos do mês" style="px-5 mt-10">
+                {isSmallDevice() ?
+                    <CarouselOneByOne
+                        slidingDelay={5000}
+                        height="h-[450px]"
+                        buttonsStyle="size-5"
+                        items={PRODUCTS_CARDS}
+                    />
+                    :
+                    <>
+                        <Grid>
+                            {PRODUCTS_CARDS}
+                        </Grid>
+                    </>
                 }
-            />
+            </Section>
+
 
             {/* best brands section */}
-            <Section
-                key={"section-4"}
-                title="Melhores Marcas"
-                style="px-5 mt-16"
-                child={
-                    <>
-                        <div className="grid grid-cols-2 gap-2 text-center">
-                            {BEST_BRANDS.map((brand, i) => {
-                                return <>
-                                    <a href=""
-                                        className={`
+            <Section key={"section-4"} title="Melhores Marcas" style="px-5 mt-16">
+                <div className="grid grid-cols-2 gap-2 text-center">
+                    {BEST_BRANDS.map((brand, i) => {
+                        return <>
+                            <a href=""
+                                className={`
                                 ${brand.color} 
                                 bg-opacity-40 
                                 hover:bg-opacity-70 
@@ -268,36 +253,32 @@ export function App() {
                                 flex justify-center items-center 
                                                        
                                 `}>
-                                        {brand.name}
-                                    </a>
-                                </>
-                            })}
-                        </div>
-                    </>
-                }
-            />
+                                {brand.name}
+                            </a>
+                        </>
+                    })}
+                </div>
+            </Section>
+
 
             {/* only vip section */}
-            < Section
-                key={"section-5"}
-                title="Só para vips"
-                style="px-5 mt-14"
-                child={
-                    isSmallDevice() ?
-                        <CarouselOneByOne
-                            slidingDelay={5000}
-                            height="h-[450px]"
-                            buttonsStyle="size-5"
-                            items={PRODUCTS_CARDS}
-                        />
-                        :
-                        <>
-                            <Grid>
-                                {PRODUCTS_CARDS}
-                            </Grid>
-                        </>
+            < Section key={"section-5"} title="Só para vips" style="px-5 mt-14">
+                {isSmallDevice() ?
+                    <CarouselOneByOne
+                        slidingDelay={5000}
+                        height="h-[450px]"
+                        buttonsStyle="size-5"
+                        items={PRODUCTS_CARDS}
+                    />
+                    :
+                    <>
+                        <Grid>
+                            {PRODUCTS_CARDS}
+                        </Grid>
+                    </>
                 }
-            />
+            </Section>
+
 
             {/* Newsletter */}
             <Section
@@ -314,21 +295,21 @@ export function App() {
                 lg:px-[100px]
                 lg:text-lg
                 "
-                child={
-                    <div className="lg:flex lg:items-center lg:h-12 lg:mt-10 lg:gap-5">
-                        <input
-                            type="email"
-                            placeholder="Digite seu email"
-                            className="
+            >
+                <div className="lg:flex lg:items-center lg:h-12 lg:mt-10 lg:gap-5">
+                    <input
+                        type="email"
+                        placeholder="Digite seu email"
+                        className="
                         w-full border-0 rounded-full px-5 py-2 mt-4 mb-3 text-black text-lg
                         lg:h-full
                         lg:py-0
                         "
-                        />
+                    />
 
-                        <Pill
-                            text="Cadastrar"
-                            style="
+                    <Pill
+                        text="Cadastrar"
+                        style="
                         border-0
                         bg-zinc-600
                         text-lg
@@ -345,9 +326,9 @@ export function App() {
                         lg:my-0
                         lg:text-lg
                         "
-                        />
-                    </div>}
-            />
+                    />
+                </div>
+            </Section>
 
             <Footer />
         </>
