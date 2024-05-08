@@ -18,10 +18,9 @@ export class Grid extends Component {
 
     public render(): React.ReactNode {
         return <>
-            <div className="flex justify-center xl:pl-24">
-                <div className="flex flex-wrap md:gap-3 xl:gap-4 md:justify-center lg:justify-start">
+            <div className="flex justify-center gap-2 flex-wrap">
                     {renderElementChildren(this.props.children)}
-                </div>
+            
             </div>
         </>;
     }
