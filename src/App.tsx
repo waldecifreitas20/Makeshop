@@ -4,7 +4,6 @@ import { Navbar } from "./components/Navbar";
 import { ProductCard } from "./components/ProductCard";
 import { PillCarousel } from "./components/PillCarousel";
 import { Section } from "./components/Section";
-import { PillButton } from "./components/PillButton";
 import { Footer } from "./components/Footer";
 import { isSmallDevice, onResizeScreen } from "./utils/utils";
 import { Pill } from "./components/Pill";
