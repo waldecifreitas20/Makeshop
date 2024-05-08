@@ -1,3 +1,5 @@
+import { appColors } from "../global/colors";
+
 interface ProductCardProps {
     name: string;
     description: string;
@@ -28,7 +30,11 @@ export function ProductCard(props: ProductCardProps) {
 
     return <>
         <a href="" className={`
-        ${getTheme(props).background} relative block border px-4 py-5 rounded-lg w-64`}>
+            ${getTheme(props).background} 
+            ${appColors.borders.container} 
+            relative block border 
+            px-4 py-5 rounded-lg w-64`
+        }>
             {/* badge */}
             {
                 props.badge ?
@@ -51,7 +57,7 @@ export function ProductCard(props: ProductCardProps) {
 
                 <div className="mt-3">
                     {/* Old price */}
-                    <p className="text-sm text-gray-500 text-line-through">{(() => {
+                    <p className={`text-sm ${appColors.texts.dimmed} text-line-through`}>{(() => {
                         let oldPrice: number = props.price * 1.25;
                         return <>{`R$ ${oldPrice.toFixed(2)}`}</>;
                     })()}</p>

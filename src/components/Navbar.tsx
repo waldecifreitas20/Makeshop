@@ -1,5 +1,6 @@
 import { ReactElement, useState } from "react";
 import { onResizeScreen, isSmallDevice } from "../utils/utils";
+import { appColors } from "../global/colors";
 
 interface MenuOption {
 	child: ReactElement;
@@ -89,7 +90,7 @@ export function Navbar() {
 
 	return (
 		<>
-			<header className="fixed top-0 z-50 w-full bg-zinc-50">
+			<header className={`fixed top-0 z-50 w-full ${appColors.backgrounds.base}`}>
 				<nav className="border-b-2 pt-4 pb-6 px-5 z-50">
 					{/* navbar top */}
 					<div className="flex items-center md:h-4 md:inline md:float-left">
@@ -246,26 +247,23 @@ export function Navbar() {
 								<p className="text-white text-sm mt-2">Faça login ou cadastre-se para aproveitar as nossas ofertas </p>
 
 								<div className="mt-4">
-									<a className="
+									<a className={`
 									block py-2 mb-2 
 									rounded-full
 									border 
-									border-pink-400  
-									hover:bg-pink-400 
+									${appColors.borders.outlinedButton} 
+									${appColors.backgrounds.buttons.normalOutline}
 									text-white 
 									
-									transition-all duration-300" href="">Fazer Login</a>
-									<a className="
+									transition-all duration-300`} href="">Fazer Login</a>
+									<a className={`
 									block py-2 
 									text-white  
 									rounded-full 
-									border 
-									border-pink-500 
-									hover:border-pink-500 
-									bg-pink-500 
-									hover:bg-pink-500 
+																		
+									${appColors.backgrounds.buttons.normal}
 
-									transition-all duration-300 " href="">Cadastre-se</a>
+									transition-all duration-300 `} href="">Cadastre-se</a>
 								</div>
 							</div>
 
