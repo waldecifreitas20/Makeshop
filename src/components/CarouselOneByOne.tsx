@@ -27,7 +27,7 @@ export class CarouselOneByOne extends React.Component implements Carousel {
         this.hasEventTriggered = false;
 
         this.nextItem = (): void => {
-        
+
             this.index++;
 
             if (this.index >= this.getItemsQtd()) {
@@ -86,7 +86,12 @@ export class CarouselOneByOne extends React.Component implements Carousel {
                 <div className="size-full block">
                     {/* Carousel view */}
                     <div id={`carousel-view-${this.key}`} className="flex overflow-hidden size-full">
-                        <ul id={`slider-${this.key}`} className="slider relative transition-all duration-700 flex h-full">
+                        <ul id={`slider-${this.key}`}
+                            className="
+                                slider relative 
+                                transition-all duration-700 lg:duration-1000 
+                                flex h-full
+                        ">
                             {this.getItems().map((item, i) => {
                                 return <>
                                     <li className={
@@ -183,7 +188,7 @@ export class CarouselOneByOne extends React.Component implements Carousel {
     }
 
 
-    private getItemsQtd() : number {
+    private getItemsQtd(): number {
         return this.getItems().length ?? 0;
     }
 

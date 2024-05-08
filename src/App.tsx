@@ -179,7 +179,7 @@ export function App() {
                 child={
                     <CarouselOneByOne
                         autoSlide={true}
-                        slidingDelay={3000}
+                        slidingDelay={5000}
                         height="
                             h-[225px] 
                             sm:h-[250px]
