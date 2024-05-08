@@ -150,15 +150,13 @@ export function App() {
     ];
 
     const BEST_BRANDS = [
-        { name: "absolute new york", color: "bg-pink-500" },
-        { name: "lancôme", color: "bg-lime-500" },
-        { name: "sisley", color: "bg-sky-500" },
-        { name: "océane", color: "bg-slate-500" },
-        { name: "payot", color: "bg-violet-500" },
-        { name: "la roche-posay", color: "bg-yellow-500" },
+        { logoUrl: "../public/assets/images/brand-absolute-ny.png", name: "lancôme", color: "bg-lime-500" },
+        { logoUrl: "../public/assets/images/brand-lancome.png", name: "absolute new york", color: "bg-pink-500" },
+        { logoUrl: "../public/assets/images/brand-sisley.png", name: "sisley", color: "bg-sky-500" },
+        { logoUrl: "../public/assets/images/brand-oceane.png", name: "océane", color: "bg-slate-500" },
+        { logoUrl: "../public/assets/images/brand-payot.png", name: "payot", color: "bg-violet-500" },
+        { logoUrl: "../public/assets/images/brand-roche-posay.png", name: "la roche-posay", color: "bg-yellow-500" },
     ];
-
-
 
     return (
         <>
@@ -251,9 +249,13 @@ export function App() {
                                 h-[100px] 
                                 rounded-lg 
                                 flex justify-center items-center 
-                                                       
+                                text-center
+                                
+                                md:h-[120px]
+                                lg:h-[150px]
                                 `}>
-                                {brand.name}
+                                    <img className="block h-[70%] lg:h-[70%] p-4" src={brand.logoUrl} alt={`logo ${brand.name}`}  />
+                               
                             </a>
                         </>
                     })}
