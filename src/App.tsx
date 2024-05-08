@@ -11,47 +11,56 @@ import { Grid } from "./components/Grid";
 
 
 export function App() {
+
     const PILL_STYLE = `
-    transition-all
-    duration-300
-    sm:w-[100px]
-    my-3
+        transition-all
+        duration-300
+        sm:w-[100px]
+        my-3
 
-    md:w-[120px] 
-    md:hover:border-pink-200 
-    md:text-md 
-    md:h-[30px]
-    md:shadow-sm 
-    md:hover:shadow-lg 
-    md:hover:shadow-pink-200 
-    
-    lg:rounded-md 
-    lg:text-lg 
-    lg:text-zinc-600  
-    lg:w-[200px] 
-    lg:mx-4
-    lg:hover:text-pink-500
-   
-    `
-    let [buttonCopyIcon, setButtonCopyIcon] = useState(<i className="fa-regular fa-copy fa-lg"></i>);
+        md:w-[120px] 
+        md:hover:border-pink-200 
+        md:text-md 
+        md:h-[30px]
+        md:shadow-sm 
+        md:hover:shadow-lg 
+        md:hover:shadow-pink-200 
 
-    let [isBigBanner, setIsBigBanner] = useState(!isSmallDevice());
+        lg:rounded-md 
+        lg:text-lg 
+        lg:text-zinc-600  
+        lg:w-[200px] 
+        lg:mx-4
+        lg:hover:text-pink-500    
+        `;
+    const BANNERS = function (): Array<any> {
 
-    onResizeScreen(() => {
-        setIsBigBanner(!isSmallDevice());
-    });
+        let [buttonCopyIcon, setButtonCopyIcon] = useState(<i className="fa-regular fa-copy fa-lg"></i>);
 
-    const BANNERS = [
-        <span className="relative block mx-auto h-full w-full">
-            <img className="block w-full h-full mx-auto" src={`./assets/images/banner1-${isBigBanner ? "big" : "small"}.png`} alt="" />
+        let [isBigBanner, setIsBigBanner] = useState(!isSmallDevice());
 
-            <div className="w-full absolute bottom-2 lg:bottom-6 flex z-20 justify-center md:justify-end">
-                <div className="w-2/4 sm:w-[40%] lg:w-[30%] flex justify-center md:mr-[15%] lg:mr-[20%]">''
-                    <input type="text"
-                        value="MAKE15OFF"
-                        readOnly disabled
+        onResizeScreen(() => {
+            setIsBigBanner(!isSmallDevice());
+        });
 
-                        className="
+        const copyToClipboard = (value: string) => {
+            window.navigator.clipboard.writeText(value)
+                .then(() => {
+                    setButtonCopyIcon(<i className="fa-solid fa-check text-green-500 fa-lg"></i>)
+                });
+        }
+
+        return [
+            <span className="relative block mx-auto h-full w-full">
+                <img className="block w-full h-full mx-auto" src={`./assets/images/banner1-${isBigBanner ? "big" : "small"}.png`} alt="" />
+
+                <div className="w-full absolute bottom-2 lg:bottom-6 flex z-20 justify-center md:justify-end">
+                    <div className="w-2/4 sm:w-[40%] lg:w-[30%] flex justify-center md:mr-[15%] lg:mr-[20%]">''
+                        <input type="text"
+                            value="MAKE15OFF"
+                            readOnly disabled
+
+                            className="
                             rounded-l-md
                             p-2 
                             w-full
@@ -64,16 +73,16 @@ export function App() {
                             lg:text-2xl
                          
                     "/>
-                    <button className="bg-white hover:bg-gray-200 text-pink-600 border rounded-r-md p-2 text-sm w-1/4" onClick={() => copyToClipboard("MAKE15OFF")}>
-                        {buttonCopyIcon}
-                    </button>
+                        <button className="bg-white hover:bg-gray-200 text-pink-600 border rounded-r-md p-2 text-sm w-1/4" onClick={() => copyToClipboard("MAKE15OFF")}>
+                            {buttonCopyIcon}
+                        </button>
+                    </div>
                 </div>
-            </div>
-        </span>,
+            </span>,
 
-        <img className="block w-full h-full mx-auto" src={`./assets/images/banner2-${isBigBanner ? "big" : "small"}.png`} alt="" />
-
-    ];
+            <img className="block w-full h-full mx-auto" src={`./assets/images/banner2-${isBigBanner ? "big" : "small"}.png`} alt="" />
+        ];
+    }
 
     const PRODUCTS_CARDS = [
         <ProductCard
@@ -149,13 +158,7 @@ export function App() {
         { name: "la roche-posay", color: "bg-yellow-500" },
     ];
 
-    function copyToClipboard(value: string) {
-        window.navigator.clipboard.writeText(value)
-            .then(() => {
-                setButtonCopyIcon(<i className="fa-solid fa-check text-green-500 fa-lg"></i>)
-            })
 
-    }
 
     return (
         <>
@@ -192,7 +195,7 @@ export function App() {
                     text-white  
                     size-12
                     "
-                        items={BANNERS}
+                        items={BANNERS()}
                     />
                 }
             />
