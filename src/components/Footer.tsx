@@ -37,23 +37,23 @@ export function Footer() {
                 <h4 className={STYLES.title}>Redes Sociais</h4>
                 <ul className="flex justify-between max-w-80 gap-2">
                     <li><a className={STYLES.socials} href="">
-                        <img className="block h-full" src="assets/images/logo-fb.png" alt="" />
+                        <img className="block h-full" src="images/logo-fb.png" alt="" />
                     </a></li>
 
                     <li><a className={STYLES.socials} href="">
-                        <img className="block h-full" src="assets/images/logo-insta.png" alt="" />
+                        <img className="block h-full" src="images/logo-insta.png" alt="" />
                     </a></li>
 
                     <li><a className={STYLES.socials} href="">
-                        <img className="block h-full" src="./assets/images/logo-ttk.png" alt="" />
+                        <img className="block h-full" src="./images/logo-ttk.png" alt="" />
                     </a></li>
 
                     <li><a className={STYLES.socials} href="">
-                        <img className="block h-full" src="./assets/images/logo-x.png" alt="" />
+                        <img className="block h-full" src="./images/logo-x.png" alt="" />
                     </a></li>
 
                     <li><a className={STYLES.socials} href="">
-                        <img className="block h-full" src="./assets/images/logo-yt.png" alt="" />
+                        <img className="block h-full" src="./images/logo-yt.png" alt="" />
                     </a></li>
                 </ul>
             </section>
@@ -63,31 +63,31 @@ export function Footer() {
                 <ul className="flex flex-wrap justify-left gap-4">
 
                     <li className="h-8 block">
-                        <img className="block h-full" src="../public/assets/images/pg-mastercard.png" alt="" />
+                        <img className="block h-full" src="images/pg-mastercard.png" alt="" />
                     </li>
 
                     <li className="h-8 block">
-                        <img className="block h-full" src="../public/assets/images/pg-visa.png" alt="" />
+                        <img className="block h-full" src="images/pg-visa.png" alt="" />
                     </li>
 
                     <li className="h-8 block">
-                        <img className="block h-full" src="../public/assets/images/pg-amex.png" alt="" />
+                        <img className="block h-full" src="images/pg-amex.png" alt="" />
                     </li>
 
                     <li className="h-8 block">
-                        <img className="block h-full" src="../public/assets/images/pg-elo.png" alt="" />
+                        <img className="block h-full" src="images/pg-elo.png" alt="" />
                     </li>
 
                     <li className="h-8 block">
-                        <img className="block h-full" src="../public/assets/images/pg-pix.png" alt="" />
+                        <img className="block h-full" src="images/pg-pix.png" alt="" />
                     </li>
 
                     <li className="h-8 block">
-                        <img className="block h-full" src="../public/assets/images/pg-paypal.png" alt="" />
+                        <img className="block h-full" src="images/pg-paypal.png" alt="" />
                     </li>
 
                     <li className="h-8 block">
-                        <img className="block h-full" src="../public/assets/images/pg-mpago.png" alt="" />
+                        <img className="block h-full" src="images/pg-mpago.png" alt="" />
                     </li>
 
                 </ul>

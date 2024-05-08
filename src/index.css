@@ -4,12 +4,12 @@
 
 @font-face {
     font-family: "Title";
-    src: url("./assets/fonts/AbrilFatface-Regular.ttf");
+    src: url("../fonts/AbrilFatface-Regular.ttf");
 }
 
 @font-face {
     font-family: "Body";
-    src: url("./assets/fonts/Brygada1918-VariableFont_wght.ttf");
+    src: url("../fonts/Brygada1918-VariableFont_wght.ttf");
 }
 
 @layer utilities {

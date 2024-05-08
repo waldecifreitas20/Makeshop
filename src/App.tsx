@@ -52,7 +52,7 @@ export function App() {
 
         return [
             <span className="relative block mx-auto h-full w-full">
-                <img className="block w-full h-full mx-auto" src={`./assets/images/banner1-${isBigBanner ? "big" : "small"}.png`} alt="" />
+                <img className="block w-full h-full mx-auto" src={`./images/banner1-${isBigBanner ? "big" : "small"}.png`} alt="" />
 
                 <div className="w-full absolute bottom-2 lg:bottom-6 flex z-20 justify-center md:justify-end">
                     <div className="w-2/4 sm:w-[40%] lg:w-[30%] flex justify-center md:mr-[15%] lg:mr-[20%]">''
@@ -80,7 +80,7 @@ export function App() {
                 </div>
             </span>,
 
-            <img className="block w-full h-full mx-auto" src={`./assets/images/banner2-${isBigBanner ? "big" : "small"}.png`} alt="" />
+            <img className="block w-full h-full mx-auto" src={`./images/banner2-${isBigBanner ? "big" : "small"}.png`} alt="" />
         ];
     }
 
@@ -93,7 +93,7 @@ export function App() {
             }}
             description="Kit de olhos lancôme monsieur big set"
             price={199.97}
-            imgURL="./assets/images/product1.png"
+            imgURL="./images/product1.png"
         />,
         <ProductCard
             badge={{
@@ -105,7 +105,7 @@ export function App() {
             name="fenty beauty"
             description="gloss labial fenty gloss bomb universal lip luminizer"
             price={89.97}
-            imgURL="./assets/images/product2.png"
+            imgURL="./images/product2.png"
         />,
         <ProductCard
             badge={{
@@ -115,7 +115,7 @@ export function App() {
             name="Carolina Herrera"
             description="refil balm labial carolina herrena good girl mini kiss the mini tint superstar"
             price={109.07}
-            imgURL="./assets/images/product3.png"
+            imgURL="./images/product3.png"
         />,
         <ProductCard
             badge={{
@@ -125,7 +125,7 @@ export function App() {
             name="Carolina Herrera"
             description="refil balm labial carolina herrena good girl mini kiss the mini tint superstar"
             price={109.07}
-            imgURL="./assets/images/product4.png"
+            imgURL="./images/product4.png"
         />,
         <ProductCard
             badge={{
@@ -135,7 +135,7 @@ export function App() {
             name="Carolina Herrera"
             description="refil balm labial carolina herrena good girl mini kiss the mini tint superstar"
             price={109.07}
-            imgURL="./assets/images/product5.png"
+            imgURL="./images/product5.png"
         />,
         <ProductCard
             badge={{
@@ -145,17 +145,17 @@ export function App() {
             name="Carolina Herrera"
             description="refil balm labial carolina herrena good girl mini kiss the mini tint superstar"
             price={109.07}
-            imgURL="./assets/images/product6.png"
+            imgURL="./images/product6.png"
         />,
     ];
 
     const BEST_BRANDS = [
-        { logoUrl: "../public/assets/images/brand-absolute-ny.png", name: "lancôme", color: "bg-lime-500" },
-        { logoUrl: "../public/assets/images/brand-lancome.png", name: "absolute new york", color: "bg-pink-500" },
-        { logoUrl: "../public/assets/images/brand-sisley.png", name: "sisley", color: "bg-sky-500" },
-        { logoUrl: "../public/assets/images/brand-oceane.png", name: "océane", color: "bg-slate-500" },
-        { logoUrl: "../public/assets/images/brand-payot.png", name: "payot", color: "bg-violet-500" },
-        { logoUrl: "../public/assets/images/brand-roche-posay.png", name: "la roche-posay", color: "bg-yellow-500" },
+        { logoUrl: "./images/brand-absolute-ny.png", name: "lancôme", color: "bg-lime-500" },
+        { logoUrl: "./images/brand-lancome.png", name: "absolute new york", color: "bg-pink-500" },
+        { logoUrl: "./images/brand-sisley.png", name: "sisley", color: "bg-sky-500" },
+        { logoUrl: "./images/brand-oceane.png", name: "océane", color: "bg-slate-500" },
+        { logoUrl: "./images/brand-payot.png", name: "payot", color: "bg-violet-500" },
+        { logoUrl: "./images/brand-roche-posay.png", name: "la roche-posay", color: "bg-yellow-500" },
     ];
 
     return (
