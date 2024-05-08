@@ -1,15 +1,15 @@
 import { Component, PropsWithChildren } from "react";
 import { renderElementChildren } from "../utils/react";
 
-interface GridProps {
+interface FlexboxProps {
     style?: string;
 }
 
 
-export class Grid extends Component {
-    public props: PropsWithChildren<GridProps>;
+export class Flexbox extends Component {
+    public props: PropsWithChildren<FlexboxProps>;
 
-    constructor(props: PropsWithChildren<GridProps>) {
+    constructor(props: PropsWithChildren<FlexboxProps>) {
         super(props);
         this.props = props;
     }

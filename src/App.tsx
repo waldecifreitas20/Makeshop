@@ -7,7 +7,7 @@ import { Section } from "./components/Section";
 import { Footer } from "./components/Footer";
 import { isSmallDevice, onResizeScreen } from "./utils/utils";
 import { Pill } from "./components/Pill";
-import { Grid } from "./components/Grid";
+import { Flexbox } from "./components/Flexbox";
 
 
 export function App() {
@@ -209,9 +209,9 @@ export function App() {
                     />
                     :
                     <>
-                        <Grid>
+                        <Flexbox>
                             {PRODUCTS_CARDS}
-                        </Grid>
+                        </Flexbox>
                     </>
                 }
             </Section>
@@ -227,9 +227,9 @@ export function App() {
                     />
                     :
                     <>
-                        <Grid>
+                        <Flexbox>
                             {PRODUCTS_CARDS}
-                        </Grid>
+                        </Flexbox>
                     </>
                 }
             </Section>
@@ -237,7 +237,7 @@ export function App() {
 
             {/* best brands section */}
             <Section key={"section-4"} title="Melhores Marcas" style="px-5 mt-16">
-                <div className="grid grid-cols-2 gap-2 text-center">
+                <Flexbox style="grid grid-cols-2 gap-2 lg:grid-cols-3">
                     {BEST_BRANDS.map((brand, i) => {
                         return <>
                             <a href=""
@@ -257,7 +257,7 @@ export function App() {
                             </a>
                         </>
                     })}
-                </div>
+                </Flexbox>
             </Section>
 
 
@@ -272,9 +272,9 @@ export function App() {
                     />
                     :
                     <>
-                        <Grid>
+                        <Flexbox>
                             {PRODUCTS_CARDS}
-                        </Grid>
+                        </Flexbox>
                     </>
                 }
             </Section>
