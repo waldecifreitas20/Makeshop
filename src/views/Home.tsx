@@ -1,19 +1,19 @@
 /* built-in */
 import { useState } from "react";
 /* Components */
-import { Navbar } from "./components/Navbar";
-import { Section } from "./components/Section";
-import { PillCarousel } from "./components/PillCarousel";
-import { Pill } from "./components/Pill";
-import { CarouselOneByOne } from "./components/CarouselOneByOne";
-import { ProductCard } from "./components/ProductCard";
-import { Flexbox } from "./components/Flexbox";
-import { Footer } from "./components/Footer";
+import { Navbar } from "../components/Navbar";
+import { Section } from "../components/Section";
+import { PillCarousel } from "../components/PillCarousel";
+import { Pill } from "../components/Pill";
+import { CarouselOneByOne } from "../components/CarouselOneByOne";
+import { ProductCard } from "../components/ProductCard";
+import { Flexbox } from "../components/Flexbox";
+import { Footer } from "../components/Footer";
 /* Utilities functions */
-import { isSmallDevice, onResizeScreen } from "./utils/utils";
-import { Newsletter } from "./components/Newsletter";
+import { isSmallDevice, onResizeScreen } from "../utils/utils";
+import { Newsletter } from "../components/Newsletter";
 
-export function App() {
+export function HomePage() {
 
     const PILL_STYLE = `
         transition-all
