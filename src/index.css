@@ -48,15 +48,17 @@
     }
     
     .dropdown .dropdown-content {
+        height: 0;
+        opacity: 1;
+        padding: 0;
         transition: all 300ms;
-        z-index: -10;
-        position: relative;
-        top: -90%;
+        top: 0px;
+        overflow: hidden;
     }
-
+    
     .dropdown:hover .dropdown-content,
     .dropdown .dropdown-content:hover {
-        top: 13px;
-        z-index: 0;
+        height: 120px;
+        opacity: 1;
     }
 }

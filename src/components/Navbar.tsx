@@ -22,20 +22,22 @@ const MENU_OPTION_STYLE = `
 	hover:bg-gray-100
 	
 	lg:static
+	lg:bg-transparent
 	lg:hover:bg-transparent
 	lg:py-0
 	lg:px-4
 	lg:capitalize
-	`;
+`;
 
 const SUBMENU_STYLE = `
-ms-5 py-4 hover:text-black uppercase text-gray-400 text-sm
+	ms-5 py-4 hover:text-black uppercase text-gray-400 text-sm
 
-lg:m-0
-lg:bottom-0
-lg:capitalize
-lg:py-2
-lg:bg-transparent
+	lg:m-0
+	lg:bottom-0
+	lg:capitalize
+	lg:py-2
+	lg:px-4
+	lg:bg-transparent
 `;
 const MENU_OPTIONS: MenuOption[] = [
 	{
@@ -59,8 +61,8 @@ const MENU_OPTIONS: MenuOption[] = [
 			lg:bottom-0
 			lg:rounded-b-lg
 			lg:shadow-lg
-			lg:py-2
-				
+			lg:mt-3 
+			
 			">
 				<li className={SUBMENU_STYLE}>
 					<a className="block h-full w-full" href="">Maquiagem</a></li>
