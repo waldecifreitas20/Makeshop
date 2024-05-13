@@ -16,7 +16,7 @@ export class Flexbox extends Component {
 
     public render(): React.ReactNode {
         return <>
-            <div className={`${this.props.style ?? "flex justify-center gap-2 flex-wrap"}`}>
+            <div className={`${this.props.style ?? "flex justify-center gap-4 flex-wrap"}`}>
                     {renderElementChildren(this.props.children)}
             
             </div>
