@@ -1,5 +1,5 @@
 import { Component, PropsWithChildren } from "react";
-import { renderElementChildren } from "../utils/react";
+import { renderElementChildren } from "../utils/childrenRenderer";
 
 interface FlexboxProps {
     style?: string;
@@ -17,8 +17,8 @@ export class Flexbox extends Component {
     public render(): React.ReactNode {
         return <>
             <div className={`${this.props.style ?? "flex justify-center gap-4 flex-wrap"}`}>
-                    {renderElementChildren(this.props.children)}
-            
+                {renderElementChildren(this.props.children)}
+
             </div>
         </>;
     }

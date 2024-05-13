@@ -1,6 +1,6 @@
 import { Component, PropsWithChildren } from "react";
 import { onResizeScreen } from "../utils/utils";
-import { renderElementChildren } from "../utils/react";
+import { renderElementChildren } from "../utils/childrenRenderer";
 
 export class PillCarousel extends Component implements Carousel {
     private key: string;
