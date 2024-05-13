@@ -17,12 +17,12 @@ const STYLES = {
 
 export function Footer() {
     return <>
-        <footer className="px-5 py-6 scale-">
+        <footer className="px-5 lg:px-16 py-6 scale-">
             <div className="
-            md:grid 
-            md:gap-1
+            md:flex 
+            md:justify-between
             md:grid-flow-col 
-      
+
             ">
                 {/* Help */}
                 <section className={STYLES.section}>

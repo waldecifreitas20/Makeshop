@@ -44,7 +44,7 @@ export class PillCarousel extends Component implements Carousel {
                     newOffset = this.maxOffset;
                 }
 
-                SLIDER.style.left = `${newOffset}px`;
+                SLIDER.style.left = `${newOffset-10}px`;
             }
 
         }
