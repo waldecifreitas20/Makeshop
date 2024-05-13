@@ -1,5 +1,5 @@
 /* built-in */
-import { useState } from "react";
+import { ReactElement, useState } from "react";
 /* Components */
 import { Navbar } from "../components/Navbar";
 import { Section } from "../components/Section";
@@ -87,70 +87,77 @@ export function HomePage() {
 		];
 	}
 
-	const PRODUCTS_CARDS = [
-		<ProductCard
-			name="Lancôme"
-			badge={{
-				text: "Frete Grátis",
-				colors: "bg-lime-500",
-			}}
-			description="Kit de olhos lancôme monsieur big set"
-			price={199.97}
-			imgURL="./images/product1.png"
-		/>,
-		<ProductCard
-			badge={{
-				text: "Exclusivo",
-				colors: "bg-yellow-500",
-			}}
-			isDark={true}
-			isVIP={true}
-			name="fenty beauty"
-			description="gloss labial fenty gloss bomb universal lip luminizer"
-			price={89.97}
-			imgURL="./images/product2.png"
-		/>,
-		<ProductCard
-			badge={{
-				text: "lançamento",
-				colors: "bg-pink-300 text-black",
-			}}
-			name="Carolina Herrera"
-			description="refil balm labial carolina herrena good girl mini kiss the mini tint superstar"
-			price={109.07}
-			imgURL="./images/product3.png"
-		/>,
-		<ProductCard
-			badge={{
-				text: "lançamento",
-				colors: "bg-pink-300 text-black",
-			}}
-			name="Carolina Herrera"
-			description="refil balm labial carolina herrena good girl mini kiss the mini tint superstar"
-			price={109.07}
-			imgURL="./images/product4.png"
-		/>,
-		<ProductCard
-			badge={{
-				text: "lançamento",
-				colors: "bg-pink-300 text-black",
-			}}
-			name="Carolina Herrera"
-			description="refil balm labial carolina herrena good girl mini kiss the mini tint superstar"
-			price={109.07}
-			imgURL="./images/product5.png"
-		/>,
-		<ProductCard
-			badge={{
-				text: "lançamento",
-				colors: "bg-pink-300 text-black",
-			}}
-			name="Carolina Herrera"
-			description="refil balm labial carolina herrena good girl mini kiss the mini tint superstar"
-			price={109.07}
-			imgURL="./images/product6.png"
-		/>,
-	];
+	function getProducts(isVip?: boolean): Array<ReactElement<typeof ProductCard>> {
+		return [
+			<ProductCard
+				name="Lancôme"
+				badge={{
+					text: "Frete Grátis",
+					colors: "bg-lime-500",
+				}}
+				description="Kit de olhos lancôme monsieur big set"
+				price={199.97}
+				isVIP={isVip}
+				imgURL="./images/product1.png"
+			/>,
+			<ProductCard
+				badge={{
+					text: "Exclusivo",
+					colors: "bg-yellow-500",
+				}}
+				isVIP={isVip}
+				name="fenty beauty"
+				description="gloss labial fenty gloss bomb universal lip luminizer"
+				price={89.97}
+				imgURL="./images/product2.png"
+			/>,
+			<ProductCard
+				badge={{
+					text: "lançamento",
+					colors: "bg-pink-300 text-black",
+				}}
+				isVIP={isVip}
+				name="Carolina Herrera"
+				description="refil balm labial carolina herrena good girl mini kiss the mini tint superstar"
+				price={109.07}
+				imgURL="./images/product3.png"
+			/>,
+			<ProductCard
+				badge={{
+					text: "lançamento",
+					colors: "bg-pink-300 text-black",
+				}}
+				isVIP={isVip}
+
+				name="Carolina Herrera"
+				description="refil balm labial carolina herrena good girl mini kiss the mini tint superstar"
+				price={109.07}
+				imgURL="./images/product4.png"
+			/>,
+			<ProductCard
+				badge={{
+					text: "lançamento",
+					colors: "bg-pink-300 text-black",
+				}}
+				isVIP={isVip}
+				name="Carolina Herrera"
+				description="refil balm labial carolina herrena good girl mini kiss the mini tint superstar"
+				price={109.07}
+				imgURL="./images/product5.png"
+			/>,
+			<ProductCard
+				badge={{
+					text: "lançamento",
+					colors: "bg-pink-300 text-black",
+				}}
+				isVIP={isVip}
+				name="Carolina Herrera"
+				description="refil balm labial carolina herrena good girl mini kiss the mini tint superstar"
+				price={109.07}
+				imgURL="./images/product6.png"
+			/>,
+		];
+	}
 
 	const BEST_BRANDS = [
 		{ logoUrl: "./images/brand-absolute-ny.png", name: "lancôme", color: "bg-lime-500" },
@@ -206,12 +213,12 @@ export function HomePage() {
 						slidingDelay={5000}
 						height="h-[450px]"
 						buttonsStyle="size-5"
-						items={PRODUCTS_CARDS}
+						items={getProducts()}
 					/>
 					:
 					<>
 						<Flexbox>
-							{PRODUCTS_CARDS}
+							{getProducts()}
 						</Flexbox>
 					</>
 				}
@@ -224,12 +231,12 @@ export function HomePage() {
 						slidingDelay={5000}
 						height="h-[450px]"
 						buttonsStyle="size-5"
-						items={PRODUCTS_CARDS}
+						items={getProducts()}
 					/>
 					:
 					<>
 						<Flexbox>
-							{PRODUCTS_CARDS}
+							{getProducts()}
 						</Flexbox>
 					</>
 				}
@@ -273,12 +280,14 @@ export function HomePage() {
 						slidingDelay={5000}
 						height="h-[450px]"
 						buttonsStyle="size-5"
-						items={PRODUCTS_CARDS}
+						items={getProducts(true)}
 					/>
 					:
 					<>
 						<Flexbox>
-							{PRODUCTS_CARDS}
+							{getProducts(true).map((card, _) => {
+								return <>{card}</>
+							})}
 						</Flexbox>
 					</>
 				}

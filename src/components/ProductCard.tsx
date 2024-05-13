@@ -25,7 +25,7 @@ export function ProductCard(props: ProductCardProps) {
     }
 
     function getTheme(cardProps: ProductCardProps) {
-        return cardProps.isDark ? darkTheme : lightTheme;
+        return cardProps.isVIP ? darkTheme : lightTheme;
     }
 
     return <>
@@ -33,10 +33,12 @@ export function ProductCard(props: ProductCardProps) {
             ${getTheme(props).background} 
             ${appColors.borders.container} 
             relative block border 
-            px-4 py-5 rounded-lg w-64
+            px-4 py-5 rounded-xl w-64
             md:hover:shadow-lg
             md:hover:border-pink-300
             md:hover:shadow-pink-300
+            md:transition-all
+            md:duration-300
             `
         }>
             {/* badge */}
