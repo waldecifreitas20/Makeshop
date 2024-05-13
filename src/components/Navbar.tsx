@@ -13,7 +13,7 @@ const MENU_OPTION_STYLE = `
 	block
 	relative
 	uppercase
-	z-10
+	
 	bg-white
 	text-sm
 	text-zinc-500
@@ -21,15 +21,18 @@ const MENU_OPTION_STYLE = `
 	hover:text-black
 	hover:bg-gray-100
 	
-	lg:hover:bg-transparent
-	lg:bg-transparent
 	lg:py-0
 	lg:px-4
 	lg:capitalize
 	`;
 
+const SUBMENU_STYLE = `
+ms-5 py-4 hover:text-black uppercase bg-transparent text-gray-400 text-sm
 
-
+lg:m-0
+lg:bottom-0
+lg:capitalize
+lg:py-1`;
 const MENU_OPTIONS: MenuOption[] = [
 	{
 		child: <li>
@@ -37,7 +40,7 @@ const MENU_OPTIONS: MenuOption[] = [
 		</li>, loginRequired: false,
 	},
 	{
-		child: <li className="z-50">
+		child: <li className="">
 			<div className={`${MENU_OPTION_STYLE} flex justify-between items-center
 			
 			`}>
@@ -47,13 +50,17 @@ const MENU_OPTIONS: MenuOption[] = [
 			<ul className="
 			w-full ps-4 bg-slater-50 transition-all duration-500 border bg-white
 			
-			lg:hidden
+			
+			lg:relative
+			lg:-bottom-3
+			lg:rounded-b-lg
+			lg:pt-1 
 			">
-				<li className={"ms-5 py-4 hover:text-black uppercase bg-transparent text-gray-400 text-sm"}>
+				<li className={SUBMENU_STYLE}>
 					<a className="block h-full w-full" href="">Maquiagem</a></li>
-				<li className={"ms-5 py-4 hover:text-black uppercase bg-transparent text-gray-400 text-sm"}>
+				<li className={SUBMENU_STYLE}>
 					<a className="block h-full w-full" href="">Cosméticos</a></li>
-				<li className={"ms-5 py-4 hover:text-black uppercase bg-transparent text-gray-400 text-sm"}>
+				<li className={SUBMENU_STYLE}>
 					<a className="block h-full w-full" href="">Perfumes</a></li>
 			</ul>
 		</li>, loginRequired: false,
@@ -90,8 +97,8 @@ export function Navbar() {
 
 	return (
 		<>
-			<header className={`fixed top-0 z-50 w-full ${appColors.backgrounds.base}`}>
-				<nav className="border-b-2 pt-4 pb-6 px-5 z-50">
+			<header className={`fixed top-0 z-30 w-full ${appColors.backgrounds.base}`}>
+				<nav className="border-b-2 pt-4 pb-6 lg:pb-12 px-5 z-30">
 					{/* navbar top */}
 					<div className="flex items-center md:h-4 md:inline md:float-left">
 
@@ -196,7 +203,7 @@ export function Navbar() {
 					{/* menu container*/}
 					<div id="menu" className={`
 						shadow-2xl 
-						z-40 
+					
 						block 
 						absolute 
 						top-0
@@ -204,7 +211,7 @@ export function Navbar() {
 						transition-all duration-700 
 						${menuClass}
 						
-						lg:relative
+						lg:top-14
 						lg:h-6	
 						lg:open-menu				
 						`}>
@@ -215,7 +222,7 @@ export function Navbar() {
 						{/* menu */}
 						<section className="
 							absolute 
-							z-50
+						
 							hide-scrollbar 
 							top-0 left-0 
 							bg-white 
@@ -239,7 +246,6 @@ export function Navbar() {
 								bg-zinc-950 
 								px-5 pt-16 pb-6 
 								text-center 
-								relative z-10
 
 								lg:hidden
 								">
@@ -269,12 +275,12 @@ export function Navbar() {
 
 							{/* Menu options*/}
 							<ul className="
-								-z-0 relative
-							
+															
 								lg:flex
 								lg:justify-center
 								lg:w-[80%]
 								lg:ml-[4%]
+								
 								">
 								{MENU_OPTIONS.map((menuOption: MenuOption) => {
 									if (menuOption.loginRequired && !isLogged) {
