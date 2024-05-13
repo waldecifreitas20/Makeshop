@@ -26,7 +26,7 @@
     .open-menu {
         left: 0;
     }
-    
+
     .close-menu {
         left: -200vw;
     }
@@ -37,5 +37,26 @@
 
     .hide-scrollbar::-webkit-scrollbar {
         display: none;
+    }
+
+    
+}
+
+@media (min-width: 1024px) {
+    .dropdown {
+        position: relative;
+    }
+    
+    .dropdown .dropdown-content {
+        transition: all 300ms;
+        z-index: -10;
+        position: relative;
+        top: -90%;
+    }
+
+    .dropdown:hover .dropdown-content,
+    .dropdown .dropdown-content:hover {
+        top: 13px;
+        z-index: 0;
     }
 }

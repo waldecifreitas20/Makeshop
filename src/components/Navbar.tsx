@@ -21,18 +21,22 @@ const MENU_OPTION_STYLE = `
 	hover:text-black
 	hover:bg-gray-100
 	
+	lg:static
+	lg:hover:bg-transparent
 	lg:py-0
 	lg:px-4
 	lg:capitalize
 	`;
 
 const SUBMENU_STYLE = `
-ms-5 py-4 hover:text-black uppercase bg-transparent text-gray-400 text-sm
+ms-5 py-4 hover:text-black uppercase text-gray-400 text-sm
 
 lg:m-0
 lg:bottom-0
 lg:capitalize
-lg:py-1`;
+lg:py-2
+lg:bg-transparent
+`;
 const MENU_OPTIONS: MenuOption[] = [
 	{
 		child: <li>
@@ -40,7 +44,7 @@ const MENU_OPTIONS: MenuOption[] = [
 		</li>, loginRequired: false,
 	},
 	{
-		child: <li className="">
+		child: <li className="dropdown">
 			<div className={`${MENU_OPTION_STYLE} flex justify-between items-center
 			
 			`}>
@@ -48,13 +52,15 @@ const MENU_OPTIONS: MenuOption[] = [
 				<i className="hidden lg:block ml-2 fa-solid fa-caret-down fa-sm opacity-60"></i>
 			</div>
 			<ul className="
-			w-full ps-4 bg-slater-50 transition-all duration-500 border bg-white
+			w-full ps-4 bg-slater-50 transition-all duration-500 bg-white
 			
-			
+			dropdown-content
 			lg:relative
-			lg:-bottom-3
+			lg:bottom-0
 			lg:rounded-b-lg
-			lg:pt-1 
+			lg:shadow-lg
+			lg:py-2
+				
 			">
 				<li className={SUBMENU_STYLE}>
 					<a className="block h-full w-full" href="">Maquiagem</a></li>
@@ -97,8 +103,8 @@ export function Navbar() {
 
 	return (
 		<>
-			<header className={`fixed top-0 z-30 w-full ${appColors.backgrounds.base}`}>
-				<nav className="border-b-2 pt-4 pb-6 lg:pb-12 px-5 z-30">
+			<header className={`fixed top-0 z-30 w-full`}>
+				<nav className={`border-b-2 pt-4 pb-6 lg:pb-12 px-5 z-30 ${appColors.backgrounds.base}`}>
 					{/* navbar top */}
 					<div className="flex items-center md:h-4 md:inline md:float-left">
 
@@ -233,6 +239,7 @@ export function Navbar() {
 							sm:w-3/5
 							md:w-2/4
 
+							lg:static
 							lg:block
 							lg:py-4
 							lg:bg-transparent
