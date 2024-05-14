@@ -245,7 +245,7 @@ export function HomePage() {
 
 			{/* best brands section */}
 			<Section key={"section-4"} title="Melhores Marcas" style="px-5 mt-16">
-				<Flexbox style="grid grid-cols-2 gap-2 lg:grid-cols-3">
+				<Flexbox itemsByRow={6} style="grid grid-cols-2 gap-2 lg:grid-cols-3">
 					{BEST_BRANDS.map((brand, i) => {
 						return <>
 							<a href=""
