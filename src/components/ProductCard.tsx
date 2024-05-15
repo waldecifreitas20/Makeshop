@@ -34,9 +34,10 @@ export function ProductCard(props: ProductCardProps) {
             ${appColors.borders.container} 
             relative block border 
             px-4 py-5 rounded-xl 
-            w-64
+            min-w-64
+            max-w-72
             h-full
-            md:w-fit
+            
             md:hover:shadow-lg
             md:hover:border-pink-300
             md:hover:shadow-pink-300
