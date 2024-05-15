@@ -1,6 +1,5 @@
 import { Component, PropsWithChildren } from "react";
 import { onResizeScreen } from "../utils/utils";
-import { renderElementChildren } from "../utils/childrenRenderer";
 
 export class PillCarousel extends Component implements Carousel {
     private key: string;
@@ -80,7 +79,7 @@ export class PillCarousel extends Component implements Carousel {
 
                 <div id={`pill-carousel-view-${this.key}`} className="relative overflow-hidden w-full flex items-center mx-auto">
                     <div id={`pill-carousel-slider-${this.key}`} className={`flex relative flex-nowrap p-0 transition-all duration-700 mx-auto h-full`}>
-                        {renderElementChildren(this.props.children)}
+                        {this.props.children}
                     </div>
                 </div>
 
