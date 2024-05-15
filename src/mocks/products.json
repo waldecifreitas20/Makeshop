@@ -1,0 +1,14 @@
+{
+  "products": [
+    {
+      "name": "Kit de Olhos",
+      "desc": "Big set",
+      "price": "199.90",
+      "manufacturer": "Lancôme",
+      "isFreeShipping": "true",
+      "isVip": "true",
+      "category": "makeup",
+      "imgPath" : ""
+    }
+  ]
+}
