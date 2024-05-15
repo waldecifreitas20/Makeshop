@@ -101,6 +101,204 @@ export function HomePage() {
 				imgURL="./images/product1.png"
 			/>,
 			<ProductCard
+				name="Lancôme"
+				badge={{
+					text: "Frete Grátis",
+					colors: "bg-lime-500",
+				}}
+				description="Kit de olhos lancôme monsieur big set"
+				price={199.97}
+				isVIP={isVip}
+				imgURL="./images/product1.png"
+			/>,
+			<ProductCard
+				name="Lancôme"
+				badge={{
+					text: "Frete Grátis",
+					colors: "bg-lime-500",
+				}}
+				description="Kit de olhos lancôme monsieur big set"
+				price={199.97}
+				isVIP={isVip}
+				imgURL="./images/product1.png"
+			/>,
+			<ProductCard
+				name="Lancôme"
+				badge={{
+					text: "Frete Grátis",
+					colors: "bg-lime-500",
+				}}
+				description="Kit de olhos lancôme monsieur big set"
+				price={199.97}
+				isVIP={isVip}
+				imgURL="./images/product1.png"
+			/>,
+			<ProductCard
+				name="Lancôme"
+				badge={{
+					text: "Frete Grátis",
+					colors: "bg-lime-500",
+				}}
+				description="Kit de olhos lancôme monsieur big set"
+				price={199.97}
+				isVIP={isVip}
+				imgURL="./images/product1.png"
+			/>,
+			<ProductCard
+				name="Lancôme"
+				badge={{
+					text: "Frete Grátis",
+					colors: "bg-lime-500",
+				}}
+				description="Kit de olhos lancôme monsieur big set"
+				price={199.97}
+				isVIP={isVip}
+				imgURL="./images/product1.png"
+			/>,
+			<ProductCard
+				name="Lancôme"
+				badge={{
+					text: "Frete Grátis",
+					colors: "bg-lime-500",
+				}}
+				description="Kit de olhos lancôme monsieur big set"
+				price={199.97}
+				isVIP={isVip}
+				imgURL="./images/product1.png"
+			/>,
+			<ProductCard
+				name="Lancôme"
+				badge={{
+					text: "Frete Grátis",
+					colors: "bg-lime-500",
+				}}
+				description="Kit de olhos lancôme monsieur big set"
+				price={199.97}
+				isVIP={isVip}
+				imgURL="./images/product1.png"
+			/>,
+			<ProductCard
+				name="Lancôme"
+				badge={{
+					text: "Frete Grátis",
+					colors: "bg-lime-500",
+				}}
+				description="Kit de olhos lancôme monsieur big set"
+				price={199.97}
+				isVIP={isVip}
+				imgURL="./images/product1.png"
+			/>,
+			<ProductCard
+				name="Lancôme"
+				badge={{
+					text: "Frete Grátis",
+					colors: "bg-lime-500",
+				}}
+				description="Kit de olhos lancôme monsieur big set"
+				price={199.97}
+				isVIP={isVip}
+				imgURL="./images/product1.png"
+			/>,
+			<ProductCard
+				name="Lancôme"
+				badge={{
+					text: "Frete Grátis",
+					colors: "bg-lime-500",
+				}}
+				description="Kit de olhos lancôme monsieur big set"
+				price={199.97}
+				isVIP={isVip}
+				imgURL="./images/product1.png"
+			/>,
+			<ProductCard
+				name="Lancôme"
+				badge={{
+					text: "Frete Grátis",
+					colors: "bg-lime-500",
+				}}
+				description="Kit de olhos lancôme monsieur big set"
+				price={199.97}
+				isVIP={isVip}
+				imgURL="./images/product1.png"
+			/>,
+			<ProductCard
+				name="Lancôme"
+				badge={{
+					text: "Frete Grátis",
+					colors: "bg-lime-500",
+				}}
+				description="Kit de olhos lancôme monsieur big set"
+				price={199.97}
+				isVIP={isVip}
+				imgURL="./images/product1.png"
+			/>,
+			<ProductCard
+				name="Lancôme"
+				badge={{
+					text: "Frete Grátis",
+					colors: "bg-lime-500",
+				}}
+				description="Kit de olhos lancôme monsieur big set"
+				price={199.97}
+				isVIP={isVip}
+				imgURL="./images/product1.png"
+			/>,
+			<ProductCard
+				name="Lancôme"
+				badge={{
+					text: "Frete Grátis",
+					colors: "bg-lime-500",
+				}}
+				description="Kit de olhos lancôme monsieur big set"
+				price={199.97}
+				isVIP={isVip}
+				imgURL="./images/product1.png"
+			/>,
+			<ProductCard
+				name="Lancôme"
+				badge={{
+					text: "Frete Grátis",
+					colors: "bg-lime-500",
+				}}
+				description="Kit de olhos lancôme monsieur big set"
+				price={199.97}
+				isVIP={isVip}
+				imgURL="./images/product1.png"
+			/>,
+			<ProductCard
+				name="Lancôme"
+				badge={{
+					text: "Frete Grátis",
+					colors: "bg-lime-500",
+				}}
+				description="Kit de olhos lancôme monsieur big set"
+				price={199.97}
+				isVIP={isVip}
+				imgURL="./images/product1.png"
+			/>,
+			<ProductCard
+				name="Lancôme"
+				badge={{
+					text: "Frete Grátis",
+					colors: "bg-lime-500",
+				}}
+				description="Kit de olhos lancôme monsieur big set"
+				price={199.97}
+				isVIP={isVip}
+				imgURL="./images/product1.png"
+			/>,
+			<ProductCard
+				name="Lancôme"
+				badge={{
+					text: "Frete Grátis",
+					colors: "bg-lime-500",
+				}}
+				description="Kit de olhos lancôme monsieur big set"
+				price={199.97}
+				isVIP={isVip}
+				imgURL="./images/product1.png"
+			/>,
+			<ProductCard
 				badge={{
 					text: "Exclusivo",
 					colors: "bg-yellow-500",

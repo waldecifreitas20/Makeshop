@@ -56,9 +56,9 @@ export class Flexbox extends Component {
 
     public render(): React.ReactNode {
         return <>
-            <div className={`${this.props.style ?? "grid grid-cols-5 gap-4 grid-flow-row"}`}>
+            <div className={`${this.props.style ?? "grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 grid-flow-row"}`}>
                 {this.activeItems.map((child, i) => {
-                    return <>{child}</>;
+                    return <span className="m-1">{child}</span>;
                 })}
             </div>
             {this.activeItems.length < this.items.length ?

@@ -33,7 +33,9 @@ export function ProductCard(props: ProductCardProps) {
             ${getTheme(props).background} 
             ${appColors.borders.container} 
             relative block border 
-            px-4 py-5 rounded-xl w-64
+            px-4 py-5 rounded-xl 
+            w-64
+            md:w-fit
             md:hover:shadow-lg
             md:hover:border-pink-300
             md:hover:shadow-pink-300
