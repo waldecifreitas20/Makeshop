@@ -1,21 +1,21 @@
 import { Component, PropsWithChildren } from "react";
 
-interface FlexboxProps {
+interface GridProps {
     style?: string;
     itemsByRow?: number;
     activeItems?: number;
 }
 
 
-export class Flexbox extends Component {
-    public props: PropsWithChildren<FlexboxProps>;
+export class Grid extends Component {
+    public props: PropsWithChildren<GridProps>;
 
     private lastPosition: number;
     private maxItems: number;
     private items: Array<any>
     private activeItems: Array<any>;
 
-    constructor(props: PropsWithChildren<FlexboxProps>) {
+    constructor(props: PropsWithChildren<GridProps>) {
         super(props);
         this.props = props;
 

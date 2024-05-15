@@ -7,7 +7,7 @@ import { PillCarousel } from "../components/PillCarousel";
 import { Pill } from "../components/Pill";
 import { CarouselOneByOne } from "../components/CarouselOneByOne";
 import { ProductCard } from "../components/ProductCard";
-import { Flexbox } from "../components/Flexbox";
+import { Grid } from "../components/Grid";
 import { Footer } from "../components/Footer";
 /* Utilities functions */
 import { isSmallDevice, onResizeScreen } from "../utils/utils";
@@ -415,9 +415,9 @@ export function HomePage() {
 					/>
 					:
 					<>
-						<Flexbox>
+						<Grid>
 							{getProducts()}
-						</Flexbox>
+						</Grid>
 					</>
 				}
 			</Section>
@@ -433,9 +433,9 @@ export function HomePage() {
 					/>
 					:
 					<>
-						<Flexbox>
+						<Grid>
 							{getProducts()}
-						</Flexbox>
+						</Grid>
 					</>
 				}
 			</Section>
@@ -443,7 +443,7 @@ export function HomePage() {
 
 			{/* best brands section */}
 			<Section key={"section-4"} title="Melhores Marcas" style="px-5 mt-16">
-				<Flexbox itemsByRow={6} style="grid grid-cols-2 gap-2 lg:grid-cols-3">
+				<Grid itemsByRow={6} style="grid grid-cols-2 gap-2 lg:grid-cols-3">
 					{BEST_BRANDS.map((brand, i) => {
 						return <>
 							<a href=""
@@ -467,7 +467,7 @@ export function HomePage() {
 							</a>
 						</>
 					})}
-				</Flexbox>
+				</Grid>
 			</Section>
 
 
@@ -482,11 +482,11 @@ export function HomePage() {
 					/>
 					:
 					<>
-						<Flexbox>
+						<Grid>
 							{getProducts(true).map((card, _) => {
 								return <>{card}</>
 							})}
-						</Flexbox>
+						</Grid>
 					</>
 				}
 			</Section>
