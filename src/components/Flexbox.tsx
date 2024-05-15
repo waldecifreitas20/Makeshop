@@ -1,62 +1,69 @@
 import { Children, Component, PropsWithChildren } from "react";
-import { renderElementChildren } from "../utils/childrenRenderer";
 
 interface FlexboxProps {
     style?: string;
     itemsByRow?: number;
-    rows?: number;
+    activeItems?: number;
 }
 
 
 export class Flexbox extends Component {
     public props: PropsWithChildren<FlexboxProps>;
 
-    private maxRows: number;
-    private rowsActives: number;
-    private rows: Array<any>;
+    private lastPosition: number;
+    private maxItems: number;
+    private items: Array<any>
+    private activeItems: Array<any>;
 
     constructor(props: PropsWithChildren<FlexboxProps>) {
         super(props);
         this.props = props;
-        this.rowsActives = 1;
-        this.rows = this.initRows(this.props.children);
-        this.maxRows = this.calculateMaxRow(this.props.children)
 
+        this.items = this.props.children as Array<any>;
+        this.maxItems = this.items.length - 1;
+        this.activeItems = this.initActiveItems(this.props.children);
+        this.lastPosition = this.activeItems.length - 1;
+
+        this.state = {
+            showButton: this.activeItems.length < this.items.length,
+        }
     }
 
-    private initRows(items: any): Array<any> {
-        let rows = [];
+    private initActiveItems(items: any): Array<any> {
+        let activeItems = [];
 
         for (let i = 0; i < items.length; i++) {
             if (i >= (this.props.itemsByRow ?? 5) || i >= items.length) {
                 break;
             }
-            rows.push(items[i])
+            activeItems.push(items[i])
         }
-        return rows;
+        return activeItems;
     }
 
-    private calculateMaxRow(items: any) {
-        let byRow = 5;
-        console.log(items.length);
 
-        return byRow;
-    }
+    public nextRow() {
+        while (true) {
+            if (this.lastPosition + 1 > this.maxItems) {
+                break;
+            }
+            this.lastPosition++;
+            this.activeItems.push(this.items[this.lastPosition])
+        }
 
-    private getRow(index: number, items: any) {
-        let lastItem = items.length
+        this.setState({});
     }
 
     public render(): React.ReactNode {
         return <>
-            <div className={`${this.props.style ?? "grid grid-cols-5"}`}>
-                {this.rows.map((child, i) => {
+            <div className={`${this.props.style ?? "grid grid-cols-5 gap-4 grid-flow-row"}`}>
+                {this.activeItems.map((child, i) => {
                     return <>{child}</>;
                 })}
             </div>
-            {this.rows.length < ((this.props.children as Array<any>).length ?? 0) ?
+            {this.activeItems.length < this.items.length ?
                 <div className="flex justify-center mt-10">
-                    <button className="border text-pink-500 border-pink-400 rounded-lg p-1 hover:shadow-md hover:shadow-pink-400 w-[150px] transition-all duration-200">Ver mais</button>
+                    <button onClick={() => this.nextRow.bind(this).call(null)} className="border text-pink-500 border-pink-400 rounded-lg p-1 hover:shadow-md hover:shadow-pink-400 w-[150px] transition-all duration-200">Ver mais</button>
                 </div>
                 : <></>
             }
