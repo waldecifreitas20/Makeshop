@@ -1,5 +1,5 @@
 /* built-in */
-import { ReactElement, useState } from "react";
+import { useState } from "react";
 /* Components */
 import { Navbar } from "../components/Navbar";
 import { Section } from "../components/Section";
@@ -13,6 +13,7 @@ import { Footer } from "../components/Footer";
 import { isSmallDevice, onResizeScreen } from "../utils/utils";
 import { Newsletter } from "../components/Newsletter";
 import { getProducts } from "../services/products.ts";
+import { getBestBrands } from "../services/brands.ts";
 
 
 export function HomePage() {
@@ -37,10 +38,9 @@ export function HomePage() {
 		lg:mx-4
 		lg:hover:text-pink-500    
 		`;
-	const BANNERS = function (): Array<any> {
+	function getBanners(): Array<any> {
 
 		let [buttonCopyIcon, setButtonCopyIcon] = useState(<i className="fa-regular fa-copy fa-lg"></i>);
-
 		let [isBigBanner, setIsBigBanner] = useState(!isSmallDevice());
 
 		onResizeScreen(() => {
@@ -87,6 +87,7 @@ export function HomePage() {
 			<img className="block w-full h-full mx-auto" src={`./images/banner2-${isBigBanner ? "big" : "small"}.png`} alt="" />
 		];
 	}
+
 	const products = getProducts().map((product, i) => {
 		return <ProductCard
 			name={product.name}
@@ -104,14 +105,7 @@ export function HomePage() {
 		/>
 	});
 
-	const BEST_BRANDS = [
-		{ logoUrl: "./images/brand-absolute-ny.png", name: "lancôme", color: "bg-lime-500" },
-		{ logoUrl: "./images/brand-lancome.png", name: "absolute new york", color: "bg-pink-500" },
-		{ logoUrl: "./images/brand-sisley.png", name: "sisley", color: "bg-sky-500" },
-		{ logoUrl: "./images/brand-oceane.png", name: "océane", color: "bg-slate-500" },
-		{ logoUrl: "./images/brand-payot.png", name: "payot", color: "bg-violet-500" },
-		{ logoUrl: "./images/brand-roche-posay.png", name: "la roche-posay", color: "bg-yellow-500" },
-	];
+	const BEST_BRANDS = getBestBrands();
 
 	return (
 		<>
@@ -128,7 +122,7 @@ export function HomePage() {
 				</PillCarousel>
 			</section>
 
-			{/* Carousel of banners */}
+			{/* Carousel of getBanners */}
 			<Section key={"section-1"}>
 				<CarouselOneByOne
 					autoSlide={true}
@@ -146,7 +140,7 @@ export function HomePage() {
 					text-white  
 					size-12
 					"
-					items={BANNERS()}
+					items={getBanners()}
 				/>
 
 			</Section>
