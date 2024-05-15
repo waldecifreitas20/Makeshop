@@ -35,6 +35,7 @@ export function ProductCard(props: ProductCardProps) {
             relative block border 
             px-4 py-5 rounded-xl 
             w-64
+            h-full
             md:w-fit
             md:hover:shadow-lg
             md:hover:border-pink-300
@@ -59,11 +60,14 @@ export function ProductCard(props: ProductCardProps) {
             <img className="block w-full md:w-32 mx-auto mb-4" src={props.imgURL} alt="" />
 
             {/* Product info block */}
-            <div className="text-left capitalize">
-                <h3 className={`${getTheme(props).text} text-xl font-medium`}>{props.name}</h3>
-                <p className={`${getTheme(props).text} text-sm capitalize`}>{props.description}</p>
+            <div className=" text-left capitalize flex flex-col justify-between  md:h-[170px]">
+                <div>
+                    <h3 className={`${getTheme(props).text} text-xl font-medium`}>{props.name}</h3>
+                    <p className={`${getTheme(props).text} text-sm capitalize`}>{props.description}</p>
 
-                <div className="mt-3">
+                </div>
+
+                <div className="mt-4 md:m-0">
                     {/* Old price */}
                     <p className={`text-sm ${appColors.texts.dimmed} text-line-through`}>{(() => {
                         let oldPrice: number = props.price * 1.25;

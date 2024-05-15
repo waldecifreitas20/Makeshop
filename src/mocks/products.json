@@ -8,7 +8,7 @@
       "isFreeShipping": "true",
       "isVip": "true",
       "category": "makeup",
-      "imgPath" : ""
+      "imgPath" : "./images/product1.png"
     }
   ]
 }
