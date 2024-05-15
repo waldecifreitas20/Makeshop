@@ -12,9 +12,10 @@ import { Footer } from "../components/Footer";
 /* Utilities functions */
 import { isSmallDevice, onResizeScreen } from "../utils/utils";
 import { Newsletter } from "../components/Newsletter";
+import { getProducts } from "../services/products.ts";
+
 
 export function HomePage() {
-
 	const PILL_STYLE = `
 		transition-all
 		duration-300
@@ -86,276 +87,22 @@ export function HomePage() {
 			<img className="block w-full h-full mx-auto" src={`./images/banner2-${isBigBanner ? "big" : "small"}.png`} alt="" />
 		];
 	}
-
-	function getProducts(isVip?: boolean): Array<ReactElement<typeof ProductCard>> {
-		return [
-			<ProductCard
-				name="Lancôme"
-				badge={{
-					text: "Frete Grátis",
-					colors: "bg-lime-500",
-				}}
-				description="Kit de olhos lancôme monsieur big set"
-				price={199.97}
-				isVIP={isVip}
-				imgURL="./images/product1.png"
-			/>,
-			<ProductCard
-				name="Lancôme"
-				badge={{
-					text: "Frete Grátis",
-					colors: "bg-lime-500",
-				}}
-				description="Kit de olhos lancôme monsieur big set"
-				price={199.97}
-				isVIP={isVip}
-				imgURL="./images/product1.png"
-			/>,
-			<ProductCard
-				name="Lancôme"
-				badge={{
-					text: "Frete Grátis",
-					colors: "bg-lime-500",
-				}}
-				description="Kit de olhos lancôme monsieur big set"
-				price={199.97}
-				isVIP={isVip}
-				imgURL="./images/product1.png"
-			/>,
-			<ProductCard
-				name="Lancôme"
-				badge={{
-					text: "Frete Grátis",
-					colors: "bg-lime-500",
-				}}
-				description="Kit de olhos lancôme monsieur big set"
-				price={199.97}
-				isVIP={isVip}
-				imgURL="./images/product1.png"
-			/>,
-			<ProductCard
-				name="Lancôme"
-				badge={{
-					text: "Frete Grátis",
-					colors: "bg-lime-500",
-				}}
-				description="Kit de olhos lancôme monsieur big set"
-				price={199.97}
-				isVIP={isVip}
-				imgURL="./images/product1.png"
-			/>,
-			<ProductCard
-				name="Lancôme"
-				badge={{
-					text: "Frete Grátis",
-					colors: "bg-lime-500",
-				}}
-				description="Kit de olhos lancôme monsieur big set"
-				price={199.97}
-				isVIP={isVip}
-				imgURL="./images/product1.png"
-			/>,
-			<ProductCard
-				name="Lancôme"
-				badge={{
-					text: "Frete Grátis",
-					colors: "bg-lime-500",
-				}}
-				description="Kit de olhos lancôme monsieur big set"
-				price={199.97}
-				isVIP={isVip}
-				imgURL="./images/product1.png"
-			/>,
-			<ProductCard
-				name="Lancôme"
-				badge={{
-					text: "Frete Grátis",
-					colors: "bg-lime-500",
-				}}
-				description="Kit de olhos lancôme monsieur big set"
-				price={199.97}
-				isVIP={isVip}
-				imgURL="./images/product1.png"
-			/>,
-			<ProductCard
-				name="Lancôme"
-				badge={{
-					text: "Frete Grátis",
-					colors: "bg-lime-500",
-				}}
-				description="Kit de olhos lancôme monsieur big set"
-				price={199.97}
-				isVIP={isVip}
-				imgURL="./images/product1.png"
-			/>,
-			<ProductCard
-				name="Lancôme"
-				badge={{
-					text: "Frete Grátis",
-					colors: "bg-lime-500",
-				}}
-				description="Kit de olhos lancôme monsieur big set"
-				price={199.97}
-				isVIP={isVip}
-				imgURL="./images/product1.png"
-			/>,
-			<ProductCard
-				name="Lancôme"
-				badge={{
-					text: "Frete Grátis",
-					colors: "bg-lime-500",
-				}}
-				description="Kit de olhos lancôme monsieur big set"
-				price={199.97}
-				isVIP={isVip}
-				imgURL="./images/product1.png"
-			/>,
-			<ProductCard
-				name="Lancôme"
-				badge={{
-					text: "Frete Grátis",
-					colors: "bg-lime-500",
-				}}
-				description="Kit de olhos lancôme monsieur big set"
-				price={199.97}
-				isVIP={isVip}
-				imgURL="./images/product1.png"
-			/>,
-			<ProductCard
-				name="Lancôme"
-				badge={{
-					text: "Frete Grátis",
-					colors: "bg-lime-500",
-				}}
-				description="Kit de olhos lancôme monsieur big set"
-				price={199.97}
-				isVIP={isVip}
-				imgURL="./images/product1.png"
-			/>,
-			<ProductCard
-				name="Lancôme"
-				badge={{
-					text: "Frete Grátis",
-					colors: "bg-lime-500",
-				}}
-				description="Kit de olhos lancôme monsieur big set"
-				price={199.97}
-				isVIP={isVip}
-				imgURL="./images/product1.png"
-			/>,
-			<ProductCard
-				name="Lancôme"
-				badge={{
-					text: "Frete Grátis",
-					colors: "bg-lime-500",
-				}}
-				description="Kit de olhos lancôme monsieur big set"
-				price={199.97}
-				isVIP={isVip}
-				imgURL="./images/product1.png"
-			/>,
-			<ProductCard
-				name="Lancôme"
-				badge={{
-					text: "Frete Grátis",
-					colors: "bg-lime-500",
-				}}
-				description="Kit de olhos lancôme monsieur big set"
-				price={199.97}
-				isVIP={isVip}
-				imgURL="./images/product1.png"
-			/>,
-			<ProductCard
-				name="Lancôme"
-				badge={{
-					text: "Frete Grátis",
-					colors: "bg-lime-500",
-				}}
-				description="Kit de olhos lancôme monsieur big set"
-				price={199.97}
-				isVIP={isVip}
-				imgURL="./images/product1.png"
-			/>,
-			<ProductCard
-				name="Lancôme"
-				badge={{
-					text: "Frete Grátis",
-					colors: "bg-lime-500",
-				}}
-				description="Kit de olhos lancôme monsieur big set"
-				price={199.97}
-				isVIP={isVip}
-				imgURL="./images/product1.png"
-			/>,
-			<ProductCard
-				name="Lancôme"
-				badge={{
-					text: "Frete Grátis",
-					colors: "bg-lime-500",
-				}}
-				description="Kit de olhos lancôme monsieur big set"
-				price={199.97}
-				isVIP={isVip}
-				imgURL="./images/product1.png"
-			/>,
-			<ProductCard
-				badge={{
-					text: "Exclusivo",
-					colors: "bg-yellow-500",
-				}}
-				isVIP={isVip}
-				name="fenty beauty"
-				description="gloss labial fenty gloss bomb universal lip luminizer"
-				price={89.97}
-				imgURL="./images/product2.png"
-			/>,
-			<ProductCard
-				badge={{
-					text: "lançamento",
-					colors: "bg-pink-300 text-black",
-				}}
-				isVIP={isVip}
-				name="Carolina Herrera"
-				description="refil balm labial carolina herrena good girl mini kiss the mini tint superstar"
-				price={109.07}
-				imgURL="./images/product3.png"
-			/>,
-			<ProductCard
-				badge={{
-					text: "lançamento",
-					colors: "bg-pink-300 text-black",
-				}}
-				isVIP={isVip}
-
-				name="Carolina Herrera"
-				description="refil balm labial carolina herrena good girl mini kiss the mini tint superstar"
-				price={109.07}
-				imgURL="./images/product4.png"
-			/>,
-			<ProductCard
-				badge={{
-					text: "lançamento",
-					colors: "bg-pink-300 text-black",
-				}}
-				isVIP={isVip}
-				name="Carolina Herrera"
-				description="refil balm labial carolina herrena good girl mini kiss the mini tint superstar"
-				price={109.07}
-				imgURL="./images/product5.png"
-			/>,
-			<ProductCard
-				badge={{
-					text: "lançamento",
-					colors: "bg-pink-300 text-black",
-				}}
-				isVIP={isVip}
-				name="Carolina Herrera"
-				description="refil balm labial carolina herrena good girl mini kiss the mini tint superstar"
-				price={109.07}
-				imgURL="./images/product6.png"
-			/>,
-		];
-	}
+	const products = getProducts().map((product, i) => {
+		return <ProductCard
+			name={product.name}
+			description={product.desc}
+			imgURL={product.imgPath}
+			price={Number.parseFloat(product.price)}
+			isVIP={product.isVip == "true"}
+			badge={product.isFreeShipping == "true" ?
+				{
+					colors: 'bg-lime-500',
+					text: 'frete gratis'
+				} :
+				{ colors: '', text: '' }
+			}
+		/>
+	});
 
 	const BEST_BRANDS = [
 		{ logoUrl: "./images/brand-absolute-ny.png", name: "lancôme", color: "bg-lime-500" },
@@ -411,12 +158,12 @@ export function HomePage() {
 						slidingDelay={5000}
 						height="h-[450px]"
 						buttonsStyle="size-5"
-						items={getProducts()}
+						items={products}
 					/>
 					:
 					<>
 						<Grid>
-							{getProducts()}
+							{products}
 						</Grid>
 					</>
 				}
@@ -429,12 +176,12 @@ export function HomePage() {
 						slidingDelay={5000}
 						height="h-[450px]"
 						buttonsStyle="size-5"
-						items={getProducts()}
+						items={products}
 					/>
 					:
 					<>
 						<Grid>
-							{getProducts()}
+							{products}
 						</Grid>
 					</>
 				}
@@ -478,12 +225,12 @@ export function HomePage() {
 						slidingDelay={5000}
 						height="h-[450px]"
 						buttonsStyle="size-5"
-						items={getProducts(true)}
+						items={products}
 					/>
 					:
 					<>
 						<Grid>
-							{getProducts(true).map((card, _) => {
+							{products.map((card, _) => {
 								return <>{card}</>
 							})}
 						</Grid>
