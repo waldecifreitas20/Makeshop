@@ -29,8 +29,8 @@ export function ProductCard(props: ProductCardProps) {
 			${appColors.borders.container} 
 			relative block border 
 			px-4 py-5 rounded-xl 
-			min-w-64
-			max-w-72
+			w-64
+			md:w-full
 			h-full
 			
 			md:hover:shadow-lg
@@ -56,9 +56,9 @@ export function ProductCard(props: ProductCardProps) {
 			<img className="block w-full md:w-32 mx-auto mb-4" src={props.product.imgPath} alt="" />
 
 			{/* Product info block */}
-			<div className=" text-left capitalize flex flex-col justify-between  md:h-[170px]">
+			<div className=" text-left capitalize flex flex-col justify-between  h-[170px]">
 				<div>
-					<h3 className={`${getTheme(props.product.isVip).text} text-xl font-medium`}>{props.product.name}</h3>
+					<h3 className={`${getTheme(props.product.isVip).text} text-xl font-medium`}>{props.product.manufacturer}</h3>
 					<p className={`${getTheme(props.product.isVip).text} text-sm capitalize`}>{props.product.desc}</p>
 				</div>
 
