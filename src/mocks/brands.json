@@ -13,12 +13,12 @@
     {
       "logoUrl": "./images/brand-sisley.png",
       "name": "sisley",
-      "color": "bg-sky-500"
+      "color": "bg-yellow-500"
     },
     {
       "logoUrl": "./images/brand-oceane.png",
       "name": "océane",
-      "color": "bg-slate-500"
+      "color": "bg-sky-500"
     },
     {
       "logoUrl": "./images/brand-payot.png",
@@ -28,7 +28,7 @@
     {
       "logoUrl": "./images/brand-roche-posay.png",
       "name": "la roche-posay",
-      "color": "bg-yellow-500"
+      "color": "bg-red-500"
     }
   ]
 }

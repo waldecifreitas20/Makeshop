@@ -88,18 +88,36 @@ export function HomePage() {
 		];
 	}
 
-	const products = getProducts().map((product, i) => {
-		return <ProductCard
-			product={parseToProduct(product)}
-			badge={product.isFreeShipping == "true" ?
-				{
-					colors: 'bg-lime-500',
-					text: 'frete gratis'
-				} :
-				{ colors: '', text: '' }
-			}
-		/>
-	});
+	const products = getProducts();
+	const onlyVips = [];
+	const anyClient = [];
+
+	for (const product of products) {
+
+		if (parseToProduct(product).isVip) {
+			onlyVips.push(<ProductCard
+				product={parseToProduct(product)}
+				badge={product.isFreeShipping == "true" ?
+					{
+						colors: 'bg-lime-500',
+						text: 'frete gratis'
+					} :
+					{ colors: '', text: '' }
+				}
+			/>);
+		} else {
+			anyClient.push(<ProductCard
+				product={parseToProduct(product)}
+				badge={product.isFreeShipping == "true" ?
+					{
+						colors: 'bg-lime-500',
+						text: 'frete gratis'
+					} :
+					{ colors: '', text: '' }
+				}
+			/>);
+		}
+	}
 
 	const BEST_BRANDS = getBestBrands();
 
@@ -148,12 +166,12 @@ export function HomePage() {
 						slidingDelay={5000}
 						height="h-[450px]"
 						buttonsStyle="size-5"
-						items={products}
+						items={anyClient}
 					/>
 					:
 					<>
 						<Grid>
-							{products}
+							{anyClient}
 						</Grid>
 					</>
 				}
@@ -166,12 +184,12 @@ export function HomePage() {
 						slidingDelay={5000}
 						height="h-[450px]"
 						buttonsStyle="size-5"
-						items={products}
+						items={anyClient}
 					/>
 					:
 					<>
 						<Grid>
-							{products}
+							{anyClient}
 						</Grid>
 					</>
 				}
@@ -185,7 +203,7 @@ export function HomePage() {
 						return <>
 							<a href=""
 								className={`
-								${brand.color} 
+								${brand.color.toLowerCase()}
 								bg-opacity-40 
 								hover:bg-opacity-70 
 								transition-all
@@ -215,12 +233,12 @@ export function HomePage() {
 						slidingDelay={5000}
 						height="h-[450px]"
 						buttonsStyle="size-5"
-						items={products}
+						items={onlyVips}
 					/>
 					:
 					<>
 						<Grid>
-							{products.map((card, _) => {
+							{onlyVips.map((card, _) => {
 								return <>{card}</>
 							})}
 						</Grid>
