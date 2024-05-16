@@ -3,62 +3,62 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: "Title";
-    src: url("../fonts/AbrilFatface-Regular.ttf");
+	font-family: "Title";
+	src: url("../fonts/AbrilFatface-Regular.ttf");
 }
 
 @font-face {
-    font-family: "Body";
-    src: url("../fonts/Brygada1918-VariableFont_wght.ttf");
+	font-family: "Body";
+	src: url("../fonts/Brygada1918-VariableFont_wght.ttf");
 }
 
 @layer utilities {
-    .font-title {
+	.font-title {
 
-        font-family: "Title";
-    }
+		font-family: "Title";
+	}
 
-    .font-body,
-    body {
-        font-family: "Body";
-    }
+	.font-body,
+	body {
+		font-family: "Body";
+	}
 
-    .open-menu {
-        left: 0;
-    }
+	.open-menu {
+		left: 0;
+	}
 
-    .close-menu {
-        left: -200vw;
-    }
+	.close-menu {
+		left: -200vw;
+	}
 
-    .text-line-through {
-        text-decoration: line-through;
-    }
+	.text-line-through {
+		text-decoration: line-through;
+	}
 
-    .hide-scrollbar::-webkit-scrollbar {
-        display: none;
-    }
+	.hide-scrollbar::-webkit-scrollbar {
+		display: none;
+	}
 
-    
+
 }
 
 @media (min-width: 1024px) {
-    .dropdown {
-        position: relative;
-    }
-    
-    .dropdown .dropdown-content {
-        height: 0;
-        opacity: 1;
-        padding: 0;
-        transition: all 300ms;
-        top: 0px;
-        overflow: hidden;
-    }
-    
-    .dropdown:hover .dropdown-content,
-    .dropdown .dropdown-content:hover {
-        height: 120px;
-        opacity: 1;
-    }
+	.dropdown {
+		position: relative;
+	}
+
+	.dropdown .dropdown-content {
+		height: 0;
+		opacity: 1;
+		padding: 0;
+		transition: all 300ms;
+		top: 0px;
+		overflow: hidden;
+	}
+
+	.dropdown:hover .dropdown-content,
+	.dropdown .dropdown-content:hover {
+		height: 120px;
+		opacity: 1;
+	}
 }

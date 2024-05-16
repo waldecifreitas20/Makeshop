@@ -1,6 +1,6 @@
 import { products } from "../mocks/products.json";
 
-function getProducts(){
+function getProducts() {
   return products;
 }
 
