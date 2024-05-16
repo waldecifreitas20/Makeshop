@@ -21,4 +21,4 @@ function parseToProduct(obj: any): Product {
   }
 }
 
-export { getProducts, parseToProduct, getProductsBy }
+export { getProducts, parseToProduct, getProductsWhere }
