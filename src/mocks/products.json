@@ -2,13 +2,123 @@
   "products": [
     {
       "name": "Kit de Olhos",
-      "desc": "Big set",
+      "desc": "kit de olhos Big set lancome",
       "price": "199.90",
       "manufacturer": "Lancôme",
       "isFreeShipping": "true",
       "isVip": "true",
       "category": "makeup",
       "imgPath" : "./images/product1.png"
+    },
+    {
+      "name": "Kit de Olhos",
+      "desc": "Big set",
+      "price": "199.90",
+      "manufacturer": "Lancôme",
+      "isFreeShipping": "true",
+      "isVip": "true",
+      "category": "makeup",
+      "imgPath" : "./images/product2.png"
+    },
+    {
+      "name": "Kit de Olhos",
+      "desc": "Big set",
+      "price": "199.90",
+      "manufacturer": "Lancôme",
+      "isFreeShipping": "true",
+      "isVip": "true",
+      "category": "makeup",
+      "imgPath" : "./images/product3.png"
+    },
+    {
+      "name": "Kit de Olhos",
+      "desc": "Big set",
+      "price": "199.90",
+      "manufacturer": "Lancôme",
+      "isFreeShipping": "true",
+      "isVip": "true",
+      "category": "makeup",
+      "imgPath" : "./images/product4.png"
+    },
+    {
+      "name": "Kit de Olhos",
+      "desc": "Big set",
+      "price": "199.90",
+      "manufacturer": "Lancôme",
+      "isFreeShipping": "true",
+      "isVip": "true",
+      "category": "makeup",
+      "imgPath" : "./images/product5.png"
+    },
+    {
+      "name": "Kit de Olhos",
+      "desc": "Big set",
+      "price": "199.90",
+      "manufacturer": "Lancôme",
+      "isFreeShipping": "true",
+      "isVip": "true",
+      "category": "makeup",
+      "imgPath" : "./images/product6.png"
+    },
+    {
+      "name": "Kit de Olhos",
+      "desc": "kit de olhos Big set lancome",
+      "price": "199.90",
+      "manufacturer": "Lancôme",
+      "isFreeShipping": "true",
+      "isVip": "false",
+      "category": "makeup",
+      "imgPath" : "./images/product1.png"
+    },
+    {
+      "name": "Kit de Olhos",
+      "desc": "Big set",
+      "price": "199.90",
+      "manufacturer": "Lancôme",
+      "isFreeShipping": "false",
+      "isVip": "false",
+      "category": "makeup",
+      "imgPath" : "./images/product2.png"
+    },
+    {
+      "name": "Kit de Olhos",
+      "desc": "Big set",
+      "price": "199.90",
+      "manufacturer": "Lancôme",
+      "isFreeShipping": "true",
+      "isVip": "false",
+      "category": "makeup",
+      "imgPath" : "./images/product3.png"
+    },
+    {
+      "name": "Kit de Olhos",
+      "desc": "Big set",
+      "price": "199.90",
+      "manufacturer": "Lancôme",
+      "isFreeShipping": "true",
+      "isVip": "false",
+      "category": "makeup",
+      "imgPath" : "./images/product4.png"
+    },
+    {
+      "name": "Kit de Olhos",
+      "desc": "Big set",
+      "price": "199.90",
+      "manufacturer": "Lancôme",
+      "isFreeShipping": "true",
+      "isVip": "false",
+      "category": "makeup",
+      "imgPath" : "./images/product5.png"
+    },
+    {
+      "name": "Kit de Olhos",
+      "desc": "Big set",
+      "price": "199.90",
+      "manufacturer": "Lancôme",
+      "isFreeShipping": "true",
+      "isVip": "false",
+      "category": "makeup",
+      "imgPath" : "./images/product6.png"
     }
   ]
 }

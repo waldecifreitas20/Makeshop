@@ -4,6 +4,10 @@ function getProducts() {
   return products;
 }
 
+function getProductsWhere(condition: boolean) {
+  return products.filter((product) => {condition});
+}
+
 function parseToProduct(obj: any): Product {
   return {
     name: obj.name,
@@ -17,4 +21,4 @@ function parseToProduct(obj: any): Product {
   }
 }
 
-export { getProducts, parseToProduct }
+export { getProducts, parseToProduct, getProductsBy }
