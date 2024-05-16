@@ -12,7 +12,7 @@ import { Footer } from "../components/Footer";
 /* Utilities functions */
 import { isSmallDevice, onResizeScreen } from "../utils/utils";
 import { Newsletter } from "../components/Newsletter";
-import { getProducts } from "../services/products.ts";
+import { getProducts, parseToProduct } from "../services/products.ts";
 import { getBestBrands } from "../services/brands.ts";
 
 
@@ -90,11 +90,7 @@ export function HomePage() {
 
 	const products = getProducts().map((product, i) => {
 		return <ProductCard
-			name={product.name}
-			description={product.desc}
-			imgURL={product.imgPath}
-			price={Number.parseFloat(product.price)}
-			isVIP={product.isVip == "true"}
+			product={parseToProduct(product)}
 			badge={product.isFreeShipping == "true" ?
 				{
 					colors: 'bg-lime-500',

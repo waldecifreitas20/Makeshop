@@ -4,5 +4,17 @@ function getProducts() {
   return products;
 }
 
+function parseToProduct(obj: any): Product {
+  return {
+    name: obj.name,
+    desc: obj.desc,
+    price: Number.parseFloat(obj.price),
+    manufacturer: obj.manufacturer,
+    category: obj.category,
+    isVip: obj.isVip === "true",
+    isFreeShipping: obj.isFreeShipping === "true",
+    imgPath: obj.imgPath,
+  }
+}
 
-export { getProducts, }
+export { getProducts, parseToProduct }
