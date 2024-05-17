@@ -1,19 +1,19 @@
 /* built-in */
 import { useState } from "react";
 /* Components */
-import { Navbar } from "../components/Navbar";
-import { Section } from "../components/Section";
-import { PillCarousel } from "../components/PillCarousel";
-import { Pill } from "../components/Pill";
-import { CarouselOneByOne } from "../components/CarouselOneByOne";
-import { ProductCard } from "../components/ProductCard";
-import { Grid } from "../components/Grid";
-import { Footer } from "../components/Footer";
+import { Navbar } from "../../components/Navbar.tsx";
+import { Section } from "../../components/Section.tsx";
+import { PillCarousel } from "../../components/PillCarousel.tsx";
+import { Pill } from "../../components/Pill.tsx";
+import { CarouselOneByOne } from "../../components/CarouselOneByOne.tsx";
+import { ProductCard } from "../../components/ProductCard.tsx";
+import { Grid } from "../../components/Grid.tsx";
+import { Footer } from "../../components/Footer.tsx";
 /* Utilities functions */
-import { isSmallDevice, onResizeScreen } from "../utils/utils";
-import { Newsletter } from "../components/Newsletter";
-import { getProducts, parseToProduct } from "../services/products.ts";
-import { getBestBrands } from "../services/brands.ts";
+import { isSmallDevice, onResizeScreen } from "../../utils/utils.ts";
+import { Newsletter } from "../../components/Newsletter.tsx";
+import { getProducts, parseToProduct } from "../../services/products.ts";
+import { getBestBrands } from "../../services/brands.ts";
 
 
 export function HomePage() {
@@ -119,7 +119,38 @@ export function HomePage() {
 		}
 	}
 
-	const BEST_BRANDS = getBestBrands();
+	const BEST_BRANDS = [
+		{
+			"logoUrl": "./images/brand-absolute-ny.png",
+			"name": "lancôme",
+			"color": "bg-lime-500"
+		},
+		{
+			"logoUrl": "./images/brand-lancome.png",
+			"name": "absolute new york",
+			"color": "bg-pink-500"
+		},
+		{
+			"logoUrl": "./images/brand-sisley.png",
+			"name": "sisley",
+			"color": "bg-yellow-500"
+		},
+		{
+			"logoUrl": "./images/brand-oceane.png",
+			"name": "océane",
+			"color": "bg-sky-500"
+		},
+		{
+			"logoUrl": "./images/brand-payot.png",
+			"name": "payot",
+			"color": "bg-violet-500"
+		},
+		{
+			"logoUrl": "./images/brand-roche-posay.png",
+			"name": "la roche-posay",
+			"color": "bg-red-500"
+		}
+	]
 
 	return (
 		<>
@@ -203,7 +234,7 @@ export function HomePage() {
 						return <>
 							<a href=""
 								className={`
-								${brand.color.toLowerCase()}
+								${brand.color}
 								bg-opacity-40 
 								hover:bg-opacity-70 
 								transition-all
