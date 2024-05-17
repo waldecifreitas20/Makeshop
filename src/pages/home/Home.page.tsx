@@ -1,5 +1,3 @@
-/* built-in */
-import { useState } from "react";
 /* Components */
 import { Navbar } from "../../components/Navbar.tsx";
 import { Section } from "../../components/Section.tsx";
@@ -9,16 +7,18 @@ import { CarouselOneByOne } from "../../components/CarouselOneByOne.tsx";
 import { ProductCard } from "../../components/ProductCard.tsx";
 import { Grid } from "../../components/Grid.tsx";
 import { Footer } from "../../components/Footer.tsx";
+/* Local Components */
+import { Banners } from "./components/banners.tsx";
 /* Utilities functions */
-import { isSmallDevice, onResizeScreen } from "../../utils/utils.ts";
+import { isSmallDevice } from "../../utils/utils.ts";
 import { Newsletter } from "../../components/Newsletter.tsx";
 import { getProducts, parseToProduct } from "../../services/products.ts";
 import { getBestBrands } from "../../services/brands.ts";
-import { Banners } from "./components/banners.tsx";
+import { ReactElement } from "react";
 
 
 export function HomePage() {
-	
+
 	const PILL_STYLE = `
 		transition-all
 		duration-300
@@ -41,27 +41,29 @@ export function HomePage() {
 		lg:hover:text-pink-500    
 		`;
 
-	const products = getProducts();
-	const onlyVips = [];
-	const anyClient = [];
+	const products: {
+		all: Array<object>,
+		onlyVips: Array<ReactElement>,
+		anyClient: Array<ReactElement>,
+	} = {
+		all: getProducts(),
+		onlyVips: [],
+		anyClient: [],
+	}
 
-	for (const product of products) {
+	for (const product of products.all) {
+		const parsedProduct = parseToProduct(product);
 
-		if (parseToProduct(product).isVip) {
-			onlyVips.push(<ProductCard
-				product={parseToProduct(product)}
-				badge={product.isFreeShipping == "true" ?
-					{
-						colors: 'bg-lime-500',
-						text: 'frete gratis'
-					} :
-					{ colors: '', text: '' }
-				}
-			/>);
+		if (parsedProduct.isVip) {
+			products.onlyVips.push(
+				<ProductCard
+					product={parsedProduct}
+				/>
+			);
 		} else {
-			anyClient.push(<ProductCard
+			products.anyClient.push(<ProductCard
 				product={parseToProduct(product)}
-				badge={product.isFreeShipping == "true" ?
+				badge={parsedProduct.isFreeShipping ?
 					{
 						colors: 'bg-lime-500',
 						text: 'frete gratis'
@@ -119,12 +121,12 @@ export function HomePage() {
 						slidingDelay={5000}
 						height="h-[450px]"
 						buttonsStyle="size-5"
-						items={anyClient}
+						items={products.anyClient}
 					/>
 					:
 					<>
 						<Grid>
-							{anyClient}
+							{products.anyClient}
 						</Grid>
 					</>
 				}
@@ -137,12 +139,12 @@ export function HomePage() {
 						slidingDelay={5000}
 						height="h-[450px]"
 						buttonsStyle="size-5"
-						items={anyClient}
+						items={products.anyClient}
 					/>
 					:
 					<>
 						<Grid>
-							{anyClient}
+							{products.anyClient}
 						</Grid>
 					</>
 				}
@@ -186,12 +188,12 @@ export function HomePage() {
 						slidingDelay={5000}
 						height="h-[450px]"
 						buttonsStyle="size-5"
-						items={onlyVips}
+						items={products.onlyVips}
 					/>
 					:
 					<>
 						<Grid>
-							{onlyVips.map((card, _) => {
+							{products.onlyVips.map((card, _) => {
 								return <>{card}</>
 							})}
 						</Grid>
