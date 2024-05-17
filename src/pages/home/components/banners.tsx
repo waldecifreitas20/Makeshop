@@ -1,23 +1,23 @@
 import { useState } from "react";
 import { isSmallDevice, onResizeScreen } from "../../../utils/utils";
+import { copyToClipboard } from "../Home.methods";
 
 
 
 export function Banners(): Array<any> {
-
-  let [buttonCopyIcon, setButtonCopyIcon] = useState(<i className="fa-regular fa-copy fa-lg"></i>);
+  const COUPON = "MAKE15OFF";
+  const icons = {
+    copied: <i className="fa-solid fa-check text-green-500 fa-lg" > </i>,
+    initial: <i className="fa-solid fa-check text-green-500 fa-lg" > </i>,
+  }
+  let [buttonCopyIcon, setButtonCopyIcon] = useState(icons.initial);
   let [isBigBanner, setIsBigBanner] = useState(!isSmallDevice());
 
+  /* Make banner responsible to screen resizing */
   onResizeScreen(() => {
     setIsBigBanner(!isSmallDevice());
   });
 
-  const copyToClipboard = (value: string) => {
-    window.navigator.clipboard.writeText(value)
-      .then(() => {
-        setButtonCopyIcon(<i className="fa-solid fa-check text-green-500 fa-lg"></i>)
-      });
-  }
 
   return [
     <span className="relative block mx-auto h-full w-full">
@@ -42,14 +42,16 @@ export function Banners(): Array<any> {
             lg:text-2xl
            
         "/>
-          <button className="bg-white hover:bg-gray-200 text-pink-600 border rounded-r-md p-2 text-sm w-1/4" onClick={() => copyToClipboard("MAKE15OFF")}>
+          <button className="bg-white hover:bg-gray-200 text-pink-600 border rounded-r-md p-2 text-sm w-1/4" onClick={() => copyToClipboard(COUPON, () => {
+            setButtonCopyIcon(icons.copied)
+          })}>
             {buttonCopyIcon}
           </button>
         </div>
       </div>
     </span>,
 
-    <span  className=" relative block w-full h-full mx-auto">
+    <span className=" relative block w-full h-full mx-auto">
       <img className="block size-full" src={`./images/banner2-${isBigBanner ? "big" : "small"}.png`} alt="" />
     </span>
   ];
