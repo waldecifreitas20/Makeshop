@@ -18,6 +18,7 @@ import { Banners } from "./components/banners.tsx";
 
 
 export function HomePage() {
+	
 	const PILL_STYLE = `
 		transition-all
 		duration-300
@@ -71,38 +72,7 @@ export function HomePage() {
 		}
 	}
 
-	const BEST_BRANDS = [
-		{
-			"logoUrl": "./images/brand-absolute-ny.png",
-			"name": "lancôme",
-			"color": "bg-lime-500"
-		},
-		{
-			"logoUrl": "./images/brand-lancome.png",
-			"name": "absolute new york",
-			"color": "bg-pink-500"
-		},
-		{
-			"logoUrl": "./images/brand-sisley.png",
-			"name": "sisley",
-			"color": "bg-yellow-500"
-		},
-		{
-			"logoUrl": "./images/brand-oceane.png",
-			"name": "océane",
-			"color": "bg-sky-500"
-		},
-		{
-			"logoUrl": "./images/brand-payot.png",
-			"name": "payot",
-			"color": "bg-violet-500"
-		},
-		{
-			"logoUrl": "./images/brand-roche-posay.png",
-			"name": "la roche-posay",
-			"color": "bg-red-500"
-		}
-	]
+	const BEST_BRANDS = getBestBrands();
 
 	return (
 		<>
