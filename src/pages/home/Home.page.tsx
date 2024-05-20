@@ -85,12 +85,12 @@ export function HomePage() {
 						slidingDelay={5000}
 						height="h-[450px]"
 						buttonsStyle="size-5"
-						items={getProductCards(ProductCardType.ANY_CLIENT, 0, 10)}
+						items={getProductCards(ProductCardType.ANY_CLIENT)}
 					/>
 					:
 					<>
 						<Grid>
-							{getProductCards(ProductCardType.ANY_CLIENT, 0, 10)}
+							{getProductCards(ProductCardType.ANY_CLIENT)}
 						</Grid>
 					</>
 				}
@@ -103,12 +103,12 @@ export function HomePage() {
 						slidingDelay={5000}
 						height="h-[450px]"
 						buttonsStyle="size-5"
-						items={getProductCards(ProductCardType.ANY_CLIENT, 0, 10)}
+						items={getProductCards(ProductCardType.ANY_CLIENT)}
 					/>
 					:
 					<>
 						<Grid>
-							{getProductCards(ProductCardType.ANY_CLIENT, 0, 10)}
+							{getProductCards(ProductCardType.ANY_CLIENT)}
 						</Grid>
 					</>
 				}
@@ -152,12 +152,12 @@ export function HomePage() {
 						slidingDelay={5000}
 						height="h-[450px]"
 						buttonsStyle="size-5"
-						items={getProductCards(ProductCardType.VIP, 0, 10)}
+						items={getProductCards(ProductCardType.VIP)}
 					/>
 					:
 					<>
 						<Grid>
-							{getProductCards(ProductCardType.VIP, 0, 10).map((card, _) => {
+							{getProductCards(ProductCardType.VIP).map((card, _) => {
 								return <>{card}</>
 							})}
 						</Grid>

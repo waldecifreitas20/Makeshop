@@ -60,14 +60,12 @@ class ProductCardType {
 
 function getProductCards(
   productCardType: ProductCardType,
-  fromIndex: number,
-  newArrayLength: number,
 ) {
   switch (productCardType) {
     case ProductCardType.VIP:
-      return getSubArray(productCardsData.vips, fromIndex, newArrayLength);
+      return productCardsData.vips;
     case ProductCardType.ANY_CLIENT:
-      return getSubArray(productCardsData.anyClient, fromIndex, newArrayLength);
+      return productCardsData.anyClient;
     default:
       throw "Invalid product card type sent!";
   }
