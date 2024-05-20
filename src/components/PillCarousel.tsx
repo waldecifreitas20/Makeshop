@@ -22,15 +22,19 @@ export class PillCarousel extends Component implements Carousel {
 		this.showButtons = true
 		this.state = {
 			showButtons: this.showButtons,
-
 		}
 
 		onResizeScreen(() => {
-			this.showButtons = this.getCarouselView().offsetWidth <= this.getSlider().offsetWidth;
+			const slider = this.getSlider();
+			this.showButtons = this.getCarouselView().offsetWidth <= slider.offsetWidth;
 			this.updateMaxOffset();
 			this.setState({
 				showButtons: this.showButtons,
 			});
+
+			if (!this.showButtons) {
+				slider.style.left = "0px";
+			}
 		})
 
 		this.nextItem = function () {
@@ -114,7 +118,6 @@ export class PillCarousel extends Component implements Carousel {
 	}
 
 	private updateMaxOffset() {
-		const SLIDER = this.getSlider();
-		this.maxOffset = -1 * (SLIDER.offsetWidth - this.getCarouselView().offsetWidth);
+		this.maxOffset = -1 * (this.getSlider().offsetWidth - this.getCarouselView().offsetWidth);
 	}
 }
