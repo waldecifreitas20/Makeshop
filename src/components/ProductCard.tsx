@@ -31,8 +31,8 @@ export function ProductCard(props: ProductCardProps) {
 			px-4 py-5 rounded-xl 
 			w-64
 			md:w-full
-			h-full
-			
+			h-fit
+
 			md:hover:shadow-lg
 			md:hover:border-pink-300
 			md:hover:shadow-pink-300
@@ -56,7 +56,7 @@ export function ProductCard(props: ProductCardProps) {
 			<img className="block w-full md:w-32 mx-auto mb-4" src={props.product.imgPath} alt="" />
 
 			{/* Product info block */}
-			<div className=" text-left capitalize flex flex-col justify-between  h-[170px]">
+			<div className=" text-left capitalize flex flex-col justify-between  h-[120px] md:h-[130px]">
 				<div>
 					<h3 className={`${getTheme(props.product.isVip).text} text-xl font-medium`}>{props.product.manufacturer}</h3>
 					<p className={`${getTheme(props.product.isVip).text} text-sm capitalize`}>{props.product.desc}</p>
