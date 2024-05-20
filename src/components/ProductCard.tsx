@@ -46,7 +46,7 @@ export function ProductCard(props: ProductCardProps) {
 					<span className={`
 						absolute top-4 right-0 
 						${props.badge.colors} 
-						${getTheme(props.product.isVip).text} 
+				
 						text-sm capitalize 
 						py-1 px-5`
 					}>{props.badge.text}</span>
