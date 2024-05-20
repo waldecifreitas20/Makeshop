@@ -3,46 +3,7 @@ import { getProducts, parseToProduct } from "../../services/products";
 import { ProductCard } from "../../components/ProductCard";
 import { getSubArray } from "../../utils/utils";
 
-function copyToClipboard(value: string, callback: VoidFunction): void {
-  window.navigator.clipboard.writeText(value)
-    .then(callback);
-}
-
-function getBestBrands() {
-  return [
-    {
-      "logoUrl": "./images/brand-absolute-ny.png",
-      "name": "lancôme",
-      "color": "bg-lime-500"
-    },
-    {
-      "logoUrl": "./images/brand-lancome.png",
-      "name": "absolute new york",
-      "color": "bg-pink-500"
-    },
-    {
-      "logoUrl": "./images/brand-sisley.png",
-      "name": "sisley",
-      "color": "bg-yellow-500"
-    },
-    {
-      "logoUrl": "./images/brand-oceane.png",
-      "name": "océane",
-      "color": "bg-sky-500"
-    },
-    {
-      "logoUrl": "./images/brand-payot.png",
-      "name": "payot",
-      "color": "bg-violet-500"
-    },
-    {
-      "logoUrl": "./images/brand-roche-posay.png",
-      "name": "la roche-posay",
-      "color": "bg-red-500"
-    }
-  ]
-}
-
+/* Internal Process */
 const productCardsData = (() => {
 
   const products: {
@@ -89,10 +50,13 @@ const productCardsData = (() => {
   };
 })();
 
+
+/* EXPORTS */
 class ProductCardType {
   static VIP = "vip";
   static ANY_CLIENT = "any";
 }
+
 
 function getProductCards(
   productCardType: ProductCardType,
@@ -107,6 +71,46 @@ function getProductCards(
     default:
       throw "Invalid product card type sent!";
   }
+}
+
+function copyToClipboard(value: string, callback: VoidFunction): void {
+  window.navigator.clipboard.writeText(value)
+    .then(callback);
+}
+
+function getBestBrands() {
+  return [
+    {
+      "logoUrl": "./images/brand-absolute-ny.png",
+      "name": "lancôme",
+      "color": "bg-lime-500"
+    },
+    {
+      "logoUrl": "./images/brand-lancome.png",
+      "name": "absolute new york",
+      "color": "bg-pink-500"
+    },
+    {
+      "logoUrl": "./images/brand-sisley.png",
+      "name": "sisley",
+      "color": "bg-yellow-500"
+    },
+    {
+      "logoUrl": "./images/brand-oceane.png",
+      "name": "océane",
+      "color": "bg-sky-500"
+    },
+    {
+      "logoUrl": "./images/brand-payot.png",
+      "name": "payot",
+      "color": "bg-violet-500"
+    },
+    {
+      "logoUrl": "./images/brand-roche-posay.png",
+      "name": "la roche-posay",
+      "color": "bg-red-500"
+    }
+  ]
 }
 
 export {
