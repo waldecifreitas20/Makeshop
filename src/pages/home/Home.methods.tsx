@@ -1,6 +1,7 @@
 import { ReactElement } from "react";
 import { getProducts, parseToProduct } from "../../services/products";
 import { ProductCard } from "../../components/ProductCard";
+import { getSubArray } from "../../utils/utils";
 
 function copyToClipboard(value: string, callback: VoidFunction): void {
   window.navigator.clipboard.writeText(value)
@@ -42,7 +43,7 @@ function getBestBrands() {
   ]
 }
 
-function getProductCards() {
+const productCardsData = (() => {
 
   const products: {
     all: Array<object>,
@@ -59,18 +60,18 @@ function getProductCards() {
 
     if (parsedProduct.isVip) {
       products.onlyVips.push(
-        <ProductCard 
-        product={parsedProduct}
-        badge={{
-          colors:"bg-yellow-400 text-black",
-          text: "Exclusivo" 
-        }}
+        <ProductCard
+          product={parsedProduct}
+          badge={{
+            colors: "bg-yellow-400 text-black",
+            text: "Exclusivo"
+          }}
         />
       );
     } else {
       products.anyClient.push(<ProductCard
-        product={ parseToProduct(product) }
-        badge = {
+        product={parseToProduct(product)}
+        badge={
           parsedProduct.isFreeShipping ?
             {
               colors: 'bg-lime-500',
@@ -78,18 +79,39 @@ function getProductCards() {
             } :
             { colors: '', text: '' }
         }
-        />);
+      />);
     }
   }
 
   return {
-    vips: products.onlyVips, 
+    vips: products.onlyVips,
     anyClient: products.anyClient
   };
+})();
+
+class ProductCardType {
+  static VIP = "vip";
+  static ANY_CLIENT = "any";
+}
+
+function getProductCards(
+  productCardType: ProductCardType,
+  fromIndex: number,
+  newArrayLength: number,
+) {
+  switch (productCardType) {
+    case ProductCardType.VIP:
+      return getSubArray(productCardsData.vips, fromIndex, newArrayLength);
+    case ProductCardType.ANY_CLIENT:
+      return getSubArray(productCardsData.anyClient, fromIndex, newArrayLength);
+    default:
+      throw "Invalid product card type sent!";
+  }
 }
 
 export {
   copyToClipboard,
   getBestBrands,
   getProductCards,
+  ProductCardType
 }

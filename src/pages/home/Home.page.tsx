@@ -11,7 +11,7 @@ import { Banners } from "./components/banners.tsx";
 /* Utilities functions */
 import { isSmallDevice } from "../../utils/utils.ts";
 import { Newsletter } from "../../components/Newsletter.tsx";
-import { getProductCards, getBestBrands } from "./Home.methods.tsx";
+import { getProductCards, getBestBrands, ProductCardType } from "./Home.methods.tsx";
 
 
 export function HomePage() {
@@ -38,7 +38,6 @@ export function HomePage() {
 		lg:hover:text-pink-500    
 		`;
 
-	const products = getProductCards();
 	const BEST_BRANDS = getBestBrands();
 
 	return (
@@ -86,12 +85,12 @@ export function HomePage() {
 						slidingDelay={5000}
 						height="h-[450px]"
 						buttonsStyle="size-5"
-						items={products.anyClient}
+						items={getProductCards(ProductCardType.ANY_CLIENT, 0, 10)}
 					/>
 					:
 					<>
 						<Grid>
-							{products.anyClient}
+							{getProductCards(ProductCardType.ANY_CLIENT, 0, 10)}
 						</Grid>
 					</>
 				}
@@ -104,12 +103,12 @@ export function HomePage() {
 						slidingDelay={5000}
 						height="h-[450px]"
 						buttonsStyle="size-5"
-						items={products.anyClient}
+						items={getProductCards(ProductCardType.ANY_CLIENT, 0, 10)}
 					/>
 					:
 					<>
 						<Grid>
-							{products.anyClient}
+							{getProductCards(ProductCardType.ANY_CLIENT, 0, 10)}
 						</Grid>
 					</>
 				}
@@ -153,12 +152,12 @@ export function HomePage() {
 						slidingDelay={5000}
 						height="h-[450px]"
 						buttonsStyle="size-5"
-						items={products.vips}
+						items={getProductCards(ProductCardType.VIP, 0, 10)}
 					/>
 					:
 					<>
 						<Grid>
-							{products.vips.map((card, _) => {
+							{getProductCards(ProductCardType.VIP, 0, 10).map((card, _) => {
 								return <>{card}</>
 							})}
 						</Grid>
