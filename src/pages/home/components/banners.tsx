@@ -7,8 +7,8 @@ import { copyToClipboard } from "../Home.methods";
 export function Banners(): Array<any> {
   const COUPON = "MAKE15OFF";
   const icons = {
+    initial: <i className="fa-solid fa-copy text-pink-500 fa-lg" > </i>,
     copied: <i className="fa-solid fa-check text-green-500 fa-lg" > </i>,
-    initial: <i className="fa-solid fa-check text-green-500 fa-lg" > </i>,
   }
   let [buttonCopyIcon, setButtonCopyIcon] = useState(icons.initial);
   let [isBigBanner, setIsBigBanner] = useState(!isSmallDevice());
@@ -30,11 +30,13 @@ export function Banners(): Array<any> {
             readOnly disabled
 
             className="
-            rounded-l-md
             p-2 
             w-full
             cursor-pointer
-            border-y-2 border-l-2 border-dashed border-gray-100
+            border-2
+            rounded-md
+            md:rounded-l-md
+            md:border-y-2 md:border-l-2 border-dashed border-gray-100
             text-white text-center
             bg-white bg-opacity-20 
             
@@ -42,11 +44,14 @@ export function Banners(): Array<any> {
             lg:text-2xl
            
         "/>
-          <button className="bg-white hover:bg-gray-200 text-pink-600 border rounded-r-md p-2 text-sm w-1/4" onClick={() => copyToClipboard(COUPON, () => {
-            setButtonCopyIcon(icons.copied)
-          })}>
-            {buttonCopyIcon}
-          </button>
+          {
+            !isSmallDevice() ?
+              <button className="bg-white hover:bg-gray-200 text-pink-600 border rounded-r-md p-2 text-sm w-1/4" onClick={() => copyToClipboard(COUPON, () => {
+                setButtonCopyIcon(icons.copied)
+              })}>
+                {buttonCopyIcon}
+              </button> : <></>
+          }
         </div>
       </div>
     </span>,
