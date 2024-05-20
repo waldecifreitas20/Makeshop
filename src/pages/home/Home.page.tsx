@@ -4,7 +4,6 @@ import { Section } from "../../components/Section.tsx";
 import { PillCarousel } from "../../components/PillCarousel.tsx";
 import { Pill } from "../../components/Pill.tsx";
 import { CarouselOneByOne } from "../../components/CarouselOneByOne.tsx";
-import { ProductCard } from "../../components/ProductCard.tsx";
 import { Grid } from "../../components/Grid.tsx";
 import { Footer } from "../../components/Footer.tsx";
 /* Local Components */
@@ -12,9 +11,7 @@ import { Banners } from "./components/banners.tsx";
 /* Utilities functions */
 import { isSmallDevice } from "../../utils/utils.ts";
 import { Newsletter } from "../../components/Newsletter.tsx";
-import { getProducts, parseToProduct } from "../../services/products.ts";
-import { getBestBrands } from "../../services/brands.ts";
-import { ReactElement } from "react";
+import { getProductCards, getBestBrands } from "./Home.methods.tsx";
 
 
 export function HomePage() {
@@ -41,39 +38,7 @@ export function HomePage() {
 		lg:hover:text-pink-500    
 		`;
 
-	const products: {
-		all: Array<object>,
-		onlyVips: Array<ReactElement>,
-		anyClient: Array<ReactElement>,
-	} = {
-		all: getProducts(),
-		onlyVips: [],
-		anyClient: [],
-	}
-
-	for (const product of products.all) {
-		const parsedProduct = parseToProduct(product);
-
-		if (parsedProduct.isVip) {
-			products.onlyVips.push(
-				<ProductCard
-					product={parsedProduct}
-				/>
-			);
-		} else {
-			products.anyClient.push(<ProductCard
-				product={parseToProduct(product)}
-				badge={parsedProduct.isFreeShipping ?
-					{
-						colors: 'bg-lime-500',
-						text: 'frete gratis'
-					} :
-					{ colors: '', text: '' }
-				}
-			/>);
-		}
-	}
-
+	const products = getProductCards();
 	const BEST_BRANDS = getBestBrands();
 
 	return (
@@ -188,12 +153,12 @@ export function HomePage() {
 						slidingDelay={5000}
 						height="h-[450px]"
 						buttonsStyle="size-5"
-						items={products.onlyVips}
+						items={products.vips}
 					/>
 					:
 					<>
 						<Grid>
-							{products.onlyVips.map((card, _) => {
+							{products.vips.map((card, _) => {
 								return <>{card}</>
 							})}
 						</Grid>
