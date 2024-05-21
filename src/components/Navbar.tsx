@@ -1,6 +1,7 @@
 import { ReactElement, useState } from "react";
 import { onResizeScreen, isSmallDevice } from "../utils/utils";
 import { appColors } from "../global/colors";
+import { routes } from "../routes/routes";
 
 interface MenuOption {
 	child: ReactElement;
@@ -122,7 +123,7 @@ export function Navbar() {
 
 
 						{/* Logo */}
-						<a href="" className="
+						<a href={routes.home} className="
 						text-3xl font-title tracking-tightest text-gray-650 
 
 						lg:text-4xl md:text-2xl">Makeshop</a>
@@ -200,8 +201,8 @@ export function Navbar() {
 							<div className="flex items-center">
 								<i className="fa-regular fa-user fa-xl"></i>
 								<div className="flex flex-col items-start ml-1">
-									<p className="text-xs">Faça <a className="text-pink-500 font-bold hover:underline" href="">Login</a></p>
-									<p className="text-xs">ou <a className="font-bold text-pink-500 hover:underline" href="">cadastre-se</a></p>
+									<p className="text-xs">Faça <a className="text-pink-500 font-bold hover:underline" href={routes.login}>Login</a></p>
+									<p className="text-xs">ou <a className="font-bold text-pink-500 hover:underline" href={routes.singUp}>cadastre-se</a></p>
 								</div>
 							</div>
 
@@ -270,7 +271,7 @@ export function Navbar() {
 									${appColors.backgrounds.buttons.normalOutline}
 									text-white 
 									
-									transition-all duration-300`} href="">Fazer Login</a>
+									transition-all duration-300`} href={routes.login}>Fazer Login</a>
 									<a className={`
 									block py-2 
 									text-white  
@@ -278,7 +279,7 @@ export function Navbar() {
 																		
 									${appColors.backgrounds.buttons.normal}
 
-									transition-all duration-300 `} href="">Cadastre-se</a>
+									transition-all duration-300 `} href={routes.singUp}>Cadastre-se</a>
 								</div>
 							</div>
 
