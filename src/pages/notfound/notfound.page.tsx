@@ -2,7 +2,7 @@ import { Navbar } from "../../components/Navbar";
 
 export function NotFoundPage() {
   return <>
-
+    <Navbar/>
     <div className="h-screen flex justify-center items-center">
       <div className="text-center">
         <img className="mx-auto" src="https://cdn.pixabay.com/photo/2017/02/12/21/29/false-2061132_640.png" width={150} alt="" />
