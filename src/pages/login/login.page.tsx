@@ -1,3 +1,4 @@
+import { BackHomeButton } from "../../components/BackHomeButton";
 import { Pill } from "../../components/Pill";
 import { routes } from "../../routes/routes";
 
@@ -61,12 +62,7 @@ export function LoginPage() {
   return <>
     <div className="px-8 pt-10">
 
-      <header>
-        <div>
-          <i className="fa-solid fa-chevron-left mr-2"></i>
-          <a href={routes.home}>Voltar à Home</a>
-        </div>
-      </header>
+     <BackHomeButton/>
 
       <main className={`mt-16 mx-auto max-w-[400px] ${styles.loginCard}`}>
         <h1 className="text-center text-3xl mb-10 lg:text-2xl">Faça login e aproveite nossas ofertas</h1>
@@ -77,7 +73,7 @@ export function LoginPage() {
           <a className="block ml-auto w-fit mr-5 text-sm" href="">Esqueci minha senha</a>
 
           <Pill style={styles.loginButton} text="Entrar" />
-          <a className="block mx-auto w-fit text-sm" href="">Não tenho cadastro</a>
+          <a className="block mx-auto w-fit text-sm" href={routes.singUp}>Não tenho cadastro</a>
 
           {/* Future feature 
           <div className="mt-8 mb-3 relative">
