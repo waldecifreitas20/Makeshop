@@ -1,10 +1,11 @@
+import { Pill } from "../../components/Pill";
 import { routes } from "../../routes/routes";
 
 export function LoginPage() {
   const styles = {
     input: `
       block 
-      border border-black rounded-full 
+      border border-zinc-400 rounded-full 
       w-full 
       px-5 py-3 
       my-2
@@ -47,9 +48,10 @@ export function LoginPage() {
           <input className={styles.input} required placeholder="Senha" type="password" />
           <a className="block ml-auto w-fit mr-5" href="">Esqueci minha senha</a>
 
-          <button className={`${styles.input} bg-black text-white mt-5`}>Entrar</button>
+          <Pill style="mt-4 mb-2 bg-neutral-800 hover:bg-black py-3 text-xl text-white transition-all duration-300" text="Entrar"/>
           <a className="block mx-auto w-fit" href="">Não tenho cadastro</a>
 
+          {/* Future feature 
           <div className="mt-8 mb-3 relative">
             <span className="border border-gray-200 block"></span>
             <span className="block bg-zinc-50 text-gray-300 w-fit px-1 mx-auto relative -top-[14px]">ou</span>
@@ -69,6 +71,7 @@ export function LoginPage() {
               <img className={styles.icon} src="./images/icon-x.png" alt="" />
             </button>
           </div>
+            */}
         </form>
       </main>
     </div>
