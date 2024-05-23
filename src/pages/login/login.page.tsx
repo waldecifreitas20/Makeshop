@@ -63,14 +63,18 @@ export function LoginPage() {
   return <>
     <div className="px-8 pt-10">
 
-     <BackHomeButton/>
+      <BackHomeButton />
 
       <main className={`mt-16 mx-auto max-w-[400px] ${styles.loginCard}`}>
         <h1 className="text-center text-3xl mb-10 lg:text-2xl">Faça login e aproveite nossas ofertas</h1>
 
         <form>
-          <ResponsibleInput placeholder="Email" type="email" />
-          <ResponsibleInput placeholder="Senha" type="password" />
+        
+            <ResponsibleInput placeholder="Email" type="email" />
+     
+          <div className="mt-2 mb-1">
+            <ResponsibleInput placeholder="Senha" type="password" />
+          </div>
           <a className="block ml-auto w-fit mr-5 text-sm" href="">Esqueci minha senha</a>
 
           <Pill style={styles.loginButton} text="Entrar" />

@@ -2,6 +2,7 @@ import { BackHomeButton } from "../../components/BackHomeButton";
 import { InputBlock } from "../../components/InputBlock";
 import { Row } from "./components/Row";
 
+
 export function SingUpPage() {
   return <>
     <div className="px-8 pt-10">
@@ -10,7 +11,7 @@ export function SingUpPage() {
       <form method="GET" action="localhost:5173/">
         <fieldset>
           <InputBlock label="Nome Completo" placeholder="Ex:José Ribamar da Silva" />
-          <Row style="md:flex">
+          <Row style="md:flex md:justify-between">
             <InputBlock label="CPF" placeholder="xxx.xxx.xxx-xx" />
             <InputBlock label="Data de Nascimento" placeholder="dd/mm/aa" type="date" />
           </Row>
