@@ -1,12 +1,16 @@
 import { BackHomeButton } from "../../components/BackHomeButton";
 import { InputBlock } from "../../components/InputBlock";
+import { Pill } from "../../components/Pill";
+import { ResponsibleButton } from "../../components/ResponsibleButton";
 import { Row } from "./components/Row";
 
 
 export function SingUpPage() {
   return <>
-    <div className="px-8 pt-10">
-      <BackHomeButton />
+    <div className="px-8 py-10">
+      <div className="mb-5">
+        <BackHomeButton />
+      </div>
 
       <form method="GET" action="localhost:5173/">
         <fieldset>
@@ -29,15 +33,15 @@ export function SingUpPage() {
           <InputBlock label="Email" placeholder="joseribamar23@outlook.com" type="email" />
           <InputBlock label="Senha" placeholder="Minímo 8 caracteres" type="password" />
 
-          <ul>
-            <li><span></span>Contém simbolo</li>
-            <li><span></span>Contém letras maiúsculas</li>
-            <li><span></span>Contém letras minúsculas</li>
-            <li><span></span>Contém no mínimo 8 caracteres</li>
+          <ul className="mx-2">
+            <li className="text-green-500"><span>X</span> Contém simbolo</li>
+            <li className="text-green-500"><span>X</span> Contém letras maiúsculas</li>
+            <li className="text-red-500"><span>X</span> Contém letras minúsculas</li>
+            <li className="text-red-500"><span>X</span> Contém no mínimo 8 caracteres</li>
           </ul>
         </fieldset>
 
-        <button type="submit">Cadastrar</button>
+        <ResponsibleButton style="lg:w-[400px]" text="Cadastrar"/>
       </form>
     </div>
   </>;

@@ -1,5 +1,6 @@
 import { BackHomeButton } from "../../components/BackHomeButton";
 import { Pill } from "../../components/Pill";
+import { ResponsibleButton } from "../../components/ResponsibleButton";
 import { ResponsibleInput } from "../../components/ResponsibleInput";
 import { routes } from "../../routes/routes";
 
@@ -14,33 +15,6 @@ export function LoginPage() {
       md:mx-auto 
       md:py-10 md:px-8
     `,
-    input: `
-      block 
-      border border-zinc-400 rounded-full 
-      w-full 
-      px-5 py-2 
-      my-2
-      text-lg
-
-      md:py-2
-      md:text-md
-
-      md:text-sm
-      md:px-2
-      lg:rounded-md
-      `,
-    loginButton: `
-      mt-4 mb-2 
-      bg-neutral-800 hover:bg-black 
-      py-2 
-      text-xl text-white 
-      transition-all duration-300  
-      
-      md:text-sm
-      
-      lg:mt-12
-      lg:rounded-md
-      `,
     externalLoginButton: `
       bg-white
       border
@@ -77,7 +51,7 @@ export function LoginPage() {
           </div>
           <a className="block ml-auto w-fit mr-5 text-sm" href="">Esqueci minha senha</a>
 
-          <Pill style={styles.loginButton} text="Entrar" />
+          <ResponsibleButton type="submit" text="Entrar" />
           <a className="block mx-auto w-fit text-sm" href={routes.singUp}>Não tenho cadastro</a>
 
           {/* Future feature 
