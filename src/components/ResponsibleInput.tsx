@@ -15,10 +15,9 @@ export function ResponsibleInput(props: ResponsibleInputProps) {
         text-lg
   
         md:py-2
-        md:text-md
-  
         md:text-sm
         md:px-2
+        
         lg:rounded-md
       "
       type={props.type ?? "text"}

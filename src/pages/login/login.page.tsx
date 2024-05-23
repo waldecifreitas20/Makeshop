@@ -1,5 +1,6 @@
 import { BackHomeButton } from "../../components/BackHomeButton";
 import { Pill } from "../../components/Pill";
+import { ResponsibleInput } from "../../components/ResponsibleInput";
 import { routes } from "../../routes/routes";
 
 export function LoginPage() {
@@ -68,8 +69,8 @@ export function LoginPage() {
         <h1 className="text-center text-3xl mb-10 lg:text-2xl">Faça login e aproveite nossas ofertas</h1>
 
         <form>
-          <input className={styles.input} required placeholder="Email" type="email" />
-          <input className={styles.input} required placeholder="Senha" type="password" />
+          <ResponsibleInput placeholder="Email" type="email" />
+          <ResponsibleInput placeholder="Senha" type="password" />
           <a className="block ml-auto w-fit mr-5 text-sm" href="">Esqueci minha senha</a>
 
           <Pill style={styles.loginButton} text="Entrar" />
