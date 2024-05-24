@@ -19,8 +19,13 @@ function getSubArray(array: Array<any>, fromIndex = 0, newLength = 5): Array<any
 	return subArray;
 }
 
+function isEmpty(array: Array<any> | string) {
+  return array.length === 0;
+}
+
 export {
 	isSmallDevice,
 	onResizeScreen,
 	getSubArray,
+	isEmpty,
 }
