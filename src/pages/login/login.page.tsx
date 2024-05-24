@@ -4,13 +4,9 @@ import { ResponsibleButton } from "../../components/ResponsibleButton";
 import { ResponsibleInput } from "../../components/ResponsibleInput";
 
 import { routes } from "../../routes/routes";
+import { isEmpty } from "../../utils/utils";
+import { setInvalidInput } from "../../utils/forms";
 
-const validateForm = (event: MouseEvent, formId: string) => {
-  event.preventDefault();
-
-  const email = document.getElementById("email-input");
-  const password = document.getElementById("password-input");
-}
 
 const styles = {
   loginCard: `
@@ -55,8 +51,28 @@ const styles = {
 }
 
 export function LoginPage() {
-  const [userEmail, setUserEmail] = useState("");
-  const [userPass, setUserPass] = useState("");
+  const [showInvalidFormMessage, setFormMessageState] = useState(true);
+
+
+  const validateForm = (event: MouseEvent) => {
+    const email = document.getElementById("email-input") as HTMLInputElement;
+    const password = document.getElementById("password-input") as HTMLInputElement;
+
+    if (isEmpty(email.value)) {
+      emitFormError(event, email);
+    }
+    if (isEmpty(password.value)) {
+      emitFormError(event, password);
+    }
+
+  }
+
+  const emitFormError = (event: MouseEvent, input: HTMLInputElement) => {
+    event.preventDefault();
+    setInvalidInput(input);
+    setFormMessageState(false);
+  }
+
 
   return <>
     <div className="px-8 pt-10">
@@ -71,9 +87,7 @@ export function LoginPage() {
               className={styles.input}
               type="email"
               placeholder="Email"
-              value={userEmail}
             />
-            <small></small>
           </div>
 
           <div className="mt-2 mb-1">
@@ -82,12 +96,17 @@ export function LoginPage() {
               className={styles.input}
               placeholder="Senha"
               type="password"
-              value={userPass}
             />
           </div>
+          <small className={showInvalidFormMessage ? "hidden" : "font-medium text-red-500"}>Preencha os campos corretamente</small>
+
           <a className="block ml-auto w-fit mr-5 text-sm" href="">Esqueci minha senha</a>
 
-          <ResponsibleButton type="submit" text="Entrar" onClick={(event) => { validateForm(event.nativeEvent, 'singup-form') }} />
+          <ResponsibleButton
+            type="submit"
+            text="Entrar"
+            onClick={(event) => { validateForm(event.nativeEvent) }}
+          />
           <a className="block mx-auto w-fit text-sm" href={routes.singUp}>Não tenho cadastro</a>
         </form>
       </main>
