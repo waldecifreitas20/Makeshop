@@ -42,10 +42,9 @@ export function LoginPage() {
       <main className={`mt-16 mx-auto max-w-[400px] ${styles.loginCard}`}>
         <h1 className="text-center text-3xl mb-10 lg:text-2xl">Faça login e aproveite nossas ofertas</h1>
 
-        <form>
-        
-            <ResponsibleInput placeholder="Email" type="email" />
-     
+        <form method="GET" action="/">
+          <ResponsibleInput placeholder="Email" type="email" />
+
           <div className="mt-2 mb-1">
             <ResponsibleInput placeholder="Senha" type="password" />
           </div>

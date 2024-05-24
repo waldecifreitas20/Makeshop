@@ -1,6 +1,5 @@
 import { BackHomeButton } from "../../components/BackHomeButton";
-import { InputBlock } from "../../components/InputBlock";
-import { Pill } from "../../components/Pill";
+import { InputBlock } from "../../components/InputBlock";;
 import { ResponsibleButton } from "../../components/ResponsibleButton";
 import { Row } from "./components/Row";
 
@@ -12,7 +11,7 @@ export function SingUpPage() {
         <BackHomeButton />
       </div>
 
-      <form method="GET" action="localhost:5173/">
+      <form method="GET" action="/">
         <fieldset>
           <InputBlock label="Nome Completo" placeholder="Ex:José Ribamar da Silva" />
           <Row style="md:flex md:justify-between">
@@ -40,8 +39,8 @@ export function SingUpPage() {
             <li className="text-red-500"><span>X</span> Contém no mínimo 8 caracteres</li>
           </ul>
         </fieldset>
-
-        <ResponsibleButton style="lg:w-[400px]" text="Cadastrar"/>
+        
+        <ResponsibleButton style="lg:w-[400px]" type="submit" text="Cadastrar"/>
       </form>
     </div>
   </>;
