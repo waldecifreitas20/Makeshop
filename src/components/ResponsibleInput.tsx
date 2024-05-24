@@ -16,7 +16,8 @@ export function ResponsibleInput(props: DetailedHTMLProps<React.InputHTMLAttribu
         w-full 
         px-5 py-2 
         text-lg
-  
+        outline-black
+
         md:py-2
         md:text-sm
         md:px-2
