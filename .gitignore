@@ -1,4 +1,5 @@
 *.pdf
+*.ignore
 
 # Logs
 logs

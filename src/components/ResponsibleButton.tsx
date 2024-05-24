@@ -1,6 +1,8 @@
+import { MouseEventHandler } from "react";
+
 interface ResponsibleButtonProps {
   text: string,
-  onClick?: VoidFunction,
+  onClick?: MouseEventHandler,
   style?: string,
   type?: "button" | "submit" | "reset" | undefined,
 }
