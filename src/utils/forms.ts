@@ -1,6 +1,6 @@
 function setInvalidInput(input: HTMLInputElement) {
-  input.style.outlineColor = "red";
-  input.style.border = "2px solid red";
+  input.style.outline = "none";
+  input.style.border = "1px solid red";
   input.focus();
 }
 

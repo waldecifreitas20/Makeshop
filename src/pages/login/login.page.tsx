@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { BackHomeButton } from "../../components/BackHomeButton";
 import { ResponsibleButton } from "../../components/ResponsibleButton";
-import { ResponsibleInput } from "../../components/ResponsibleInput";
 
 import { routes } from "../../routes/routes";
-import { isEmpty } from "../../utils/utils";
 import { setInvalidInput } from "../../utils/forms";
+import { loginMethods } from "./login.methods";
+import { ResponsibleInput } from "../../components/ResponsibleInput";
 
 
 const styles = {
@@ -53,26 +53,11 @@ const styles = {
 export function LoginPage() {
   const [showInvalidFormMessage, setFormMessageState] = useState(true);
 
-
-  const validateForm = (event: MouseEvent) => {
-    const email = document.getElementById("email-input") as HTMLInputElement;
-    const password = document.getElementById("password-input") as HTMLInputElement;
-
-    if (isEmpty(email.value)) {
-      emitFormError(event, email);
-    }
-    if (isEmpty(password.value)) {
-      emitFormError(event, password);
-    }
-
-  }
-
-  const emitFormError = (event: MouseEvent, input: HTMLInputElement) => {
+  const onInvalidForm = (event: MouseEvent, input: HTMLInputElement) => {
     event.preventDefault();
     setInvalidInput(input);
     setFormMessageState(false);
   }
-
 
   return <>
     <div className="px-8 pt-10">
@@ -82,18 +67,16 @@ export function LoginPage() {
 
         <form id="signup-form" method="GET" action="/">
           <div>
-            <input
+            <ResponsibleInput
               id="email-input"
-              className={styles.input}
               type="email"
               placeholder="Email"
             />
           </div>
 
           <div className="mt-2 mb-1">
-            <input
+            <ResponsibleInput
               id="password-input"
-              className={styles.input}
               placeholder="Senha"
               type="password"
             />
@@ -105,7 +88,7 @@ export function LoginPage() {
           <ResponsibleButton
             type="submit"
             text="Entrar"
-            onClick={(event) => { validateForm(event.nativeEvent) }}
+            onClick={(event) => {loginMethods.validateForm(event.nativeEvent, onInvalidForm) }}
           />
           <a className="block mx-auto w-fit text-sm" href={routes.singUp}>Não tenho cadastro</a>
         </form>
