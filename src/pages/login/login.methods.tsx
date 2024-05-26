@@ -1,23 +1,43 @@
+import { authenticate } from "../../services/auth";
 import { isValidEmail, isValidPassword } from "../../utils/forms";
 
-const validateLoginForm = (
+function validateLoginForm(
   event: MouseEvent,
-  onInvalid: (message: string, invalidInput: HTMLInputElement) => void
-) => {
+  onInvalid: (
+    message: string,
+    invalidInput: HTMLInputElement
+  ) => void
+) {
   const email = document.getElementById("email-input") as HTMLInputElement;
   const password = document.getElementById("password-input") as HTMLInputElement;
-  
+
   if (!isValidEmail(email.value)) {
     event.preventDefault();
-    return onInvalid("Digite um email válido", email);
+    onInvalid("Digite um email válido", email);
+    return false;
   }
-  
+
   if (!isValidPassword(password.value)) {
     event.preventDefault();
-    return onInvalid("Senha precisa conter entre 8 e 16 caracteres", password);
+    onInvalid("Senha precisa conter entre 8 e 16 caracteres", password);
+    return false;
+  }
+
+  return true;
+}
+
+async function login() {
+  const email = document.getElementById("email-input") as HTMLInputElement;
+  const password = document.getElementById("password-input") as HTMLInputElement;
+
+  const response = await authenticate(email.value, password.value);
+  if (response.status == 404) {
+    throw new UserNotFoundError();
   }
 }
 
+
 export const loginMethods = {
   validateLoginForm,
+  login
 }

@@ -46,6 +46,16 @@ export function LoginPage() {
     setInvalidFormMessage(message);
   }
 
+  const onSubmit = async (event: React.MouseEvent) => {
+    const isValid = loginMethods.validateLoginForm(event.nativeEvent, onInvalidForm);
+    if (isValid) {
+      await loginMethods.login().catch(() => {
+        event.preventDefault();
+      });
+    }
+
+  }
+
   return <>
     <div className="px-8 pt-10">
       <BackHomeButton />
@@ -77,7 +87,7 @@ export function LoginPage() {
           <ResponsibleButton
             type="submit"
             text="Entrar"
-            onClick={(event) => { loginMethods.validateLoginForm(event.nativeEvent, onInvalidForm) }}
+            onClick={onSubmit}
           />
           <a className="block mx-auto w-fit text-sm" href={routes.singUp}>Não tenho cadastro</a>
         </form>
