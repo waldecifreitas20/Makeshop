@@ -13,6 +13,7 @@
 }
 
 @layer utilities {
+
 	.font-title {
 
 		font-family: "Title";
@@ -39,6 +40,21 @@
 		display: none;
 	}
 
+	.loader {
+		display: block;
+		height: 25px;
+		width: 25px;
+		border: 3px solid rgb(161,161,170);
+		border-top-color: rgb(253, 159, 211);
+		border-radius: 100%;
+
+		animation: loading 700ms linear infinite;
+	}
+
+	@keyframes loading {
+		0% {transform: rotate(0deg);}
+		100% {transform: rotate(360deg);}
+	}
 
 }
 
