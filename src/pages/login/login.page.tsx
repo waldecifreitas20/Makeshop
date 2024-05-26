@@ -51,11 +51,12 @@ const styles = {
 
 export function LoginPage() {
   const [showInvalidFormMessage, setFormMessageState] = useState(true);
+  const [invalidFormMessage, setInvalidFormMessage] = useState("");
 
-  const onInvalidForm = (event: MouseEvent, input: HTMLInputElement) => {
-    event.preventDefault();
+  const onInvalidForm = (message: string, input: HTMLInputElement) => {
     setInvalidInput(input);
     setFormMessageState(false);
+    setInvalidFormMessage(message);
   }
 
   return <>
@@ -82,7 +83,7 @@ export function LoginPage() {
           </div>
           <small
             className={showInvalidFormMessage ? "hidden" : "font-medium text-red-500"}
-          >Preencha os campos corretamente</small>
+          >{invalidFormMessage}</small>
 
           <a className="block ml-auto w-fit mr-5 text-sm" href="">Esqueci minha senha</a>
 
