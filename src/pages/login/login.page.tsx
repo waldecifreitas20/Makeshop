@@ -37,17 +37,19 @@ const styles = {
 }
 
 export function LoginPage() {
-  const [showInvalidFormMessage, setFormMessageState] = useState(true);
+  const [showInvalidFormMessage, setFormMessageState] = useState(false);
   const [invalidFormMessage, setInvalidFormMessage] = useState("");
 
   const onInvalidForm = (message: string, input: HTMLInputElement) => {
     setInvalidInput(input);
-    setFormMessageState(false);
+    setFormMessageState(true);
     setInvalidFormMessage(message);
   }
 
   const onSubmit = async (event: React.MouseEvent) => {
+    setFormMessageState(false);
     const isValid = loginMethods.validateLoginForm(event.nativeEvent, onInvalidForm);
+    
     if (isValid) {
       await loginMethods.login()
         .catch(() => {
@@ -69,7 +71,8 @@ export function LoginPage() {
               id="email-input"
               type="email"
               placeholder="Email"
-            />
+              onChange={() => setFormMessageState(false)}
+              />
           </div>
 
           <div className="mt-2 mb-1">
@@ -77,11 +80,16 @@ export function LoginPage() {
               id="password-input"
               placeholder="Senha"
               type="password"
+              onChange={() => setFormMessageState(false)}
             />
           </div>
-          <small
-            className={showInvalidFormMessage ? "hidden" : "font-medium text-red-500"}
-          >{invalidFormMessage}</small>
+          {
+            showInvalidFormMessage ?
+              <small
+                className="font-medium text-red-500"
+              >{invalidFormMessage}</small>
+              : <></>
+          }
 
           <a className="block ml-auto w-fit mr-5 text-sm" href="">Esqueci minha senha</a>
 

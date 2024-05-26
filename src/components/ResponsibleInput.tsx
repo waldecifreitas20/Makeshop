@@ -1,11 +1,5 @@
 import { DetailedHTMLProps } from "react";
 
-interface ResponsibleInputProps {
-  placeholder?: string;
-  type?: string;
-  id?: string;
-}
-
 export function ResponsibleInput(props: DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>) {
   return <>
     <input
@@ -26,6 +20,7 @@ export function ResponsibleInput(props: DetailedHTMLProps<React.InputHTMLAttribu
       "
       type={props.type ?? "text"}
       placeholder={props.placeholder ?? ""}
+      onChange={props.onChange}
     />
   </>
 }

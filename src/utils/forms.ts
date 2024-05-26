@@ -1,8 +1,7 @@
 import { isEmpty } from "./utils";
 
 function setInvalidInput(input: HTMLInputElement) {
-  input.style.outline = "none";
-  input.style.border = "1px solid red";
+  input.value = "";
   input.focus();
 }
 
@@ -20,7 +19,6 @@ function isValidPassword(pass: string, fullCheck: boolean = false): boolean {
   const symbols = "!@#$%&*()_-=+{[}];:.,/?|";
   const letters = "çabcdefghijklmnopqrstuvwxyz";
 
-  alert
   if (pass.length >= 8 && pass.length <= 16) {
     return true;
   }
@@ -45,13 +43,8 @@ function isValidPassword(pass: string, fullCheck: boolean = false): boolean {
   return false;
 }
 
-function isEmptyForm(formFields: Array<string>): boolean {
-  return false;
-}
-
 export {
   setInvalidInput,
   isValidEmail,
   isValidPassword,
-  isEmptyForm,
 }
