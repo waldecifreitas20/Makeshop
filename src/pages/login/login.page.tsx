@@ -18,19 +18,6 @@ const styles = {
     md:mx-auto 
     md:py-10 md:px-8
   `,
-  input: `
-    block 
-    border border-zinc-400 rounded-full 
-    w-full 
-    px-5 py-2 
-    text-lg
-
-    md:py-2
-    md:text-sm
-    md:px-2
-
-    lg:rounded-md
-  `,
   externalLoginButton: `
     bg-white
     border
@@ -90,7 +77,7 @@ export function LoginPage() {
           <ResponsibleButton
             type="submit"
             text="Entrar"
-            onClick={(event) => { loginMethods.validateForm(event.nativeEvent, onInvalidForm) }}
+            onClick={(event) => { loginMethods.validateLoginForm(event.nativeEvent, onInvalidForm) }}
           />
           <a className="block mx-auto w-fit text-sm" href={routes.singUp}>Não tenho cadastro</a>
         </form>

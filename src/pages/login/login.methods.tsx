@@ -1,6 +1,6 @@
 import { isValidEmail, isValidPassword } from "../../utils/forms";
 
-const validateForm = (
+const validateLoginForm = (
   event: MouseEvent,
   onInvalid: (message: string, invalidInput: HTMLInputElement) => void
 ) => {
@@ -19,5 +19,5 @@ const validateForm = (
 }
 
 export const loginMethods = {
-  validateForm,
+  validateLoginForm,
 }
