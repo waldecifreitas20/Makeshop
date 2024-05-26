@@ -39,6 +39,7 @@ const styles = {
 export function LoginPage() {
   const [showInvalidFormMessage, setFormMessageState] = useState(false);
   const [invalidFormMessage, setInvalidFormMessage] = useState("");
+  const [isLoading, setLoadingState] = useState(false);
 
   const onInvalidForm = (message: string, input: HTMLInputElement) => {
     setInvalidInput(input);
@@ -51,12 +52,13 @@ export function LoginPage() {
     const isValid = loginMethods.validateLoginForm(event.nativeEvent, onInvalidForm);
     
     if (isValid) {
+      setLoadingState(true);
       await loginMethods.login()
-        .catch((err: Error) => {         
+        .catch((err: Error) => {
           event.preventDefault();
           setFormMessageState(true);
           setInvalidFormMessage(err.message);
-        });
+        }).finally(()=> setLoadingState(false));
     }
 
   }
@@ -74,7 +76,7 @@ export function LoginPage() {
               type="email"
               placeholder="Email"
               onChange={() => setFormMessageState(false)}
-              />
+            />
           </div>
 
           <div className="mt-2 mb-1">
@@ -95,11 +97,13 @@ export function LoginPage() {
 
           <a className="block ml-auto w-fit mr-5 text-sm" href="">Esqueci minha senha</a>
 
-          <ResponsibleButton
-            type="submit"
-            text="Entrar"
-            onClick={onSubmit}
-          />
+          <ResponsibleButton type="submit" onClick={onSubmit}>
+            {
+              isLoading?
+              <span className="loader"></span>
+             : "Entrar"
+            }
+          </ResponsibleButton>
           <a className="block mx-auto w-fit text-sm" href={routes.singUp}>Não tenho cadastro</a>
         </form>
       </main>

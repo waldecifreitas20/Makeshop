@@ -1,13 +1,12 @@
-import { MouseEventHandler } from "react";
+import { MouseEventHandler, PropsWithChildren } from "react";
 
 interface ResponsibleButtonProps {
-  text: string,
   onClick?: MouseEventHandler,
   style?: string,
   type?: "button" | "submit" | "reset" | undefined,
 }
 
-export function ResponsibleButton(props: ResponsibleButtonProps) {
+export function ResponsibleButton(props: PropsWithChildren<ResponsibleButtonProps>) {
   return <>
     <button onClick={props.onClick} type={props.type} className={`
       mt-4 mb-2 
@@ -23,6 +22,6 @@ export function ResponsibleButton(props: ResponsibleButtonProps) {
       
       lg:rounded-md
       ${props.style}
-      `} >{props.text}</button>
+      `} >{props.children}</button>
   </>;
 }
