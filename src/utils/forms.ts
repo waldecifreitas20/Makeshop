@@ -20,8 +20,9 @@ function isValidPassword(pass: string, fullCheck: boolean = false): boolean {
   const symbols = "!@#$%&*()_-=+{[}];:.,/?|";
   const letters = "çabcdefghijklmnopqrstuvwxyz";
 
-  if (pass.length < 8 || pass.length > 16) {
-    return false
+  alert
+  if (pass.length >= 8 && pass.length <= 16) {
+    return true;
   }
 
   if (fullCheck) {
