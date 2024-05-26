@@ -7,42 +7,44 @@ function setInvalidInput(input: HTMLInputElement) {
 }
 
 function isValidEmail(email: string): boolean {
-  if (!isEmpty(email)) { 
-    const hasAtSign = email.indexOf("@") !== -1; 
-    const hasDot = email.indexOf('.') !== -1; 
-    
+  if (!isEmpty(email)) {
+    const hasAtSign = email.indexOf("@") !== -1;
+    const hasDot = email.indexOf('.') !== -1;
+
     return hasAtSign && hasDot && !isEmpty(email);
   }
   return false;
 }
 
-function isValidPassword(pass: string): boolean {
+function isValidPassword(pass: string, fullCheck: boolean = false): boolean {
   const symbols = "!@#$%&*()_-=+{[}];:.,/?|";
   const letters = "çabcdefghijklmnopqrstuvwxyz";
- 
+
   if (pass.length < 8 || pass.length > 16) {
     return false
   }
-  
-  for (const symbol of symbols) {
-    if(pass.indexOf(symbol) !== -1) {
-      return true;
+
+  if (fullCheck) {
+    for (const symbol of symbols) {
+      if (pass.indexOf(symbol) !== -1) {
+        return true;
+      }
     }
-  }
-  for (const letter of letters) {
-    if(pass.indexOf(letter) !== -1) {
-      return true;
+    for (const letter of letters) {
+      if (pass.indexOf(letter) !== -1) {
+        return true;
+      }
     }
-  }
-  for (let i = 0; i <= 9; i++) {
-    if(pass.indexOf(`${i}`) !== -1) {
-      return true;
+    for (let i = 0; i <= 9; i++) {
+      if (pass.indexOf(`${i}`) !== -1) {
+        return true;
+      }
     }
   }
   return false;
 }
 
-function isEmptyForm(formFields: Array<string>):boolean {
+function isEmptyForm(formFields: Array<string>): boolean {
   return false;
 }
 
