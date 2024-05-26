@@ -21,7 +21,6 @@ export function ResponsibleButton(props: ResponsibleButtonProps) {
       
       md:text-sm
       
-      lg:mt-12
       lg:rounded-md
       ${props.style}
       `} >{props.text}</button>
