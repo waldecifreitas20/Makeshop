@@ -32,7 +32,7 @@ async function login() {
 
   const response = await authServices.authenticate(email.value, password.value);
   if (response.status == 404) {
-    throw new UserNotFoundError();
+    throw new Error(response.message);
   }
 }
 

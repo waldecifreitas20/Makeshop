@@ -15,7 +15,7 @@ async function authenticate(email: string, password: string) {
 
   return {
     status: 404,
-    message: "user not found",
+    message: "Email e/ou Senha inválidos",
   }
 }
 

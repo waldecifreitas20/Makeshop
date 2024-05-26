@@ -52,8 +52,10 @@ export function LoginPage() {
     
     if (isValid) {
       await loginMethods.login()
-        .catch(() => {
+        .catch((err: Error) => {         
           event.preventDefault();
+          setFormMessageState(true);
+          setInvalidFormMessage(err.message);
         });
     }
 
