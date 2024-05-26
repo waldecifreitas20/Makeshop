@@ -49,9 +49,10 @@ export function LoginPage() {
   const onSubmit = async (event: React.MouseEvent) => {
     const isValid = loginMethods.validateLoginForm(event.nativeEvent, onInvalidForm);
     if (isValid) {
-      await loginMethods.login().catch(() => {
-        event.preventDefault();
-      });
+      await loginMethods.login()
+        .catch(() => {
+          event.preventDefault();
+        });
     }
 
   }

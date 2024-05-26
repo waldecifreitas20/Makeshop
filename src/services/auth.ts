@@ -1,12 +1,13 @@
 import users from "../mocks/users.json";
 
 async function authenticate(email: string, password: string) {
-  
+
   for (const user of users) {
     if (user.email === email && user.password === password) {
       return {
-        status : 200,
+        status: 200,
         message: "ok",
+        toke: Math.random().toString(),
         user,
       };
     }
@@ -18,6 +19,6 @@ async function authenticate(email: string, password: string) {
   }
 }
 
-export {
+export const authServices = {
   authenticate,
 }

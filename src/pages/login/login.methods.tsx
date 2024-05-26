@@ -1,4 +1,4 @@
-import { authenticate } from "../../services/auth";
+import { authServices } from "../../services/auth";
 import { isValidEmail, isValidPassword } from "../../utils/forms";
 
 function validateLoginForm(
@@ -30,7 +30,7 @@ async function login() {
   const email = document.getElementById("email-input") as HTMLInputElement;
   const password = document.getElementById("password-input") as HTMLInputElement;
 
-  const response = await authenticate(email.value, password.value);
+  const response = await authServices.authenticate(email.value, password.value);
   if (response.status == 404) {
     throw new UserNotFoundError();
   }
