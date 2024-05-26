@@ -47,7 +47,6 @@ const styles = {
     block
     size-6
   `
-
 }
 
 export function LoginPage() {
@@ -81,14 +80,16 @@ export function LoginPage() {
               type="password"
             />
           </div>
-          <small className={showInvalidFormMessage ? "hidden" : "font-medium text-red-500"}>Preencha os campos corretamente</small>
+          <small
+            className={showInvalidFormMessage ? "hidden" : "font-medium text-red-500"}
+          >Preencha os campos corretamente</small>
 
           <a className="block ml-auto w-fit mr-5 text-sm" href="">Esqueci minha senha</a>
 
           <ResponsibleButton
             type="submit"
             text="Entrar"
-            onClick={(event) => {loginMethods.validateForm(event.nativeEvent, onInvalidForm) }}
+            onClick={(event) => { loginMethods.validateForm(event.nativeEvent, onInvalidForm) }}
           />
           <a className="block mx-auto w-fit text-sm" href={routes.singUp}>Não tenho cadastro</a>
         </form>

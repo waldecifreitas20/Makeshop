@@ -1,3 +1,5 @@
+import { isEmpty } from "./utils";
+
 function setInvalidInput(input: HTMLInputElement) {
   input.style.outline = "none";
   input.style.border = "1px solid red";
@@ -5,10 +7,13 @@ function setInvalidInput(input: HTMLInputElement) {
 }
 
 function isValidEmail(email: string): boolean {
-  const hasAtSign = email.indexOf("@") !== -1; 
-  const hasDot = email.split('@')[1].indexOf('.') !== -1; 
-
-  return hasAtSign && hasDot;
+  if (!isEmpty(email)) { 
+    const hasAtSign = email.indexOf("@") !== -1; 
+    const hasDot = email.indexOf('.') !== -1; 
+    
+    return hasAtSign && hasDot && !isEmpty(email);
+  }
+  return false;
 }
 
 function isValidPassword(pass: string): boolean {
