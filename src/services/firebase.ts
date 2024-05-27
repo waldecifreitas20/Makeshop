@@ -1,6 +1,5 @@
 import { collection } from 'firebase/firestore';
-import { addDoc } from 'firebase/firestore';
-import { getFirestore } from 'firebase/firestore';
+import { getFirestore, setDoc, doc } from 'firebase/firestore';
 import { initializeApp } from 'firebase/app';
 
 
@@ -20,11 +19,13 @@ export const dataServices = {
 
   createUser: async (user: User): Promise<boolean> => {
     try {
-      const userCollectionRef = collection(db, "users");
-      await addDoc(userCollectionRef, user);
+      const userCollectionRef = doc(db, "users", user.cpf);
+      await setDoc(userCollectionRef, user);
+      alert("Usuário cadastrado com sucesso")
       return true;
     } catch (error) {
       alert('deu merda aqui')
+      console.error(error);
       return false;
     }
   },
