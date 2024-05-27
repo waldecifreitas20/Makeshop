@@ -50,15 +50,17 @@ export function LoginPage() {
   const onSubmit = async (event: React.MouseEvent) => {
     setFormMessageState(false);
     const isValid = loginMethods.validateLoginForm(event.nativeEvent, onInvalidForm);
-    
+
     if (isValid) {
       setLoadingState(true);
+
       await loginMethods.login()
         .catch((err: Error) => {
           event.preventDefault();
           setFormMessageState(true);
           setInvalidFormMessage(err.message);
-        }).finally(()=> setLoadingState(false));
+        })
+        .finally(() => setLoadingState(false));
     }
 
   }
@@ -97,11 +99,19 @@ export function LoginPage() {
 
           <a className="block ml-auto w-fit mr-5 text-sm" href="">Esqueci minha senha</a>
 
-          <ResponsibleButton type="submit" onClick={onSubmit}>
+          <ResponsibleButton
+            disabled={isLoading}
+            type="submit"
+            style={isLoading ? "bg-white hover:bg-white" : ""}
+            onClick={(event) => {
+              if (!isLoading) {
+                onSubmit(event);
+              }
+            }}>
             {
-              isLoading?
-              <span className="loader"></span>
-             : "Entrar"
+              isLoading ?
+                <span className="loader mx-auto"></span>
+                : "Entrar"
             }
           </ResponsibleButton>
           <a className="block mx-auto w-fit text-sm" href={routes.singUp}>Não tenho cadastro</a>
