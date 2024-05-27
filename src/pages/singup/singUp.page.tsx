@@ -2,9 +2,16 @@ import { BackHomeButton } from "../../components/BackHomeButton";
 import { InputBlock } from "../../components/InputBlock";;
 import { ResponsibleButton } from "../../components/ResponsibleButton";
 import { Row } from "./components/Row";
+import { singUpMethods } from "./signUp.methods";
 
 
 export function SingUpPage() {
+
+  const onSubmit = async (event: React.MouseEvent) => {
+    singUpMethods.singUp();
+    event.preventDefault();
+  }
+
   return <>
     <div className="px-8 py-10">
       <div className="mb-5">
@@ -40,7 +47,7 @@ export function SingUpPage() {
           </ul>
         </fieldset>
         
-        <ResponsibleButton style="lg:w-[400px]" type="submit">Cadastrar</ResponsibleButton>
+        <ResponsibleButton style="lg:w-[400px]" type="submit" onClick={onSubmit}>Cadastrar</ResponsibleButton>
       </form>
     </div>
   </>;
