@@ -40,7 +40,7 @@ export function SingUpPage() {
           </ul>
         </fieldset>
         
-        <ResponsibleButton style="lg:w-[400px]" type="submit" text="Cadastrar"/>
+        <ResponsibleButton style="lg:w-[400px]" type="submit">Cadastrar</ResponsibleButton>
       </form>
     </div>
   </>;
