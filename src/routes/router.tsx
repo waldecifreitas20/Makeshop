@@ -4,7 +4,7 @@ import { HomePage } from "../pages/home/Home.page";
 import { NotFoundPage } from "../pages/notfound/notfound.page";
 import { routes } from "./routes";
 import { LoginPage } from "../pages/login/login.page";
-import { SingUpPage } from "../pages/singup/sing_up.page";
+import { SingUpPage } from "../pages/singup/singUp.page";
 
 export const router = createBrowserRouter([
   { path: routes.home, element: <HomePage /> },
