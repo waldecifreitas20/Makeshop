@@ -15,9 +15,9 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 
-async function createDocument(collecionName: string, docKey: string, docFields: object) {
+async function createDocument(collectionName: string, docKey: string, docFields: object) {
   try {
-    const userCollectionRef = doc(db, collecionName, docKey);
+    const userCollectionRef = doc(db, collectionName, docKey);
     await setDoc(userCollectionRef, docFields);
 
     return true;
