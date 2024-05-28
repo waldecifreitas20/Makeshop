@@ -14,50 +14,34 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-async function createUser(user: User): Promise<boolean> {
+
+async function createDocument(collecionName: string, docKey: string, docFields: object) {
   try {
-    const userCollectionRef = doc(db, "users", user.email);
-    await setDoc(userCollectionRef, user);
-    alert("Usuário cadastrado com sucesso");
+    const userCollectionRef = doc(db, collecionName, docKey);
+    await setDoc(userCollectionRef, docFields);
+
     return true;
+
   } catch (error) {
-    alert('deu merda aqui')
-    console.error(error);
     return false;
   }
 }
 
-async function getUser(email: string) {
+async function getDocument(collectionName: string, docKey: string,) {
   try {
-    const userDocRef = doc(db, "users", email);
+    const userDocRef = doc(db, collectionName, docKey);
     const docSnap = await getDoc(userDocRef);
 
     if (docSnap.exists()) {
-      return {
-        status: 200,
-        msg: 'ok',
-        user: docSnap.data()
-      };
+      return docSnap.data()
     }
+  } catch (error: any) { }
 
-    return {
-      status : 404,
-      msg: "User not found",
-    }
-  } catch (error: any) {
-    return {
-      status: 406,
-      msg: "Unallowed to access this method",
-    }
-  }
-}
-
-async function checkCredentials(email: string, password: string) {
-
+  return false;
 }
 
 
 export const dataServices = {
-  createUser, getUser
-
+  createDocument,
+  getDocument,
 }
