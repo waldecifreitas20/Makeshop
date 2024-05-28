@@ -1,6 +1,10 @@
 import { userServices } from "../../services/user";
 import { isValidEmail, isValidPassword } from "../../utils/forms";
 
+
+const email = document.getElementById("email-input") as HTMLInputElement;
+const password = document.getElementById("password-input") as HTMLInputElement;
+
 function validateLoginForm(
   event: MouseEvent,
   onInvalid: (
@@ -8,8 +12,6 @@ function validateLoginForm(
     invalidInput: HTMLInputElement
   ) => void
 ) {
-  const email = document.getElementById("email-input") as HTMLInputElement;
-  const password = document.getElementById("password-input") as HTMLInputElement;
 
   if (!isValidEmail(email.value)) {
     event.preventDefault();
@@ -27,9 +29,6 @@ function validateLoginForm(
 }
 
 async function login() {
-  const email = document.getElementById("email-input") as HTMLInputElement;
-  const password = document.getElementById("password-input") as HTMLInputElement;
-
   const response = await userServices.authenticate(email.value, password.value);
   if (response.status == 404) {
     throw new Error(response.message);
