@@ -1,4 +1,4 @@
-import { dataServices } from "../../services/firebase"
+import { dataServices } from "../../firebase/firebase"
 
 async function singUp() {
   const user: User = {

@@ -19,6 +19,6 @@ async function authenticate(email: string, password: string) {
   }
 }
 
-export const authServices = {
+export const userServices = {
   authenticate,
 }
