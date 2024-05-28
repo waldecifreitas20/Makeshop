@@ -43,11 +43,11 @@ function isValidPassword(pass: string, fullCheck: boolean = false): boolean {
   return false;
 }
 
-function getField(querySelector : string) {
-  return document.querySelector("#singup-form input#name") as HTMLInputElement;
+function getField(formId: string, inputId: string) {
+  return document.querySelector(`#${formId} #${inputId}`) as HTMLInputElement;
 }
 
-export const utils = {
+export const formUtils = {
   setInvalidInput,
   isValidEmail,
   isValidPassword,
