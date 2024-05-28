@@ -3,9 +3,9 @@ import { BackHomeButton } from "../../components/BackHomeButton";
 import { ResponsibleButton } from "../../components/ResponsibleButton";
 
 import { routes } from "../../routes/routes";
-import { setInvalidInput } from "../../utils/forms";
 import { loginMethods } from "./login.methods";
 import { ResponsibleInput } from "../../components/ResponsibleInput";
+import { formUtils } from "../../utils/forms";
 
 
 const styles = {
@@ -42,7 +42,8 @@ export function LoginPage() {
   const [isLoading, setLoadingState] = useState(false);
 
   const onInvalidForm = (message: string, input: HTMLInputElement) => {
-    setInvalidInput(input);
+
+    formUtils.setInvalidInput(input);
     setFormMessageState(true);
     setInvalidFormMessage(message);
   }
@@ -71,7 +72,7 @@ export function LoginPage() {
       <main className={`mt-16 mx-auto max-w-[400px] ${styles.loginCard}`}>
         <h1 className="text-center text-3xl mb-10 lg:text-2xl">Faça login e aproveite nossas ofertas</h1>
 
-        <form id="signup-form" method="GET" action="/">
+        <form id="login-form" method="GET" action="/">
           <div>
             <ResponsibleInput
               id="email-input"
