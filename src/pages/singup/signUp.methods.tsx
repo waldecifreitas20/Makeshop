@@ -1,4 +1,4 @@
-import { dataServices } from "../../firebase/firebase"
+import { userServices } from "../../services/user";
 
 async function singUp() {
   const user: User = {
@@ -12,7 +12,7 @@ async function singUp() {
     password: '123456789',
     state: 'paraná',
   }
-  return await dataServices.createUser(user);
+  return await userServices.createUser(user);
 }
 
 export const singUpMethods = {

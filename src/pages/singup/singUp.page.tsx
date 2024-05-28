@@ -8,7 +8,7 @@ import { singUpMethods } from "./signUp.methods";
 export function SingUpPage() {
 
   const onSubmit = async (event: React.MouseEvent) => {
-    singUpMethods.singUp();
+    singUpMethods.singUp().catch(console.log);
     event.preventDefault();
   }
 
