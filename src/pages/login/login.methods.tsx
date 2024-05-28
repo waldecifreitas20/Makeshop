@@ -1,26 +1,23 @@
 import { userServices } from "../../services/user";
-import { isValidEmail, isValidPassword } from "../../utils/forms";
+import { formUtils} from "../../utils/forms";
 
-
-const email = document.getElementById("email-input") as HTMLInputElement;
-const password = document.getElementById("password-input") as HTMLInputElement;
 
 function validateLoginForm(
-  event: MouseEvent,
   onInvalid: (
     message: string,
     invalidInput: HTMLInputElement
   ) => void
 ) {
 
-  if (!isValidEmail(email.value)) {
-    event.preventDefault();
+  const email = formUtils.getField('login-form', 'email');
+  const password = formUtils.getField('login-form', 'password');
+
+  if (!formUtils.isValidEmail(email.value)) {
     onInvalid("Digite um email válido", email);
     return false;
   }
 
-  if (!isValidPassword(password.value)) {
-    event.preventDefault();
+  if (!formUtils.isValidPassword(password.value)) {
     onInvalid("Senha precisa conter entre 8 e 16 caracteres", password);
     return false;
   }
@@ -29,6 +26,9 @@ function validateLoginForm(
 }
 
 async function login() {
+  const email = formUtils.getField('login-form', 'email');
+  const password = formUtils.getField('login-form', 'password');
+
   const response = await userServices.authenticate(email.value, password.value);
   if (response.status == 404) {
     throw new Error(response.message);

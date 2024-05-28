@@ -42,7 +42,6 @@ export function LoginPage() {
   const [isLoading, setLoadingState] = useState(false);
 
   const onInvalidForm = (message: string, input: HTMLInputElement) => {
-
     formUtils.setInvalidInput(input);
     setFormMessageState(true);
     setInvalidFormMessage(message);
@@ -50,19 +49,22 @@ export function LoginPage() {
 
   const onSubmit = async (event: React.MouseEvent) => {
     setFormMessageState(false);
-    const isValid = loginMethods.validateLoginForm(event.nativeEvent, onInvalidForm);
 
-    if (isValid) {
-      setLoadingState(true);
+    const isValid = loginMethods.validateLoginForm(onInvalidForm);
 
-      await loginMethods.login()
-        .catch((err: Error) => {
-          event.preventDefault();
-          setFormMessageState(true);
-          setInvalidFormMessage(err.message);
-        })
-        .finally(() => setLoadingState(false));
+    if (!isValid) {
+      event.preventDefault();
+      return;
     }
+
+    setLoadingState(true);
+    await loginMethods.login()
+      .catch((err: Error) => {
+        event.preventDefault();
+        setFormMessageState(true);
+        setInvalidFormMessage(err.message);
+      })
+      .finally(() => setLoadingState(false));
 
   }
 
@@ -75,7 +77,7 @@ export function LoginPage() {
         <form id="login-form" method="GET" action="/">
           <div>
             <ResponsibleInput
-              id="email-input"
+              id="email"
               type="email"
               placeholder="Email"
               onChange={() => setFormMessageState(false)}
@@ -84,7 +86,7 @@ export function LoginPage() {
 
           <div className="mt-2 mb-1">
             <ResponsibleInput
-              id="password-input"
+              id="password"
               placeholder="Senha"
               type="password"
               onChange={() => setFormMessageState(false)}
