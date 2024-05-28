@@ -41,7 +41,7 @@ async function getDocument(collectionName: string, docKey: string,) {
 }
 
 
-export const dataServices = {
+export const firebase = {
   createDocument,
   getDocument,
 }
