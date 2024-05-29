@@ -40,17 +40,17 @@ function validateForm(formFields: UserForm,
 	return true;
 }
 
-async function singUp() {
+async function singUp(formFields: UserForm) {
 	const user: User = {
-		name: 'junior',
-		address: 'rua da mata',
-		birth: '03-05-2005',
-		cep: '00000-000',
-		city: 'curitiba',
-		cpf: '032.154.645-56',
-		email: 'jr@gmail.com',
-		password: '123456789',
-		state: 'paraná',
+		name: formFields.name.value,
+		address: formFields.address.value,
+		birth: formFields.birth.value,
+		cep: formFields.cep.value,
+		city: formFields.city.value,
+		cpf: formFields.cpf.value,
+		email: formFields.email.value,
+		password: formFields.password.value,
+		state: formFields.state.value,
 	}
 	return await userServices.createUser(user);
 }
