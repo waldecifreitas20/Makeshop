@@ -1,7 +1,7 @@
 import { PropsWithChildren } from "react";
 
 export function Row(props: PropsWithChildren<{ style?: string }>) {
-  return <div className={`${props.style ?? 'flex w-full bg-blue-500 justify-between'}`}>
+  return <div className={`flex w-full gap-4`}>
     {props.children}
   </div>
 }
