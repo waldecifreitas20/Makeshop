@@ -47,9 +47,24 @@ function getField(formId: string, inputId: string) {
   return document.querySelector(`#${formId} #${inputId}`) as HTMLInputElement;
 }
 
+function checkEmptyFields(fields: object) {
+  const inputs = Object.values(fields);
+
+  for (const input of inputs) {
+    if (input.value === "") {
+      return {
+        result: true,
+        emptyInput: input,
+      };
+    }
+  }
+  return { result: false, emptyInput: null };
+}
+
 export const formUtils = {
   setInvalidInput,
   isValidEmail,
   isValidPassword,
-  getField
+  getField,
+  checkEmptyFields,
 }
