@@ -202,7 +202,7 @@ export function Navbar() {
 								<i className="fa-regular fa-user fa-xl"></i>
 								<div className="flex flex-col items-start ml-1">
 									<p className="text-xs">Faça <a className="text-pink-500 font-bold hover:underline" href={routes.login}>Login</a></p>
-									<p className="text-xs">ou <a className="font-bold text-pink-500 hover:underline" href={routes.singUp}>cadastre-se</a></p>
+									<p className="text-xs">ou <a className="font-bold text-pink-500 hover:underline" href={routes.signUp}>cadastre-se</a></p>
 								</div>
 							</div>
 
@@ -279,7 +279,7 @@ export function Navbar() {
 																		
 									${appColors.backgrounds.buttons.normal}
 
-									transition-all duration-300 `} href={routes.singUp}>Cadastre-se</a>
+									transition-all duration-300 `} href={routes.signUp}>Cadastre-se</a>
 								</div>
 							</div>
 

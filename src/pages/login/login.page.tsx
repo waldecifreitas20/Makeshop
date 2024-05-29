@@ -117,7 +117,7 @@ export function LoginPage() {
                 : "Entrar"
             }
           </ResponsibleButton>
-          <a className="block mx-auto w-fit text-sm" href={routes.singUp}>Não tenho cadastro</a>
+          <a className="block mx-auto w-fit text-sm" href={routes.signUp}>Não tenho cadastro</a>
         </form>
       </main>
     </div>

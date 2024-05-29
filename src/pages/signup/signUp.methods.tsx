@@ -40,7 +40,7 @@ function validateForm(formFields: UserForm,
 	return true;
 }
 
-async function singUp(formFields: UserForm) {
+async function signUp(formFields: UserForm) {
 	const user: User = {
 		name: formFields.name.value,
 		address: formFields.address.value,
@@ -55,6 +55,6 @@ async function singUp(formFields: UserForm) {
 	return await userServices.createUser(user);
 }
 
-export const singUpMethods = {
-	singUp, validateForm,
+export const signUpMethods = {
+	signUp, validateForm,
 }
