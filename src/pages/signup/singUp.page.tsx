@@ -1,10 +1,26 @@
-import { useState } from "react";
+import { ReactElement, useState } from "react";
 import { BackHomeButton } from "../../components/BackHomeButton";
 import { InputBlock } from "../../components/InputBlock";;
 import { ResponsibleButton } from "../../components/ResponsibleButton";
 import { formUtils } from "../../utils/forms";
 import { Row } from "./components/Row";
 import { signUpMethods } from "./signUp.methods";
+import { ResponsibleComponent } from "../../components/ResponsibleSelect";
+
+interface InputBlockProps {
+  label: string,
+  child: ReactElement,
+  placeholder?: string,
+};
+
+export function LabelBlock(props: InputBlockProps) {
+  return <>
+    <div className="w-full">
+      <label>{props.label}</label>
+      {props.child}
+    </div>
+  </>
+}
 
 
 export function SignUpPage() {
@@ -47,10 +63,10 @@ export function SignUpPage() {
         <BackHomeButton />
       </div>
 
-      <form id="signup-form" method="GET" action="/">
+      <form id="signup-form" className="" method="GET" action="/">
         <fieldset>
           <InputBlock inputId="name" label="Nome Completo" placeholder="Ex:José Ribamar da Silva" />
-          <Row style="md:flex md:justify-between">
+          <Row style="flex-wrap md:flex-nowrap">
             <InputBlock inputId="cpf" label="CPF" placeholder="xxx.xxx.xxx-xx" />
             <InputBlock inputId="birth-date" label="Data de Nascimento" placeholder="dd/mm/aa" type="date" />
           </Row>
@@ -58,9 +74,18 @@ export function SignUpPage() {
 
         <fieldset className="my-8">
           <InputBlock inputId="cep" label="CEP" placeholder="00000-000" />
-          <Row style="md:flex">
-            <InputBlock inputId="state" label="Estado" placeholder="00000-000" />
-            <InputBlock inputId="city" label="Cidade" placeholder="00000-000" />
+          <Row style="md:flex items-end">
+            <ResponsibleComponent >
+              <select id="state-select">
+                <option value="null">--- Selecione ---</option>
+                {signUpMethods.getStatesNames().map((state, i) => {
+                  return <>
+                    <option value={state}>{state.toUpperCase()}</option>
+                  </>
+                })}
+              </select>
+            </ResponsibleComponent>
+            <InputBlock margins="" inputId="city" label="Cidade" placeholder="00000-000" />
           </Row>
           <InputBlock inputId="address" label="Endereço" placeholder="Rua Castro 475 B" />
         </fieldset>

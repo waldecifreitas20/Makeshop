@@ -54,6 +54,20 @@ async function signUp(formFields: UserForm) {
 	return await userServices.createUser(user);
 }
 
+function getStatesNames() {
+	return [
+		'pará', 'são paulo', 'mato grosso',
+		'mato grosso do sul', 'rio de janeiro',
+		'maranhão', 'acre', 'amapá', 'rondônia',
+		'roraima', 'tocantins', 'piauí',
+		'paraná', 'distrito federal', 'goiás',
+		'bahia', 'paraíba', 'pernambuco',
+		'rio grande do norte', 'ceará', 'alagoas',
+		'rio grande do sul', 'sergipe', 'santa catarina',
+		'espirito santo', 'minas gerais', 'amazonas'
+	];
+}
+
 export const signUpMethods = {
-	signUp, validateForm,
+	signUp, validateForm, getStatesNames,
 }
