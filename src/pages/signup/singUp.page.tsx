@@ -63,7 +63,7 @@ export function SignUpPage() {
         <BackHomeButton />
       </div>
 
-      <form id="signup-form" className="" method="GET" action="/">
+      <form id="signup-form" className="md:max-w-[700px] mx-auto" method="GET" action="/">
         <fieldset>
           <InputBlock inputId="name" label="Nome Completo" placeholder="Ex:José Ribamar da Silva" />
           <Row style="flex-wrap md:flex-nowrap">
@@ -75,10 +75,11 @@ export function SignUpPage() {
         <fieldset className="my-8">
           <InputBlock inputId="cep" label="CEP" placeholder="00000-000" />
           <Row style="md:flex items-end">
-            <ResponsibleComponent >
+            <ResponsibleComponent style="w-[100%]">
+              <label htmlFor="state-select">Estado</label>
               <select id="state-select">
                 <option value="null">--- Selecione ---</option>
-                {signUpMethods.getStatesNames().map((state, i) => {
+                {signUpMethods.getStatesNames().map((state, _) => {
                   return <>
                     <option value={state}>{state.toUpperCase()}</option>
                   </>

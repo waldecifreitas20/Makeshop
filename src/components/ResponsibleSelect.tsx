@@ -1,10 +1,13 @@
 import React, { Children, PropsWithChildren, ReactElement } from "react";
 
 
-interface ResponsibleComponent { }
+interface ResponsibleComponent extends PropsWithChildren {
+  style?: string;
+  children?: React.JSX.Element | Array<React.JSX.Element>;
+}
 
-export function ResponsibleComponent(props: PropsWithChildren<any>) {
-  
+export function ResponsibleComponent(props: ResponsibleComponent) {
+
   const responsibleClass = `
     block 
     border border-zinc-400 rounded-full 
@@ -19,13 +22,21 @@ export function ResponsibleComponent(props: PropsWithChildren<any>) {
   
     lg:rounded-md
   `
-  const responsibleChildren = Children.map(props.children, (child: ReactElement) => {
-    const responsibleElement = React.cloneElement(child, { className: responsibleClass });
+  const responsibleChildren = Children.map((props.children ?? []), (child: ReactElement) => {
 
-    return <>{responsibleElement}</>
+    if (child.type === 'select' || child.type === 'input') {
+      return React.cloneElement(child, {
+        className: responsibleClass
+      });
+    }
+    return child;
   });
 
-  return <>{responsibleChildren}</>
+  return <>
+    <div className={props.style ?? ""}>
+      {responsibleChildren}
+    </div>
+  </>
 }
 
 
