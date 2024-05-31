@@ -6,7 +6,6 @@ export interface Carousel {
 }
 
 export interface CarouselProps extends PropsWithChildren {
-	key?: string;
 	items?: Array<any>;
 	slidingDelay?: number;
 	height?: string;
