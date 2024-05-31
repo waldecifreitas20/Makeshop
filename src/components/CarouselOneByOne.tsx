@@ -1,21 +1,67 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, useEffect, useMemo, useState } from "react";
 import { IconButton } from "./IconButton";
 import { CarouselProps } from "../interfaces/Carousel";
 
 export function CarouselOneByOne(props: PropsWithChildren<CarouselProps>) {
 	let hasEventTriggered = false;
-	let index = 0;
+	let viewWidth = 768;
+	let [index, setIndex] = useState(0);
+	const key = Math.random().toString();
 
-	const previousItem = () => { }
-	const nextItem = () => { }
+	useEffect(() => {
+		updateCarouselItemsWidth();
+		getSlider().style.left = `-${index * viewWidth}px`;
+		if (props.autoSlide) {
+			runAutoPlay();
+		}
+	}, []);
+	const previousItem = () => {
+		if (index <= 0) {
+			index = getItemsQtd();
+		}
+		index--;
 
-	const updateCarouselItemsWidth = () => { }
+		const SLIDER = getSlider();
+		SLIDER.style.left = `-${viewWidth * index}px`;
+		setIndex(index);
+	}
+	const nextItem = () => {
+		index++;
 
-	const getSlider = () => { }
+		if (index >= getItemsQtd()) {
+			index = 0;
+		}
+		const SLIDER = getSlider();
+		SLIDER.style.left = `-${viewWidth * index}px`;
+		setIndex(index)
+	}
 
-	const getItemsQtd = () => { }
+	const updateCarouselItemsWidth = () => {
+		const CAROUSEL_VIEW_WIDTH = document.getElementById(`carousel-view-${key}`)?.offsetWidth ?? -1;
 
-	const getItems = () => { return []; }
+		const CAROUSEL_ITEMS = document
+			.getElementsByClassName(`carousel-item-${key}`) as HTMLCollectionOf<HTMLElement>;
+
+		viewWidth = CAROUSEL_VIEW_WIDTH;
+		let slider = getSlider();
+
+		slider.style.left = `-${viewWidth * index}px`;
+
+		for (const ITEM of CAROUSEL_ITEMS) {
+			ITEM.style.width = `${CAROUSEL_VIEW_WIDTH}px`;
+		}
+
+	}
+
+	const getSlider = () => {
+		return document.getElementById(`slider-${key}`) as HTMLElement;
+	}
+
+	const getItemsQtd = () => {
+		return getItems().length ?? 0;
+	}
+
+	const getItems = () => { return props.items ?? [];}
 
 	const runAutoPlay = () => {
 		setInterval(() => {
@@ -29,7 +75,7 @@ export function CarouselOneByOne(props: PropsWithChildren<CarouselProps>) {
 
 	return <>
 		{/* Carousel */}
-		<div id={`carousel-${props.key}`} className={`flex justify-center relative ${props.height ?? "h-[250px]"} `}>
+		<div id={`carousel-${key}`} className={`flex justify-center relative ${props.height ?? "h-[250px]"} `}>
 
 			{/* Button to view the previous item */}
 			<IconButton
@@ -53,20 +99,20 @@ export function CarouselOneByOne(props: PropsWithChildren<CarouselProps>) {
 
 			<div className="size-full block">
 				{/* Carousel view */}
-				<div id={`carousel-view-${props.key}`} className="flex overflow-hidden size-full">
-					<ul id={`slider-${props.key}`}
+				<div id={`carousel-view-${key}`} className="flex overflow-hidden size-full">
+					<ul id={`slider-${key}`}
 						className="
-												slider relative 
-												transition-all duration-700 lg:duration-1000 
-												flex h-full
-								">
+				slider relative 
+				transition-all duration-700 lg:duration-1000 
+				flex h-full
+">
 						{getItems().map((item, i) => {
 							return <>
 								<li className={
-									`carousel-item-${props.key} 
-																text-center 
-																flex justify-center 
-																size-full`}>{item}</li>
+									`carousel-item-${key} 
+								text-center 
+								flex justify-center 
+								size-full`}>{item}</li>
 							</>
 						})}
 					</ul>
@@ -77,13 +123,13 @@ export function CarouselOneByOne(props: PropsWithChildren<CarouselProps>) {
 					{getItems().map((_, i) => {
 						return <>
 							<li className={
-								`carousel-item-${i}-index-${props.key} 
-														size-2 
-														${index == i ? "bg-gray-500" : "bg-gray-200"}  
-														rounded-full    
-														transition-all
-														duration-700
-														`
+								`carousel-item-${i}-index-${key} 
+						size-2 
+						${index == i ? "bg-gray-500" : "bg-gray-200"}  
+						rounded-full    
+						transition-all
+						duration-700
+						`
 							}></li>
 						</>
 					})}
