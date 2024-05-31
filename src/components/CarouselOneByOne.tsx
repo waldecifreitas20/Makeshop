@@ -1,198 +1,114 @@
-import React from "react";
+import { PropsWithChildren } from "react";
 import { IconButton } from "./IconButton";
-import { onResizeScreen } from "../utils/utils";
+import { CarouselProps } from "../interfaces/Carousel";
 
+export function CarouselOneByOne(props: PropsWithChildren<CarouselProps>) {
+	let hasEventTriggered = false;
+	let index = 0;
 
-export class CarouselOneByOne extends React.Component implements Carousel {
-	private readonly key: string;
-	private viewWidth: number;
-	private index: number;
-	private hasEventTriggered: boolean;
+	const previousItem = () => { }
+	const nextItem = () => { }
 
-	public readonly props: CarouselProps;
-	public readonly nextItem: CallableFunction;
-	public readonly previousItem: CallableFunction;
+	const updateCarouselItemsWidth = () => { }
 
-	public constructor(props: CarouselProps) {
-		super(props);
-		this.key = (Math.random()).toString();
-		this.props = props;
-		this.index = props.initialIndex ?? 0;
+	const getSlider = () => { }
 
-		this.state = {
-			index: this.index,
-		}
+	const getItemsQtd = () => { }
 
-		this.viewWidth = -1;
-		this.hasEventTriggered = false;
+	const getItems = () => { return []; }
 
-		this.nextItem = (): void => {
-
-			this.index++;
-
-			if (this.index >= this.getItemsQtd()) {
-				this.index = 0;
+	const runAutoPlay = () => {
+		setInterval(() => {
+			if (hasEventTriggered) {
+				nextItem();
 			}
-			const SLIDER = this.getSlider();
-			SLIDER.style.left = `-${this.viewWidth * this.index}px`;
-			this.setState({ index: this.index })
-		}
+		}, props.slidingDelay);
 
-		this.previousItem = (): void => {
 
-			if (this.index <= 0) {
-				this.index = this.getItemsQtd();
-			}
-			this.index--;
-
-			const SLIDER = this.getSlider();
-			SLIDER.style.left = `-${this.viewWidth * this.index}px`;
-			this.setState({ index: this.index })
-		}
 	}
 
-	public render(): JSX.Element {
-		onResizeScreen(() => {
-			this.updateCarouselItemsWidth();
-		});
+	return <>
+		{/* Carousel */}
+		<div id={`carousel-${props.key}`} className={`flex justify-center relative ${props.height ?? "h-[250px]"} `}>
 
-		const height = this.props.height;
+			{/* Button to view the previous item */}
+			<IconButton
+				key={"floating-01"}
+				positionClass="left-0"
+				style={props.buttonsStyle}
+				child={
+					<i className="fa-solid fa-chevron-left fa-lg"></i>
+				}
+				onClick={() => {
+					hasEventTriggered = true;
+					previousItem();
 
-		return <>
+					setTimeout(() => {
+						hasEventTriggered = false;
 
-			{/* Carousel */}
-			<div id={`carousel-${this.key}`} className={`flex justify-cente relative ${height} `}>
-
-				{/* Button to view the previous item */}
-				<IconButton
-					key={"floating-01"}
-					positionClass="left-0"
-					style={this.props.buttonsStyle}
-					child={
-						<i className="fa-solid fa-chevron-left fa-lg"></i>
-					}
-					onClick={() => {
-						this.hasEventTriggered = true;
-						this.previousItem();
-
-						setTimeout(() => {
-							this.hasEventTriggered = false;
-
-						}, this.props.slidingDelay);
-					}}
-				/>
+					}, props.slidingDelay);
+				}}
+			/>
 
 
-				<div className="size-full block">
-					{/* Carousel view */}
-					<div id={`carousel-view-${this.key}`} className="flex overflow-hidden size-full">
-						<ul id={`slider-${this.key}`}
-							className="
-                                slider relative 
-                                transition-all duration-700 lg:duration-1000 
-                                flex h-full
-                        ">
-							{this.getItems().map((item, i) => {
-								return <>
-									<li className={
-										`carousel-item-${this.key} 
-                                        text-center 
-                                        flex justify-center 
-                                        size-full`}>{item}</li>
-								</>
-							})}
-						</ul>
-					</div>
-
-					{/* Items index indicator */}
-					<ol className="flex justify-center gap-2 mt-2 items-center">
-						{this.getItems().map((_, i) => {
+			<div className="size-full block">
+				{/* Carousel view */}
+				<div id={`carousel-view-${props.key}`} className="flex overflow-hidden size-full">
+					<ul id={`slider-${props.key}`}
+						className="
+												slider relative 
+												transition-all duration-700 lg:duration-1000 
+												flex h-full
+								">
+						{getItems().map((item, i) => {
 							return <>
 								<li className={
-									`carousel-item-${i}-index-${this.key} 
-                                    size-2 
-                                    ${this.index == i ? "bg-gray-500" : "bg-gray-200"}  
-                                    rounded-full    
-                                    transition-all
-                                    duration-700
-                                    `
-								}></li>
+									`carousel-item-${props.key} 
+																text-center 
+																flex justify-center 
+																size-full`}>{item}</li>
 							</>
 						})}
-					</ol>
+					</ul>
 				</div>
 
-				{/* Button to view the next item */}
-				<IconButton
-					key={"floating-02"}
-					positionClass="right-2"
-					style={this.props.buttonsStyle}
-					child={
-						<i className="fa-solid fa-chevron-right fa-lg"></i>
-					}
-					onClick={() => {
-						this.hasEventTriggered = true;
-						this.nextItem();
+				{/* Items index indicator */}
+				<ol className="flex justify-center gap-2 mt-2 items-center">
+					{getItems().map((_, i) => {
+						return <>
+							<li className={
+								`carousel-item-${i}-index-${props.key} 
+														size-2 
+														${index == i ? "bg-gray-500" : "bg-gray-200"}  
+														rounded-full    
+														transition-all
+														duration-700
+														`
+							}></li>
+						</>
+					})}
+				</ol>
+			</div>
 
-						setTimeout(() => {
-							this.hasEventTriggered = false;
+			{/* Button to view the next item */}
+			<IconButton
+				key={"floating-02"}
+				positionClass="right-2"
+				style={props.buttonsStyle}
+				child={
+					<i className="fa-solid fa-chevron-right fa-lg"></i>
+				}
+				onClick={() => {
+					hasEventTriggered = true;
+					nextItem();
 
-						}, this.props.slidingDelay);
-					}}
-				/>
+					setTimeout(() => {
+						hasEventTriggered = false;
 
-			</div >
-		</>;
+					}, props.slidingDelay);
+				}}
+			/>
 
-	}
-
-	public componentDidMount(): void {
-		this.updateCarouselItemsWidth();
-		this.getSlider().style.left = `-${this.index * this.viewWidth}px`;
-		if (this.props.autoSlide) {
-			this.runAutoPlay();
-		}
-	}
-
-
-
-	private updateCarouselItemsWidth(): void {
-		const CAROUSEL_VIEW_WIDTH = document.getElementById(`carousel-view-${this.key}`)?.offsetWidth ?? -1;
-
-		const CAROUSEL_ITEMS = document
-			.getElementsByClassName(`carousel-item-${this.key}`) as HTMLCollectionOf<HTMLElement>;
-
-		this.viewWidth = CAROUSEL_VIEW_WIDTH;
-		let slider = this.getSlider();
-
-		slider.style.left = `-${this.viewWidth * this.index}px`;
-
-		for (const ITEM of CAROUSEL_ITEMS) {
-			ITEM.style.width = `${CAROUSEL_VIEW_WIDTH}px`;
-		}
-	}
-
-
-	private runAutoPlay() {
-		setInterval(() => {
-			if (!this.hasEventTriggered) {
-				this.nextItem();
-			}
-		}, this.props.slidingDelay);
-
-
-	}
-
-	private getSlider(): HTMLElement {
-		return document.getElementById(`slider-${this.key}`) as HTMLElement;
-	}
-
-
-	private getItemsQtd(): number {
-		return this.getItems().length ?? 0;
-	}
-
-	private getItems(): Array<any> {
-		return this.props.items ?? [];
-	}
+		</div >
+	</>
 }
