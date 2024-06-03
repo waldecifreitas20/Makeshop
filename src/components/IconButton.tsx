@@ -1,30 +1,26 @@
-import { ReactElement } from "react";
+import { PropsWithChildren } from "react";
 
 interface FloatingButtonProps {
 	onClick: VoidFunction;
-	child: ReactElement;
-	positionClass: string
 	style?: string
 }
 
-
-export function IconButton(props: FloatingButtonProps) {
+export function IconButton(props: PropsWithChildren<FloatingButtonProps>) {
 	return <>
-		<button className={`absolute ${props.positionClass} h-full ms-2 z-20 cursor-default`} >
+		<button className="h-full ms-2 z-20 cursor-default" >
 			<span className={
 				`
-                ${props.style}
-                cursor-pointer 
-                transition-all 
-                duration-300
-                flex items-center justify-center
-                rounded-full 
-                `
+				${props.style}
+				cursor-pointer 
+				transition-all 
+				duration-300
+				flex items-center justify-center
+				rounded-full 
+				`
 			}
-
 				onClick={() => props.onClick()}
 			>
-				{props.child}
+				{props.children}
 			</span>
 		</button>
 	</>
