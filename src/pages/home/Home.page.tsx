@@ -58,7 +58,23 @@ export function HomePage() {
 
 			{/* Carousel of getBanners */}
 			<Section key={"section-1"}>
-				<CarouselOneByOneOfBanners>
+				<CarouselOneByOneOfBanners
+					autoSlide={true}
+					slidingDelay={5000}
+					height="
+								h-[225px] 
+								sm:h-[250px]
+								md:h-[300px]
+								lg:h-[400px]
+							"
+					buttonsStyle="
+						bg-black 
+						bg-opacity-20 
+						hover:bg-opacity-60
+						text-white  
+						size-12
+						"
+				>
 					{Banners()}
 				</CarouselOneByOneOfBanners>
 

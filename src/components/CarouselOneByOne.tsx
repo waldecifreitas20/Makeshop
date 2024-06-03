@@ -1,15 +1,13 @@
-import { PropsWithChildren, useEffect, useRef, useState } from "react";
+import { PropsWithChildren, useEffect, useRef } from "react";
 import { onResizeScreen } from "../utils/utils";
+import { CarouselProps } from "../interfaces/Carousel";
 
-interface ThisProps {
 
-}
-
-export function CarouselOneByOneOfBanners(props: PropsWithChildren<ThisProps>) {
+export function CarouselOneByOneOfBanners(props: PropsWithChildren<CarouselProps>) {
 	const key = useRef(null);
 	const view = useRef(null);
 	const slider = useRef(null);
-	
+
 	/* METHODS */
 	function calcSliderWidth() {
 		const itemsQtd = (props.children as Array<any>).length ?? 0;
@@ -25,6 +23,13 @@ export function CarouselOneByOneOfBanners(props: PropsWithChildren<ThisProps>) {
 
 	function getSlider() {
 		return slider.current ?? new HTMLDivElement();
+	}
+
+	function prevItem() {
+
+	}
+	function nextItem() {
+
 	}
 
 	/* HOOKS */
@@ -54,10 +59,22 @@ export function CarouselOneByOneOfBanners(props: PropsWithChildren<ThisProps>) {
 
 			{/* Buttons */}
 			<div className="absolute top-0 size-full">
-				<div className="size-full bg-transparent flex items-center justify-between">
-					<button>prev</button>
-					<button>next</button>
+
+				<div className="size-full px-4 bg-transparent flex items-center justify-between">
+					{/* Prev item button */}
+					<button
+						className={props.buttonsStyle} onClick={() => prevItem()}>
+						<i className="fa-solid fa-chevron-left fa-lg"></i>
+					</button>
+
+					{/* Prev item button */}
+					<button
+						className={props.buttonsStyle}
+						onClick={() => nextItem()}>
+						<i className="fa-solid fa-chevron-right fa-lg"></i>
+					</button>
 				</div>
+
 			</div>
 		</div>
 	</>
