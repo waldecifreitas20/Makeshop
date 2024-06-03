@@ -4,7 +4,7 @@ import { Section } from "../../components/Section.tsx";
 import { PillCarousel } from "../../components/PillCarousel.tsx";
 import { Pill } from "../../components/Pill.tsx";
 import { CarouselOneByOne } from "../../components/CarouselOneByOne_class.tsx";
-import { CarouselOneByOneOfBanners } from "../../components/CarouselOneByOne.tsx";
+import { CarouselOneByOneOfBanners } from "../../components/CarouselOneByOne";
 import { Grid } from "../../components/Grid.tsx";
 import { Footer } from "../../components/Footer.tsx";
 /* Local Components */

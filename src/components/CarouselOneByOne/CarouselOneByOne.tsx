@@ -1,5 +1,5 @@
 import { Children, PropsWithChildren, useEffect, useMemo, useRef, useState } from "react";
-import { onResizeScreen } from "../utils/utils";
+import { onResizeScreen } from "../../utils/utils";
 
 interface ThisProps {
 
