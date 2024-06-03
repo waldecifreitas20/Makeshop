@@ -1,6 +1,7 @@
 import React from "react";
 import { IconButton } from "./IconButton";
 import { onResizeScreen } from "../utils/utils";
+import { Carousel, CarouselProps } from "../interfaces/Carousel";
 
 
 export class CarouselOneByOne extends React.Component implements Carousel {

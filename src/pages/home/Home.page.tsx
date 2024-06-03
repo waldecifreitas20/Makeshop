@@ -3,7 +3,8 @@ import { Navbar } from "../../components/Navbar.tsx";
 import { Section } from "../../components/Section.tsx";
 import { PillCarousel } from "../../components/PillCarousel.tsx";
 import { Pill } from "../../components/Pill.tsx";
-import { CarouselOneByOne } from "../../components/CarouselOneByOne.tsx";
+import { CarouselOneByOne } from "../../components/CarouselOneByOne_class.tsx";
+import { CarouselOneByOneOfBanners } from "../../components/CarouselOneByOne.tsx";
 import { Grid } from "../../components/Grid.tsx";
 import { Footer } from "../../components/Footer.tsx";
 /* Local Components */
@@ -57,24 +58,9 @@ export function HomePage() {
 
 			{/* Carousel of getBanners */}
 			<Section key={"section-1"}>
-				<CarouselOneByOne
-					autoSlide={true}
-					slidingDelay={5000}
-					height="
-							h-[225px] 
-							sm:h-[250px]
-							md:h-[300px]
-							lg:h-[400px]
-						"
-					buttonsStyle="
-					bg-black 
-					bg-opacity-20 
-					hover:bg-opacity-60
-					text-white  
-					size-12
-					"
-					items={Banners()}
-				/>
+				<CarouselOneByOneOfBanners>
+					{Banners()}
+				</CarouselOneByOneOfBanners>
 
 			</Section>
 
