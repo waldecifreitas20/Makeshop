@@ -64,24 +64,6 @@ export class CarouselOneByOne extends React.Component implements Carousel {
 			{/* Carousel */}
 			<div id={`carousel-${this.key}`} className={`flex justify-cente relative ${height} `}>
 
-				{/* Button to view the previous item */}
-				<IconButton
-					key={"floating-01"}
-					positionClass="left-0"
-					style={this.props.buttonsStyle}
-					child={
-						<i className="fa-solid fa-chevron-left fa-lg"></i>
-					}
-					onClick={() => {
-						this.hasEventTriggered = true;
-						this.previousItem();
-
-						setTimeout(() => {
-							this.hasEventTriggered = false;
-
-						}, this.props.slidingDelay);
-					}}
-				/>
 
 
 				<div className="size-full block">
@@ -123,24 +105,7 @@ export class CarouselOneByOne extends React.Component implements Carousel {
 					</ol>
 				</div>
 
-				{/* Button to view the next item */}
-				<IconButton
-					key={"floating-02"}
-					positionClass="right-2"
-					style={this.props.buttonsStyle}
-					child={
-						<i className="fa-solid fa-chevron-right fa-lg"></i>
-					}
-					onClick={() => {
-						this.hasEventTriggered = true;
-						this.nextItem();
-
-						setTimeout(() => {
-							this.hasEventTriggered = false;
-
-						}, this.props.slidingDelay);
-					}}
-				/>
+		
 
 			</div >
 		</>;

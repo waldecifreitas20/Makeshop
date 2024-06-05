@@ -1,4 +1,4 @@
-import { PropsWithChildren, useEffect, useRef } from "react";
+import { Children, PropsWithChildren, useEffect, useRef, useState } from "react";
 import { onResizeScreen } from "../utils/utils";
 import { CarouselProps } from "../interfaces/Carousel";
 
@@ -7,6 +7,7 @@ export function CarouselOneByOneOfBanners(props: PropsWithChildren<CarouselProps
 	const key = useRef(null);
 	const view = useRef(null);
 	const slider = useRef(null);
+	const [index, setIndex] = useState(props.initialIndex ?? 0);
 
 	/* METHODS */
 	function calcSliderWidth() {
@@ -26,9 +27,12 @@ export function CarouselOneByOneOfBanners(props: PropsWithChildren<CarouselProps
 	}
 
 	function prevItem() {
-
+		const itemWidth = window.innerWidth;
+		setIndex(index+1);
 	}
 	function nextItem() {
+		const itemWidth = window.innerWidth;
+		setIndex(index+1);
 
 	}
 
@@ -45,20 +49,29 @@ export function CarouselOneByOneOfBanners(props: PropsWithChildren<CarouselProps
 
 	return <>
 		{/* carousel */}
-		<div ref={key} className="relative h-[250px]">
+		<div ref={key} className={` relative ${props.height ?? 'h-[250px]'}`}>
 
-			{/* Carousel view */}
-			<div ref={view} className=" size-full">
+			<div className="size-full bg-blue-500">
+				{/* Carousel view */}
+				<div ref={view} className="size-full  overflow-hidden">
 
-				{/* Carousel Slider */}
-				<div ref={slider} className={`flex h-full`}>
-					{props.children}
+					{/* Carousel Slider */}
+					<div ref={slider} className={`flex h-full`}>
+						{props.children}
+					</div>
+
 				</div>
 
+				{/* index indicators */}
+				<div className="flex justify-center mt-2">
+					{Children.map(props.children, (_, i) => {
+						return <span className={`${i == index? "bg-gray-500" : "bg-gray-300"} rounded-full p-1 mx-1`}></span>
+					})}
+				</div>
 			</div>
 
 			{/* Buttons */}
-			<div className="absolute top-0 size-full">
+			<div className="absolute hidden top-0 size-full">
 
 				<div className="size-full px-4 bg-transparent flex items-center justify-between">
 					{/* Prev item button */}
