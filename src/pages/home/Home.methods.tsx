@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { getProducts, parseToProduct } from "../../services/products";
+import { getProducts, parseToProduct } from "../../services/products.services";
 import { ProductCard } from "../../components/ProductCard";
 import { getSubArray } from "../../utils/utils";
 

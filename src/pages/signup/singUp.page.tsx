@@ -37,11 +37,12 @@ export function SignUpPage() {
       cpf: formUtils.getField("signup-form", "cpf"),
       email: formUtils.getField("signup-form", "email"),
       password: formUtils.getField("signup-form", "password"),
-      state: formUtils.getField("signup-form", "state"),
+      state: formUtils.getField("signup-form", "state-select"),
     }
+    event.preventDefault();
 
     const isValid = signUpMethods.validateForm(formFields, (message, input) => {
-      alert(message)
+      alert(message);
       formUtils.setInvalidInput(input);
       event.preventDefault();
       setLoaderState(false);
@@ -51,7 +52,9 @@ export function SignUpPage() {
       setLoaderState(true);
       signUpMethods.signUp(formFields)
         .then(console.log)
-        .catch(console.error).finally(() => {
+        .catch(() => {
+          alert("Usuário já cadastrado! Faça o login em vez disto.")
+        }).finally(() => {
           setLoaderState(false);
         });
     }
@@ -73,10 +76,14 @@ export function SignUpPage() {
         </fieldset>
 
         <fieldset className="my-8">
+
           <InputBlock inputId="cep" label="CEP" placeholder="00000-000" />
+
           <Row style="md:flex items-end">
             <ResponsibleComponent style="w-[100%]">
+
               <label htmlFor="state-select">Estado</label>
+
               <select id="state-select">
                 <option value="null">--- Selecione ---</option>
                 {signUpMethods.getStatesNames().map((state, _) => {
@@ -85,9 +92,11 @@ export function SignUpPage() {
                   </>
                 })}
               </select>
+
             </ResponsibleComponent>
             <InputBlock margins="" inputId="city" label="Cidade" placeholder="00000-000" />
           </Row>
+
           <InputBlock inputId="address" label="Endereço" placeholder="Rua Castro 475 B" />
         </fieldset>
 

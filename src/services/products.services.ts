@@ -1,3 +1,4 @@
+import { firebase } from "../firebase";
 import { products } from "../mocks/products.json";
 
 function getProducts() {

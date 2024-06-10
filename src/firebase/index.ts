@@ -27,11 +27,16 @@ async function getDocument(collectionName: string, docKey: string,) {
     }
   } catch (error: any) { }
 
-  return false;
+  throw Error("Document not found");
+}
+
+async function getDocuments(collectionName: string) {
+  
 }
 
 
 export const firebase = {
   createDocument,
   getDocument,
+  getDocuments,
 }

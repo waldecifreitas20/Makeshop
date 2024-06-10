@@ -1,4 +1,4 @@
-import { userServices } from "../../services/user";
+import { userServices } from "../../services/user.services";
 import { formUtils } from "../../utils/forms";
 
 interface UserForm {
@@ -20,7 +20,6 @@ function validateForm(formFields: UserForm,
 	) => void): boolean {
 
 	const { result: hasEmptyFields, emptyInput } = formUtils.checkEmptyFields(formFields);
-
 	if (hasEmptyFields) {
 		onInvalid("Preencha todos os campos", emptyInput);
 		return false;
@@ -51,6 +50,7 @@ async function signUp(formFields: UserForm) {
 		password: formFields.password.value,
 		state: formFields.state.value,
 	}
+
 	return await userServices.createUser(user);
 }
 
