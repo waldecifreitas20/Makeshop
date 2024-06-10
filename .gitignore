@@ -1,5 +1,6 @@
 *.pdf
 *.ignore
+.env
 
 # Logs
 logs

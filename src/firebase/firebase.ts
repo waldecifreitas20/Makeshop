@@ -1,8 +1,11 @@
 import { getFirestore, setDoc, doc, getDoc } from 'firebase/firestore';
 import { initializeApp } from 'firebase/app';
+import { firebaseConfig } from './config';
+
+console.log(firebaseConfig);
 
 
-const firebaseConfig = {
+const firebaseConfig2 = {
   apiKey: "AIzaSyAQMN9SPW04-bGD29yTFqbXQG-MAVkeAIo",
   authDomain: "web-apps-production-ad82f.firebaseapp.com",
   projectId: "web-apps-production-ad82f",
