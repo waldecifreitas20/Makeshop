@@ -1,11 +1,9 @@
 import { useState } from "react";
 import { isSmallDevice, onResizeScreen } from "../../../utils/utils";
-import { copyToClipboard } from "../Home.methods";
-
-
 
 export function Banners(): Array<any> {
   const COUPON = "MAKE15OFF";
+
   const icons = {
     initial: <i className="fa-solid fa-copy text-pink-500 fa-lg" > </i>,
     copied: <i className="fa-solid fa-check text-green-500 fa-lg" > </i>,
@@ -18,7 +16,9 @@ export function Banners(): Array<any> {
     setIsBigBanner(!isSmallDevice());
   });
 
-
+  function copyToClipboard(value: string) {
+    navigator.clipboard.writeText(value);
+  }
   return [
     <span className="relative block mx-auto h-full w-full">
       <img className="block w-full h-full mx-auto" src={`./images/banner1-${isBigBanner ? "big" : "small"}.png`} alt="" />
@@ -46,15 +46,25 @@ export function Banners(): Array<any> {
         "/>
           {
             !isSmallDevice() ?
-              <button className="bg-white hover:bg-gray-200 text-pink-600 border rounded-r-md p-2 text-sm w-1/4" onClick={() => copyToClipboard(COUPON, () => {
-                setButtonCopyIcon(icons.copied)
-              })}>
+              <button
+                className="
+                bg-white 
+                hover:bg-gray-200 
+                text-pink-600 
+                  border rounded-r-md 
+                  p-2 
+                  text-sm 
+                  w-1/4"
+                onClick={() => {
+                  copyToClipboard(COUPON)
+                  setButtonCopyIcon(icons.copied)
+                }}>
                 {buttonCopyIcon}
               </button> : <></>
           }
         </div>
       </div>
-    </span>,
+    </span >,
 
     <span className=" relative block w-full h-full mx-auto">
       <img className="block size-full" src={`./images/banner2-${isBigBanner ? "big" : "small"}.png`} alt="" />
