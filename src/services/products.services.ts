@@ -1,9 +1,14 @@
 import { firebase } from "../firebase";
-import { products } from "../mocks/products.json";
 
-function getProducts() {
-  return products;
+async function getProducts() {
+  try {
+    return await firebase.getDocuments("products")
+  } catch (error: any) {
+    console.log(error);
+    throw Error(`Unable to fetch products. Details: ${error}`);
+  }
 }
+
 
 function parseToProduct(obj: any): Product {
   return {
@@ -18,4 +23,7 @@ function parseToProduct(obj: any): Product {
   }
 }
 
-export { getProducts, parseToProduct }
+export const productServices = {
+  parseToProduct,
+  getProducts
+}
