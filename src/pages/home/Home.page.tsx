@@ -13,13 +13,14 @@ import { Banners } from "./components/banners.tsx";
 import { isSmallDevice } from "../../utils/utils.ts";
 import { Newsletter } from "../../components/Newsletter.tsx";
 import { productServices } from "../../services/products.services.ts";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ProductCard } from "../../components/ProductCard.tsx";
+import { Spinner } from "../../components/Spinner.tsx";
+
 
 enum ClientType {
 	vip, normal, all
 }
-
 
 const PILL_STYLE = `
 		transition-all
@@ -77,34 +78,48 @@ const BEST_BRANDS = [
 ]
 
 export function HomePage() {
-	const [hasLoadedProducts, setProductsLoadingState] = useState(false);
+	const [hasProductsLoaded, setProductsLoadingState] = useState(false);
+	const [vipsProducts, setVipProducts] = useState<Array<any>>([]);
+	const [anyClientProducts, setAnyClientProducts] = useState<Array<any>>([]);
 
-	const productsData: {
-		vips: Array<Product>,
-		anyClient: Array<Product>
-	} = {
-		vips: [],
-		anyClient: [],
-	};
 
-	productServices.getProducts()
-		.then(() => setProductsLoadingState(true))
-		.catch(console.log);
+	useMemo(() => {
+		productServices.getProducts()
+			.then(data => {
+				let products: Array<any> = [];
+
+				for (const item of data) {
+					const product = productServices.parseToProduct(item);
+					products.push(product)
+
+					if (product.isVip) {
+						setVipProducts(products);
+					} else {
+						setAnyClientProducts(products);
+					}
+				}
+	
+				setProductsLoadingState(true);
+			})
+			.catch(console.log);
+	}, [])
+
+
 
 	function getProductsCards(clientType: ClientType) {
 		let products: Array<Product> = [];
 
 		switch (clientType) {
 			case ClientType.normal:
-				products = productsData.anyClient;
-				break;
-
-			case ClientType.vip:
-				products = productsData.vips;
+				products = anyClientProducts;
 				break;
 				
+				case ClientType.vip:
+				products = vipsProducts;
+				break;
+
 			default:
-				products.concat(productsData.vips, productsData.anyClient);
+				break;
 		}
 
 		return products.map((product, i) => {
@@ -158,37 +173,41 @@ export function HomePage() {
 
 			{/* For you section */}
 			<Section key={"section-2"} title="para você" style="px-5 mt-10" >
-				{isSmallDevice() ?
-					<CarouselOneByOne
-						slidingDelay={5000}
-						height="h-[450px]"
-						buttonsStyle="size-5"
-						items={getProductsCards(ClientType.normal)}
-					/>
-					:
-					<>
-						<Grid>
-							{getProductsCards(ClientType.normal)}
-						</Grid>
-					</>
+				{hasProductsLoaded ?
+					(isSmallDevice() ?
+						<CarouselOneByOne
+							slidingDelay={5000}
+							height="h-[450px]"
+							buttonsStyle="size-5"
+							items={getProductsCards(ClientType.normal)}
+						/>
+						:
+						<>
+							<Grid>
+								{getProductsCards(ClientType.normal)}
+							</Grid>
+						</>)
+
+					: <Spinner />
 				}
 			</Section>
 
 			{/* just launched section*/}
 			<Section key={"section-3"} title="Lançamentos do mês" style="px-5 mt-10">
-				{isSmallDevice() ?
-					<CarouselOneByOne
-						slidingDelay={5000}
-						height="h-[450px]"
-						buttonsStyle="size-5"
-						items={getProductsCards(ClientType.normal)}
-					/>
-					:
-					<>
-						<Grid>
-							{getProductsCards(ClientType.normal)}
-						</Grid>
-					</>
+				{hasProductsLoaded ?
+					(isSmallDevice() ?
+						<CarouselOneByOne
+							slidingDelay={5000}
+							height="h-[450px]"
+							buttonsStyle="size-5"
+							items={getProductsCards(ClientType.normal)}
+						/>
+						:
+						<>
+							<Grid>
+								{getProductsCards(ClientType.normal)}
+							</Grid>
+						</>) : <Spinner />
 				}
 			</Section>
 
@@ -225,19 +244,20 @@ export function HomePage() {
 
 			{/* only vip section */}
 			< Section key={"section-5"} title="Só para vips" style="px-5 mt-14">
-				{isSmallDevice() ?
-					<CarouselOneByOne
-						slidingDelay={5000}
-						height="h-[450px]"
-						buttonsStyle="size-5"
-						items={getProductsCards(ClientType.vip)}
-					/>
-					:
-					<>
-						<Grid>
-							{getProductsCards(ClientType.vip)}
-						</Grid>
-					</>
+				{hasProductsLoaded ?
+					(isSmallDevice() ?
+						<CarouselOneByOne
+							slidingDelay={5000}
+							height="h-[450px]"
+							buttonsStyle="size-5"
+							items={getProductsCards(ClientType.vip)}
+						/>
+						:
+						<>
+							<Grid>
+								{getProductsCards(ClientType.vip)}
+							</Grid>
+						</>) : <Spinner />
 				}
 			</Section>
 
