@@ -12,12 +12,16 @@ import { Banners } from "./components/banners.tsx";
 /* Utilities functions */
 import { isSmallDevice } from "../../utils/utils.ts";
 import { Newsletter } from "../../components/Newsletter.tsx";
-import { getProductCards, getBestBrands, ProductCardType } from "./Home.methods.tsx";
+import { productServices } from "../../services/products.services.ts";
+import { useState } from "react";
+import { ProductCard } from "../../components/ProductCard.tsx";
+
+enum ClientType {
+	vip, normal, all
+}
 
 
-export function HomePage() {
-
-	const PILL_STYLE = `
+const PILL_STYLE = `
 		transition-all
 		duration-300
 		sm:w-[100px]
@@ -39,7 +43,79 @@ export function HomePage() {
 		lg:hover:text-pink-500    
 		`;
 
-	const BEST_BRANDS = getBestBrands();
+const BEST_BRANDS = [
+	{
+		"logoUrl": "./images/brand-absolute-ny.png",
+		"name": "lancôme",
+		"color": "bg-lime-500"
+	},
+	{
+		"logoUrl": "./images/brand-lancome.png",
+		"name": "absolute new york",
+		"color": "bg-pink-500"
+	},
+	{
+		"logoUrl": "./images/brand-sisley.png",
+		"name": "sisley",
+		"color": "bg-yellow-500"
+	},
+	{
+		"logoUrl": "./images/brand-oceane.png",
+		"name": "océane",
+		"color": "bg-sky-500"
+	},
+	{
+		"logoUrl": "./images/brand-payot.png",
+		"name": "payot",
+		"color": "bg-violet-500"
+	},
+	{
+		"logoUrl": "./images/brand-roche-posay.png",
+		"name": "la roche-posay",
+		"color": "bg-red-500"
+	}
+]
+
+export function HomePage() {
+	const [hasLoadedProducts, setProductsLoadingState] = useState(false);
+
+	const productsData: {
+		vips: Array<Product>,
+		anyClient: Array<Product>
+	} = {
+		vips: [],
+		anyClient: [],
+	};
+
+	productServices.getProducts()
+		.then(() => setProductsLoadingState(true))
+		.catch(console.log);
+
+	function getProductsCards(clientType: ClientType) {
+		let products: Array<Product> = [];
+
+		switch (clientType) {
+			case ClientType.normal:
+				products = productsData.anyClient;
+				break;
+
+			case ClientType.vip:
+				products = productsData.vips;
+				break;
+				
+			default:
+				products.concat(productsData.vips, productsData.anyClient);
+		}
+
+		return products.map((product, i) => {
+			return <ProductCard
+				key={i}
+				product={product}
+			/>
+		});
+
+
+	}
 
 	return (
 		<>
@@ -87,12 +163,12 @@ export function HomePage() {
 						slidingDelay={5000}
 						height="h-[450px]"
 						buttonsStyle="size-5"
-						items={getProductCards(ProductCardType.ANY_CLIENT)}
+						items={getProductsCards(ClientType.normal)}
 					/>
 					:
 					<>
 						<Grid>
-							{getProductCards(ProductCardType.ANY_CLIENT)}
+							{getProductsCards(ClientType.normal)}
 						</Grid>
 					</>
 				}
@@ -105,12 +181,12 @@ export function HomePage() {
 						slidingDelay={5000}
 						height="h-[450px]"
 						buttonsStyle="size-5"
-						items={getProductCards(ProductCardType.ANY_CLIENT)}
+						items={getProductsCards(ClientType.normal)}
 					/>
 					:
 					<>
 						<Grid>
-							{getProductCards(ProductCardType.ANY_CLIENT)}
+							{getProductsCards(ClientType.normal)}
 						</Grid>
 					</>
 				}
@@ -154,14 +230,12 @@ export function HomePage() {
 						slidingDelay={5000}
 						height="h-[450px]"
 						buttonsStyle="size-5"
-						items={getProductCards(ProductCardType.VIP)}
+						items={getProductsCards(ClientType.vip)}
 					/>
 					:
 					<>
 						<Grid>
-							{getProductCards(ProductCardType.VIP).map((card, _) => {
-								return <>{card}</>
-							})}
+							{getProductsCards(ClientType.vip)}
 						</Grid>
 					</>
 				}
