@@ -1,4 +1,8 @@
-import { getFirestore, setDoc, doc, getDoc } from 'firebase/firestore';
+import {
+  getFirestore,
+  setDoc, doc, getDoc, getDocs,
+  collection
+} from 'firebase/firestore';
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from './config';
 
@@ -31,7 +35,18 @@ async function getDocument(collectionName: string, docKey: string,) {
 }
 
 async function getDocuments(collectionName: string) {
-  
+  try {
+    const response = await getDocs(collection(db, collectionName));
+    const documents = [] as Array<object>;
+
+    response.forEach(docRef => {
+      documents.push(docRef.data());
+    });
+
+    return documents;
+  } catch (error: any) {
+    throw error;
+  }
 }
 
 
