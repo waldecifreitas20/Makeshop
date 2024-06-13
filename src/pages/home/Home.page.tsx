@@ -83,19 +83,22 @@ export function HomePage() {
 	const [anyClientProducts, setAnyClientProducts] = useState<Array<any>>([]);
 
 
-	useMemo(() => {
+	useEffect(() => {
 		productServices.getProducts()
 			.then(data => {
-				let products: Array<any> = [];
+				let anyClient: Array<any> = [];
+				let vips: Array<any> = [];
 
 				for (const item of data) {
 					const product = productServices.parseToProduct(item);
-					products.push(product)
-
+					
+					
 					if (product.isVip) {
-						setVipProducts(products);
-					} else {
-						setAnyClientProducts(products);
+						vips.push(product);
+						setVipProducts(vips);
+						} else {
+						anyClient.push(product);
+						setAnyClientProducts(anyClient);
 					}
 				}
 	
