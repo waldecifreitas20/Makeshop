@@ -1,13 +1,20 @@
 import { firebase } from "../firebase";
+import { products } from "../mocks/products.json";
 
 async function getProducts() {
-  try {
+  /* try {
     return await firebase.getDocuments("products")
   } catch (error: any) {
     console.log(error);
     throw Error(`Unable to fetch products. Details: ${error}`);
-  }
+  } */
+
+  return products;
 }
+
+
+
+
 
 
 function parseToProduct(obj: any): Product {
