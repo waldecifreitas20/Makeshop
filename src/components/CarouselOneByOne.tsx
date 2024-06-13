@@ -8,14 +8,10 @@ export function CarouselOneByOneOfBanners(props: PropsWithChildren<CarouselProps
 	const view = useRef(null);
 	const slider = useRef(null);
 	const [index, setIndex] = useState(props.initialIndex ?? 0);
+	const itemsQtd = (props.children as Array<any>).length ?? 0;
 
 	/* METHODS */
-	function calcSliderWidth() {
-		const itemsQtd = (props.children as Array<any>).length ?? 0;
-		const viewWidth = window.innerWidth;
-
-		return itemsQtd * viewWidth;
-	}
+	const calcSliderWidth = () => window.innerWidth * itemsQtd;
 
 	function updateSliderWidth() {
 		const width = calcSliderWidth();
@@ -28,12 +24,13 @@ export function CarouselOneByOneOfBanners(props: PropsWithChildren<CarouselProps
 
 	function prevItem() {
 		const itemWidth = window.innerWidth;
-		setIndex(index+1);
+		let newIndex = index - 1 < 0 ? itemsQtd - 1 : index - 1;
+		setIndex(newIndex);
 	}
 	function nextItem() {
 		const itemWidth = window.innerWidth;
-		setIndex(index+1);
-
+		let newIndex = index + 1 >= itemsQtd ? 0 : index + 1;
+		setIndex(newIndex);
 	}
 
 	/* HOOKS */
@@ -65,13 +62,13 @@ export function CarouselOneByOneOfBanners(props: PropsWithChildren<CarouselProps
 				{/* index indicators */}
 				<div className="flex justify-center mt-2">
 					{Children.map(props.children, (_, i) => {
-						return <span className={`${i == index? "bg-gray-500" : "bg-gray-300"} rounded-full p-1 mx-1`}></span>
+						return <span className={`${i == index ? "bg-gray-500" : "bg-gray-300"} rounded-full p-1 mx-1`}></span>
 					})}
 				</div>
 			</div>
 
 			{/* Buttons */}
-			<div className="absolute hidden top-0 size-full">
+			<div className="absolute top-0 size-full">
 
 				<div className="size-full px-4 bg-transparent flex items-center justify-between">
 					{/* Prev item button */}
