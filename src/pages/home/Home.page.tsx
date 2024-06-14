@@ -166,6 +166,7 @@ export function HomePage() {
 						hover:bg-opacity-60
 						text-white  
 						size-12
+						rounded-full
 						"
 				>
 					{Banners()}
