@@ -4,10 +4,13 @@ import { CarouselProps } from "../interfaces/Carousel";
 
 
 export function CarouselOneByOneOfBanners(props: PropsWithChildren<CarouselProps>) {
-	const key = useRef(null);
-	const view = useRef(null);
-	const slider = useRef(null);
+	const keyRef = useRef(null);
+	const viewRef = useRef(null);
+	const sliderRef = useRef(null);
+
 	const [index, setIndex] = useState(props.initialIndex ?? 0);
+	const [sliderOffset, setSliderOffset] = useState("0px");
+
 	const itemsQtd = (props.children as Array<any>).length ?? 0;
 
 	/* METHODS */
@@ -15,22 +18,29 @@ export function CarouselOneByOneOfBanners(props: PropsWithChildren<CarouselProps
 
 	function updateSliderWidth() {
 		const width = calcSliderWidth();
-		getSlider().style.width = `${width}px`;
+		const slider = getSlider();
+		slider.style.width = `${width}px`;
 	}
 
 	function getSlider() {
-		return slider.current ?? new HTMLDivElement();
+		return sliderRef.current ?? new HTMLDivElement();
 	}
 
 	function prevItem() {
-		const itemWidth = window.innerWidth;
 		let newIndex = index - 1 < 0 ? itemsQtd - 1 : index - 1;
 		setIndex(newIndex);
+		slideToSIndex(newIndex);
 	}
 	function nextItem() {
-		const itemWidth = window.innerWidth;
 		let newIndex = index + 1 >= itemsQtd ? 0 : index + 1;
+		slideToSIndex(newIndex);
 		setIndex(newIndex);
+	}
+
+	function slideToSIndex(index: number) {
+		const itemWidth = window.innerWidth;
+		const offset = itemWidth * index;
+		setSliderOffset(`-${offset}px`);
 	}
 
 	/* HOOKS */
@@ -46,14 +56,14 @@ export function CarouselOneByOneOfBanners(props: PropsWithChildren<CarouselProps
 
 	return <>
 		{/* carousel */}
-		<div ref={key} className={` relative ${props.height ?? 'h-[250px]'}`}>
+		<div ref={keyRef} className={` relative ${props.height ?? 'h-[250px]'}`}>
 
 			<div className="size-full bg-blue-500">
 				{/* Carousel view */}
-				<div ref={view} className="size-full  overflow-hidden">
+				<div ref={viewRef} className="size-full  overflow-hidden">
 
 					{/* Carousel Slider */}
-					<div ref={slider} className={`flex h-full`}>
+					<div ref={sliderRef} className={`relative flex h-full transition-all duration-500`} style={{ left: sliderOffset }}>
 						{props.children}
 					</div>
 
