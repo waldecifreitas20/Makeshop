@@ -4,7 +4,7 @@ import { CarouselProps } from "../interfaces/Carousel";
 
 
 export function CarouselOneByOne(props: PropsWithChildren<CarouselProps>) {
-	const keyRef = useRef(null);
+	const carouselRef = useRef(null);
 	const viewRef = useRef(null);
 	const sliderRef = useRef(null);
 
@@ -13,8 +13,15 @@ export function CarouselOneByOne(props: PropsWithChildren<CarouselProps>) {
 
 	const itemsQtd = (props.children as Array<any>).length ?? 0;
 
+
 	/* METHODS */
-	const calcSliderWidth = () => window.innerWidth * itemsQtd;
+	function getItemMaxWidth() {
+		return (carouselRef.current ?? new HTMLDivElement()).offsetWidth;
+	}
+
+	function calcSliderWidth() {
+		return getItemMaxWidth() * itemsQtd;
+	}
 
 	function updateSliderWidth() {
 		const width = calcSliderWidth();
@@ -39,7 +46,7 @@ export function CarouselOneByOne(props: PropsWithChildren<CarouselProps>) {
 	}
 
 	function updateSlideCurrentItem(index: number) {
-		const itemWidth = window.innerWidth;
+		const itemWidth = getItemMaxWidth();
 		const offset = itemWidth * index;
 		setSliderOffset(`-${offset}px`);
 	}
@@ -57,15 +64,19 @@ export function CarouselOneByOne(props: PropsWithChildren<CarouselProps>) {
 
 	return <>
 		{/* carousel */}
-		<div ref={keyRef} className={` relative ${props.height ?? 'h-[250px]'}`}>
+		<div ref={carouselRef} className={`relative ${props.height ?? 'h-[250px]'}`}>
 
-			<div className="size-full bg-blue-500">
+			<div className="size-full">
 				{/* Carousel view */}
-				<div ref={viewRef} className="size-full  overflow-hidden">
+				<div ref={viewRef} className="size-full  overflow-hidden ">
 
 					{/* Carousel Slider */}
 					<div ref={sliderRef} className={`relative flex h-full transition-all duration-500`} style={{ left: sliderOffset }}>
-						{props.children}
+						{Children.map(props.children, child => {
+							return <>
+								<span className="flex  border-red-400 justify-center items-center w-full">{child}</span>
+							</>
+						})}
 					</div>
 
 				</div>

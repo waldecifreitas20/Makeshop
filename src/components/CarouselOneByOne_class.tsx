@@ -105,7 +105,7 @@ export class CarouselOneByOne extends React.Component implements Carousel {
 					</ol>
 				</div>
 
-		
+
 
 			</div >
 		</>;
