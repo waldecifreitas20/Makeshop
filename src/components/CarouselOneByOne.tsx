@@ -20,6 +20,7 @@ export function CarouselOneByOneOfBanners(props: PropsWithChildren<CarouselProps
 		const width = calcSliderWidth();
 		const slider = getSlider();
 		slider.style.width = `${width}px`;
+		updateSlideCurrentItem(index);
 	}
 
 	function getSlider() {
@@ -29,15 +30,15 @@ export function CarouselOneByOneOfBanners(props: PropsWithChildren<CarouselProps
 	function prevItem() {
 		let newIndex = index - 1 < 0 ? itemsQtd - 1 : index - 1;
 		setIndex(newIndex);
-		slideToSIndex(newIndex);
+		updateSlideCurrentItem(newIndex);
 	}
 	function nextItem() {
 		let newIndex = index + 1 >= itemsQtd ? 0 : index + 1;
-		slideToSIndex(newIndex);
+		updateSlideCurrentItem(newIndex);
 		setIndex(newIndex);
 	}
 
-	function slideToSIndex(index: number) {
+	function updateSlideCurrentItem(index: number) {
 		const itemWidth = window.innerWidth;
 		const offset = itemWidth * index;
 		setSliderOffset(`-${offset}px`);
