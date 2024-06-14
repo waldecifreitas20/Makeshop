@@ -3,7 +3,7 @@ import { onResizeScreen } from "../utils/utils";
 import { CarouselProps } from "../interfaces/Carousel";
 
 
-export function CarouselOneByOneOfBanners(props: PropsWithChildren<CarouselProps>) {
+export function CarouselOneByOne(props: PropsWithChildren<CarouselProps>) {
 	const keyRef = useRef(null);
 	const viewRef = useRef(null);
 	const sliderRef = useRef(null);

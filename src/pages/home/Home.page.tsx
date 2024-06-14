@@ -3,8 +3,7 @@ import { Navbar } from "../../components/Navbar.tsx";
 import { Section } from "../../components/Section.tsx";
 import { PillCarousel } from "../../components/PillCarousel.tsx";
 import { Pill } from "../../components/Pill.tsx";
-import { CarouselOneByOne } from "../../components/CarouselOneByOne_class.tsx";
-import { CarouselOneByOneOfBanners } from "../../components/CarouselOneByOne.tsx";
+import { CarouselOneByOne } from "../../components/CarouselOneByOne.tsx";
 import { Grid } from "../../components/Grid.tsx";
 import { Footer } from "../../components/Footer.tsx";
 /* Local Components */
@@ -13,7 +12,7 @@ import { Banners } from "./components/banners.tsx";
 import { isSmallDevice } from "../../utils/utils.ts";
 import { Newsletter } from "../../components/Newsletter.tsx";
 import { productServices } from "../../services/products.services.ts";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { ProductCard } from "../../components/ProductCard.tsx";
 import { Spinner } from "../../components/Spinner.tsx";
 
@@ -91,17 +90,17 @@ export function HomePage() {
 
 				for (const item of data) {
 					const product = productServices.parseToProduct(item);
-					
-					
+
+
 					if (product.isVip) {
 						vips.push(product);
 						setVipProducts(vips);
-						} else {
+					} else {
 						anyClient.push(product);
 						setAnyClientProducts(anyClient);
 					}
 				}
-	
+
 				setProductsLoadingState(true);
 			})
 			.catch(console.log);
@@ -116,8 +115,8 @@ export function HomePage() {
 			case ClientType.normal:
 				products = anyClientProducts;
 				break;
-				
-				case ClientType.vip:
+
+			case ClientType.vip:
 				products = vipsProducts;
 				break;
 
@@ -152,7 +151,7 @@ export function HomePage() {
 
 			{/* Carousel of getBanners */}
 			<Section key={"section-1"}>
-				<CarouselOneByOneOfBanners
+				<CarouselOneByOne
 					autoSlide={true}
 					slidingDelay={5000}
 					height="
@@ -170,7 +169,7 @@ export function HomePage() {
 						"
 				>
 					{Banners()}
-				</CarouselOneByOneOfBanners>
+				</CarouselOneByOne>
 
 			</Section>
 
@@ -182,8 +181,9 @@ export function HomePage() {
 							slidingDelay={5000}
 							height="h-[450px]"
 							buttonsStyle="size-5"
-							items={getProductsCards(ClientType.normal)}
-						/>
+						>
+							{getProductsCards(ClientType.normal)}
+						</CarouselOneByOne>
 						:
 						<>
 							<Grid>
@@ -203,8 +203,10 @@ export function HomePage() {
 							slidingDelay={5000}
 							height="h-[450px]"
 							buttonsStyle="size-5"
-							items={getProductsCards(ClientType.normal)}
-						/>
+
+						>
+							{getProductsCards(ClientType.normal)}
+						</CarouselOneByOne>
 						:
 						<>
 							<Grid>
@@ -253,8 +255,9 @@ export function HomePage() {
 							slidingDelay={5000}
 							height="h-[450px]"
 							buttonsStyle="size-5"
-							items={getProductsCards(ClientType.vip)}
-						/>
+						>
+							{getProductsCards(ClientType.normal)}
+						</CarouselOneByOne>
 						:
 						<>
 							<Grid>
