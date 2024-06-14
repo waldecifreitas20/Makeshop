@@ -1,5 +1,5 @@
 /* Components */
-import { Navbar } from "../../components/Navbar.tsx";
+import { Navbar } from "../../components/Navbar/index.tsx";
 import { Section } from "../../components/Section.tsx";
 import { PillCarousel } from "../../components/PillCarousel.tsx";
 import { Pill } from "../../components/Pill.tsx";
