@@ -256,7 +256,7 @@ export function HomePage() {
 							height="h-[450px]"
 							buttonsStyle="size-5"
 						>
-							{getProductsCards(ClientType.normal)}
+							{getProductsCards(ClientType.vip)}
 						</CarouselOneByOne>
 						:
 						<>
