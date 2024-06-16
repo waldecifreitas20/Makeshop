@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { BackHomeButton } from "../../components/BackHomeButton";
 import { ResponsibleButton } from "../../components/ResponsibleButton";
 
 import { routes } from "../../routes/routes";
-import { loginMethods } from "./login.methods";
 import { ResponsibleInput } from "../../components/ResponsibleInput";
 import { formUtils } from "../../utils/forms";
+import { userServices } from "../../services/user.services";
+import { Spinner } from "../../components/Spinner";
+import { getRefContent } from "../../utils/utils";
 
 
 const styles = {
@@ -37,20 +39,24 @@ const styles = {
 }
 
 export function LoginPage() {
+  /* REFS */
+  const emailInputRef = useRef(null);
+  const passwordInputRef = useRef(null);
+  /* STATES */
   const [showInvalidFormMessage, setFormMessageState] = useState(false);
   const [invalidFormMessage, setInvalidFormMessage] = useState("");
   const [isLoading, setLoadingState] = useState(false);
+  const [credentials, setCredentials] = useState({
+    email: '',
+    password: '',
+  });
 
-  const onInvalidForm = (message: string, input: HTMLInputElement) => {
-    formUtils.setInvalidInput(input);
-    setFormMessageState(true);
-    setInvalidFormMessage(message);
-  }
 
-  const onSubmit = async (event: React.MouseEvent) => {
+  /* METHODS */
+  async function onSubmit(event: React.MouseEvent) {
     setFormMessageState(false);
 
-    const isValid = loginMethods.validateLoginForm(onInvalidForm);
+    const isValid = validateLoginForm();
 
     if (!isValid) {
       event.preventDefault();
@@ -58,15 +64,53 @@ export function LoginPage() {
     }
 
     setLoadingState(true);
-    await loginMethods.login()
+    await login()
       .catch((err: Error) => {
         event.preventDefault();
         setFormMessageState(true);
         setInvalidFormMessage(err.message);
       })
       .finally(() => setLoadingState(false));
-
   }
+
+  function validateLoginForm() {
+
+    if (!formUtils.isValidEmail(credentials.email)) {
+      onInvalidForm(
+        "Digite um email válido",
+        getRefContent(emailInputRef)
+      );
+      return false;
+    }
+
+    if (!formUtils.isValidPassword(credentials.password)) {
+      onInvalidForm(
+        "Senha precisa conter entre 8 e 16 caracteres",
+        getRefContent(passwordInputRef)
+      );
+      return false;
+    }
+
+    return true;
+  }
+
+  async function login() {
+    const email = formUtils.getField('login-form', 'email');
+    const password = formUtils.getField('login-form', 'password');
+
+    const response = await userServices.authenticate(email.value, password.value);
+    if (response.status == 404) {
+      throw new Error(response.message);
+    }
+  }
+
+  function onInvalidForm(message: string, input: HTMLInputElement) {
+    formUtils.setInvalidInput(input);
+    setFormMessageState(true);
+    setInvalidFormMessage(message);
+  }
+
+
 
   return <>
     <div className="px-8 pt-10">
@@ -75,21 +119,34 @@ export function LoginPage() {
         <h1 className="text-center text-3xl mb-10 lg:text-2xl">Faça login e aproveite nossas ofertas</h1>
 
         <form id="login-form" method="GET" action="/">
-          <div>
-            <ResponsibleInput
-              id="email"
-              type="email"
-              placeholder="Email"
-              onChange={() => setFormMessageState(false)}
-            />
-          </div>
+
+          <ResponsibleInput
+            reference={emailInputRef}
+            id="email"
+            type="email"
+            placeholder="Email"
+            onChange={(event) => {
+              setCredentials({
+                ...credentials,
+                email: event.target.value
+              });
+              setFormMessageState(false);
+            }}
+          />
+
 
           <div className="mt-2 mb-1">
             <ResponsibleInput
               id="password"
               placeholder="Senha"
               type="password"
-              onChange={() => setFormMessageState(false)}
+              onChange={(event) => {
+                setCredentials({
+                  ...credentials,
+                  password: event.target.value
+                });
+                setFormMessageState(false);
+              }}
             />
           </div>
           {
@@ -111,12 +168,15 @@ export function LoginPage() {
                 onSubmit(event);
               }
             }}>
+
             {
               isLoading ?
-                <span className="loader mx-auto"></span>
+                <Spinner />
                 : "Entrar"
             }
+
           </ResponsibleButton>
+
           <a className="block mx-auto w-fit text-sm" href={routes.signUp}>Não tenho cadastro</a>
         </form>
       </main>
