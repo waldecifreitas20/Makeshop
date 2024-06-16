@@ -1,8 +1,18 @@
-import { DetailedHTMLProps } from "react";
+import { ChangeEventHandler, LegacyRef, useRef } from "react";
 
-export function ResponsibleInput(props: DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>) {
+interface ResponsibleInputProps {
+  reference?: LegacyRef<any>;
+  style?: string;
+  placeholder?: string;
+  id?: string;
+  type?: string;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+}
+
+export function ResponsibleInput(props: ResponsibleInputProps) {
   return <>
     <input
+      ref={props.reference ?? useRef(null)}
       id={props.id ?? ""}
       className="
         block 
