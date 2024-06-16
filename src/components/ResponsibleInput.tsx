@@ -13,7 +13,7 @@ export function ResponsibleInput(props: ResponsibleInputProps) {
   return <>
     <input
       ref={props.reference ?? useRef(null)}
-      id={props.id ?? ""}
+      id={props.id ?? Math.random().toString()}
       className="
         block 
         border border-zinc-400 rounded-full 
