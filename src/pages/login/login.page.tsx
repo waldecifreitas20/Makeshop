@@ -54,18 +54,17 @@ export function LoginPage() {
 
 
   /* METHODS */
-  async function onSubmit(event: React.MouseEvent) {
+  async function onSubmit(event: React.MouseEvent): Promise<void> {
     setFormMessageState(false);
 
     const isValid = validateLoginForm();
-    alert(isValid);
     if (!isValid) {
       event.preventDefault();
       return;
     }
 
     setLoadingState(true);
-    await login()
+    await userServices.authenticate(credentials.email, credentials.password)
       .catch((err: Error) => {
         event.preventDefault();
         setFormMessageState(true);
@@ -74,7 +73,8 @@ export function LoginPage() {
       .finally(() => setLoadingState(false));
   }
 
-  function validateLoginForm() {
+
+  function validateLoginForm(): boolean {
 
     if (!formUtils.isValidEmail(credentials.email)) {
       onInvalidForm(
@@ -95,14 +95,8 @@ export function LoginPage() {
     return true;
   }
 
-  async function login() {
-    const response = await userServices.authenticate(credentials.email, credentials.password);
-    if (response.status == 404) {
-      throw new Error(response.message);
-    }
-  }
 
-  function onInvalidForm(message: string, input: HTMLInputElement) {
+  function onInvalidForm(message: string, input: HTMLInputElement): void {
     formUtils.setInvalidInput(input);
     setFormMessageState(true);
     setInvalidFormMessage(message);
