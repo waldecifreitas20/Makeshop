@@ -35,7 +35,8 @@ const styles = {
   icon: `
     block
     size-6
-  `
+  `,
+  link: `block w-fit text-sm`
 }
 
 export function LoginPage() {
@@ -157,12 +158,12 @@ export function LoginPage() {
               : <></>
           }
 
-          <a className="block ml-auto w-fit mr-5 text-sm" href="">Esqueci minha senha</a>
+          <a className={`${styles.link} ml-auto`} href="">Esqueci minha senha</a>
 
           <ResponsibleButton
             disabled={isLoading}
             type="submit"
-            style={isLoading ? "bg-white hover:bg-white" : ""}
+            style={isLoading ? "bg-gray hover:bg-white" : ""}
             onClick={(event) => {
               if (!isLoading) {
                 onSubmit(event);
@@ -177,7 +178,7 @@ export function LoginPage() {
 
           </ResponsibleButton>
 
-          <a className="block mx-auto w-fit text-sm" href={routes.signUp}>Não tenho cadastro</a>
+          <a className={`${styles.link} mx-auto`} href={routes.signUp}>Não tenho cadastro</a>
         </form>
       </main>
     </div>
