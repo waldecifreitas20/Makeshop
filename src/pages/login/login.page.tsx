@@ -58,7 +58,7 @@ export function LoginPage() {
     setFormMessageState(false);
 
     const isValid = validateLoginForm();
-
+    alert(isValid);
     if (!isValid) {
       event.preventDefault();
       return;
@@ -96,10 +96,7 @@ export function LoginPage() {
   }
 
   async function login() {
-    const email = formUtils.getField('login-form', 'email');
-    const password = formUtils.getField('login-form', 'password');
-
-    const response = await userServices.authenticate(email.value, password.value);
+    const response = await userServices.authenticate(credentials.email, credentials.password);
     if (response.status == 404) {
       throw new Error(response.message);
     }
@@ -138,6 +135,7 @@ export function LoginPage() {
 
           <div className="mt-2 mb-1">
             <ResponsibleInput
+              reference={passwordInputRef}
               id="password"
               placeholder="Senha"
               type="password"
