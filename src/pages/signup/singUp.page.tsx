@@ -2,7 +2,6 @@ import { useState } from "react";
 import { BackHomeButton } from "../../components/BackHomeButton";
 
 import { ResponsibleButton } from "../../components/ResponsibleButton";
-import { formUtils } from "../../utils/forms";
 import { Row } from "./components/Row";
 import { userServices } from "../../services/user.services";
 import { ResponsibleInput } from "../../components/ResponsibleInput";
@@ -10,27 +9,29 @@ import { LabelBlock } from "./components/LabelBlock";
 import { ResponsibleComponent } from "../../components/ResponsibleComponent";
 import { Modal } from "../../components/Modal";
 
+import { formUtils } from "../../utils/forms";
+import { utils } from "../../utils/utils";
+
 
 function validateForm(userData: any,
   onInvalid: (
     message: string,
-    input: HTMLInputElement,
   ) => void): boolean {
 
-  const { result: hasEmptyFields, emptyInput } = formUtils.checkEmptyFields(userData);
-  
+  const hasEmptyFields = utils.hasEmptyFields(userData);
+
   if (hasEmptyFields) {
-    onInvalid("Preencha todos os campos", emptyInput);
+    onInvalid("Preencha todos os campos");
     return false;
   }
 
-  if (!formUtils.isValidEmail(userData.email.value)) {
-    onInvalid("Digite um email válido", userData.email);
+  if (!formUtils.isValidEmail(userData.email)) {
+    onInvalid("Digite um email válido");
     return false;
   }
 
-  if (!formUtils.isValidPassword(userData.password.value, true)) {
-    onInvalid("Senha precisa conter entre 8 e 16 caracteres", userData.password);
+  if (!formUtils.isValidPassword(userData.password, true)) {
+    onInvalid("Senha precisa conter entre 8 e 16 caracteres");
     return false;
   }
 
@@ -93,23 +94,27 @@ export function SignUpPage() {
 
     event.preventDefault();
 
-    const isValid = validateForm(userData, (message, input) => {
-      setErrorMessage(message);
-      formUtils.setInvalidInput(input);
+    const isValid = validateForm(userData, (message) => {
       event.preventDefault();
       setLoaderState(false);
+      openModal(message)
     });
     if (isValid) {
       setLoaderState(true);
-      signUp(userData)
-        .then(console.log)
-        .catch(() => {
-          setModalVisibility(modalVisibility.display);
-          setErrorMessage("Usuário já existe! Faça Login");
-        }).finally(() => {
-          return setLoaderState(false);
-        });
+      try {
+        const response = await signUp(userData);
+        console.log(response);
+      } catch (error: any) {
+        openModal(error.message);
+      } finally {
+        setLoaderState(false);
+      }
     }
+  }
+
+  function openModal(message: string) {
+    setErrorMessage(message);
+    setModalVisibility(modalVisibility.display);
   }
 
   return <>
@@ -117,14 +122,9 @@ export function SignUpPage() {
       <Modal>
         <p>{errorMessage}</p>
 
-        <Row>
-          <ResponsibleButton onClick={() => {
-            setModalVisibility(modalVisibility.hidden);
-          }}>Fechar</ResponsibleButton>
-          <ResponsibleButton onClick={() => {
-            setModalVisibility(modalVisibility.hidden);
-          }}>Fechar</ResponsibleButton>
-        </Row>
+        <ResponsibleButton onClick={() => {
+          setModalVisibility(modalVisibility.hidden);
+        }}>Ok</ResponsibleButton>
       </Modal>
     }
     <div className="px-8 py-10">
@@ -169,7 +169,7 @@ export function SignUpPage() {
                 onChange={(event => {
                   setUserData({
                     ...userData,
-                    cpf: event.target.value,
+                    birth: event.target.value,
                   })
                 })} />
             </LabelBlock>
