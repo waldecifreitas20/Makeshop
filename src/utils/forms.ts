@@ -1,5 +1,8 @@
 import { utils } from "./utils";
 
+const letters = "çabcdefghijklmnopqrstuvwxyz";
+const symbols = "!@#$%&*()_-=+{[}];:.,/?|";
+
 function setInvalidInput(input: HTMLInputElement) {
   input.value = "";
   input.focus();
@@ -16,42 +19,67 @@ function isValidEmail(email: string): boolean {
 }
 
 function isValidPassword(pass: string, fullCheck: boolean = false): boolean {
-  const symbols = "!@#$%&*()_-=+{[}];:.,/?|";
-  const letters = "çabcdefghijklmnopqrstuvwxyz";
-
-  if (pass.length >= 8 && pass.length <= 16) {
-    return true;
+  if (pass.length <= 8 && pass.length >= 16) {
+    return false;
   }
 
   if (fullCheck) {
-    for (const symbol of symbols) {
-      if (pass.indexOf(symbol) !== -1) {
-        return true;
-      }
+    if (!hasSymbols(pass)) return false;
+    if (!hasCapsLetter(pass)) return false;
+    if (!hasLowerCaseLetter(pass)) return false;
+    if (!hasNumbers(pass)) return false;
+  }
+
+  return true;
+}
+
+
+function hasCapsLetter(str: string) {
+
+  for (const letter of letters) {
+    if (str.indexOf(letter.toUpperCase()) !== -1) {
+      return true;
     }
-    for (const letter of letters) {
-      if (pass.indexOf(letter) !== -1) {
-        return true;
-      }
-    }
-    for (let i = 0; i <= 9; i++) {
-      if (pass.indexOf(`${i}`) !== -1) {
-        return true;
-      }
+  }
+  return false;
+}
+function hasLowerCaseLetter(str: string) {
+
+  for (const letter of letters) {
+    if (str.indexOf(letter.toLowerCase()) !== -1) {
+      return true;
     }
   }
   return false;
 }
 
-function getField(formId: string, inputId: string) {
-  return document.querySelector(`#${formId} #${inputId}`) as HTMLInputElement;
+function hasSymbols(str: string) {
+  const symbols = "!@#$%&*()_-=+{[}];:.,/?|";
+
+  for (const symbol of symbols) {
+    if (str.indexOf(symbol) !== -1) {
+      return true;
+    }
+  }
+  return false;
 }
 
+function hasNumbers(str: string) {
+  for (let i = 0; i <= 9; i++) {
+    if (str.indexOf(`${i}`) !== -1) {
+      return true;
+    }
+  }
+  return false;
+}
 
 
 export const formUtils = {
   setInvalidInput,
   isValidEmail,
   isValidPassword,
-  getField,
+  hasNumbers,
+  hasSymbols, 
+  hasCapsLetter, 
+  hasLowerCaseLetter, 
 }
