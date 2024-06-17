@@ -15,21 +15,16 @@ async function authenticate(email: string, password: string) {
   throw Error("Email e/ou Senha inválidos");
 }
 
-async function createUser(user: User) {
-  let hasUser = false;
-  try {
-    await firebase.getDocument("users", user.email);
-    hasUser = true;
-  } catch (error) { }
-
+async function signUp(user: User) {
+  const hasUser = await firebase.hasDocument("users", user.email);
   if (hasUser) {
     throw Error("Usuário já Existe");
   }
-  
+
   return await firebase.createDocument("users", user.email, user);
 }
 
 export const userServices = {
   authenticate,
-  createUser,
+  signUp,
 }

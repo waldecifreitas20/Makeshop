@@ -13,7 +13,7 @@ async function createDocument(collectionName: string, docKey: string, docFields:
   try {
     const userCollectionRef = doc(db, collectionName, docKey);
     await setDoc(userCollectionRef, docFields);
-
+    
     return true;
 
   } catch (error) {
@@ -21,11 +21,11 @@ async function createDocument(collectionName: string, docKey: string, docFields:
   }
 }
 
-async function getDocument(collectionName: string, docKey: string,) {
+async function getDocument(collectionName: string, docKey: string) {
   try {
     const userDocRef = doc(db, collectionName, docKey);
     const docSnap = await getDoc(userDocRef);
-
+  
     if (docSnap.exists()) {
       return docSnap.data()
     }
@@ -49,9 +49,19 @@ async function getDocuments(collectionName: string) {
   }
 }
 
+async function hasDocument(collectionName: string, docKey: string) {
+  try {
+    await getDocument(collectionName, docKey);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 
 export const firebase = {
   createDocument,
+  hasDocument,
   getDocument,
   getDocuments,
 }

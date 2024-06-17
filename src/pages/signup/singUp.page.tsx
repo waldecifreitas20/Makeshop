@@ -39,9 +39,6 @@ function validateForm(userData: any,
   return true;
 }
 
-async function signUp(user: any) {
-  return await userServices.createUser(user);
-}
 
 const STATES = [
   'pará', 'são paulo', 'mato grosso',
@@ -90,7 +87,7 @@ export function SignUpPage() {
     if (isValid) {
       setLoaderState(true);
       try {
-        await signUp(userData);
+        await userServices.signUp(userData);
       } catch (error: any) {
         openModal(error.message);
       } finally {
