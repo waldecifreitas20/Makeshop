@@ -22,7 +22,7 @@ function validateForm(userData: any,
   const hasEmptyFields = utils.hasEmptyFields(userData);
 
   if (hasEmptyFields) {
-    onInvalid("Preencha todos os campos");
+    onInvalid("É necessário preencher todos os campos.");
     return false;
   }
 
@@ -107,12 +107,16 @@ export function SignUpPage() {
   return <>
 
     {isModalHidden ? <></> :
-      <Modal>
-        <p>{errorMessage}</p>
+      <Modal style="flex flex-col w-[90%] sm:w-[450px]  md:pt-5 md:w-[400px]">
+        <p className="text-lg">{errorMessage}</p>
 
-        <ResponsibleButton onClick={() => {
-          setModalVisibility(modalVisibility.hidden);
-        }}>Ok</ResponsibleButton>
+        <ResponsibleButton
+          style="md:w-[55%] ml-auto mt-5"
+          onClick={() => {
+            setModalVisibility(modalVisibility.hidden);
+          }}>
+          Ok
+        </ResponsibleButton>
       </Modal>
     }
     <div className="px-8 py-10">
