@@ -9,7 +9,7 @@ import { Footer } from "../../components/Footer.tsx";
 /* Local Components */
 import { Banners } from "./components/banners.tsx";
 /* Utilities functions */
-import { isSmallDevice } from "../../utils/utils.ts";
+import { utils } from "../../utils/utils.ts";
 import { Newsletter } from "../../components/Newsletter.tsx";
 import { productServices } from "../../services/products.services.ts";
 import { useEffect, useState } from "react";
@@ -177,7 +177,7 @@ export function HomePage() {
 			{/* For you section */}
 			<Section key={"section-2"} title="para você" style="px-5 mt-10" >
 				{hasProductsLoaded ?
-					(isSmallDevice() ?
+					(utils.isSmallDevice() ?
 						<CarouselOneByOne
 							slidingDelay={5000}
 							height="h-[450px]"
@@ -199,7 +199,7 @@ export function HomePage() {
 			{/* just launched section*/}
 			<Section key={"section-3"} title="Lançamentos do mês" style="px-5 mt-10">
 				{hasProductsLoaded ?
-					(isSmallDevice() ?
+					(utils.isSmallDevice() ?
 						<CarouselOneByOne
 							slidingDelay={5000}
 							height="h-[450px]"
@@ -251,7 +251,7 @@ export function HomePage() {
 			{/* only vip section */}
 			< Section key={"section-5"} title="Só para vips" style="px-5 mt-14">
 				{hasProductsLoaded ?
-					(isSmallDevice() ?
+					(utils.isSmallDevice() ?
 						<CarouselOneByOne
 							slidingDelay={5000}
 							height="h-[450px]"

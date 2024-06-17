@@ -1,5 +1,6 @@
 import { Component, PropsWithChildren } from "react";
-import { onResizeScreen } from "../utils/utils";
+import { utils } from "../utils/utils";
+import { Carousel, CarouselProps } from "../interfaces/Carousel";
 
 export class PillCarousel extends Component implements Carousel {
 	private key: string;
@@ -24,7 +25,7 @@ export class PillCarousel extends Component implements Carousel {
 			showButtons: this.showButtons,
 		}
 
-		onResizeScreen(() => {
+		utils.onResizeScreen(() => {
 			const slider = this.getSlider();
 			this.showButtons = this.getCarouselView().offsetWidth <= slider.offsetWidth;
 			this.updateMaxOffset();

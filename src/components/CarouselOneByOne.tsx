@@ -1,5 +1,5 @@
 import { Children, PropsWithChildren, useEffect, useRef, useState } from "react";
-import { onResizeScreen } from "../utils/utils";
+import { utils } from "../utils/utils";
 import { CarouselProps } from "../interfaces/Carousel";
 
 
@@ -57,7 +57,7 @@ export function CarouselOneByOne(props: PropsWithChildren<CarouselProps>) {
 	});
 
 	useEffect(() => {
-		onResizeScreen(() => {
+		utils.onResizeScreen(() => {
 			updateSliderWidth();
 		});
 	});

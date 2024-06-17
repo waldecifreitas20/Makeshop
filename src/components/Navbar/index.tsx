@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { onResizeScreen, isSmallDevice } from "../../utils/utils";
+import { utils } from "../../utils/utils";
 import { appColors } from "../../global/colors";
 import { MenuOptions } from "./components/MenuOptions";
 import { NavbarBadges } from "./components/Badges";
@@ -8,7 +8,7 @@ import { MenuHeader } from "./components/MenuHeader";
 import { MakeshopLogo } from "./components/MakeshopLogo";
 
 export function Navbar() {
-	let [showSearchBar, setSearchBarView] = useState(!isSmallDevice());
+	let [showSearchBar, setSearchBarView] = useState(!utils.isSmallDevice());
 	let [menuClass, setMenuClass] = useState('close-menu');
 
 	/* METHODS */
@@ -24,8 +24,8 @@ export function Navbar() {
 		setMenuClass('close-menu');
 	}
 
-	onResizeScreen(() => {
-		setSearchBarView(!isSmallDevice());
+	utils.onResizeScreen(() => {
+		setSearchBarView(!utils.isSmallDevice());
 	});
 
 

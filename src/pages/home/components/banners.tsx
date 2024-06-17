@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { isSmallDevice, onResizeScreen } from "../../../utils/utils";
+import { utils } from "../../../utils/utils";
 
 export function Banners(): Array<any> {
   const COUPON = "MAKE15OFF";
@@ -9,11 +9,11 @@ export function Banners(): Array<any> {
     copied: <i className="fa-solid fa-check text-green-500 fa-lg" > </i>,
   }
   let [buttonCopyIcon, setButtonCopyIcon] = useState(icons.initial);
-  let [isBigBanner, setIsBigBanner] = useState(!isSmallDevice());
+  let [isBigBanner, setIsBigBanner] = useState(!utils.isSmallDevice());
 
   /* Make banner responsible to screen resizing */
-  onResizeScreen(() => {
-    setIsBigBanner(!isSmallDevice());
+  utils.onResizeScreen(() => {
+    setIsBigBanner(!utils.isSmallDevice());
   });
 
   function copyToClipboard(value: string) {
@@ -45,7 +45,7 @@ export function Banners(): Array<any> {
            
         "/>
           {
-            !isSmallDevice() ?
+            !utils.isSmallDevice() ?
               <button
                 className="
                 bg-white 
