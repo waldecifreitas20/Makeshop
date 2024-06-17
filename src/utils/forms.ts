@@ -1,4 +1,4 @@
-import { isEmpty } from "./utils";
+import { utils } from "./utils";
 
 function setInvalidInput(input: HTMLInputElement) {
   input.value = "";
@@ -6,11 +6,11 @@ function setInvalidInput(input: HTMLInputElement) {
 }
 
 function isValidEmail(email: string): boolean {
-  if (!isEmpty(email)) {
+  if (!utils.isEmpty(email)) {
     const hasAtSign = email.indexOf("@") !== -1;
     const hasDot = email.indexOf('.') !== -1;
 
-    return hasAtSign && hasDot && !isEmpty(email);
+    return hasAtSign && hasDot && !utils.isEmpty(email);
   }
   return false;
 }
@@ -47,24 +47,11 @@ function getField(formId: string, inputId: string) {
   return document.querySelector(`#${formId} #${inputId}`) as HTMLInputElement;
 }
 
-function checkEmptyFields(fields: object) {
-  const inputs = Object.values(fields);
 
-  for (const input of inputs) {
-    if (input.value === "") {
-      return {
-        result: true,
-        emptyInput: input,
-      };
-    }
-  }
-  return { result: false, emptyInput: null };
-}
 
 export const formUtils = {
   setInvalidInput,
   isValidEmail,
   isValidPassword,
   getField,
-  checkEmptyFields,
 }

@@ -7,7 +7,7 @@ import { ResponsibleInput } from "../../components/ResponsibleInput";
 import { formUtils } from "../../utils/forms";
 import { userServices } from "../../services/user.services";
 import { Spinner } from "../../components/Spinner";
-import { getRefContent } from "../../utils/utils";
+import { utils } from "../../utils/utils";
 
 
 const styles = {
@@ -79,7 +79,7 @@ export function LoginPage() {
     if (!formUtils.isValidEmail(credentials.email)) {
       onInvalidForm(
         "Digite um email válido",
-        getRefContent(emailInputRef)
+        utils.getRefContent(emailInputRef)
       );
       return false;
     }
@@ -87,7 +87,7 @@ export function LoginPage() {
     if (!formUtils.isValidPassword(credentials.password)) {
       onInvalidForm(
         "Senha precisa conter entre 8 e 16 caracteres",
-        getRefContent(passwordInputRef)
+        utils.getRefContent(passwordInputRef)
       );
       return false;
     }

@@ -22,17 +22,29 @@ function getSubArray(array: Array<any>, fromIndex = 0, newLength = 5): Array<any
 }
 
 function isEmpty(array: Array<any> | string) {
-  return array.length === 0;
+	return array.length === 0;
 }
 
 function getRefContent(ref: MutableRefObject<any>) {
 	return ref.current;
 }
 
-export {
+function hasEmptyFields(obj: object) {
+	const fields = Object.values(obj);
+
+	for (const field of fields) {
+		if (field === "") {
+			return true;
+		}
+	}
+	return false;
+}
+
+export const utils = {
 	isSmallDevice,
 	onResizeScreen,
 	getSubArray,
 	isEmpty,
+	hasEmptyFields,
 	getRefContent,
 }
