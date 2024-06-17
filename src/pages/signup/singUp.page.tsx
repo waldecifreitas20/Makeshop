@@ -8,6 +8,7 @@ import { userServices } from "../../services/user.services";
 import { ResponsibleInput } from "../../components/ResponsibleInput";
 import { LabelBlock } from "./components/LabelBlock";
 import { ResponsibleComponent } from "../../components/ResponsibleComponent";
+import { Modal } from "../../components/Modal";
 
 
 function validateForm(userData: any,
@@ -17,6 +18,7 @@ function validateForm(userData: any,
   ) => void): boolean {
 
   const { result: hasEmptyFields, emptyInput } = formUtils.checkEmptyFields(userData);
+  
   if (hasEmptyFields) {
     onInvalid("Preencha todos os campos", emptyInput);
     return false;
@@ -68,6 +70,12 @@ function getStatesNames() {
 
 export function SignUpPage() {
   /* STATES */
+  const modalVisibility = {
+    hidden: true,
+    display: false,
+  }
+  const [isModalHidden, setModalVisibility] = useState(modalVisibility.hidden);
+  const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setLoaderState] = useState(false);
   const [userData, setUserData] = useState({
     name: "",
@@ -86,25 +94,39 @@ export function SignUpPage() {
     event.preventDefault();
 
     const isValid = validateForm(userData, (message, input) => {
-      alert(message);
+      setErrorMessage(message);
       formUtils.setInvalidInput(input);
       event.preventDefault();
       setLoaderState(false);
     });
-
     if (isValid) {
       setLoaderState(true);
       signUp(userData)
         .then(console.log)
         .catch(() => {
-          alert("Usuário já cadastrado! Faça o login em vez disto.")
+          setModalVisibility(modalVisibility.display);
+          setErrorMessage("Usuário já existe! Faça Login");
         }).finally(() => {
-          setLoaderState(false);
+          return setLoaderState(false);
         });
     }
   }
 
   return <>
+    {isModalHidden ? <></> :
+      <Modal>
+        <p>{errorMessage}</p>
+
+        <Row>
+          <ResponsibleButton onClick={() => {
+            setModalVisibility(modalVisibility.hidden);
+          }}>Fechar</ResponsibleButton>
+          <ResponsibleButton onClick={() => {
+            setModalVisibility(modalVisibility.hidden);
+          }}>Fechar</ResponsibleButton>
+        </Row>
+      </Modal>
+    }
     <div className="px-8 py-10">
       <div className="mb-5">
         <BackHomeButton />
