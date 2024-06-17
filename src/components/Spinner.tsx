@@ -4,6 +4,6 @@ interface SpinnerProps {
 
 export function Spinner(props: SpinnerProps) {
   return <>
-    <span className={`loader mx-auto size-[25px] ${props.style}`}></span>
+    <span className={`loader mx-auto max-h-max max-w-max ${props.style}`}></span>
   </>
 }
