@@ -1,5 +1,5 @@
 import { Component, PropsWithChildren } from "react";
-import { getSubArray } from "../utils/utils";
+import { utils } from "../utils/utils";
 
 interface GridProps {
 	style?: string;
@@ -47,7 +47,7 @@ export class Grid extends Component {
 
 	public nextRow(): void {
 		if (this.activeItems.length + 5 < this.maxItems) {
-			this.activeItems = getSubArray(this.items, 0, this.activeItems.length + 5);
+			this.activeItems = utils.getSubArray(this.items, 0, this.activeItems.length + 5);
 			this.setState({});
 		} else {
 			this.activeItems = this.items;
