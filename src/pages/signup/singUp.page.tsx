@@ -12,6 +12,8 @@ import { Modal } from "../../components/Modal";
 import { formUtils } from "../../utils/forms";
 import { utils } from "../../utils/utils";
 import { Spinner } from "../../components/Spinner";
+import { FormWarning } from "./components/FormWarning";
+import { FormWarningBlock } from "./components/FormWaningBlock";
 
 
 function validateForm(userData: any,
@@ -63,6 +65,7 @@ export function SignUpPage() {
   const [isModalHidden, setModalVisibility] = useState(modalVisibility.hidden);
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setLoaderState] = useState(false);
+  const [passwordCheck, setPasswordCheck] = useState("");
   const [userData, setUserData] = useState({
     name: "",
     address: "",
@@ -101,6 +104,14 @@ export function SignUpPage() {
     setModalVisibility(modalVisibility.display);
   }
 
+  function isEqualPassword() {
+    if (utils.isEmpty(userData.password) || utils.isEmpty(passwordCheck)) {
+      return false;
+    }
+    return userData.password === passwordCheck;
+  }
+
+
   return <>
 
     {isModalHidden ? <></> :
@@ -122,6 +133,7 @@ export function SignUpPage() {
       </div>
 
       <form id="signup-form" className="md:max-w-[700px] mx-auto" method="GET" action="/">
+        {/* PERSONAL DATA */}
         <fieldset>
           <LabelBlock label="Nome Completo">
             <ResponsibleInput
@@ -165,6 +177,7 @@ export function SignUpPage() {
           </Row>
         </fieldset>
 
+        {/* ADDRESS DATA */}
         <fieldset className="my-8">
           <LabelBlock label="CEP">
             <ResponsibleInput placeholder="00000-000"
@@ -217,6 +230,7 @@ export function SignUpPage() {
           </LabelBlock>
         </fieldset>
 
+        {/* AUTHENTICATION DATA */}
         <fieldset>
           <LabelBlock label="email">
             <ResponsibleInput placeholder="joseribamar23@outlook.com" type="email"
@@ -241,21 +255,21 @@ export function SignUpPage() {
 
             <LabelBlock label="confirme sua senha">
               <ResponsibleInput placeholder="Minímo 8 caracteres" type="password"
-                onChange={(event => {
-                  setUserData({
-                    ...userData,
-                    password: event.target.value,
-                  })
+                onChange={((event) => {
+                  const passwordCheck = event.target.value.trim();
+                  setPasswordCheck(passwordCheck)
                 })} />
             </LabelBlock>
           </Row>
 
-          <ul className="mx-2">
-            <li className="text-green-500"><span>X</span> Contém simbolo</li>
-            <li className="text-green-500"><span>X</span> Contém letras maiúsculas</li>
-            <li className="text-red-500"><span>X</span> Contém letras minúsculas</li>
-            <li className="text-red-500"><span>X</span> Contém no mínimo 8 caracteres</li>
-          </ul>
+          <FormWarningBlock>
+            <FormWarning isValid={isEqualPassword} message="Senhas conferem" />
+            <FormWarning isValid={() => formUtils.hasSymbols(userData.password)} message="Contém símbolos" />
+            <FormWarning isValid={() => formUtils.hasCapsLetter(userData.password)} message="Contém letras maiúsculas" />
+            <FormWarning isValid={() => formUtils.hasLowerCaseLetter(userData.password)} message="Contém letras minúsculas" />
+            <FormWarning isValid={() => formUtils.hasNumbers(userData.password)} message="Contém no mínimo 8 caracteres" />
+            <FormWarning isValid={() => userData.password.length > 7 && userData.password.length < 17} message="Contém no mínimo 8 caracteres" />
+          </FormWarningBlock>
         </fieldset>
 
         <ResponsibleButton
