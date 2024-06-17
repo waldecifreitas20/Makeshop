@@ -54,19 +54,18 @@ async function signUp(userData: any) {
   return await userServices.createUser(user);
 }
 
-function getStatesNames() {
-  return [
-    'pará', 'são paulo', 'mato grosso',
-    'mato grosso do sul', 'rio de janeiro',
-    'maranhão', 'acre', 'amapá', 'rondônia',
-    'roraima', 'tocantins', 'piauí',
-    'paraná', 'distrito federal', 'goiás',
-    'bahia', 'paraíba', 'pernambuco',
-    'rio grande do norte', 'ceará', 'alagoas',
-    'rio grande do sul', 'sergipe', 'santa catarina',
-    'espirito santo', 'minas gerais', 'amazonas'
-  ];
-}
+const STATES = [
+  'pará', 'são paulo', 'mato grosso',
+  'mato grosso do sul', 'rio de janeiro',
+  'maranhão', 'acre', 'amapá', 'rondônia',
+  'roraima', 'tocantins', 'piauí',
+  'paraná', 'distrito federal', 'goiás',
+  'bahia', 'paraíba', 'pernambuco',
+  'rio grande do norte', 'ceará', 'alagoas',
+  'rio grande do sul', 'sergipe', 'santa catarina',
+  'espirito santo', 'minas gerais', 'amazonas'
+];
+
 
 
 export function SignUpPage() {
@@ -197,10 +196,10 @@ export function SignUpPage() {
                 })
               })}>
                 <option value="null">--- Selecione ---</option>
-                {getStatesNames().map((state, _) => {
-                  return <>
-                    <option value={state}>{state.toUpperCase()}</option>
-                  </>
+                {STATES.map((state, i) => {
+                  return <option key={i} value={state}>
+                    {state.toUpperCase()}
+                  </option>
                 })}
               </select>
             </ResponsibleComponent>
