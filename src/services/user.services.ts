@@ -16,10 +16,16 @@ async function authenticate(email: string, password: string) {
 }
 
 async function createUser(user: User) {
-  const hasUser = await firebase.getDocument("users", user.email);
+  let hasUser = false;
+  try {
+    await firebase.getDocument("users", user.email);
+    hasUser = true;
+  } catch (error) { }
+
   if (hasUser) {
-    throw Error("User already exists");
+    throw Error("Usuário já Existe");
   }
+  
   return await firebase.createDocument("users", user.email, user);
 }
 

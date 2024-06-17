@@ -11,6 +11,7 @@ import { Modal } from "../../components/Modal";
 
 import { formUtils } from "../../utils/forms";
 import { utils } from "../../utils/utils";
+import { Spinner } from "../../components/Spinner";
 
 
 function validateForm(userData: any,
@@ -38,19 +39,7 @@ function validateForm(userData: any,
   return true;
 }
 
-async function signUp(userData: any) {
-  const user: User = {
-    name: userData.name.value,
-    address: userData.address.value,
-    birth: userData.birth.value,
-    cep: userData.cep.value,
-    city: userData.city.value,
-    cpf: userData.cpf.value,
-    email: userData.email.value,
-    password: userData.password.value,
-    state: userData.state.value,
-  }
-
+async function signUp(user: any) {
   return await userServices.createUser(user);
 }
 
@@ -101,8 +90,7 @@ export function SignUpPage() {
     if (isValid) {
       setLoaderState(true);
       try {
-        const response = await signUp(userData);
-        console.log(response);
+        await signUp(userData);
       } catch (error: any) {
         openModal(error.message);
       } finally {
@@ -117,6 +105,7 @@ export function SignUpPage() {
   }
 
   return <>
+
     {isModalHidden ? <></> :
       <Modal>
         <p>{errorMessage}</p>
@@ -269,7 +258,7 @@ export function SignUpPage() {
         </fieldset>
 
         <ResponsibleButton
-          style="lg:w-[400px]"
+          style="lg:w-[400px] h-[40px] py-0"
           type="submit"
           onClick={(event) => {
             if (!isLoading) {
@@ -278,7 +267,7 @@ export function SignUpPage() {
           }}>
           {
             isLoading ?
-              <span className="loader mx-auto"></span>
+              <Spinner />
               : "Cadastrar"
           }
         </ResponsibleButton>
