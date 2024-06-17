@@ -19,11 +19,12 @@ export function ResponsibleButton(props: PropsWithChildren<ResponsibleButtonProp
       block 
       w-full
       rounded-full
-      py-2 
-      text-xl text-white 
+      py-2
+      text-md text-white 
       transition-all duration-300  
       
       md:text-sm
+      md:py-2 
       
       lg:rounded-md
       ${props.style}
