@@ -267,8 +267,8 @@ export function SignUpPage() {
             <FormWarning isValid={() => formUtils.hasSymbols(userData.password)} message="Contém símbolos" />
             <FormWarning isValid={() => formUtils.hasCapsLetter(userData.password)} message="Contém letras maiúsculas" />
             <FormWarning isValid={() => formUtils.hasLowerCaseLetter(userData.password)} message="Contém letras minúsculas" />
-            <FormWarning isValid={() => formUtils.hasNumbers(userData.password)} message="Contém no mínimo 8 caracteres" />
-            <FormWarning isValid={() => userData.password.length > 7 && userData.password.length < 17} message="Contém no mínimo 8 caracteres" />
+            <FormWarning isValid={() => formUtils.hasNumbers(userData.password)} message="Contém números" />
+            <FormWarning isValid={() => userData.password.length > 7 && userData.password.length < 17} message="Contém entre 8 e 16 caracteres" />
           </FormWarningBlock>
         </fieldset>
 
