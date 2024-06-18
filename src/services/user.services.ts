@@ -31,8 +31,13 @@ async function signUp(user: User) {
   return
 }
 
+function logout() {
+  isAuthenticated = false;
+}
+
 export const userServices = {
   authenticate,
   hasAuthenticated,
   signUp,
+  logout,
 }
