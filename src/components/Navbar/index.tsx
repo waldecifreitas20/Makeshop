@@ -2,10 +2,12 @@ import { useState } from "react";
 import { utils } from "../../utils/utils";
 import { appColors } from "../../global/colors";
 import { MenuOptions } from "./components/MenuOptions";
-import { NavbarBadges } from "./components/Badges";
+
 import { Searchbar } from "./components/Searchbar";
 import { MenuHeader } from "./components/MenuHeader";
 import { MakeshopLogo } from "./components/MakeshopLogo";
+import { NavbarBadges } from "./components/Badges";
+import { userServices } from "../../services/user.services";
 
 export function Navbar() {
 	let [showSearchBar, setSearchBarView] = useState(!utils.isSmallDevice());
@@ -130,7 +132,7 @@ export function Navbar() {
 								lg:w-[80%]
 								lg:ml-[4%]
 								">
-								<MenuOptions isLoggedIn={false} />
+								<MenuOptions isLoggedIn={userServices.hasAuthenticated()} />
 							</ul>
 						</section>
 

@@ -1,4 +1,5 @@
 import { ReactElement } from "react";
+import { utils } from "../../../utils/utils";
 
 interface MenuOption {
   child: ReactElement;
@@ -81,12 +82,16 @@ export function MenuOptions(props: { isLoggedIn: boolean }) {
     { child: <li><a className={MENU_OPTION_STYLE} href=""> Sair</a></li>, isLoginRequired: true, },
   ]
 
+
   return <>
     {MENU_OPTIONS.map((menuOption: MenuOption) => {
-      if (menuOption.isLoginRequired && !props.isLoggedIn) {
+      const isUserNotAuthenticated = menuOption.isLoginRequired && !props.isLoggedIn;
+      const isNotSmallDevice = menuOption.isLoginRequired && !utils.isSmallDevice();
+
+      if (isUserNotAuthenticated || isNotSmallDevice) {
         return <></>
       }
-      return menuOption.child;
+    return menuOption.child;
     })}
   </>
 }

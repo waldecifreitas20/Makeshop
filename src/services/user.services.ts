@@ -18,8 +18,8 @@ async function authenticate(email: string, password: string) {
   throw Error("Email e/ou Senha inválidos");
 }
 
-async function hasAuthenticated() {
-  return true;
+function hasAuthenticated() {
+  return isAuthenticated;
 }
 
 async function signUp(user: User) {
