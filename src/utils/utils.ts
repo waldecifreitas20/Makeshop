@@ -25,8 +25,8 @@ function isEmpty(array: Array<any> | string) {
 	return array.length === 0;
 }
 
-function getRefContent(ref: MutableRefObject<any>) {
-	return ref.current;
+function getRefContent<Type>(ref: MutableRefObject<any>): Type {
+	return ref.current as Type;
 }
 
 function hasEmptyFields(obj: object) {
