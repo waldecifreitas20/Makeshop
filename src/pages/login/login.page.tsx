@@ -64,13 +64,20 @@ export function LoginPage() {
     }
 
     setLoadingState(true);
-    await userServices.authenticate(credentials.email, credentials.password)
-      .catch((err: Error) => {
-        event.preventDefault();
-        setFormMessageState(true);
-        setInvalidFormMessage(err.message);
-      })
-      .finally(() => setLoadingState(false));
+
+    try {
+      // TRY TO AUTHENTICATE USER
+      await userServices.authenticate(credentials.email, credentials.password);
+
+    } catch (error: any) {
+      // SET SCREEN ALERT
+      event.preventDefault();
+      setFormMessageState(true);
+      setInvalidFormMessage(error.message);
+
+    } finally {
+      setLoadingState(false);
+    }
   }
 
 

@@ -1,5 +1,6 @@
 import { ReactElement } from "react";
 import { utils } from "../../../utils/utils";
+import { userServices } from "../../../services/user.services";
 
 interface MenuOption {
   child: ReactElement;
@@ -79,7 +80,11 @@ export function MenuOptions(props: { isLoggedIn: boolean }) {
     { child: <li><a className={MENU_OPTION_STYLE} href=""> Marcas</a></li>, isLoginRequired: false, },
     { child: <li><a className={MENU_OPTION_STYLE} href=""> Minha Conta</a></li>, isLoginRequired: true, },
     { child: <li><a className={MENU_OPTION_STYLE} href=""> Sobre a Makeshop</a></li>, isLoginRequired: false, },
-    { child: <li><a className={MENU_OPTION_STYLE} href=""> Sair</a></li>, isLoginRequired: true, },
+    {
+      child: <li><button className={MENU_OPTION_STYLE} onClick={() => {
+        userServices.logout();
+      }}> Sair</button></li>, isLoginRequired: true,
+    },
   ]
 
 
@@ -91,7 +96,7 @@ export function MenuOptions(props: { isLoggedIn: boolean }) {
       if (isUserNotAuthenticated || isNotSmallDevice) {
         return <></>
       }
-    return menuOption.child;
+      return menuOption.child;
     })}
   </>
 }

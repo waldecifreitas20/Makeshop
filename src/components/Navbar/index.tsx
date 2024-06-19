@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { utils } from "../../utils/utils";
 import { appColors } from "../../global/colors";
 import { MenuOptions } from "./components/MenuOptions";
@@ -12,7 +12,7 @@ import { userServices } from "../../services/user.services";
 export function Navbar() {
 	let [showSearchBar, setSearchBarView] = useState(!utils.isSmallDevice());
 	let [menuClass, setMenuClass] = useState('close-menu');
-
+	let [isLoggedIn, setLoginState] = useState(userServices.hasAuthenticated());
 	/* METHODS */
 	function toggleSearchBarView() {
 		setSearchBarView(!showSearchBar);
@@ -30,6 +30,9 @@ export function Navbar() {
 		setSearchBarView(!utils.isSmallDevice());
 	});
 
+	useEffect(() => {
+		setLoginState(userServices.hasAuthenticated());
+	}, [isLoggedIn]);
 
 	return (
 		<>
@@ -72,7 +75,7 @@ export function Navbar() {
 						{/*search bar */}
 						{showSearchBar ? <Searchbar /> : <></>}
 						{/* menu badges - ONLY FOR MEDIUM DEVICES AND ABOVE*/}
-						<NavbarBadges />
+						<NavbarBadges isLoggedIn={isLoggedIn} />
 					</div>
 
 					{/* menu container*/}
@@ -132,7 +135,7 @@ export function Navbar() {
 								lg:w-[80%]
 								lg:ml-[4%]
 								">
-								<MenuOptions isLoggedIn={userServices.hasAuthenticated()} />
+								<MenuOptions isLoggedIn={isLoggedIn} />
 							</ul>
 						</section>
 
