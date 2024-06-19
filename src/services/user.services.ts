@@ -1,19 +1,17 @@
 import { firebase } from "../firebase";
-import users from "../mocks/users.json";
 import { storageServices } from "./storage.services";
 
 async function authenticate(email: string, password: string) {
-
-  for (const user of users) {
+  try {
+    const user = await firebase.getDocument("users", email);
     if (user.email === email && user.password === password) {
-
       storageServices.setItem("user", {
         token: Math.random(),
         userEmail: user.email,
       });
       return;
     }
-  }
+  } catch (error: any) { }
 
   throw Error("Email e/ou Senha inválidos");
 }
@@ -27,13 +25,14 @@ async function signUp(user: User) {
   return;
 }
 
-function hasAuthenticated() {
+async function hasAuthenticated() {
   try {
-    storageServices.getItem("user");
-    return true;
-  } catch { }
-
-  return false;
+    const user = storageServices.getItem("user");
+    await authenticate(user.email, user.password);
+    return true; 
+  } catch (error) {
+    return false;
+  }
 }
 
 function logout() {

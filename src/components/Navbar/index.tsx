@@ -8,11 +8,12 @@ import { MenuHeader } from "./components/MenuHeader";
 import { MakeshopLogo } from "./components/MakeshopLogo";
 import { NavbarBadges } from "./components/Badges";
 import { userServices } from "../../services/user.services";
+import { storageServices } from "../../services/storage.services";
 
 export function Navbar() {
 	let [showSearchBar, setSearchBarView] = useState(!utils.isSmallDevice());
 	let [menuClass, setMenuClass] = useState('close-menu');
-	let [isLoggedIn, setLoginState] = useState(userServices.hasAuthenticated());
+	let [isLoggedIn, setLoginState] = useState(false);
 	/* METHODS */
 	function toggleSearchBarView() {
 		setSearchBarView(!showSearchBar);
@@ -31,7 +32,13 @@ export function Navbar() {
 	});
 
 	useEffect(() => {
-		setLoginState(userServices.hasAuthenticated());
+		userServices.hasAuthenticated().then(hasAuth => {
+			setLoginState(hasAuth);
+			if (!hasAuth) {
+				storageServices.clear();
+			}
+		});
+
 	}, [isLoggedIn]);
 
 	return (
