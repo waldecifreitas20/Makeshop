@@ -8,7 +8,6 @@ import { MenuHeader } from "./components/MenuHeader";
 import { MakeshopLogo } from "./components/MakeshopLogo";
 import { NavbarBadges } from "./components/Badges";
 import { userServices } from "../../services/user.services";
-import { storageServices } from "../../services/storage.services";
 
 export function Navbar() {
 	let [showSearchBar, setSearchBarView] = useState(!utils.isSmallDevice());
@@ -35,9 +34,6 @@ export function Navbar() {
 		userServices.hasAuthenticated()
 			.then(hasAuth => {
 				setLoginState(hasAuth);
-				if (!hasAuth) {
-					storageServices.clear();
-				}
 			});
 
 	}, [isLoggedIn]);
