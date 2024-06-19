@@ -9,7 +9,7 @@ async function authenticate(email: string, password: string) {
         token: Math.random(),
         userEmail: user.email,
       });
-      return;
+      return true;
     }
   } catch (error: any) { }
 
@@ -28,8 +28,7 @@ async function signUp(user: User) {
 async function hasAuthenticated() {
   try {
     const user = storageServices.getItem("user");
-    await authenticate(user.email, user.password);
-    return true; 
+    return await firebase.hasDocument("users", user.email);
   } catch (error) {
     return false;
   }
