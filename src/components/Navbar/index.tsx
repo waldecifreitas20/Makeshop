@@ -32,12 +32,13 @@ export function Navbar() {
 	});
 
 	useEffect(() => {
-		userServices.hasAuthenticated().then(hasAuth => {
-			setLoginState(hasAuth);
-			if (!hasAuth) {
-				storageServices.clear();
-			}
-		});
+		userServices.hasAuthenticated()
+			.then(hasAuth => {
+				setLoginState(hasAuth);
+				if (!hasAuth) {
+					storageServices.clear();
+				}
+			});
 
 	}, [isLoggedIn]);
 
