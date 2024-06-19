@@ -8,6 +8,7 @@ import { formUtils } from "../../utils/forms";
 import { userServices } from "../../services/user.services";
 import { Spinner } from "../../components/Spinner";
 import { utils } from "../../utils/utils";
+import { storageServices } from "../../services/storage.services";
 
 
 const styles = {
@@ -43,6 +44,7 @@ export function LoginPage() {
   /* REFS */
   const emailInputRef = useRef(null);
   const passwordInputRef = useRef(null);
+  const formRef = useRef(null);
   /* STATES */
   const [showInvalidFormMessage, setFormMessageState] = useState(false);
   const [invalidFormMessage, setInvalidFormMessage] = useState("");
@@ -62,19 +64,21 @@ export function LoginPage() {
       event.preventDefault();
       return;
     }
-
     setLoadingState(true);
 
     try {
       // TRY TO AUTHENTICATE USER
+      storageServices.clear();
       await userServices.authenticate(credentials.email, credentials.password);
+      const form = utils.getRefContent<HTMLFormElement>(formRef);
+      form.action = "/";
+      form.submit();
 
     } catch (error: any) {
       // SET SCREEN ALERT
       event.preventDefault();
       setFormMessageState(true);
       setInvalidFormMessage(error.message);
-
     } finally {
       setLoadingState(false);
     }
@@ -86,7 +90,7 @@ export function LoginPage() {
     if (!formUtils.isValidEmail(credentials.email)) {
       onInvalidForm(
         "Digite um email válido",
-        utils.getRefContent(emailInputRef)
+        utils.getRefContent(emailInputRef),
       );
       return false;
     }
@@ -117,7 +121,7 @@ export function LoginPage() {
       <main className={`mt-16 mx-auto max-w-[400px] ${styles.loginCard}`}>
         <h1 className="text-center text-3xl mb-10 lg:text-2xl">Faça login e aproveite nossas ofertas</h1>
 
-        <form id="login-form" method="GET" action="/">
+        <form ref={formRef} id="login-form" method="GET">
 
           <ResponsibleInput
             reference={emailInputRef}
