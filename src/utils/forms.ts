@@ -19,7 +19,7 @@ function isValidEmail(email: string): boolean {
 }
 
 function isValidPassword(pass: string, fullCheck: boolean = false): boolean {
-  if (pass.length <= 8 && pass.length >= 16) {
+  if (pass.length < 8 || pass.length > 16) {
     return false;
   }
 
@@ -54,8 +54,6 @@ function hasLowerCaseLetter(str: string) {
 }
 
 function hasSymbols(str: string) {
-  const symbols = "!@#$%&*()_-=+{[}];:.,/?|";
-
   for (const symbol of symbols) {
     if (str.indexOf(symbol) !== -1) {
       return true;
