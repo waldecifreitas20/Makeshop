@@ -7,7 +7,7 @@ async function authenticate(email: string, password: string) {
     if (user.email === email && user.password === password) {
       storageServices.setItem("user", {
         token: Math.random(),
-        userEmail: user.email,
+        email: user.email,
       });
       return true;
     }
@@ -28,8 +28,11 @@ async function signUp(user: User) {
 async function hasAuthenticated() {
   try {
     const user = storageServices.getItem("user");
+    console.log(user);
+    
     return await firebase.hasDocument("users", user.email);
   } catch (error) {
+    console.log(error);
     return false;
   }
 }
