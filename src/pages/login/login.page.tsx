@@ -61,9 +61,9 @@ export function LoginPage() {
 
     const isValid = validateLoginForm();
     if (!isValid) {
-      event.preventDefault();
-      return;
+      return event.preventDefault();
     }
+
     setLoadingState(true);
 
     try {
@@ -79,6 +79,7 @@ export function LoginPage() {
       event.preventDefault();
       setFormMessageState(true);
       setInvalidFormMessage(error.message);
+      
     } finally {
       setLoadingState(false);
     }
