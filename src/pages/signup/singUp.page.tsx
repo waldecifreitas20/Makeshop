@@ -16,30 +16,7 @@ import { FormWarning } from "./components/FormWarning";
 import { FormWarningBlock } from "./components/FormWaningBlock";
 
 
-function validateForm(userData: any,
-  onInvalid: (
-    message: string,
-  ) => void): boolean {
 
-  const hasEmptyFields = utils.hasEmptyFields(userData);
-
-  if (hasEmptyFields) {
-    onInvalid("É necessário preencher todos os campos.");
-    return false;
-  }
-
-  if (!formUtils.isValidEmail(userData.email)) {
-    onInvalid("Digite um email válido");
-    return false;
-  }
-
-  if (!formUtils.isValidPassword(userData.password, true)) {
-    onInvalid("Senha precisa conter entre 8 e 16 caracteres");
-    return false;
-  }
-
-  return true;
-}
 
 
 const STATES = [
@@ -83,20 +60,54 @@ export function SignUpPage() {
     event.preventDefault();
 
     const isValid = validateForm(userData, (message) => {
-      event.preventDefault();
       setLoaderState(false);
       openModal(message)
     });
-    if (isValid) {
-      setLoaderState(true);
-      try {
-        await userServices.signUp(userData);
-      } catch (error: any) {
-        openModal(error.message);
-      } finally {
-        setLoaderState(false);
-      }
+
+    if (!isValid) {
+      return event.preventDefault();
     }
+
+    setLoaderState(true);
+    try {
+      await userServices.signUp(userData);
+    } catch (error: any) {
+      openModal(error.message);
+    } finally {
+      setLoaderState(false);
+    }
+  }
+
+  function validateForm(userData: any,
+    onInvalid: (
+      message: string,
+    ) => void): boolean {
+
+    try {
+
+      const hasEmptyFields = utils.hasEmptyFields(userData);
+      if (hasEmptyFields) {
+        throw new Error("É necessário preencher todos os campos.");
+      }
+
+      if (!formUtils.isValidEmail(userData.email)) {
+        throw new Error("Digite um email válido");
+      }
+
+      formUtils.checkPassword(userData.password, true);
+
+      if (passwordCheck !== userData.password) {
+        throw new Error("Senhas não são iguais");
+      };
+
+      return true;
+
+    } catch (error: any) {
+      onInvalid(error.message);
+      return false;
+    }
+
+
   }
 
   function openModal(message: string) {

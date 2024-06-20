@@ -18,16 +18,18 @@ function isValidEmail(email: string): boolean {
   return false;
 }
 
-function isValidPassword(pass: string, fullCheck: boolean = false): boolean {
+function checkPassword(pass: string, fullCheck: boolean = false): boolean {
   if (pass.length < 8 || pass.length > 16) {
-    return false;
+    throw Error("Senha deve possuir entre 8 e 16 caracteres");
   }
 
+  const errorMessage = "Senha deve conter números, simbolos, letras maiúsculas e minúsculas";
+
   if (fullCheck) {
-    if (!hasSymbols(pass)) return false;
-    if (!hasCapsLetter(pass)) return false;
-    if (!hasLowerCaseLetter(pass)) return false;
-    if (!hasNumbers(pass)) return false;
+    if (!hasSymbols(pass)) throw new Error(errorMessage);
+    if (!hasCapsLetter(pass)) throw new Error(errorMessage);
+    if (!hasLowerCaseLetter(pass)) throw new Error(errorMessage);
+    if (!hasNumbers(pass)) throw new Error(errorMessage);
   }
 
   return true;
@@ -75,7 +77,7 @@ function hasNumbers(str: string) {
 export const formUtils = {
   setInvalidInput,
   isValidEmail,
-  isValidPassword,
+  checkPassword,
   hasNumbers,
   hasSymbols, 
   hasCapsLetter, 

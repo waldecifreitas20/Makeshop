@@ -95,11 +95,11 @@ export function LoginPage() {
       return false;
     }
 
-    if (!formUtils.isValidPassword(credentials.password)) {
-      onInvalidForm(
-        "Senha precisa conter entre 8 e 16 caracteres",
-        utils.getRefContent(passwordInputRef)
-      );
+    try {
+      formUtils.checkPassword(credentials.password);
+    } catch (error: any) {
+      const input = utils.getRefContent<HTMLInputElement>(passwordInputRef)
+      onInvalidForm(error.message, input);
       return false;
     }
 
