@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { BackHomeButton } from "../../components/BackHomeButton";
 
 import { ResponsibleButton } from "../../components/ResponsibleButton";
@@ -34,6 +34,8 @@ const STATES = [
 
 
 export function SignUpPage() {
+  /* REFS */
+  const formRef = useRef(null);
   /* STATES */
   const modalVisibility = {
     hidden: true,
@@ -71,6 +73,7 @@ export function SignUpPage() {
     setLoaderState(true);
     try {
       await userServices.signUp(userData);
+      utils.getRefContent<HTMLFormElement>(formRef).submit();
     } catch (error: any) {
       openModal(error.message);
     } finally {
@@ -143,7 +146,7 @@ export function SignUpPage() {
         <BackHomeButton />
       </div>
 
-      <form id="signup-form" className="md:max-w-[700px] mx-auto" method="GET" action="/">
+      <form ref={formRef} id="signup-form" className="md:max-w-[700px] mx-auto" method="GET" action="/">
         {/* PERSONAL DATA */}
         <fieldset>
           <LabelBlock label="Nome Completo">
