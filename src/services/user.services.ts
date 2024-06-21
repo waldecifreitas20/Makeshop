@@ -1,5 +1,20 @@
+import { AppError, DatabaseConfigurationError, DocumentNotFoundError } from "../exceptions/appError";
 import { firebase } from "../firebase";
 import { storageServices } from "./storage.services";
+
+
+function sendError(error: AppError) {
+  if (error instanceof DocumentNotFoundError) {
+    throw Error("Email e/ou Senha inválidos");
+  }
+
+  if (error instanceof DatabaseConfigurationError) {
+    throw new Error("Não foi é possível conectar aos servidores no momento. tente mais tarde");
+  }
+  if (error instanceof DatabaseConfigurationError) {
+    throw new Error("Não foi é possível conectar aos servidores no momento. tente mais tarde");
+  }
+}
 
 async function authenticate(email: string, password: string) {
   try {
@@ -11,25 +26,32 @@ async function authenticate(email: string, password: string) {
       });
       return true;
     }
-  } catch (error: any) { }
+  } catch (error: any) {
+    console.error(error);
+    sendError(error);
+  }
 
-  throw Error("Email e/ou Senha inválidos");
 }
 
 async function signUp(user: User) {
   const hasUser = await firebase.hasDocument("users", user.email);
+
   if (hasUser) {
     throw Error("Usuário já Existe");
   }
-  await firebase.createDocument("users", user.email, user);
-  return;
+  try {
+    await firebase.createDocument("users", user.email, user);
+  } catch (error: any) {
+    console.error(error);
+    sendError(error);
+    
+  }
 }
 
 async function hasAuthenticated() {
   try {
     const user = storageServices.getItem("user");
-    console.log(user);
-    
+
     return await firebase.hasDocument("users", user.email);
   } catch (error) {
     console.log(error);
