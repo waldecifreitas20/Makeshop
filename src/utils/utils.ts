@@ -30,10 +30,10 @@ function getRefContent<Type>(ref: MutableRefObject<any>): Type {
 }
 
 function hasEmptyFields(obj: object) {
-	const fields = Object.values(obj);
-
-	for (const field of fields) {
-		if (field === "") {
+	const values = Object.values(obj);
+	
+	for (const value of values) {
+		if (value === "" || !value) {
 			return true;
 		}
 	}
