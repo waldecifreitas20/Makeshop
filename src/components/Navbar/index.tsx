@@ -131,7 +131,7 @@ export function Navbar() {
 							">
 
 							{/* menu header - ONLY FOR SMALL DEVICES AND BELOW*/}
-							<MenuHeader />
+							<MenuHeader isLoggedIn={isLoggedIn}/>
 							{/* Menu options*/}
 							<ul className="					
 								lg:flex
