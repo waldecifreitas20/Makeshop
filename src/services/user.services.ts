@@ -11,9 +11,6 @@ function sendError(error: AppError) {
   if (error instanceof DatabaseConfigurationError) {
     throw new Error("Não foi é possível conectar aos servidores no momento. tente mais tarde");
   }
-  if (error instanceof DatabaseConfigurationError) {
-    throw new Error("Não foi é possível conectar aos servidores no momento. tente mais tarde");
-  }
 }
 
 async function authenticate(email: string, password: string) {
@@ -23,6 +20,7 @@ async function authenticate(email: string, password: string) {
       storageServices.setItem("user", {
         token: Math.random(),
         email: user.email,
+        name: user.name,
       });
       return true;
     }
@@ -44,7 +42,7 @@ async function signUp(user: User) {
   } catch (error: any) {
     console.error(error);
     sendError(error);
-    
+
   }
 }
 
@@ -64,9 +62,14 @@ function logout() {
   window.location.href = "/";
 }
 
+function getCurrentUser() {
+  return storageServices.getItem("user");
+}
+
 export const userServices = {
   authenticate,
   signUp,
   logout,
   hasAuthenticated,
+  getCurrentUser,
 }
