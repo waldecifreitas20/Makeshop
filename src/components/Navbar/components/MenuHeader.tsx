@@ -10,7 +10,7 @@ export function MenuHeader(props: { isLoggedIn: boolean }) {
 
   const NON_LOGGED_IN_HEADER = (
 
-    <div>
+    <div className="pt-8 px-4">
       <h2 className="text-white text-xl">Bem-vindo!</h2>
       <p className="text-white text-sm mt-2">
         Faça login ou cadastre-se para aproveitar as nossas ofertas
