@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 import { BackHomeButton } from "../../components/BackHomeButton";
 
 import { ResponsibleButton } from "../../components/ResponsibleButton";
@@ -56,6 +56,8 @@ export function SignUpPage() {
     password: "",
     state: "",
   });
+
+
 
   const onSubmit = async (event: React.MouseEvent) => {
 
@@ -125,6 +127,22 @@ export function SignUpPage() {
     return userData.password === passwordCheck;
   }
 
+type userDataFields = 
+    "name" |
+    "address" |
+    "birth" |
+    "cep" |
+    "city" |
+    "cpf" |
+    "email" |
+    "password" |
+    "state";
+
+  function updateFormData(key: userDataFields, value: string) {
+    userData[key] = value;
+    setUserData({ ...userData });
+  }
+
 
   return <>
 
@@ -155,10 +173,7 @@ export function SignUpPage() {
               type="text"
               placeholder="Ex: José Ribamar da Silva"
               onChange={(event => {
-                setUserData({
-                  ...userData,
-                  name: event.target.value,
-                })
+                updateFormData("name", event.target.value);
               })}
             />
           </LabelBlock>
@@ -171,10 +186,8 @@ export function SignUpPage() {
                 type="text"
                 placeholder="xxx.xxx.xxx-xx"
                 onChange={(event => {
-                  setUserData({
-                    ...userData,
-                    cpf: event.target.value,
-                  })
+                  updateFormData("cpf", event.target.value);
+
                 })}
               />
             </LabelBlock>
@@ -182,10 +195,7 @@ export function SignUpPage() {
             <LabelBlock label="Data de Nascimento">
               <ResponsibleInput placeholder="dd/mm/aa" type="date"
                 onChange={(event => {
-                  setUserData({
-                    ...userData,
-                    birth: event.target.value,
-                  })
+                  updateFormData("birth", event.target.value);
                 })} />
             </LabelBlock>
           </Row>
@@ -194,12 +204,9 @@ export function SignUpPage() {
         {/* ADDRESS DATA */}
         <fieldset className="my-8">
           <LabelBlock label="CEP">
-            <ResponsibleInput placeholder="00000-000"
+            <ResponsibleInput placeholder="00000-000" type="text"
               onChange={(event => {
-                setUserData({
-                  ...userData,
-                  cep: event.target.value,
-                })
+                updateFormData("cep", event.target.value);
               })} />
           </LabelBlock>
 
@@ -207,10 +214,7 @@ export function SignUpPage() {
             <ResponsibleComponent style="w-[100%]">
               <label htmlFor="state-select">Estado</label>
               <select id="state-select" onChange={(event => {
-                setUserData({
-                  ...userData,
-                  state: event.target.value,
-                })
+               updateFormData("state", event.target.value);
               })}>
                 <option value="null">--- Selecione ---</option>
                 {STATES.map((state, i) => {
@@ -222,12 +226,9 @@ export function SignUpPage() {
             </ResponsibleComponent>
 
             <LabelBlock label="Cidade">
-              <ResponsibleInput placeholder="00000-000"
+              <ResponsibleInput placeholder="São Paulo"
                 onChange={(event => {
-                  setUserData({
-                    ...userData,
-                    city: event.target.value,
-                  })
+                  updateFormData("city", event.target.value);
                 })} />
             </LabelBlock>
           </Row>
@@ -235,10 +236,7 @@ export function SignUpPage() {
           <LabelBlock label="Endereço">
             <ResponsibleInput placeholder="Rua Castro 475 B"
               onChange={(event => {
-                setUserData({
-                  ...userData,
-                  address: event.target.value,
-                })
+                updateFormData("address", event.target.value);
               })}
             />
           </LabelBlock>
@@ -249,10 +247,7 @@ export function SignUpPage() {
           <LabelBlock label="email">
             <ResponsibleInput placeholder="joseribamar23@outlook.com" type="email"
               onChange={(event => {
-                setUserData({
-                  ...userData,
-                  email: event.target.value,
-                })
+                updateFormData("email", event.target.value);
               })} />
           </LabelBlock>
 
@@ -260,10 +255,7 @@ export function SignUpPage() {
             <LabelBlock label="senha">
               <ResponsibleInput placeholder="Minímo 8 caracteres" type="password"
                 onChange={(event => {
-                  setUserData({
-                    ...userData,
-                    password: event.target.value,
-                  })
+                  updateFormData("password", event.target.value);
                 })} />
             </LabelBlock>
 
