@@ -32,6 +32,8 @@ function getRefContent<Type>(ref: MutableRefObject<any>): Type {
 function hasEmptyFields(obj: object) {
 	const values = Object.values(obj);
 	
+	if(values.length === 0) return true;
+
 	for (const value of values) {
 		if (value === "" || !value) {
 			return true;
