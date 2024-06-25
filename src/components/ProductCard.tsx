@@ -24,8 +24,9 @@ export function ProductCard(props: ProductCardProps) {
 		return isVip ? darkTheme : lightTheme;
 	}
 
+
 	return <>
-		<a href={routes.productDetails} className={`
+		<a href={`${routes.productDetails}?${props.product.id}`} className={`
 			${getTheme(props.product.isVip).background} 
 			${appColors.borders.container} 
 			relative block border 
