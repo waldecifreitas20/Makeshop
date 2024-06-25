@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { BackHomeButton } from "../../components/BackHomeButton";
 
 import { ResponsibleButton } from "../../components/ResponsibleButton";
@@ -14,6 +14,7 @@ import { utils } from "../../utils/utils";
 import { Spinner } from "../../components/Spinner";
 import { FormWarning } from "./components/FormWarning";
 import { FormWarningBlock } from "./components/FormWaningBlock";
+import { useFormData } from "../../hooks/useFornData";
 
 
 
@@ -45,7 +46,7 @@ export function SignUpPage() {
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setLoaderState] = useState(false);
   const [passwordCheck, setPasswordCheck] = useState("");
-  const [userData, setUserData] = useState({
+  const [userData, setUserData] = useFormData<User>({
     name: "",
     address: "",
     birth: "",
@@ -57,7 +58,7 @@ export function SignUpPage() {
     state: "",
   });
 
-
+  
 
   const onSubmit = async (event: React.MouseEvent) => {
 
@@ -127,22 +128,6 @@ export function SignUpPage() {
     return userData.password === passwordCheck;
   }
 
-type userDataFields = 
-    "name" |
-    "address" |
-    "birth" |
-    "cep" |
-    "city" |
-    "cpf" |
-    "email" |
-    "password" |
-    "state";
-
-  function updateFormData(key: userDataFields, value: string) {
-    userData[key] = value;
-    setUserData({ ...userData });
-  }
-
 
   return <>
 
@@ -173,7 +158,7 @@ type userDataFields =
               type="text"
               placeholder="Ex: José Ribamar da Silva"
               onChange={(event => {
-                updateFormData("name", event.target.value);
+                setUserData("name", event.target.value);
               })}
             />
           </LabelBlock>
@@ -186,7 +171,7 @@ type userDataFields =
                 type="text"
                 placeholder="xxx.xxx.xxx-xx"
                 onChange={(event => {
-                  updateFormData("cpf", event.target.value);
+                  setUserData("cpf", event.target.value);
 
                 })}
               />
@@ -195,7 +180,7 @@ type userDataFields =
             <LabelBlock label="Data de Nascimento">
               <ResponsibleInput placeholder="dd/mm/aa" type="date"
                 onChange={(event => {
-                  updateFormData("birth", event.target.value);
+                  setUserData("birth", event.target.value);
                 })} />
             </LabelBlock>
           </Row>
@@ -206,7 +191,7 @@ type userDataFields =
           <LabelBlock label="CEP">
             <ResponsibleInput placeholder="00000-000" type="text"
               onChange={(event => {
-                updateFormData("cep", event.target.value);
+                setUserData("cep", event.target.value);
               })} />
           </LabelBlock>
 
@@ -214,7 +199,7 @@ type userDataFields =
             <ResponsibleComponent style="w-[100%]">
               <label htmlFor="state-select">Estado</label>
               <select id="state-select" onChange={(event => {
-               updateFormData("state", event.target.value);
+                setUserData("state", event.target.value);
               })}>
                 <option value="null">--- Selecione ---</option>
                 {STATES.map((state, i) => {
@@ -228,7 +213,7 @@ type userDataFields =
             <LabelBlock label="Cidade">
               <ResponsibleInput placeholder="São Paulo"
                 onChange={(event => {
-                  updateFormData("city", event.target.value);
+                  setUserData("city", event.target.value);
                 })} />
             </LabelBlock>
           </Row>
@@ -236,7 +221,7 @@ type userDataFields =
           <LabelBlock label="Endereço">
             <ResponsibleInput placeholder="Rua Castro 475 B"
               onChange={(event => {
-                updateFormData("address", event.target.value);
+                setUserData("address", event.target.value);
               })}
             />
           </LabelBlock>
@@ -247,7 +232,7 @@ type userDataFields =
           <LabelBlock label="email">
             <ResponsibleInput placeholder="joseribamar23@outlook.com" type="email"
               onChange={(event => {
-                updateFormData("email", event.target.value);
+                setUserData("email", event.target.value);
               })} />
           </LabelBlock>
 
@@ -255,7 +240,7 @@ type userDataFields =
             <LabelBlock label="senha">
               <ResponsibleInput placeholder="Minímo 8 caracteres" type="password"
                 onChange={(event => {
-                  updateFormData("password", event.target.value);
+                  setUserData("password", event.target.value);
                 })} />
             </LabelBlock>
 
