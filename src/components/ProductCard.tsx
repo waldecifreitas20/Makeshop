@@ -1,4 +1,5 @@
 import { appColors } from "../global/colors";
+import { routes } from "../routes/routes";
 
 interface ProductCardProps {
 	product: Product;
@@ -24,7 +25,7 @@ export function ProductCard(props: ProductCardProps) {
 	}
 
 	return <>
-		<a href="" className={`
+		<a href={routes.productDetails} className={`
 			${getTheme(props.product.isVip).background} 
 			${appColors.borders.container} 
 			relative block border 
