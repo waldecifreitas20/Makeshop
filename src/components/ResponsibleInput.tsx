@@ -5,6 +5,7 @@ interface ResponsibleInputProps {
   style?: string;
   placeholder?: string;
   id?: string;
+  value?: string;
   type?: string;
   onChange?: ChangeEventHandler<HTMLInputElement>;
 }
@@ -28,6 +29,7 @@ export function ResponsibleInput(props: ResponsibleInputProps) {
 
         lg:rounded-md
       "
+      value={props.value}
       type={props.type ?? "text"}
       placeholder={props.placeholder ?? ""}
       onChange={props.onChange}

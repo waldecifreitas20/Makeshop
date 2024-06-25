@@ -58,7 +58,7 @@ export function SignUpPage() {
     state: "",
   });
 
-  
+
 
   const onSubmit = async (event: React.MouseEvent) => {
 
@@ -170,8 +170,23 @@ export function SignUpPage() {
                 id="cpf"
                 type="text"
                 placeholder="xxx.xxx.xxx-xx"
+                value={userData.cpf}
                 onChange={(event => {
-                  setUserData("cpf", event.target.value);
+                  let value = event.target.value;
+
+                  /* Prevent user overflow */
+                  if (value.length > 11) {
+                    return;
+                  }
+
+                  const lastChar = value[value.length - 1];
+                  const isNumber = !isNaN(Number.parseInt(lastChar));
+
+                  if (!isNumber && value !== "") {
+                    return;
+                  }
+
+                  setUserData("cpf", value);
 
                 })}
               />
@@ -189,8 +204,23 @@ export function SignUpPage() {
         {/* ADDRESS DATA */}
         <fieldset className="my-8">
           <LabelBlock label="CEP">
-            <ResponsibleInput placeholder="00000-000" type="text"
+            <ResponsibleInput placeholder="000.00-000" type="text"
+              value={userData.cep}
               onChange={(event => {
+                let value = event.target.value;
+
+                /* Prevent user overflow */
+                if (value.length > 8) {
+                  return;
+                }
+
+                const lastChar = value[value.length - 1];
+                const isNumber = !isNaN(Number.parseInt(lastChar));
+
+                if (!isNumber && value !== "") {
+                  return;
+                }
+
                 setUserData("cep", event.target.value);
               })} />
           </LabelBlock>
