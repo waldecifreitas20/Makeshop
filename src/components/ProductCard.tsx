@@ -26,7 +26,7 @@ export function ProductCard(props: ProductCardProps) {
 
 
 	return <>
-		<a href={`${routes.productDetails}?${props.product.id}`} className={`
+		<a href={`${routes.productDetails}?${props.product.id.trim()}`} className={`
 			${getTheme(props.product.isVip).background} 
 			${appColors.borders.container} 
 			relative block border 
