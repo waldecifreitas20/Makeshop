@@ -2,23 +2,28 @@ import { firebase } from "../firebase";
 import { products } from "../mocks/products.json";
 
 async function getProducts() {
-  /* try {
+  try {
     return await firebase.getDocuments("products")
   } catch (error: any) {
     console.log(error);
     throw Error(`Unable to fetch products. Details: ${error}`);
-  } */
+  }
 
   return products;
 }
 
-
-
-
-
+async function getProduct(id: string) {
+  try {
+    return await firebase.getDocument("products", id);
+  } catch (error: any) {
+    console.log(error);
+    throw Error(`Unable to fetch database. Details: ${error}`);
+  }
+}
 
 function parseToProduct(obj: any): Product {
   return {
+    id: obj.id,
     name: obj.name,
     desc: obj.desc,
     price: Number.parseFloat(obj.price),
@@ -32,5 +37,6 @@ function parseToProduct(obj: any): Product {
 
 export const productServices = {
   parseToProduct,
-  getProducts
+  getProducts,
+  getProduct,
 }
