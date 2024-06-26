@@ -30,12 +30,13 @@ export function ProductCard(props: ProductCardProps) {
 		<a href={`${routes.productDetails}?${props.product.id.trim()}`} className={`
 			${getTheme(props.product.isVip).background} 
 			${appColors.borders.container} 
-			relative block border 
-			px-4 py-5 rounded-xl 
+			relative z-20
+			block
+		  border 
+			p-2 rounded-xl 
 			w-64
 			md:w-full
-			h-fit
-
+			
 			md:hover:shadow-lg
 			md:hover:border-pink-300
 			md:hover:shadow-pink-300
@@ -55,18 +56,17 @@ export function ProductCard(props: ProductCardProps) {
 					}>{props.badge.text}</span>
 					: <></>
 			}
-
-			<img className="block w-full md:w-32 mx-auto mb-4" src={props.product.imgPath} alt="" />
+			<img className="block md:w-32 mx-auto mb-4 " src={props.product.imgPath} alt="" />
 
 			{/* Product info block */}
-			<div className=" text-left capitalize flex flex-col justify-between  h-[120px] md:h-[130px]">
+			<div className="px-3 py-2 text-left capitalize flex flex-col justify-between">
 				<div>
 					<h3 className={`${getTheme(props.product.isVip).text} text-xl font-medium`}>{props.product.manufacturer}</h3>
 					<p className={`${getTheme(props.product.isVip).text} text-sm capitalize`}>{props.product.desc}</p>
 				</div>
 
-				<div className="mt-4 md:m-0">
-					<ProductInfo product={props.product} isDark={props.product.isVip}/>
+				<div className="mt-2 md:m-0">
+					<ProductInfo product={props.product} isDark={props.product.isVip} />
 				</div>
 			</div>
 		</a>

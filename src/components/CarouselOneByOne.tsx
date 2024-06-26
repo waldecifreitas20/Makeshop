@@ -74,7 +74,7 @@ export function CarouselOneByOne(props: PropsWithChildren<CarouselProps>) {
 					<div ref={sliderRef} className={`relative flex h-full transition-all duration-500`} style={{ left: sliderOffset }}>
 						{Children.map(props.children, child => {
 							return <>
-								<span className="flex  border-red-400 justify-center items-center w-full">{child}</span>
+								<span className="flex h-full justify-center items-center w-full">{child}</span>
 							</>
 						})}
 					</div>
