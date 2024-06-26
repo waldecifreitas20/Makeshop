@@ -3,6 +3,8 @@ import { MouseEventHandler, PropsWithChildren } from "react";
 interface ResponsibleButtonProps {
   onClick?: MouseEventHandler,
   style?: string,
+  background? : string;
+  textColor? : string;
   disabled?: boolean,
   type?: "button" | "submit" | "reset" | undefined,
 }
@@ -14,20 +16,22 @@ export function ResponsibleButton(props: PropsWithChildren<ResponsibleButtonProp
       type={props.type}
       disabled={props.disabled}
       className={`
-      mt-4 mb-2 
-      bg-neutral-800 hover:bg-black 
+      mt-4 mb-2  
       block 
       w-full
       rounded-full
       py-2
-      text-md text-white 
+      text-lg
+      h-fit 
       transition-all duration-300  
+      ${props.background ?? "bg-neutral-800 hover:bg-black"}  
+      ${props.textColor ?? "text-white"}  
       
       md:text-sm
       md:py-2 
       
       lg:rounded-md
-      ${props.style}
+      ${props.style ?? ""}
       `} >{props.children}</button>
   </>;
 }
