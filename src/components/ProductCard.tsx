@@ -1,5 +1,6 @@
 import { appColors } from "../global/colors";
 import { routes } from "../routes/routes";
+import { ProductInfo } from "./ProductInfo";
 
 interface ProductCardProps {
 	product: Product;
@@ -65,19 +66,7 @@ export function ProductCard(props: ProductCardProps) {
 				</div>
 
 				<div className="mt-4 md:m-0">
-					{/* Old price */}
-					<p className={`text-sm ${appColors.texts.dimmed} text-line-through`}>{(() => {
-						let oldPrice: number = props.product.price * 1.25;
-						return <>{`R$ ${oldPrice.toFixed(2)}`}</>;
-					})()}</p>
-
-					{/* Current Price */}
-					<p className={`
-                    ${props.product.isVip ? "text-yellow-500" : getTheme(props.product.isVip).text} text-lg font-bold`
-					}>{`R$ ${props.product.price.toFixed(2)}`}</p>
-
-					{/* With credit card */}
-					<p className={`${getTheme(props.product.isVip).text} text-sm`}>{`ou 10x de R$ ${(props.product.price / 10).toFixed(2)}`}</p>
+					<ProductInfo product={props.product} isDark={props.product.isVip}/>
 				</div>
 			</div>
 		</a>
