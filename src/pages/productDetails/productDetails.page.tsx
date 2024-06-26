@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Navbar } from "../../components/Navbar";
 import { appColors } from "../../global/colors";
 import { productServices } from "../../services/products.services";
 import { Spinner } from "../../components/Spinner";
+import { ProductInfo } from "../../components/ProductInfo";
+import { ProductQtdSelector } from "./components/QuantitySelector";
 
 export function ProductDetailsPage() {
 
@@ -11,12 +13,10 @@ export function ProductDetailsPage() {
 
   useEffect(() => {
     const productID = window.location.search.replace("?", "");
-    console.log(productID);
 
     productServices
       .getProduct(productID)
       .then(response => {
-        console.log(response);
         setProduct(response);
       })
       .catch(e => {
@@ -32,35 +32,26 @@ export function ProductDetailsPage() {
     <>
       <Navbar />
 
-      <main className="mt-20 md:mt-28 ">
+      <main className="mt-20 md:mt-28 px-5">
         {
           isLoading ?
             <div className="h-screen flex justify-center items-center">
               <Spinner />
             </div>
             :
-            <div>
-              <img src={product.imgPath} alt="produto" />
+            <>
+              <div className="h-[300px] w-full">
+                <img className="block h-full mx-auto" src={product.imgPath} alt="produto" />
+              </div>
 
               <h2 className="capitalize">{`${product.name} ${product.manufacturer}`}</h2>
               <p className="capitalize">Descrição</p>
 
               <div className="mt-4 md:m-0">
-                {/* Old price */}
-                <p className={`text-sm${appColors.texts.dimmed} text-line-through`}>{(() => {
-                  let oldPrice: number = Number.parseFloat(product.price) * 1.25;
-                  return <>{`R$ ${oldPrice.toFixed(2)}`}</>;
-                })()}</p>
-
-                {/* Current Price */}
-                <p className={`text-lg font-bold`
-                }>{`R$ ${Number.parseFloat(product.price).toFixed(2)}`}</p>
-
-                {/* With credit card */}
-                <p className={`text-sm`}>{`ou 10x de R$ ${(Number.parseFloat(product.price) / 10).toFixed(2)}`}</p>
+                <ProductInfo product={product} />
+                <ProductQtdSelector />
               </div>
-
-            </div>
+            </>
         }
 
       </main>
