@@ -1,6 +1,7 @@
 import { ReactElement } from "react";
 import { utils } from "../../../utils/utils";
 import { userServices } from "../../../services/user.services";
+import { routes } from "../../../routes/routes";
 
 interface MenuOption {
   child: ReactElement;
@@ -12,11 +13,13 @@ export function MenuOptions(props: { isLoggedIn: boolean }) {
 	px-5
 	py-5
 	block
+  w-full
 	relative
 	uppercase
 	
 	bg-white
 	text-sm
+  text-left
 	text-zinc-500
 	cursor-pointer
 	hover:text-black
@@ -44,7 +47,7 @@ export function MenuOptions(props: { isLoggedIn: boolean }) {
   const MENU_OPTIONS: MenuOption[] = [
     {
       child: <li>
-        <a className={MENU_OPTION_STYLE} href="">Home</a>
+        <a className={MENU_OPTION_STYLE} href={routes.home}>Home</a>
       </li>, isLoginRequired: false,
     },
     {
