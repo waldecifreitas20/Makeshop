@@ -38,7 +38,7 @@ export function ProductDetailsPage() {
     <>
       <Navbar />
 
-      <main className="mt-20 md:mt-28">
+      <main className="mt-20 md:mt-28 lg:mt-32">
         {
           isLoading ?
             <div className="h-screen flex justify-center items-center">
@@ -47,24 +47,32 @@ export function ProductDetailsPage() {
             :
             <>
               <div className={`${horizontalPadding}`}>
-                <div className={`h-[300px] w-full`}>
-                  <img className="block h-full mx-auto" src={product.imgPath} alt="produto" />
-                </div>
 
-                <h2 className="capitalize text-xl">{`${product.name} ${product.manufacturer}`}</h2>
+                <div className="mx-auto md:flex justify-center xl:justify-between xl:w-[1200px]">
+                  {/* IMAGE */}
+                  <div className={`h-[300px] w-full md:w-[50%]`}>
+                    <img className="block h-full mx-auto" src={product.imgPath} alt="produto" />
+                  </div>
 
-                <div className="mt-4 md:m-0">
-                  <ProductInfo product={product} />
-                  <ProductQtdSelector />
-                </div>
+                  {/* DETAILS */}
+                  <div className="md:w-[50%] lg:max-w-[500px] ml-4">
+                    <h2 className="capitalize text-xl md:text-2xl">{`${product.name} ${product.manufacturer}`}</h2>
 
-                <div>
-                  <ResponsibleButton>Comprar</ResponsibleButton>
-                  <ResponsibleButton
-                    style="border border-black hover:border-pink-500"
-                    background="bg-white hover:bg-pink-500"
-                    textColor="text-black hover:text-white"
-                  >Adicionar ao carrinho</ResponsibleButton>
+                    <div className="mt-4">
+                      <ProductInfo product={product} />
+                      <ProductQtdSelector />
+                    </div>
+
+                    <div>
+                      <ResponsibleButton>Comprar</ResponsibleButton>
+                      <ResponsibleButton
+                        style="border border-black hover:border-pink-500"
+                        background="bg-white hover:bg-pink-500"
+                        textColor="text-black hover:text-white"
+                      >Adicionar ao carrinho</ResponsibleButton>
+                    </div>
+                  </div>
+
                 </div>
 
                 <div className="my-10 py-5 border-b border-t">
