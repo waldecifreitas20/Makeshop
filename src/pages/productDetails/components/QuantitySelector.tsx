@@ -1,14 +1,20 @@
 import { useState } from "react";
 
-export function ProductQtdSelector() {
-  const [qtd, setQtd] = useState(0);
+interface ProductQtdSelectorProps {
+  initalValue?: number;
+  minValue?: number;
+}
+
+export function ProductQtdSelector(props: ProductQtdSelectorProps) {
+  const [qtd, setQtd] = useState(props.initalValue ?? 0);
+  const minValue = props.minValue ?? 0;
 
   function increment() {
     setQtd(qtd + 1);
   }
 
   function decrement() {
-    if (qtd > 0) {
+    if (qtd > minValue) {
       setQtd(qtd - 1);
     }
   }

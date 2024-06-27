@@ -60,7 +60,7 @@ export function ProductDetailsPage() {
 
                     <div className="mt-4">
                       <ProductInfo product={product} />
-                      <ProductQtdSelector />
+                      <ProductQtdSelector initalValue={1} minValue={1}/>
                     </div>
 
                     <div>
