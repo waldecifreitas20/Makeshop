@@ -1,15 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 import { Navbar } from "../../components/Navbar";
-import { appColors } from "../../global/colors";
 import { productServices } from "../../services/products.services";
 import { Spinner } from "../../components/Spinner";
 import { ProductInfo } from "../../components/ProductInfo";
 import { ProductQtdSelector } from "./components/QuantitySelector";
 import { ResponsibleButton } from "../../components/ResponsibleButton";
-import { Section } from "../../components/Section";
-import { CarouselOneByOne } from "../../components/CarouselOneByOne";
 import { Newsletter } from "../../components/Newsletter";
 import { Footer } from "../../components/Footer";
+import { PageRouter } from "../../routes/PageRouter";
+import { routes } from "../../routes/routes";
 
 export function ProductDetailsPage() {
   const horizontalPadding = "px-5";
@@ -26,8 +25,7 @@ export function ProductDetailsPage() {
         setProduct(response);
       })
       .catch(e => {
-        // window.location.search = "";
-        // window.location.pathname = routes.notfound;
+
       })
       .finally(() => {
         setIsLoading(false);
@@ -60,7 +58,7 @@ export function ProductDetailsPage() {
 
                     <div className="mt-4">
                       <ProductInfo product={product} />
-                      <ProductQtdSelector initalValue={1} minValue={1}/>
+                      <ProductQtdSelector initalValue={1} minValue={1} />
                     </div>
 
                     <div>
@@ -69,6 +67,9 @@ export function ProductDetailsPage() {
                         style="border border-black hover:border-pink-500"
                         background="bg-white hover:bg-pink-500"
                         textColor="text-black hover:text-white"
+                        onClick={() => {
+                          PageRouter.goTo(routes.home);
+                        }}
                       >Adicionar ao carrinho</ResponsibleButton>
                     </div>
                   </div>
@@ -89,7 +90,7 @@ export function ProductDetailsPage() {
             </>
         }
 
-      </main>
+      </main >
     </>
   );
 }

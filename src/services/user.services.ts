@@ -1,5 +1,7 @@
 import { AppError, DatabaseConfigurationError, DocumentNotFoundError } from "../exceptions/appError";
 import { firebase } from "../firebase";
+import { PageRouter} from "../routes/PageRouter";
+import { routes } from "../routes/routes";
 import { storageServices } from "./storage.services";
 
 
@@ -52,14 +54,14 @@ async function hasAuthenticated() {
 
     return await firebase.hasDocument("users", user.email);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return false;
   }
 }
 
 function logout() {
   storageServices.clear();
-  window.location.href = "/";
+  PageRouter.goTo(routes.home);
 }
 
 function getCurrentUser() {
