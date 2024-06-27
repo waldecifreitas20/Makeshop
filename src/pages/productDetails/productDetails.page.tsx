@@ -51,8 +51,7 @@ export function ProductDetailsPage() {
                   <img className="block h-full mx-auto" src={product.imgPath} alt="produto" />
                 </div>
 
-                <h2 className="capitalize">{`${product.name} ${product.manufacturer}`}</h2>
-                <p className="capitalize">Descrição</p>
+                <h2 className="capitalize text-xl">{`${product.name} ${product.manufacturer}`}</h2>
 
                 <div className="mt-4 md:m-0">
                   <ProductInfo product={product} />
@@ -77,7 +76,7 @@ export function ProductDetailsPage() {
               </div>
 
               <Newsletter />
-              
+
               <Footer />
             </>
         }
