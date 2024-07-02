@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Navbar } from "../../components/Navbar";
 import { productServices } from "../../services/products.services";
 import { Spinner } from "../../components/Spinner";
@@ -24,8 +24,8 @@ export function ProductDetailsPage() {
       .then(response => {
         setProduct(response);
       })
-      .catch(e => {
-
+      .catch(() => {
+        PageRouter.goTo(routes.notfound);
       })
       .finally(() => {
         setIsLoading(false);
@@ -58,7 +58,7 @@ export function ProductDetailsPage() {
 
                     <div className="mt-4">
                       <ProductInfo product={product} />
-                      <ProductQtdSelector initalValue={1} minValue={1} />
+                      <ProductQtdSelector initialValue={1} minValue={1} />
                     </div>
 
                     <div className="md:w-[70%] gap-2">
