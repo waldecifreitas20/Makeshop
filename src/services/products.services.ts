@@ -5,7 +5,6 @@ async function getProducts() {
   try {
     return await firebase.getDocuments("products")
   } catch (error: any) {
-    console.log(error);
     throw Error(`Unable to fetch products. Details: ${error}`);
   }
 
