@@ -35,7 +35,9 @@ export function ProductCard(props: ProductCardProps) {
 		  border 
 			p-2 rounded-xl 
 			w-64
+
 			md:w-full
+			md:h-full
 			
 			md:hover:shadow-lg
 			md:hover:border-pink-300

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import { Navbar } from "../../components/Navbar";
 import { productServices } from "../../services/products.services";
 import { Spinner } from "../../components/Spinner";
@@ -35,7 +36,7 @@ export function ProductDetailsPage() {
   return (
     <>
       <Navbar />
-
+      
       <main className="mt-20 md:mt-28 lg:mt-32">
         {
           isLoading ?
@@ -53,7 +54,7 @@ export function ProductDetailsPage() {
                   </div>
 
                   {/* DETAILS */}
-                  <div className="md:w-[50%] lg:max-w-[500px] ml-4">
+                  <div className="md:w-[50%] lg:max-w-[500px] lg:ml-4">
                     <h2 className="capitalize text-xl md:text-2xl">{`${product.name} ${product.manufacturer}`}</h2>
 
                     <div className="mt-4">
