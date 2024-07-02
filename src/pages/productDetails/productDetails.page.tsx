@@ -61,8 +61,8 @@ export function ProductDetailsPage() {
                       <ProductQtdSelector initalValue={1} minValue={1} />
                     </div>
 
-                    <div>
-                      <ResponsibleButton>Comprar</ResponsibleButton>
+                    <div className="md:w-[70%] gap-2">
+                      <ResponsibleButton style="border">Comprar</ResponsibleButton>
                       <ResponsibleButton
                         style="border border-black hover:border-pink-500"
                         background="bg-white hover:bg-pink-500"
@@ -76,9 +76,9 @@ export function ProductDetailsPage() {
 
                 </div>
 
-                <div className="my-10 py-5 border-b border-t">
+                <div className="my-10 py-5 border-b border-t md:w-[90%] mx-auto">
                   <h3 className="text-xl mb-5">Descrição</h3>
-                  <p className="text-neutral-700">
+                  <p className="text-neutral-700 text-justify">
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolor tempora deleniti dolores rem illum possimus natus, saepe itaque corrupti laudantium debitis asperiores! Iste maxime facere reprehenderit ut at error temporibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo corrupti quia, impedit assumenda earum maiores nihil harum esse, blanditiis recusandae pariatur dolorem rem consequatur, ipsa veritatis possimus. Deleniti, saepe suscipit. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolor tempora deleniti dolores rem illum possimus natus, saepe itaque corrupti laudantium debitis asperiores! Iste maxime facere reprehenderit ut at error temporibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo corrupti quia, impedit assumenda earum maiores nihil harum esse, blanditiis recusandae pariatur dolorem rem consequatur, ipsa veritatis possimus. Deleniti, saepe suscipit.
                   </p>
                 </div>
