@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { utils } from "../../utils/utils";
 import { appColors } from "../../global/colors";
 import { MenuOptions } from "./components/MenuOptions";
@@ -10,9 +10,14 @@ import { NavbarBadges } from "./components/Badges";
 import { userServices } from "../../services/user.services";
 
 export function Navbar() {
+	/* REFS */
+	const navbarRef = useRef(null);
+	/* STATES */
 	let [showSearchBar, setSearchBarView] = useState(!utils.isSmallDevice());
 	let [menuClass, setMenuClass] = useState('close-menu');
 	let [isLoggedIn, setLoginState] = useState(false);
+	let [navbarHeight, setHeight] = useState("00px");
+
 	/* METHODS */
 	function toggleSearchBarView() {
 		setSearchBarView(!showSearchBar);
@@ -24,6 +29,12 @@ export function Navbar() {
 
 	function closeMenu() {
 		setMenuClass('close-menu');
+	}
+
+	function updateNavbarHeight() {
+		const navbar = utils.getRefContent<HTMLElement>(navbarRef);
+		const height = navbar.offsetHeight;
+		setHeight(`${height}px`);
 	}
 
 	utils.onResizeScreen(() => {
@@ -38,10 +49,18 @@ export function Navbar() {
 
 	}, [isLoggedIn]);
 
+	useEffect(() => {
+		updateNavbarHeight();
+
+		utils.onResizeScreen(() => {
+			updateNavbarHeight();
+		})
+	}, [navbarHeight]);
+
 	return (
 		<>
-			<header className={`fixed top-0 z-30 w-full`}>
-				<nav className={`border-b-2 pt-4 pb-6 lg:pb-12 px-5 z-30 ${appColors.backgrounds.base}`}>
+			<header ref={navbarRef} className={`fixed top-0 z-30 w-full`}>
+				<nav className={`border-b-2 pt-4 pb-6 lg:pb-12 px-5 z-30  ${appColors.backgrounds.base}`}>
 
 					{/* navbar top */}
 					<div className="flex items-center md:h-4 md:inline md:float-left">
@@ -131,7 +150,7 @@ export function Navbar() {
 							">
 
 							{/* menu header - ONLY FOR SMALL DEVICES AND BELOW*/}
-							<MenuHeader isLoggedIn={isLoggedIn}/>
+							<MenuHeader isLoggedIn={isLoggedIn} />
 							{/* Menu options*/}
 							<ul className="					
 								lg:flex
@@ -146,6 +165,8 @@ export function Navbar() {
 					</div>
 				</nav>
 			</header >
+
+			<div className={`bg-blue-500 w-full mb-3`} style={{ height: `${navbarHeight}` }}></div>
 		</>
 	);
 }

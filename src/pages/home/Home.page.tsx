@@ -131,7 +131,7 @@ export function HomePage() {
 			<Navbar />
 
 			{/* Shortcuts links */}
-			<section className="mx-auto mt-20 lg:mt-28">
+			<section className="mx-auto">
 				<PillCarousel>
 					<Pill style={PILL_STYLE} text="Maquiagem" />
 					<Pill style={PILL_STYLE} text="Perfumes" />

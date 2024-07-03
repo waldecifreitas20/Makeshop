@@ -1,7 +1,14 @@
+import { Navbar } from "../../components/Navbar"
+
 export function CartPage() {
   return (
     <>
-      <h1>Aloooooooooo</h1>
+      <Navbar />
+
+      <div className="flex">
+        <h2>Meu carrinho</h2>
+        <button>Esvaziar carrinho</button>
+      </div>
     </>
   );
 }

@@ -37,7 +37,7 @@ export function ProductDetailsPage() {
     <>
       <Navbar />
       
-      <main className="mt-20 md:mt-28 lg:mt-32">
+      <main className="mt-8">
         {
           isLoading ?
             <div className="h-screen flex justify-center items-center">
