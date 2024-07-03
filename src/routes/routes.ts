@@ -3,5 +3,7 @@ export const routes = {
   login:'/login',
   signUp:'/sing-up',
   productDetails:'/details',
+  cart:'/cart',
+  buy:'/buy',
   notfound: '*',
 }

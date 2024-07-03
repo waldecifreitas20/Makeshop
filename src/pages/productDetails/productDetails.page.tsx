@@ -63,13 +63,13 @@ export function ProductDetailsPage() {
                     </div>
 
                     <div className="md:w-[70%] gap-2">
-                      <ResponsibleButton style="border">Comprar</ResponsibleButton>
+                      <ResponsibleButton style="border" onClick={() => PageRouter.goTo(routes.cart)}>Comprar</ResponsibleButton>
                       <ResponsibleButton
                         style="border border-black hover:border-pink-500"
                         background="bg-white hover:bg-pink-500"
                         textColor="text-black hover:text-white"
                         onClick={() => {
-                          PageRouter.goTo(routes.home);
+                          
                         }}
                       >Adicionar ao carrinho</ResponsibleButton>
                     </div>
