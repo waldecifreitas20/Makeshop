@@ -1,4 +1,4 @@
-import { PropsWithChildren, createContext, useState } from "react";
+import { PropsWithChildren, createContext } from "react";
 import { productServices } from "../services/products.services";
 
 interface ProductProviderValues {

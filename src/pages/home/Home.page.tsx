@@ -11,7 +11,6 @@ import { Banners } from "./components/banners.tsx";
 /* Utilities functions */
 import { utils } from "../../utils/utils.ts";
 import { Newsletter } from "../../components/Newsletter.tsx";
-import { productServices } from "../../services/products.services.ts";
 import { useContext, useEffect, useState } from "react";
 import { ProductCard } from "../../components/ProductCard.tsx";
 import { Spinner } from "../../components/Spinner.tsx";
@@ -81,44 +80,25 @@ export function HomePage() {
 	const [hasProductsLoaded, setProductsLoadingState] = useState(false);
 	const [vipsProducts, setVipProducts] = useState<Array<any>>([]);
 	const [anyClientProducts, setAnyClientProducts] = useState<Array<any>>([]);
-
+	
 	const productsProvider = useContext(ProductContext);
 
 	useEffect(() => {
 		productsProvider.initProductsData()
-			.then((result: boolean) => {
-				setProductsLoadingState(true);
-
+			.then(() => {
 				setVipProducts(productsProvider.getForVips());
 				setAnyClientProducts(productsProvider.getForAnyClient());
-			}).catch((err: any) => {
-				alert(err.message);
-			});
 
-		/* productServices.getProducts()
-			.then(data => {
-				let anyClient: Array<any> = [];
-				let vips: Array<any> = [];
-	
-				for (const item of data) {
-					const product = productServices.parseToProduct(item);
-	
-	
-					if (product.isVip) {
-						vips.push(product);
-						setVipProducts(vips);
-					} else {
-						anyClient.push(product);
-						setAnyClientProducts(anyClient);
-					}
-				}
-	
-				setProductsLoadingState(true);
-			})
-			.catch(console.log); */
+				stopLoading();
+
+			}).catch((err: any) => {
+				console.log(err);
+			});
 	}, [])
 
-
+	function stopLoading() {
+		setProductsLoadingState(true);
+	}
 
 	function getProductsCards(clientType: ClientType) {
 		let products: Array<Product> = [];
