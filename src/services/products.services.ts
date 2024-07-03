@@ -1,5 +1,4 @@
 import { firebase } from "../firebase";
-import { products } from "../mocks/products.json";
 
 async function getProducts() {
   try {
@@ -7,8 +6,6 @@ async function getProducts() {
   } catch (error: any) {
     throw Error(`Unable to fetch products. Details: ${error}`);
   }
-
-  return products;
 }
 
 async function getProduct(id: string) {
