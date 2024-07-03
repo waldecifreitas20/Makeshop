@@ -166,7 +166,7 @@ export function Navbar() {
 				</nav>
 			</header >
 
-			<div className={`bg-blue-500 w-full mb-3`} style={{ height: `${navbarHeight}` }}></div>
+			<div className="w-full mb-3" style={{ height: `${navbarHeight}` }}></div>
 		</>
 	);
 }
