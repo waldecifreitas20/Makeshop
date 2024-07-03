@@ -8,6 +8,8 @@ import { MenuHeader } from "./components/MenuHeader";
 import { MakeshopLogo } from "./components/MakeshopLogo";
 import { NavbarBadges } from "./components/Badges";
 import { userServices } from "../../services/user.services";
+import { PageRouter } from "../../routes/PageRouter";
+import { routes } from "../../routes/routes";
 
 export function Navbar() {
 	/* REFS */
@@ -81,7 +83,7 @@ export function Navbar() {
 								<i className="fa-solid fa-magnifying-glass fa-xl"></i>
 							</button>
 							<div className="border-gray-400 border-l mx-3"></div>
-							<button>
+							<button onClick={() => PageRouter.goTo(routes.cart)}>
 								<i className="fa-solid fa-cart-shopping fa-xl"></i>
 							</button>
 						</div>

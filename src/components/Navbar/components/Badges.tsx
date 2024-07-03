@@ -1,3 +1,4 @@
+import { PageRouter } from "../../../routes/PageRouter";
 import { routes } from "../../../routes/routes";
 import { userServices } from "../../../services/user.services";
 import { Tile } from "../../Tile";
@@ -46,7 +47,9 @@ export function NavbarBadges(props: { isLoggedIn: boolean }) {
       {/* cart */}
       <Tile leading={<i className="fa-solid fa-cart-shopping fa-xl"></i>}>
         <p className="text-xs">Meu carrinho</p>
-        <a className="font-bold text-xs hover:underline" href="">R$ 0,00</a>
+        <button className="font-bold text-xs hover:underline" onClick={() => {
+          PageRouter.goTo(routes.cart);
+        }}>R$ 0,00</button>
       </Tile>
 
       {/* account */}
