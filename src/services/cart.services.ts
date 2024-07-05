@@ -1,47 +1,47 @@
 import { storageServices } from "./storage.services"
 
-const PRODUCTS_LIST = "products"
+const CART_ITEMS = "cart"
 
-function getProducts() {
+function getItems() {
   try {
-    return storageServices.getItem(PRODUCTS_LIST);
+    return storageServices.getItem(CART_ITEMS);
   } catch (error) {
     return [];
   }
 }
 
-function addProduct(product: Product) {
-  let productsList: Array<any> = [];
+function addItem(item: CartItem) {
+  let cart: Array<any> = [];
   try {
-    productsList = storageServices.getItem(PRODUCTS_LIST);
+    cart = storageServices.getItem(CART_ITEMS);
   } catch (err: any) { }
 
-  storageServices.setItem(PRODUCTS_LIST, [...productsList, product]);
+  storageServices.setItem(CART_ITEMS, [...cart, item]);
 }
 
-function removeProduct(productId: string) {
+function removeItem(itemId: string) {
 
-  const products = storageServices.getItem(PRODUCTS_LIST) as Array<any>;
-  for (let i = 0; i < products.length; i++) {
-    const product = products[i];
+  const cart = storageServices.getItem(CART_ITEMS) as Array<any>;
+  for (let i = 0; i < cart.length; i++) {
+    const item = cart[i];
 
-    if (product.id === productId) {
-      products.splice(i, 1);
+    if (item.id === itemId) {
+      cart.splice(i, 1);
       break
     }
   }
 
-  storageServices.setItem(PRODUCTS_LIST, products);
+  storageServices.setItem(CART_ITEMS, cart);
 }
 
 function clearCart() {
-  storageServices.setItem(PRODUCTS_LIST, []);
+  storageServices.setItem(CART_ITEMS, []);
 }
 
 
 export const cartServices = {
-  addProduct,
-  removeProduct,
+  addItem,
+  removeItem,
+  getItems,
   clearCart,
-  getProducts,
 }
