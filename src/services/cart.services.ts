@@ -1,8 +1,10 @@
 import { storageServices } from "./storage.services"
 
+const PRODUCTS_LIST = "products"
+
 function getProducts() {
   try {
-    return storageServices.getItem("products");
+    return storageServices.getItem(PRODUCTS_LIST);
   } catch (error) {
     return [];
   }
@@ -11,18 +13,29 @@ function getProducts() {
 function addProduct(product: Product) {
   let productsList: Array<any> = [];
   try {
-    productsList = storageServices.getItem("products");
+    productsList = storageServices.getItem(PRODUCTS_LIST);
   } catch (err: any) { }
 
-  storageServices.setItem("products", [...productsList, product]);
+  storageServices.setItem(PRODUCTS_LIST, [...productsList, product]);
 }
 
 function removeProduct(productId: string) {
-  storageServices.setItem(productId, "");
+
+  const products = storageServices.getItem(PRODUCTS_LIST) as Array<any>;
+  for (let i = 0; i < products.length; i++) {
+    const product = products[i];
+
+    if (product.id === productId) {
+      products.splice(i, 1);
+      break
+    }
+  }
+
+  storageServices.setItem(PRODUCTS_LIST, products);
 }
 
 function clearCart() {
-  storageServices.setItem("products", []);
+  storageServices.setItem(PRODUCTS_LIST, []);
 }
 
 
