@@ -2,8 +2,8 @@ import { ProductInfo } from "../../../components/ProductInfo";
 import { Tile } from "../../../components/Tile";
 import { ProductQtdSelector } from "../../productDetails/components/QuantitySelector";
 
-interface ProductCard {
-  product: Product;
+interface CarItemCard {
+  item: CartItem;
   onDelete: CallableFunction;
 }
 
@@ -18,11 +18,11 @@ const btnRemoveStyle = `
 `;
 
 
-export function ProductCard(props: ProductCard) {
+export function CarItemCard(props: CarItemCard) {
 
   const ProductImage = (
     <div className="w-[30%] h-full flex flex-col justify-between">
-      <img src={props.product.imgPath} className="block h-full mx-auto mb-1" alt={`${props.product.name}`} />
+      <img src={props.item.product.imgPath} className="block h-full mx-auto mb-1" alt={`${props.item.product.name}`} />
       <button className={btnRemoveStyle} onClick={() => props.onDelete()}>Remover</button>
     </div>
   );
@@ -32,11 +32,16 @@ export function ProductCard(props: ProductCard) {
       <div className="border bg-white shadow-sm rounded-lg p-3">
         <Tile leading={ProductImage}>
           <div className="ml-2">
-            <h3 className="font-medium">{`${props.product.name} ${props.product.manufacturer}`}</h3>
+            <h3 className="font-medium">{`${props.item.product.name} ${props.item.product.manufacturer}`}</h3>
 
             <div className="mt-4">
-              <ProductInfo product={props.product} />
-              <ProductQtdSelector initialValue={1} minValue={1} />
+              <ProductInfo product={props.item.product} />
+              <ProductQtdSelector
+                initialValue={props.item.qtd}
+                minValue={1}
+                onChange={(value: number) => {
+                  props.item.qtd = value;
+                }} />
             </div>
           </div>
         </Tile>

@@ -10,12 +10,14 @@ import { Newsletter } from "../../components/Newsletter";
 import { Footer } from "../../components/Footer";
 import { PageRouter } from "../../routes/PageRouter";
 import { routes } from "../../routes/routes";
+import { cartServices } from "../../services/cart.services";
 
 export function ProductDetailsPage() {
   const horizontalPadding = "px-5";
 
   const [product, setProduct] = useState<any>({});
   const [isLoading, setIsLoading] = useState(true);
+  let productQtd = 1;
 
   useEffect(() => {
     const productID = window.location.search.replace("?", "");
@@ -33,10 +35,21 @@ export function ProductDetailsPage() {
       })
   }, []);
 
+  function onBuyProduct() {
+    const cartItem: CartItem = {
+      id: Math.random().toString(),
+      product: productServices.parseToProduct(product),
+      qtd: productQtd,
+    }
+
+    cartServices.addItem(cartItem);
+    PageRouter.goTo(routes.cart)
+  }
+
   return (
     <>
       <Navbar />
-      
+
       <main className="mt-8">
         {
           isLoading ?
@@ -59,17 +72,22 @@ export function ProductDetailsPage() {
 
                     <div className="mt-4">
                       <ProductInfo product={product} />
-                      <ProductQtdSelector initialValue={1} minValue={1} />
+                      <ProductQtdSelector
+                        initialValue={productQtd}
+                        minValue={1}
+                        onChange={(value: number) => {
+                          productQtd = value;
+                        }} />
                     </div>
 
                     <div className="md:w-[70%] gap-2">
-                      <ResponsibleButton style="border" onClick={() => PageRouter.goTo(routes.cart)}>Comprar</ResponsibleButton>
+                      <ResponsibleButton style="border" onClick={() => onBuyProduct()}>Comprar</ResponsibleButton>
                       <ResponsibleButton
                         style="border border-black hover:border-pink-500"
                         background="bg-white hover:bg-pink-500"
                         textColor="text-black hover:text-white"
                         onClick={() => {
-                          
+
                         }}
                       >Adicionar ao carrinho</ResponsibleButton>
                     </div>

@@ -3,6 +3,7 @@ import { useState } from "react";
 interface ProductQtdSelectorProps {
   initialValue?: number;
   minValue?: number;
+  onChange: CallableFunction;
 }
 
 export function ProductQtdSelector(props: ProductQtdSelectorProps) {
@@ -10,12 +11,16 @@ export function ProductQtdSelector(props: ProductQtdSelectorProps) {
   const minValue = props.minValue ?? 0;
 
   function increment() {
-    setQtd(qtd + 1);
+    let newValue = qtd + 1;
+    setQtd(newValue);
+    props.onChange(newValue)
   }
 
   function decrement() {
     if (qtd > minValue) {
-      setQtd(qtd - 1);
+      let newValue = qtd - 1;
+      setQtd(newValue);
+      props.onChange(newValue)
     }
   }
 
