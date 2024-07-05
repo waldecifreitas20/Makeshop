@@ -5,6 +5,7 @@ import { ProductQtdSelector } from "../../productDetails/components/QuantitySele
 interface CarItemCard {
   item: CartItem;
   onDelete: CallableFunction;
+  onQuantityChange: CallableFunction;
 }
 
 const btnRemoveStyle = `
@@ -40,7 +41,7 @@ export function CarItemCard(props: CarItemCard) {
                 initialValue={props.item.qtd}
                 minValue={1}
                 onChange={(value: number) => {
-                  props.item.qtd = value;
+                  props.onQuantityChange(value);
                 }} />
             </div>
           </div>

@@ -29,9 +29,15 @@ export function CartPage() {
     updateState();
   }
 
+  function updateItemQtd(itemId: string, qtd: number) {
+    cartServices.updateQuantity(itemId, qtd);
+    updateState();
+  }
+
   function updateState() {
     setItems(cartServices.getItems());
   }
+
 
   function getProductsCard() {
     return cartItems.map((cartItem, i) => {
@@ -40,6 +46,7 @@ export function CartPage() {
           key={i}
           item={cartItem}
           onDelete={() => removeItem(cartItem.id)}
+          onQuantityChange={(qtd: number)=> updateItemQtd(cartItem.id, qtd)}
         />
       );
     });

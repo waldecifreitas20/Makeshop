@@ -1,3 +1,4 @@
+import { utils } from "../utils/utils";
 import { storageServices } from "./storage.services"
 
 const CART_ITEMS = "cart"
@@ -38,10 +39,22 @@ function clearCart() {
   storageServices.setItem(CART_ITEMS, []);
 }
 
+function updateQuantity(itemId: string, qtd: number) {
+  const cart = storageServices.getItem(CART_ITEMS) as Array<any>;
+  for (let i = 0; i < cart.length; i++) {
+    if (cart[i].id === itemId) {
+      cart[i].qtd = qtd;
+      break;
+    }
+  }
+
+  storageServices.setItem(CART_ITEMS, cart);
+}
 
 export const cartServices = {
   addItem,
   removeItem,
   getItems,
   clearCart,
+  updateQuantity,
 }
