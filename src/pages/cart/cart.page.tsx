@@ -46,7 +46,7 @@ export function CartPage() {
           key={i}
           item={cartItem}
           onDelete={() => removeItem(cartItem.id)}
-          onQuantityChange={(qtd: number)=> updateItemQtd(cartItem.id, qtd)}
+          onQuantityChange={(qtd: number) => updateItemQtd(cartItem.id, qtd)}
         />
       );
     });
@@ -54,7 +54,8 @@ export function CartPage() {
 
 
   return (
-    <>
+    <div className="h-screen">
+
       <Navbar />
 
       <main className="px-4">
@@ -67,7 +68,7 @@ export function CartPage() {
           >Esvaziar carrinho</button>
         </div>
 
-        <div className="lg:px-5 mt-5 size-full">
+        <div className="lg:px-5 mt-5">
           {
             cartItems.length === 0 ? (
               <div className="
@@ -90,12 +91,28 @@ export function CartPage() {
                 </ResponsibleButton>
               </div>
             ) :
-              getProductsCard()
+              <div className="overflow-scroll size-full h-min">
+                {getProductsCard()}
+              </div>
           }
-
         </div>
 
+
       </main>
-    </>
+      <footer className="w-full mt-4 text-white">
+        <div className="h-[130px]"></div>
+        <div className="bg-black w-full fixed bottom-0 px-5 py-3">
+          <p>Qtd. Items: </p>
+          <p>Total de Produtos: R$</p>
+
+          <ResponsibleButton
+            style="border border-white"
+            background="bg-black"
+          >
+            Realizar Pedido
+          </ResponsibleButton>
+        </div>
+      </footer>
+    </div>
   );
 }
