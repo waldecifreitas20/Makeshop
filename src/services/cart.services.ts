@@ -1,9 +1,8 @@
-import { utils } from "../utils/utils";
 import { storageServices } from "./storage.services"
 
 const CART_ITEMS = "cart"
 
-function getItems() {
+function getItems(): Array<CartItem> {
   try {
     return storageServices.getItem(CART_ITEMS);
   } catch (error) {
@@ -51,10 +50,21 @@ function updateQuantity(itemId: string, qtd: number) {
   storageServices.setItem(CART_ITEMS, cart);
 }
 
+function getTotalCost() {
+  let totalCost = 0;
+  for (const item of getItems()) {
+    const itemCost = item.product.price * item.qtd;
+    totalCost += itemCost;
+  }
+
+  return totalCost.toFixed(2).replace('.', ',');
+}
+
 export const cartServices = {
   addItem,
   removeItem,
   getItems,
   clearCart,
   updateQuantity,
+  getTotalCost
 }

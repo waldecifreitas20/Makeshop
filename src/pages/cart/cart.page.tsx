@@ -16,8 +16,8 @@ const clearCartButtonStyle = `
 `;
 
 export function CartPage() {
-  const [cartItems, setItems] = useState<Array<CartItem>>(cartServices.getItems);
-
+  const [cartItems, setItems] = useState<Array<CartItem>>(cartServices.getItems());
+  const [totalCost, setTotalCost] = useState(cartServices.getTotalCost());
 
   function clearCart() {
     cartServices.clearCart();
@@ -35,6 +35,7 @@ export function CartPage() {
   }
 
   function updateState() {
+    setTotalCost(cartServices.getTotalCost());
     setItems(cartServices.getItems());
   }
 
@@ -65,7 +66,9 @@ export function CartPage() {
           <button
             className={clearCartButtonStyle}
             onClick={() => clearCart()}
-          >Esvaziar carrinho</button>
+          >
+            Esvaziar carrinho
+          </button>
         </div>
 
         <div className="lg:px-5 mt-5">
@@ -96,18 +99,22 @@ export function CartPage() {
               </div>
           }
         </div>
-
-
       </main>
+
       <footer className="w-full mt-4 text-white">
+
         <div className="h-[130px]"></div>
         <div className="bg-black w-full fixed bottom-0 px-5 py-3">
-          <p>Qtd. Items: </p>
-          <p>Total de Produtos: R$</p>
+          <p>Qtd. Items: {cartItems.length} </p>
+          <p>Total de Produtos: R$ {totalCost}</p>
 
           <ResponsibleButton
-            style="border border-white"
-            background="bg-black"
+            style={`border border-white ${cartItems.length === 0 ? 'opacity-30' : ''}`}
+            disabled={cartItems.length === 0}
+            background="bg-black hover:bg-pink-500"
+            onClick={() => {
+              alert()
+            }}
           >
             Realizar Pedido
           </ResponsibleButton>
