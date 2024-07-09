@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 /* COMPONENTS */
 import { Navbar } from "../../components/Navbar";
 import { productServices } from "../../services/products.services";
@@ -16,11 +16,15 @@ import { BackHomeButton } from "../../components/BackHomeButton";
 import { CartContext } from "../../providers/cart.provider";
 
 export function ProductDetailsPage() {
+
   const horizontalPadding = "px-5";
-  let productQtd = 1;
+
+  const productQtd = useRef(1);
 
   const [product, setProduct] = useState<any>({});
   const [isLoading, setIsLoading] = useState(true);
+
+  console.log(productQtd.current);
 
   const cartProvider = useContext(CartContext);
 
@@ -41,7 +45,7 @@ export function ProductDetailsPage() {
   }, []);
 
   function onBuyProduct() {
-    cartServices.addItem(product, productQtd);
+    cartServices.addItem(product, productQtd.current);
     PageRouter.goTo(routes.cart)
   }
 
@@ -76,10 +80,10 @@ export function ProductDetailsPage() {
                     <div className="mt-4">
                       <ProductInfo product={product} />
                       <ProductQtdSelector
-                        initialValue={productQtd}
+                        initialValue={productQtd.current}
                         minValue={1}
                         onChange={(value: number) => {
-                          productQtd = value;
+                          productQtd.current = value;
                         }} />
                     </div>
 
@@ -90,7 +94,7 @@ export function ProductDetailsPage() {
                         background="bg-white hover:bg-pink-500"
                         textColor="text-black hover:text-white"
                         onClick={() => {
-                          cartServices.addItem(product, productQtd);
+                          cartServices.addItem(product, productQtd.current);
                           cartProvider.updateTotalCost();
                         }}
                       >Adicionar ao carrinho</ResponsibleButton>
