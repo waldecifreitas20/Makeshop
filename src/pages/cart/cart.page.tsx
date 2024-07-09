@@ -111,7 +111,7 @@ export function CartPage() {
           <ResponsibleButton
             style={`border border-white ${cartItems.length === 0 ? 'opacity-30' : ''}`}
             disabled={cartItems.length === 0}
-            background="bg-black hover:bg-pink-500"
+            background={`bg-black ${cartItems.length === 0 ? "" : "hover:bg-pink-500"}`}
             onClick={() => {
               alert()
             }}
