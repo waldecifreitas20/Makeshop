@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 /* COMPONENTS */
 import { Navbar } from "../../components/Navbar";
 import { productServices } from "../../services/products.services";
@@ -13,13 +13,16 @@ import { PageRouter } from "../../routes/PageRouter";
 import { routes } from "../../routes/routes";
 import { cartServices } from "../../services/cart.services";
 import { BackHomeButton } from "../../components/BackHomeButton";
+import { CartContext } from "../../providers/cart.provider";
 
 export function ProductDetailsPage() {
   const horizontalPadding = "px-5";
+  let productQtd = 1;
 
   const [product, setProduct] = useState<any>({});
   const [isLoading, setIsLoading] = useState(true);
-  let productQtd = 1;
+
+  const cartProvider = useContext(CartContext);
 
   useEffect(() => {
     const productID = window.location.search.replace("?", "");
@@ -87,9 +90,8 @@ export function ProductDetailsPage() {
                         background="bg-white hover:bg-pink-500"
                         textColor="text-black hover:text-white"
                         onClick={() => {
-
                           cartServices.addItem(product, productQtd);
-                          alert('Produto adicionado ao carrinho! ')
+                          cartProvider.updateTotalCost();
                         }}
                       >Adicionar ao carrinho</ResponsibleButton>
                     </div>

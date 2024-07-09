@@ -27,7 +27,7 @@ function addItem(product: Product, qtd: number) {
     updateQuantity(item.id, qtd);
     return;
   }
-  
+
   storageServices.setItem(CART_ITEMS, [...cart, item]);
 }
 
@@ -65,7 +65,7 @@ function clearCart() {
 function updateQuantity(itemId: string, qtd: number) {
   const cart = getItems();
   for (let i = 0; i < cart.length; i++) {
-    alert(cart[i].id + " --- " + itemId);
+    
     if (cart[i].id === itemId) {
       cart[i].qtd = qtd;
       break;
