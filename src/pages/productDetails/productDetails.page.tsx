@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-
+/* COMPONENTS */
 import { Navbar } from "../../components/Navbar";
 import { productServices } from "../../services/products.services";
 import { Spinner } from "../../components/Spinner";
 import { ProductInfo } from "../../components/ProductInfo";
-import { ProductQtdSelector } from "./components/QuantitySelector";
 import { ResponsibleButton } from "../../components/ResponsibleButton";
 import { Newsletter } from "../../components/Newsletter";
 import { Footer } from "../../components/Footer";
+import { ProductQtdSelector } from "./components/QuantitySelector";
+/* METHODS */
 import { PageRouter } from "../../routes/PageRouter";
 import { routes } from "../../routes/routes";
 import { cartServices } from "../../services/cart.services";
@@ -36,13 +37,7 @@ export function ProductDetailsPage() {
   }, []);
 
   function onBuyProduct() {
-    const cartItem: CartItem = {
-      id: Math.random().toString(),
-      product: productServices.parseToProduct(product),
-      qtd: productQtd,
-    }
-
-    cartServices.addItem(cartItem);
+    cartServices.addItem(product, productQtd);
     PageRouter.goTo(routes.cart)
   }
 
@@ -87,7 +82,9 @@ export function ProductDetailsPage() {
                         background="bg-white hover:bg-pink-500"
                         textColor="text-black hover:text-white"
                         onClick={() => {
-
+                          
+                          cartServices.addItem(product, productQtd);
+                          alert('Produto adicionado ao carrinho! ')
                         }}
                       >Adicionar ao carrinho</ResponsibleButton>
                     </div>

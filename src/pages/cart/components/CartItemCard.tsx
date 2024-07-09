@@ -1,5 +1,6 @@
 import { ProductInfo } from "../../../components/ProductInfo";
 import { Tile } from "../../../components/Tile";
+import { routes } from "../../../routes/routes";
 import { ProductQtdSelector } from "../../productDetails/components/QuantitySelector";
 
 interface CarItemCard {
@@ -30,7 +31,10 @@ export function CarItemCard(props: CarItemCard) {
 
   return (
     <>
-      <div className="border bg-white shadow-sm rounded-lg p-3">
+      <a
+        className="border bg-white shadow-sm rounded-lg p-3 block"
+        href={`${routes.productDetails}?${props.item.product.id.trim()}`}
+      >
         <Tile leading={ProductImage}>
           <div className="ml-2">
             <h3 className="font-medium">{`${props.item.product.name} ${props.item.product.manufacturer}`}</h3>
@@ -46,7 +50,7 @@ export function CarItemCard(props: CarItemCard) {
             </div>
           </div>
         </Tile>
-      </div>
+      </a>
     </>
   );
 }

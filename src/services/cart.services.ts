@@ -4,24 +4,48 @@ const CART_ITEMS = "cart"
 
 function getItems(): Array<CartItem> {
   try {
-    return storageServices.getItem(CART_ITEMS);
+    return storageServices.getItem(CART_ITEMS) as Array<any>;
   } catch (error) {
     return [];
   }
 }
 
-function addItem(item: CartItem) {
+function addItem(product: Product, qtd: number) {
   let cart: Array<any> = [];
+
+  const item: CartItem = {
+    id: product.id,
+    product,
+    qtd,
+  }
+
   try {
-    cart = storageServices.getItem(CART_ITEMS);
+    cart = getItems();
   } catch (err: any) { }
 
+  if (hasItem(item.product.id)) {
+    updateQuantity(item.id, qtd);
+    return;
+  }
+  
   storageServices.setItem(CART_ITEMS, [...cart, item]);
+}
+
+function hasItem(productId: string) {
+  const cart = getItems();
+
+  for (const item of cart) {
+    if (item.product.id === productId) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 function removeItem(itemId: string) {
 
-  const cart = storageServices.getItem(CART_ITEMS) as Array<any>;
+  const cart = getItems();
   for (let i = 0; i < cart.length; i++) {
     const item = cart[i];
 
@@ -39,14 +63,14 @@ function clearCart() {
 }
 
 function updateQuantity(itemId: string, qtd: number) {
-  const cart = storageServices.getItem(CART_ITEMS) as Array<any>;
+  const cart = getItems();
   for (let i = 0; i < cart.length; i++) {
+    alert(cart[i].id + " --- " + itemId);
     if (cart[i].id === itemId) {
       cart[i].qtd = qtd;
       break;
     }
   }
-
   storageServices.setItem(CART_ITEMS, cart);
 }
 
