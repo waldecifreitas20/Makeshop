@@ -12,6 +12,7 @@ import { ProductQtdSelector } from "./components/QuantitySelector";
 import { PageRouter } from "../../routes/PageRouter";
 import { routes } from "../../routes/routes";
 import { cartServices } from "../../services/cart.services";
+import { BackHomeButton } from "../../components/BackHomeButton";
 
 export function ProductDetailsPage() {
   const horizontalPadding = "px-5";
@@ -45,7 +46,7 @@ export function ProductDetailsPage() {
     <>
       <Navbar />
 
-      <main className="mt-8">
+      <main>
         {
           isLoading ?
             <div className="h-screen flex justify-center items-center">
@@ -54,6 +55,10 @@ export function ProductDetailsPage() {
             :
             <>
               <div className={`${horizontalPadding}`}>
+
+                <div className="my-2 md:w-[90%] mx-auto">
+                  <BackHomeButton />
+                </div>
 
                 <div className="mx-auto md:flex justify-center xl:justify-between xl:w-[1200px]">
                   {/* IMAGE */}
@@ -82,7 +87,7 @@ export function ProductDetailsPage() {
                         background="bg-white hover:bg-pink-500"
                         textColor="text-black hover:text-white"
                         onClick={() => {
-                          
+
                           cartServices.addItem(product, productQtd);
                           alert('Produto adicionado ao carrinho! ')
                         }}
