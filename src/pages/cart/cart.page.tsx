@@ -1,10 +1,10 @@
 import { Navbar } from "../../components/Navbar";
 import { CarItemCard } from "./components/CartItemCard";
 import { ResponsibleButton } from "../../components/ResponsibleButton";
-import { cartServices } from "../../services/cart.services";
-import { useState } from "react";
+import { useContext } from "react";
 import { PageRouter } from "../../routes/PageRouter";
 import { routes } from "../../routes/routes";
+import { CartContext } from "../../providers/cart.provider";
 
 const clearCartButtonStyle = `
   rounded-full
@@ -16,43 +16,21 @@ const clearCartButtonStyle = `
 `;
 
 export function CartPage() {
-  const [cartItems, setItems] = useState<Array<CartItem>>(cartServices.getItems());
-  const [totalCost, setTotalCost] = useState(cartServices.getTotalCost());
 
-  function clearCart() {
-    cartServices.clearCart();
-    updateState();
-  }
-
-  function removeItem(productId: string) {
-    cartServices.removeItem(productId);
-    updateState();
-  }
-
-  function updateItemQtd(itemId: string, qtd: number) {
-    cartServices.updateQuantity(itemId, qtd);
-    updateState();
-  }
-
-  function updateState() {
-    setTotalCost(cartServices.getTotalCost());
-    setItems(cartServices.getItems());
-  }
-
-
+  const cartProvider = useContext(CartContext);
+  
   function getProductsCard() {
-    return cartItems.map((cartItem, i) => {
+    return cartProvider.cartItems.map((cartItem, i) => {
       return (
         <CarItemCard
           key={i}
           item={cartItem}
-          onDelete={() => removeItem(cartItem.id)}
-          onQuantityChange={(qtd: number) => updateItemQtd(cartItem.id, qtd)}
+          onDelete={() => cartProvider.removeItem(cartItem.id)}
+          onQuantityChange={(qtd: number) => cartProvider.updateItemQtd(cartItem.id, qtd)}
         />
       );
     });
   }
-
 
   return (
     <div className="h-screen">
@@ -65,7 +43,7 @@ export function CartPage() {
           <h2 className="text-2xl">Meu carrinho</h2>
           <button
             className={clearCartButtonStyle}
-            onClick={() => clearCart()}
+            onClick={() => cartProvider.clearCart()}
           >
             Esvaziar carrinho
           </button>
@@ -73,7 +51,7 @@ export function CartPage() {
 
         <div className="lg:px-5 mt-5">
           {
-            cartItems.length === 0 ? (
+            cartProvider.cartItems.length === 0 ? (
               <div className="
                 flex flex-col
                 items-center
@@ -105,13 +83,13 @@ export function CartPage() {
 
         <div className="h-[130px]"></div>
         <div className="bg-black w-full fixed bottom-0 px-5 py-3">
-          <p>Qtd. Items: {cartItems.length} </p>
-          <p>Total de Produtos: R$ {totalCost}</p>
+          <p>Qtd. Items: {cartProvider.cartItems.length} </p>
+          <p>Total de Produtos: R$ {cartProvider.totalCost}</p>
 
           <ResponsibleButton
-            style={`border border-white ${cartItems.length === 0 ? 'opacity-30' : ''}`}
-            disabled={cartItems.length === 0}
-            background={`bg-black ${cartItems.length === 0 ? "" : "hover:bg-pink-500"}`}
+            style={`border border-white ${cartProvider.cartItems.length === 0 ? 'opacity-30' : ''}`}
+            disabled={cartProvider.cartItems.length === 0}
+            background={`bg-black ${cartProvider.cartItems.length === 0 ? "" : "hover:bg-pink-500"}`}
             onClick={() => {
               alert()
             }}
