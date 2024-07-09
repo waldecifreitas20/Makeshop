@@ -31,13 +31,12 @@ export function CarItemCard(props: CarItemCard) {
 
   return (
     <>
-      <a
-        className="border bg-white shadow-sm rounded-lg p-3 block"
-        href={`${routes.productDetails}?${props.item.product.id.trim()}`}
-      >
+      <div className="border bg-white shadow-sm rounded-lg p-3 block h-[180px]">
         <Tile leading={ProductImage}>
           <div className="ml-2">
-            <h3 className="font-medium">{`${props.item.product.name} ${props.item.product.manufacturer}`}</h3>
+            <a href={`${routes.productDetails}?${props.item.product.id.trim()}`}>
+              <h3 className="font-medium hover:underline capitalize">{`${props.item.product.name} ${props.item.product.manufacturer}`}</h3>
+            </a>
 
             <div className="mt-4">
               <ProductInfo product={props.item.product} />
@@ -50,7 +49,7 @@ export function CarItemCard(props: CarItemCard) {
             </div>
           </div>
         </Tile>
-      </a>
+      </div>
     </>
   );
 }
