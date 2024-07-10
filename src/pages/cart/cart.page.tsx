@@ -1,10 +1,11 @@
-import { Navbar } from "../../components/Navbar";
-import { CarItemCard } from "./components/CartItemCard";
-import { ResponsibleButton } from "../../components/ResponsibleButton";
 import { useContext } from "react";
-import { PageRouter } from "../../routes/PageRouter";
-import { routes } from "../../routes/routes";
 import { CartContext } from "../../providers/cart.provider";
+
+import { Navbar } from "../../components/Navbar";
+import { ResponsibleButton } from "../../components/ResponsibleButton";
+import { CartItemCardsList } from "./components/CartItemCardsList";
+import { EmptyCartPageBody } from "./components/EmptyCart";
+
 
 const clearCartButtonStyle = `
   rounded-full
@@ -16,21 +17,8 @@ const clearCartButtonStyle = `
 `;
 
 export function CartPage() {
-
+  
   const cartProvider = useContext(CartContext);
-
-  function getProductsCard() {
-    return cartProvider.cartItems.map((cartItem, i) => {
-      return (
-        <CarItemCard
-          key={i}
-          item={cartItem}
-          onDelete={() => cartProvider.removeItem(cartItem.id)}
-          onQuantityChange={(qtd: number) => cartProvider.updateItemQtd(cartItem.id, qtd)}
-        />
-      );
-    });
-  }
 
   return (
     <div className="h-screen">
@@ -51,31 +39,10 @@ export function CartPage() {
 
         {/* ITEMS */}
         <div className="lg:px-5 mt-5">
-          {
-            cartProvider.cartItems.length === 0 ? (
-              <div className="
-                flex flex-col
-                items-center
-                justify-center
-              
-                h-full w-full max-w-[450px]
-                mt-40 mx-auto
-              ">
-                <p className="text-neutral-500 text-center text-2xl mb-10">
-                  Você ainda não adicionou nenhum produto
-                </p>
-
-                <ResponsibleButton
-                  style="max-w-[300px]"
-                  onClick={() => PageRouter.goTo(routes.home)}
-                >
-                  Voltar às compras
-                </ResponsibleButton>
-              </div>
-            ) :
-              <div className="xl:w-[80%] mx-auto">
-                {getProductsCard()}
-              </div>
+          {cartProvider.cartItems.length === 0 ?
+            <EmptyCartPageBody />
+            :
+            <CartItemCardsList />
           }
         </div>
       </main>
@@ -84,19 +51,19 @@ export function CartPage() {
 
         <div className="h-[130px]"></div>
         <div className="
-        fixed 
-        bg-black 
-        w-full 
-        bottom-0 
-        px-5 py-3
-        
-        md:bg-white
-        md:text-black
-        md:border-t-2
-        md:flex
-        md:px-10
-        
-        lg:px-40
+          fixed 
+          bg-black 
+          w-full 
+          bottom-0 
+          px-5 py-3
+          
+          md:bg-white
+          md:text-black
+          md:border-t-2
+          md:flex
+          md:px-10
+          
+          lg:px-40
         ">
           <div className="md:w-full grow md:text-lg">
             <p>Qtd. Items: {cartProvider.cartItems.length} </p>
