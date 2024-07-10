@@ -1,36 +1,81 @@
-import { useContext } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { CartContext } from "../../providers/cart.provider";
 
 import { Navbar } from "../../components/Navbar";
 import { ResponsibleButton } from "../../components/ResponsibleButton";
 import { CartItemCardsList } from "./components/CartItemCardsList";
 import { EmptyCartPageBody } from "./components/EmptyCart";
-
-
-const clearCartButtonStyle = `
-  rounded-full
-  hover:bg-red-500 
-  text-red-500 text-sm
-  hover:text-white 
-  px-2 py-1
-  transition-all duration-200
-`;
+import { Modal } from "../../components/Modal";
+import { userServices } from "../../services/user.services";
+import { PageRouter } from "../../routes/PageRouter";
+import { routes } from "../../routes/routes";
 
 export function CartPage() {
-  
+
   const cartProvider = useContext(CartContext);
+  const isAuth = useRef(false);
+  const [modal, setModal] = useState(<></>);
+
+  useEffect(() => {
+    userServices.hasAuthenticated()
+      .then(result => {
+        isAuth.current = result;
+      });
+  });
+
+
+  function onOrder() {
+    if (!isAuth.current) {
+      openModal();
+    }
+  }
+
+  function openModal() {
+    setModal(
+      <Modal style="w-[80%] sm:w-[300px] px-5">
+        <p className="text-xl md:text-lg mb-10">É necessário efetuar o login antes de prosseguir</p>
+        <ResponsibleButton
+          style="border"
+          onClick={() => {
+            PageRouter.goTo(routes.login);
+          }}>
+          Ir para o Login
+        </ResponsibleButton>
+        <ResponsibleButton
+          background="bg-transparent hover:bg-black"
+          textColor="text-black hover:text-white"
+          style="border border-black"
+          onClick={() => closeModal()}>
+          Cancelar
+        </ResponsibleButton>
+      </Modal>
+    );
+  }
+
+  function closeModal() {
+    setModal(<></>);
+  }
 
   return (
     <div className="h-screen">
 
       <Navbar />
 
-      <main className="px-4 lg:px-40">
+      <div>
+        {modal}
+      </div>
 
+      <main className="px-4 lg:px-40">
         <div className="flex justify-between">
           <h2 className="text-2xl">Meu carrinho</h2>
           <button
-            className={clearCartButtonStyle}
+            className="
+            hover:bg-red-500 
+            text-red-500 text-sm
+            hover:text-white 
+            rounded-full
+            px-2 py-1
+              transition-all duration-200"
             onClick={() => cartProvider.clearCart()}
           >
             Esvaziar carrinho
@@ -48,7 +93,6 @@ export function CartPage() {
       </main>
 
       <footer className="w-full mt-4 text-white">
-
         <div className="h-[130px]"></div>
         <div className="
           fixed 
@@ -79,14 +123,12 @@ export function CartPage() {
               `}
             disabled={cartProvider.cartItems.length === 0}
             background={`bg-black ${cartProvider.cartItems.length === 0 ? "" : "hover:bg-pink-500"}`}
-            onClick={() => {
-              alert()
-            }}
+            onClick={(e) => { onOrder() }}
           >
             Realizar Pedido
           </ResponsibleButton>
         </div>
       </footer>
-    </div>
+    </div >
   );
 }

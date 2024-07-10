@@ -3,7 +3,7 @@ import { PropsWithChildren } from "react";
 export function Modal(props: PropsWithChildren<{ style?: string }>) {
 
   return <>
-    <div className="fixed top-0 h-screen w-full bg-black bg-opacity-20 flex justify-center items-center">
+    <div className="fixed z-40 top-0 h-screen w-full bg-black bg-opacity-20 flex justify-center items-center">
       {/* Modal */}
       <div className={`
         relative 
