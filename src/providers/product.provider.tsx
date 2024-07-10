@@ -1,4 +1,4 @@
-import { PropsWithChildren, createContext } from "react";
+import { PropsWithChildren, createContext, useRef } from "react";
 import { productServices } from "../services/products.services";
 
 interface ProductProviderValues {
@@ -22,7 +22,7 @@ export function ProductProvider(props: PropsWithChildren) {
   let vips: Array<any> = [];
   let anyClient: Array<any> = [];
 
-  let hasInitialized = false;
+  let hasInitialized = useRef(false);
 
   async function initProductsData(): Promise<boolean> {
     return productServices.getProducts()
@@ -38,7 +38,7 @@ export function ProductProvider(props: PropsWithChildren) {
             anyClient.push(product);
           }
         });
-        hasInitialized = true;
+        hasInitialized.current = true;
         return true;
       })
       .catch(err => {
@@ -48,23 +48,23 @@ export function ProductProvider(props: PropsWithChildren) {
   }
 
   function checkInitialization() {
-    if (!hasInitialized) {
+    if (!hasInitialized.current) {
       throw Error("Products provider has to be initialized before get data.");
     }
   }
 
   function getForVips() {
-    checkInitialization();
+   
     return [...vips];
   };
 
   function getForAnyClient() {
-    checkInitialization();
+   
     return [...anyClient];
   };
 
   function getAll() {
-    checkInitialization();
+   
     return [...allProducts];
   }
 
