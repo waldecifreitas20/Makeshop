@@ -7,7 +7,7 @@ import { ProductInfo } from "../../components/ProductInfo";
 import { ResponsibleButton } from "../../components/ResponsibleButton";
 import { Newsletter } from "../../components/Newsletter";
 import { Footer } from "../../components/Footer";
-import { ProductQtdSelector } from "./components/QuantitySelector";
+import { ProductQtdSelector } from "../../components/ProductQtdSelector";
 /* METHODS */
 import { PageRouter } from "../../routes/PageRouter";
 import { routes } from "../../routes/routes";
@@ -17,22 +17,17 @@ import { CartContext } from "../../providers/cart.provider";
 
 export function ProductDetailsPage() {
 
-  const horizontalPadding = "px-5";
-
   const productQtd = useRef(1);
 
   const [product, setProduct] = useState<any>({});
   const [isLoading, setIsLoading] = useState(true);
-
-  console.log(productQtd.current);
 
   const cartProvider = useContext(CartContext);
 
   useEffect(() => {
     const productID = window.location.search.replace("?", "");
 
-    productServices
-      .getProduct(productID)
+    productServices.getProduct(productID)
       .then(response => {
         setProduct(response);
       })
@@ -49,6 +44,11 @@ export function ProductDetailsPage() {
     PageRouter.goTo(routes.cart)
   }
 
+  function onAddToCart() {
+    cartServices.addItem(product, productQtd.current);
+    cartProvider.updateTotalCost();
+  }
+
   return (
     <>
       <Navbar />
@@ -61,12 +61,13 @@ export function ProductDetailsPage() {
             </div>
             :
             <>
-              <div className={`${horizontalPadding}`}>
+              <div className="px-5">
 
                 <div className="my-2 md:w-[90%] mx-auto">
                   <BackHomeButton />
                 </div>
 
+                {/* PRODUCT */}
                 <div className="mx-auto md:flex justify-center xl:justify-between xl:w-[1200px]">
                   {/* IMAGE */}
                   <div className={`h-[300px] w-full md:w-[50%]`}>
@@ -93,16 +94,16 @@ export function ProductDetailsPage() {
                         style="border border-black hover:border-pink-500"
                         background="bg-white hover:bg-pink-500"
                         textColor="text-black hover:text-white"
-                        onClick={() => {
-                          cartServices.addItem(product, productQtd.current);
-                          cartProvider.updateTotalCost();
-                        }}
-                      >Adicionar ao carrinho</ResponsibleButton>
+                        onClick={() => onAddToCart()}
+                      >
+                        Adicionar ao carrinho
+                      </ResponsibleButton>
                     </div>
                   </div>
 
                 </div>
 
+                {/* DESCRIPTION */}
                 <div className="my-10 py-5 border-b border-t md:w-[90%] mx-auto">
                   <h3 className="text-xl mb-5">Descrição</h3>
                   <p className="text-neutral-700 text-justify">

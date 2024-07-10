@@ -1,6 +1,6 @@
 import { ProductInfo } from "../../../components/ProductInfo";
 import { Tile } from "../../../components/Tile";
-import { ProductQtdSelector } from "../../productDetails/components/QuantitySelector";
+import { ProductQtdSelector } from "../../../components/ProductQtdSelector";
 
 import { routes } from "../../../routes/routes";
 
