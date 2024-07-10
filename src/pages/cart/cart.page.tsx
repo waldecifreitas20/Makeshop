@@ -16,9 +16,9 @@ const clearCartButtonStyle = `
 `;
 
 export function CartPage() {
-
-  const cartProvider = useContext(CartContext);
   
+  const cartProvider = useContext(CartContext);
+
   function getProductsCard() {
     return cartProvider.cartItems.map((cartItem, i) => {
       return (
@@ -37,7 +37,7 @@ export function CartPage() {
 
       <Navbar />
 
-      <main className="px-4">
+      <main className="px-4 lg:px-40">
 
         <div className="flex justify-between">
           <h2 className="text-2xl">Meu carrinho</h2>
@@ -49,6 +49,7 @@ export function CartPage() {
           </button>
         </div>
 
+        {/* ITEMS */}
         <div className="lg:px-5 mt-5">
           {
             cartProvider.cartItems.length === 0 ? (
@@ -82,12 +83,33 @@ export function CartPage() {
       <footer className="w-full mt-4 text-white">
 
         <div className="h-[130px]"></div>
-        <div className="bg-black w-full fixed bottom-0 px-5 py-3">
-          <p>Qtd. Items: {cartProvider.cartItems.length} </p>
-          <p>Total de Produtos: R$ {cartProvider.totalCost}</p>
+        <div className="
+        fixed 
+        bg-black 
+        w-full 
+        bottom-0 
+        px-5 py-3
+        
+        md:bg-white
+        md:text-black
+        md:border-t-2
+        md:flex
+        md:px-10
+        
+        lg:px-40
+        ">
+          <div className="md:w-full grow md:text-lg">
+            <p>Qtd. Items: {cartProvider.cartItems.length} </p>
+            <p className="font-semibold">Total de Produtos: R$ {cartProvider.totalCost}</p>
+          </div>
 
           <ResponsibleButton
-            style={`border border-white ${cartProvider.cartItems.length === 0 ? 'opacity-30' : ''}`}
+            style={`
+              border border-white 
+              md:w-[450px]
+             
+              ${cartProvider.cartItems.length === 0 ? 'opacity-30' : ''}
+              `}
             disabled={cartProvider.cartItems.length === 0}
             background={`bg-black ${cartProvider.cartItems.length === 0 ? "" : "hover:bg-pink-500"}`}
             onClick={() => {
