@@ -28,8 +28,6 @@ export function CarItemCard(props: CarItemCard) {
       border 
       rounded-lg 
       shadow-md 
-
-      hover:shadow-lg 
       p-3 
       block 
       mb-5 
