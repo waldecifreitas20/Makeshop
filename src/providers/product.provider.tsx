@@ -54,17 +54,17 @@ export function ProductProvider(props: PropsWithChildren) {
   }
 
   function getForVips() {
-   
+    checkInitialization();
     return [...vips];
   };
 
   function getForAnyClient() {
-   
+    checkInitialization();
     return [...anyClient];
   };
-
+  
   function getAll() {
-   
+    checkInitialization();
     return [...allProducts];
   }
 
