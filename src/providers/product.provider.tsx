@@ -42,7 +42,7 @@ export function ProductProvider(props: PropsWithChildren) {
         return true;
       })
       .catch(err => {
-        console.error(err);
+        console.error(`Error ocurred in product provider when trying to fetch products. Error details: ${err}`);
         return false;
       });
   }
