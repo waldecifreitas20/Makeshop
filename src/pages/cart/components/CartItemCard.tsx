@@ -28,8 +28,7 @@ export function CarItemCard(props: CarItemCard) {
       border 
       rounded-lg 
       shadow-md 
-      hover:border-pink-100
-      hover:shadow-pink-200 
+
       hover:shadow-lg 
       p-3 
       block 
@@ -38,8 +37,6 @@ export function CarItemCard(props: CarItemCard) {
       h-[180px] 
       
       px-5 
-      
-      xl:w-[80%] 
       ">
         <Tile leading={ProductImage}>
           <div className="ml-2 w-full">

@@ -16,7 +16,7 @@ const clearCartButtonStyle = `
 `;
 
 export function CartPage() {
-  
+
   const cartProvider = useContext(CartContext);
 
   function getProductsCard() {
@@ -73,7 +73,7 @@ export function CartPage() {
                 </ResponsibleButton>
               </div>
             ) :
-              <div className="overflow-scroll size-full h-min">
+              <div className="xl:w-[80%] mx-auto">
                 {getProductsCard()}
               </div>
           }
