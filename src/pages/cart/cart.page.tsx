@@ -123,7 +123,7 @@ export function CartPage() {
               `}
             disabled={cartProvider.cartItems.length === 0}
             background={`bg-black ${cartProvider.cartItems.length === 0 ? "" : "hover:bg-pink-500"}`}
-            onClick={(e) => { onOrder() }}
+            onClick={() => { onOrder() }}
           >
             Realizar Pedido
           </ResponsibleButton>

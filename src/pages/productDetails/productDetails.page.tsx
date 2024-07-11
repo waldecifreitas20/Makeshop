@@ -14,6 +14,8 @@ import { routes } from "../../routes/routes";
 import { cartServices } from "../../services/cart.services";
 import { BackHomeButton } from "../../components/BackHomeButton";
 import { CartContext } from "../../providers/cart.provider";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"
 
 export function ProductDetailsPage() {
 
@@ -47,6 +49,7 @@ export function ProductDetailsPage() {
   function onAddToCart() {
     cartServices.addItem(product, productQtd.current);
     cartProvider.updateTotalCost();
+    toast("Produto adicionado ao carrinho");
   }
 
   return (
@@ -62,7 +65,32 @@ export function ProductDetailsPage() {
             :
             <>
               <div className="px-5">
+       
+                  <ToastContainer
+                    autoClose={1000}
+                    pauseOnHover={false}
+                    closeButton={<></>}
+                    hideProgressBar={true}
+                    toastStyle={{
+                      width: "fit-content",
+                      margin: "0 auto",
+                      bottom: "0",
+                      background: "none",
+                      color: "white",
+                      boxShadow: "none"
+                    }}
+                    style={{ 
+                      position: "fixed",
+                      top: "unset",
+                      bottom: "0px",
 
+                      width: "100%",
+                      height: "fit-content",
+                      backgroundColor: "black"                     
+                    }}
+
+                  />
+              
                 <div className="my-2 md:w-[90%] mx-auto">
                   <BackHomeButton />
                 </div>
