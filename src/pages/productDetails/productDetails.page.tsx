@@ -65,30 +65,18 @@ export function ProductDetailsPage() {
             :
             <>
               <div className="px-5">
-       
                   <ToastContainer
                     autoClose={1000}
                     pauseOnHover={false}
                     closeButton={<></>}
                     hideProgressBar={true}
-                    toastStyle={{
-                      width: "fit-content",
-                      margin: "0 auto",
-                      bottom: "0",
-                      background: "none",
-                      color: "white",
-                      boxShadow: "none"
-                    }}
-                    style={{ 
+                    style={{
+                      padding: "10px",
+                      marginBottom: "10px",
                       position: "fixed",
-                      top: "unset",
-                      bottom: "0px",
-
-                      width: "100%",
-                      height: "fit-content",
-                      backgroundColor: "black"                     
+                      bottom: "0",
+                      top:"unset"
                     }}
-
                   />
               
                 <div className="my-2 md:w-[90%] mx-auto">
