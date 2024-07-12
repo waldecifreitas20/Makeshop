@@ -26,8 +26,9 @@ export function CartPage() {
 
   function onOrder() {
     if (!isAuth.current) {
-      openModal();
+      return openModal();
     }
+    PageRouter.goTo(routes.purchase);
   }
 
   function openModal() {
