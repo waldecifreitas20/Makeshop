@@ -15,9 +15,9 @@ export function ResponsibleInput(props: ResponsibleInputProps) {
     <input
       ref={props.reference ?? useRef(null)}
       id={props.id ?? Math.random().toString()}
-      className="
+      className={`
         block 
-        border border-zinc-400 rounded-full 
+        border border-zinc-300 rounded-full 
         w-full 
         px-5 py-2 
         text-lg
@@ -28,7 +28,8 @@ export function ResponsibleInput(props: ResponsibleInputProps) {
         md:px-2
 
         lg:rounded-md
-      "
+        ${props.style}
+        `}
       value={props.value}
       type={props.type ?? "text"}
       placeholder={props.placeholder ?? ""}
