@@ -8,8 +8,6 @@ import { formUtils } from "../../utils/forms";
 import { userServices } from "../../services/user.services";
 import { Spinner } from "../../components/Spinner";
 import { utils } from "../../utils/utils";
-import { storageServices } from "../../services/storage.services";
-
 
 const styles = {
   loginCard: `
@@ -78,7 +76,7 @@ export function LoginPage() {
       event.preventDefault();
       setFormMessageState(true);
       setInvalidFormMessage(error.message);
-      
+
     } finally {
       setLoadingState(false);
     }
