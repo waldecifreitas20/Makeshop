@@ -6,7 +6,7 @@ import { Row } from "./components/Row";
 import { userServices } from "../../services/user.services";
 import { ResponsibleInput } from "../../components/ResponsibleInput";
 import { LabelBlock } from "./components/LabelBlock";
-import { ResponsibleComponent } from "../../components/ResponsibleComponent";
+import { ResponsibleSelect } from "../../components/ResponsibleSelect";
 import { Modal } from "../../components/Modal";
 
 import { formUtils } from "../../utils/forms";
@@ -15,10 +15,6 @@ import { Spinner } from "../../components/Spinner";
 import { FormWarning } from "./components/FormWarning";
 import { FormWarningBlock } from "./components/FormWaningBlock";
 import { useFormData } from "../../hooks/useFormData";
-
-
-
-
 
 const STATES = [
   'pará', 'são paulo', 'mato grosso',
@@ -31,7 +27,6 @@ const STATES = [
   'rio grande do sul', 'sergipe', 'santa catarina',
   'espirito santo', 'minas gerais', 'amazonas'
 ];
-
 
 
 export function SignUpPage() {
@@ -226,19 +221,27 @@ export function SignUpPage() {
           </LabelBlock>
 
           <Row style="flex-wrap">
-            <ResponsibleComponent style="w-[100%]">
-              <label htmlFor="state-select">Estado</label>
-              <select id="state-select" onChange={(event => {
+            <label htmlFor="state-select">Estado</label>
+            <ResponsibleSelect
+              id="state-select"
+              style="w-[100%]"
+              onChange={(event => {
                 setUserData("state", event.target.value);
               })}>
-                <option value="null">--- Selecione ---</option>
-                {STATES.map((state, i) => {
-                  return <option key={i} value={state}>
-                    {state.toUpperCase()}
-                  </option>
-                })}
-              </select>
-            </ResponsibleComponent>
+              <option value="null">--- Selecione ---</option>
+              <>
+                {
+                  STATES.map((state, i) => {
+                    return (
+                      <option key={i} value={state}>
+                        {state.toUpperCase()}
+                      </option>
+                    );
+                  })
+                }
+              </>
+
+            </ResponsibleSelect>
 
             <LabelBlock label="Cidade">
               <ResponsibleInput placeholder="São Paulo"
