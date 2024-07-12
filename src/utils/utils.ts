@@ -31,8 +31,8 @@ function getRefContent<Type>(ref: MutableRefObject<any>): Type {
 
 function hasEmptyFields(obj: object) {
 	const values = Object.values(obj);
-	
-	if(values.length === 0) return true;
+
+	if (values.length === 0) return true;
 
 	for (const value of values) {
 		if (value === "" || !value) {
@@ -42,6 +42,10 @@ function hasEmptyFields(obj: object) {
 	return false;
 }
 
+function toCashFormat(number: number) {
+	return number.toFixed(2).replace(".", ',');
+}
+
 export const utils = {
 	isSmallDevice,
 	onResizeScreen,
@@ -49,4 +53,5 @@ export const utils = {
 	isEmpty,
 	hasEmptyFields,
 	getRefContent,
+	toCashFormat
 }
