@@ -3,8 +3,19 @@ import { ResponsibleButton } from "../../components/ResponsibleButton";
 import { ResponsibleSelect } from "../../components/ResponsibleSelect";
 import { ResponsibleInput } from "../../components/ResponsibleInput";
 import { PurchaseList } from "./components/ItemsList";
+import { cartServices } from "../../services/cart.services";
+import { useState } from "react";
 
 export function PurchasePage() {
+  let [shippingCost, setShippingcost] = useState(0);
+
+  function calculateShipping() {
+    setShippingcost(25);
+  }
+
+  function getTotalCost() {
+    return cartServices.getTotalCost() + shippingCost;
+  }
 
   return (
     <>
@@ -17,7 +28,15 @@ export function PurchasePage() {
 
           <fieldset className="mb-4">
             <label htmlFor="cep" className="text-sm">Digite seu CEP</label>
-            <ResponsibleInput id="cep" type="number" placeholder="Somente números" style="border-neutral-200" />
+            <ResponsibleInput
+              id="cep"
+              type="number"
+              placeholder="Somente números"
+              style="border-neutral-200"
+              onChange={() => {
+                calculateShipping();
+              }}
+            />
             <ResponsibleButton>Calcular Frete</ResponsibleButton>
           </fieldset>
 
@@ -30,7 +49,11 @@ export function PurchasePage() {
 
         </form>
 
-        <PurchaseList />
+        <PurchaseList
+          items={cartServices.getItems()}
+          purchaseCost={getTotalCost()}
+          shippingCost={shippingCost}
+        />
 
         <ResponsibleButton background="bg-pink-500 hover:bg-pink-600">Finalizar Compra</ResponsibleButton>
       </main>

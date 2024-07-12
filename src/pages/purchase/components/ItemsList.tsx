@@ -3,12 +3,16 @@ import { Row } from "../../../components/Row";
 import { CartContext } from "../../../providers/cart.provider";
 import { utils } from "../../../utils/utils";
 
-export function PurchaseList() {
+interface PurchaseListProps {
+  purchaseCost: number;
+  shippingCost: number;
+  items: Array<CartItem>
+}
+
+export function PurchaseList(props: PurchaseListProps) {
 
   const cart = useContext(CartContext);
   const rowStyle = `justify-between`;
-  const [shippingCost, setShippingCost] = useState(0);
-  const [purchaseCost, setPurchaseCost] = useState(cart.totalCost + shippingCost);
 
   return (
     <section className="
@@ -32,18 +36,19 @@ export function PurchaseList() {
         }
         <Row style={rowStyle}>
           <p>Frete</p>
-          <p>R$ {utils.toCashFormat(shippingCost)}</p>
+          <p>R$ {utils.toCashFormat(props.shippingCost)}</p>
         </Row>
       </article>
+      
       <article>
         <Row style={rowStyle}>
           <p>Total Items</p>
-          <p>{cart.cartItems.length}</p>
+          <p>{props.items.length}</p>
         </Row>
 
         <Row style={`${rowStyle} font-medium`}>
           <p>Valor Total</p>
-          <p>R$ {utils.toCashFormat(purchaseCost)}</p>
+          <p>R$ {utils.toCashFormat(props.purchaseCost)}</p>
         </Row>
 
       </article>
