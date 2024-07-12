@@ -2,7 +2,7 @@ import { createContext, PropsWithChildren, useEffect, useState } from "react";
 import { cartServices } from "../services/cart.services";
 
 export const CartContext = createContext({
-  totalCost: "",
+  totalCost: 0,
   cartItems: [] as Array<CartItem>,
   updateTotalCost: () => { },
   clearCart: () => { },

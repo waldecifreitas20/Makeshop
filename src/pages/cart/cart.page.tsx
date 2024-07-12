@@ -9,6 +9,7 @@ import { Modal } from "../../components/Modal";
 import { userServices } from "../../services/user.services";
 import { PageRouter } from "../../routes/PageRouter";
 import { routes } from "../../routes/routes";
+import { utils } from "../../utils/utils";
 
 export function CartPage() {
 
@@ -112,7 +113,7 @@ export function CartPage() {
         ">
           <div className="md:w-full grow md:text-lg">
             <p>Qtd. Items: {cartProvider.cartItems.length} </p>
-            <p className="font-semibold">Total de Produtos: R$ {cartProvider.totalCost}</p>
+            <p className="font-semibold">Total de Produtos: R$ {utils.toCashFormat(cartProvider.totalCost)}</p>
           </div>
 
           <ResponsibleButton

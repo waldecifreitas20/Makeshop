@@ -4,6 +4,7 @@ import { routes } from "../../../routes/routes";
 import { userServices } from "../../../services/user.services";
 import { Tile } from "../../Tile";
 import { CartContext } from "../../../providers/cart.provider";
+import { utils } from "../../../utils/utils";
 
 export function NavbarBadges(props: { isLoggedIn: boolean }) {
   
@@ -54,7 +55,7 @@ export function NavbarBadges(props: { isLoggedIn: boolean }) {
           <p className="text-xs">Meu carrinho</p>
           <button className="font-bold text-xs hover:underline" onClick={() => {
             PageRouter.goTo(routes.cart);
-          }}>R$ {cartProvider.totalCost ?? '0,00'}</button>
+          }}>R$ {utils.toCashFormat(cartProvider.totalCost) ?? '0,00'}</button>
         </Tile>
 
         {/* account */}

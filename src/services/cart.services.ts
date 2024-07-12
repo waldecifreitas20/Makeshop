@@ -81,7 +81,7 @@ function getTotalCost() {
     totalCost += itemCost;
   }
 
-  return totalCost.toFixed(2).replace('.', ',');
+  return totalCost;
 }
 
 export const cartServices = {
