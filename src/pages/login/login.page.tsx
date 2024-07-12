@@ -68,7 +68,6 @@ export function LoginPage() {
 
     try {
       // TRY TO AUTHENTICATE USER
-      storageServices.clear();
       await userServices.authenticate(credentials.email, credentials.password);
       const form = utils.getRefContent<HTMLFormElement>(formRef);
       form.action = "/";
