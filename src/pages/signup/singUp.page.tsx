@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { BackHomeButton } from "../../components/BackHomeButton";
 
 import { ResponsibleButton } from "../../components/ResponsibleButton";
-import { Row } from "./components/Row";
+import { Row } from "../../components/Row";
 import { userServices } from "../../services/user.services";
 import { ResponsibleInput } from "../../components/ResponsibleInput";
 import { LabelBlock } from "./components/LabelBlock";
