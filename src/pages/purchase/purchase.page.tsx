@@ -6,15 +6,46 @@ import { PurchaseList } from "./components/PurchaseList";
 import { cartServices } from "../../services/cart.services";
 import { useState } from "react";
 import { Row } from "../../components/Row";
+import { toast } from "react-toastify";
+import { Toast } from "../../components/Toast";
+import { envs } from "../../global/dotenv";
+import { json } from "react-router-dom";
 
 export function PurchasePage() {
   let [shippingCost, setShippingcost] = useState(0);
+  let [cep, setCep] = useState<undefined | number>();
 
   function calculateShipping() {
-    setShippingcost(25);
+    const cartCost = cartServices.getTotalCost();
+    const cost = cartCost * 0.12;
+    setShippingcost(cost);
   }
 
-  function getTotalCost() {
+  function isValidCep() {
+    return cep != undefined && cep.toString().length === 8;
+  }
+
+  async function checkCep() {
+    if (!isValidCep()) {
+      toast("Digite um cep valido")
+      return;
+    }
+
+    fetch(`${envs.API_CEP_URL}/${cep}`)
+      .then(response => {
+        if (response.status !== 200) {
+          toast("O CEP informado não existe")
+        } else {
+          calculateShipping();
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        toast("Verifique sua conexão com a internet")
+      });
+  }
+
+  function getPurchaseCost() {
     return cartServices.getTotalCost() + shippingCost;
   }
 
@@ -22,6 +53,7 @@ export function PurchasePage() {
     <>
       <Navbar />
 
+      <Toast />
       <main className="px-5 mt-4 sm:max-w-[750px] mx-auto">
         <h2 className="text-2xl">Finalize sua compra</h2>
 
@@ -35,13 +67,21 @@ export function PurchasePage() {
                 type="number"
                 placeholder="Somente números"
                 style="border-neutral-200 grow lg:max-w-[50%]"
-                onChange={() => {
-                  calculateShipping();
+                value={cep}
+                onChange={(event) => {
+                  const newCep = event.target.value;
+                  if (newCep.toString().length <= 8) {
+                    setCep(Number.parseInt(newCep))
+                  }
                 }}
               />
               <ResponsibleButton
                 disableAutoMargin
                 style="md:max-w-[200px]"
+                onClick={(event) => {
+                  event.preventDefault();
+                  checkCep();
+                }}
               >
                 Calcular Frete
               </ResponsibleButton>
@@ -59,7 +99,7 @@ export function PurchasePage() {
 
         <PurchaseList
           items={cartServices.getItems()}
-          purchaseCost={getTotalCost()}
+          purchaseCost={getPurchaseCost()}
           shippingCost={shippingCost}
         />
 

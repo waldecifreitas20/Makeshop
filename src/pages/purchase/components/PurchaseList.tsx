@@ -29,7 +29,7 @@ export function PurchaseList(props: PurchaseListProps) {
             return (
               <Row key={i} style={rowStyle}>
                 <p>{item.product.manufacturer} x{item.qtd}</p>
-                <p>R$ {utils.toCashFormat(item.product.price)}</p>
+                <p>R$ {utils.toCashFormat(item.product.price * item.qtd)}</p>
               </Row>
             );
           })
