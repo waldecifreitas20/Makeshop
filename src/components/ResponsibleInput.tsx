@@ -5,9 +5,10 @@ interface ResponsibleInputProps {
   style?: string;
   placeholder?: string;
   id?: string;
-  value?: string;
+  value?: string | number;
   type?: string;
   onChange?: ChangeEventHandler<HTMLInputElement>;
+  onLostFocus?: ChangeEventHandler<HTMLInputElement>;
 }
 
 export function ResponsibleInput(props: ResponsibleInputProps) {
@@ -34,6 +35,7 @@ export function ResponsibleInput(props: ResponsibleInputProps) {
       type={props.type ?? "text"}
       placeholder={props.placeholder ?? ""}
       onChange={props.onChange}
+      onBlur={props.onLostFocus}
     />
   </>
 }
