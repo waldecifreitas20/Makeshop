@@ -12,10 +12,19 @@
 	src: url("../fonts/Brygada1918-VariableFont_wght.ttf");
 }
 
+@layer base {
+	input[type="number"]::-webkit-inner-spin-button,
+	input[type="number"]::-webkit-outer-spin-button {
+		-webkit-appearance: none;
+		appearance: none;
+		margin: 0;
+	}
+}
+
+
 @layer utilities {
 
 	.font-title {
-
 		font-family: "Title";
 	}
 
