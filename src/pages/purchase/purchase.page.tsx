@@ -19,7 +19,7 @@ import { paymentServices } from "../../services/payment.services";
 export function PurchasePage() {
   let [shippingCost, setShippingcost] = useState(0);
   let [cep, setCep] = useState<undefined | number>();
-  let [qrCode, setQrCode] = useState("");
+
 
   function calculateShipping() {
     const cartCost = cartServices.getTotalCost();
@@ -114,15 +114,19 @@ export function PurchasePage() {
         />
 
         <ResponsibleButton
-          background="bg-pink-500 hover:bg-pink-600"
+          background={`${shippingCost > 0 ? "bg-pink-500 hover:bg-pink-600" : "bg-pink-200"}`}
           style="lg:max-w-[40%] ml-auto"
+          disabled={shippingCost === 0}
           onClick={() => {
+
+            PageRouter.goTo(routes.payment);
+
           }}
         >
           Finalizar Compra
         </ResponsibleButton>
       </main>
-     
+
     </>
   );
 }

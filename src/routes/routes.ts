@@ -1,9 +1,10 @@
 export const routes = {
   home : '/',
+  cart:'/cart',
   login:'/login',
   signUp:'/sing-up',
-  productDetails:'/details',
-  cart:'/cart',
+  payment:'/payment',
   purchase:'/purchase',
+  productDetails:'/details',
   notfound: '*',
 }
