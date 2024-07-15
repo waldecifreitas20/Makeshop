@@ -102,8 +102,6 @@ export function PurchasePage() {
             <label htmlFor="payment-select">Selecione um método de pagamento</label>
             <ResponsibleSelect id="payment-select" style="bg-white">
               <option className="h-52 block">Pix</option>
-              <option className="h-52 block">Boleto</option>
-
             </ResponsibleSelect>
           </fieldset>
 
@@ -124,7 +122,7 @@ export function PurchasePage() {
           Finalizar Compra
         </ResponsibleButton>
       </main>
-      <img src={qrCode} alt="" />
+     
     </>
   );
 }
