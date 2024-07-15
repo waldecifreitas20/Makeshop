@@ -1,19 +1,25 @@
+import { useState } from "react";
+
+import { toast } from "react-toastify";
+
 import { Navbar } from "../../components/Navbar";
 import { ResponsibleButton } from "../../components/ResponsibleButton";
 import { ResponsibleSelect } from "../../components/ResponsibleSelect";
 import { ResponsibleInput } from "../../components/ResponsibleInput";
 import { PurchaseList } from "./components/PurchaseList";
 import { cartServices } from "../../services/cart.services";
-import { useState } from "react";
 import { Row } from "../../components/Row";
-import { toast } from "react-toastify";
 import { Toast } from "../../components/Toast";
 import { envs } from "../../global/dotenv";
-import { json } from "react-router-dom";
+import { PageRouter } from "../../routes/PageRouter";
+import { routes } from "../../routes/routes";
+import { paymentServices } from "../../services/payment.services";
+
 
 export function PurchasePage() {
   let [shippingCost, setShippingcost] = useState(0);
   let [cep, setCep] = useState<undefined | number>();
+  let [qrCode, setQrCode] = useState("");
 
   function calculateShipping() {
     const cartCost = cartServices.getTotalCost();
@@ -47,6 +53,10 @@ export function PurchasePage() {
 
   function getPurchaseCost() {
     return cartServices.getTotalCost() + shippingCost;
+  }
+
+  if (cartServices.getItems().length === 0) {
+    PageRouter.goTo(routes.notfound);
   }
 
   return (
@@ -91,7 +101,9 @@ export function PurchasePage() {
           <fieldset className="lg:max-w-[50%]">
             <label htmlFor="payment-select">Selecione um método de pagamento</label>
             <ResponsibleSelect id="payment-select" style="bg-white">
-              <option>Pix</option>
+              <option className="h-52 block">Pix</option>
+              <option className="h-52 block">Boleto</option>
+
             </ResponsibleSelect>
           </fieldset>
 
@@ -106,10 +118,13 @@ export function PurchasePage() {
         <ResponsibleButton
           background="bg-pink-500 hover:bg-pink-600"
           style="lg:max-w-[40%] ml-auto"
+          onClick={() => {
+          }}
         >
           Finalizar Compra
         </ResponsibleButton>
       </main>
+      <img src={qrCode} alt="" />
     </>
   );
 }
