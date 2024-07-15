@@ -16,6 +16,7 @@ import { BackHomeButton } from "../../components/BackHomeButton";
 import { CartContext } from "../../providers/cart.provider";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
+import { Toast } from "../../components/Toast";
 
 export function ProductDetailsPage() {
 
@@ -65,19 +66,7 @@ export function ProductDetailsPage() {
             :
             <>
               <div className="px-5">
-                  <ToastContainer
-                    autoClose={1000}
-                    pauseOnHover={false}
-                    closeButton={<></>}
-                    hideProgressBar={true}
-                    style={{
-                      padding: "10px",
-                      marginBottom: "10px",
-                      position: "fixed",
-                      bottom: "0",
-                      top:"unset"
-                    }}
-                  />
+                  <Toast />
               
                 <div className="my-2 md:w-[90%] mx-auto">
                   <BackHomeButton />
