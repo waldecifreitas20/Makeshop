@@ -6,6 +6,7 @@ interface ResponsibleButtonProps {
   background? : string;
   textColor? : string;
   disabled?: boolean,
+  disableAutoMargin?: boolean,
   type?: "button" | "submit" | "reset" | undefined,
 }
 
@@ -16,7 +17,7 @@ export function ResponsibleButton(props: PropsWithChildren<ResponsibleButtonProp
       type={props.type}
       disabled={props.disabled}
       className={`
-      mt-4 mb-2  
+      ${!props.disableAutoMargin? "mt-4 mb-2" : ""}
       block 
       w-full
       rounded-full
