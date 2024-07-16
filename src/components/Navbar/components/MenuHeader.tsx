@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { routes } from "../../../routes/routes";
 import { UserContext } from "../../../providers/user.provider";
-import { userServices } from "../../../services/user.services";
 
 export function MenuHeader(props: { isLoggedIn: boolean }) {
 
@@ -41,35 +40,27 @@ export function MenuHeader(props: { isLoggedIn: boolean }) {
   return (
     <div className="
       bg-zinc-50 
-      px-2 pb-6 
+      px-2  
       text-center 
       
       lg:hidden
     ">
       {props.isLoggedIn ?
         (
-          <div className="pt-8">
+          <div className="py-8 px-2">
 
-            <div className="flex h-full w-full items-start text-white">
-              <div className="bg-pink-500 size-14 shrink-0 flex justify-center items-center rounded-full">
-                <i className="fa-regular fa-user fa-xl text-black"></i>
+            <div className="flex h-full w-full items-start">
+              <div className="border-pink-400 border size-14 shrink-0 flex justify-center items-center rounded-full">
+                <i className="fa-regular fa-user fa-xl text-pink-400"></i>
               </div>
 
               <div className="text-left ml-2 text-sm shrink">
-                <h2 className="text-white capitalize text-lg"
+                <h2 className="text-black capitalize text-lg"
                 >
                   Bem vindo, {userData.name.split(" ")[0].toLowerCase()}!
                 </h2>
 
-                <p className="text-white">{userData.email}</p>
-
-                <div className="text-xs mt-1 text-neutral-400">
-                  <a className="hover:text-white " href="">Minha conta</a>
-                  <button className="hover:text-white ml-4" onClick={() => {
-                    userServices.logout();
-                  }}>Sair</button>
-                </div>
-
+                <p className="text-black">{userData.email}</p>
               </div>
             </div>
 
