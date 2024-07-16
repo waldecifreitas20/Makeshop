@@ -1,6 +1,6 @@
 import { AppError, DatabaseConfigurationError, DocumentNotFoundError } from "../exceptions/appError";
 import { firebase } from "../firebase";
-import { PageRouter} from "../routes/PageRouter";
+import { PageRouter } from "../routes/PageRouter";
 import { routes } from "../routes/routes";
 import { storageServices } from "./storage.services";
 
@@ -13,19 +13,25 @@ function sendError(error: AppError) {
   if (error instanceof DatabaseConfigurationError) {
     throw new Error("Não foi é possível conectar aos servidores no momento. tente mais tarde");
   }
+
+  throw new Error(error.message);
 }
 
 async function authenticate(email: string, password: string) {
   try {
     const user = await firebase.getDocument("users", email);
-    if (user.email === email && user.password === password) {
-      storageServices.setItem("user", {
-        token: Math.random(),
-        email: user.email,
-        name: user.name,
-      });
-      return true;
+
+    if (user.email !== email || user.password !== password) {
+      throw new DocumentNotFoundError();
     }
+    storageServices.setItem("user", {
+      token: Math.random(),
+      email: user.email,
+      name: user.name,
+    });
+    return true;
+
+
   } catch (error: any) {
     console.error(error);
     sendError(error);

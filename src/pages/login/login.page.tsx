@@ -56,10 +56,11 @@ export function LoginPage() {
   /* METHODS */
   async function onSubmit(event: React.MouseEvent): Promise<void> {
     setFormMessageState(false);
+    event.preventDefault();
 
     const isValid = validateLoginForm();
     if (!isValid) {
-      return event.preventDefault();
+      return;
     }
 
     setLoadingState(true);
@@ -73,7 +74,6 @@ export function LoginPage() {
 
     } catch (error: any) {
       // SET SCREEN ALERT
-      event.preventDefault();
       setFormMessageState(true);
       setInvalidFormMessage(error.message);
 
@@ -120,7 +120,7 @@ export function LoginPage() {
         <h1 className="text-center text-3xl mb-10 lg:text-2xl">Faça login e aproveite nossas ofertas</h1>
 
         <form ref={formRef} id="login-form" method="GET">
-
+          {/* EMAIL INPUT */}
           <ResponsibleInput
             reference={emailInputRef}
             id="email"
@@ -135,7 +135,7 @@ export function LoginPage() {
             }}
           />
 
-
+          {/* PASSOWRD INPUT */}
           <div className="mt-2 mb-1">
             <ResponsibleInput
               reference={passwordInputRef}
