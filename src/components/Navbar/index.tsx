@@ -10,6 +10,8 @@ import { NavbarBadges } from "./components/Badges";
 import { userServices } from "../../services/user.services";
 import { PageRouter } from "../../routes/PageRouter";
 import { routes } from "../../routes/routes";
+import { CartBadge } from "./components/CartBadge";
+import { cartServices } from "../../services/cart.services";
 
 export function Navbar() {
 	/* REFS */
@@ -84,7 +86,7 @@ export function Navbar() {
 							</button>
 							<div className="border-gray-400 border-l mx-3"></div>
 							<button onClick={() => PageRouter.goTo(routes.cart)}>
-								<i className="fa-solid fa-cart-shopping fa-xl"></i>
+								<CartBadge />
 							</button>
 						</div>
 

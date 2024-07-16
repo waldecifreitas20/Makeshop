@@ -1,4 +1,4 @@
-import { createContext, PropsWithChildren, useEffect, useState } from "react";
+import { createContext, PropsWithChildren, useState } from "react";
 import { cartServices } from "../services/cart.services";
 
 export const CartContext = createContext({
@@ -8,6 +8,7 @@ export const CartContext = createContext({
   clearCart: () => { },
   removeItem: (productId: string) => { },
   updateItemQtd: (itemId: string, qtd: number) => { },
+  addItem: (product: Product, qtd: number) => {  }
 });
 
 export function CartProvider(props: PropsWithChildren) {
@@ -20,6 +21,11 @@ export function CartProvider(props: PropsWithChildren) {
 
   function clearCart() {
     cartServices.clearCart();
+    updateState();
+  }
+
+  function addItem(product: Product, qtd: number) {
+    cartServices.addItem(product, qtd);
     updateState();
   }
 
@@ -38,6 +44,7 @@ export function CartProvider(props: PropsWithChildren) {
     setItems(cartServices.getItems());
   }
 
+
   return (
     <>
       <CartContext.Provider value={{
@@ -47,6 +54,7 @@ export function CartProvider(props: PropsWithChildren) {
         clearCart,
         removeItem,
         updateItemQtd,
+        addItem,
       }}>
         {props.children}
       </CartContext.Provider>

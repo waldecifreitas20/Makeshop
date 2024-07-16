@@ -5,9 +5,10 @@ import { userServices } from "../../../services/user.services";
 import { Tile } from "../../Tile";
 import { CartContext } from "../../../providers/cart.provider";
 import { utils } from "../../../utils/utils";
+import { CartBadge } from "./CartBadge";
 
 export function NavbarBadges(props: { isLoggedIn: boolean }) {
-  
+
   const cartProvider = useContext(CartContext);
 
   const LOGGED_IN_BADGE = (
@@ -41,30 +42,33 @@ export function NavbarBadges(props: { isLoggedIn: boolean }) {
       </button>
     </>
   );
+
   return (
-    <>
-      <div className="hidden md:flex xl:w-[40%] lg:w-[45%] md:w-[60%] items-center justify-between ml-4">
-        {/* favorites */}
-        <Tile leading={<i className="fa-regular fa-heart fa-xl"></i>}>
-          <p className="text-xs">Favoritos</p>
-          <a className="font-bold text-xs hover:underline" href="">Meus Favoritos</a>
-        </Tile>
+    <div className="hidden md:flex xl:w-[40%] lg:w-[45%] md:w-[60%] items-center justify-between ml-4">
+      {/* favorites */}
+      <Tile leading={<i className="fa-regular fa-heart fa-xl"></i>}>
+        <p className="text-xs">Favoritos</p>
+        <a className="font-bold text-xs hover:underline" href="">Meus Favoritos</a>
+      </Tile>
 
-        {/* cart */}
-        <Tile leading={<i className="fa-solid fa-cart-shopping fa-xl"></i>}>
-          <p className="text-xs">Meu carrinho</p>
-          <button className="font-bold text-xs hover:underline" onClick={() => {
+      {/* cart */}
+      <Tile leading={<CartBadge />}>
+        <p className="text-xs">Meu carrinho</p>
+        <button
+          className="font-bold text-xs hover:underline"
+          onClick={() => {
             PageRouter.goTo(routes.cart);
-          }}>R$ {utils.toCashFormat(cartProvider.totalCost) ?? '0,00'}</button>
-        </Tile>
+          }}>
+          R$ {utils.toCashFormat(cartProvider.totalCost) ?? '0,00'}
+        </button>
+      </Tile>
 
-        {/* account */}
-        <Tile leading={<i className="fa-regular fa-user fa-xl"></i>}>
-          {
-            props.isLoggedIn ? NON_LOGGED_IN_BADGE : LOGGED_IN_BADGE
-          }
-        </Tile>
-      </div>
-    </>
+      {/* account */}
+      <Tile leading={<i className="fa-regular fa-user fa-xl"></i>}>
+        {
+          props.isLoggedIn ? NON_LOGGED_IN_BADGE : LOGGED_IN_BADGE
+        }
+      </Tile>
+    </div>
   );
 }

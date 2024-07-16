@@ -48,8 +48,7 @@ export function ProductDetailsPage() {
   }
 
   function onAddToCart() {
-    cartServices.addItem(product, productQtd.current);
-    cartProvider.updateTotalCost();
+    cartProvider.addItem(product, productQtd.current);
     toast("Produto adicionado ao carrinho");
   }
 
