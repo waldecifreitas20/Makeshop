@@ -1,6 +1,3 @@
-import { appColors } from "../global/colors";
-
-
 interface PillProps {
 	text: string
 	style?: string
@@ -8,10 +5,16 @@ interface PillProps {
 }
 
 export function Pill(props: PillProps) {
-	return <>
-		<a href={props.linkTo ?? ""} className={`flex items-center justify-center
-            border ${appColors.borders.container}  rounded-full mx-1 px-3 py-1 text-sm text-nowrap
-            ${props.style ?? ""}
-        `}>{props.text}</a>
-	</>
+	return (
+		<a href={props.linkTo ?? ""}
+			className={`
+				flex items-center justify-center
+				bg-white
+				border 
+				rounded-full 
+				mx-1 px-3 py-1 
+				text-sm text-nowrap
+			${props.style ?? ""}
+	`}>{props.text}</a>
+	);
 }

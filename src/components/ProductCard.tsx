@@ -1,4 +1,3 @@
-import { appColors } from "../global/colors";
 import { routes } from "../routes/routes";
 import { ProductInfo } from "./ProductInfo";
 
@@ -26,10 +25,10 @@ export function ProductCard(props: ProductCardProps) {
 	}
 
 
-	return <>
+	return (
 		<a href={`${routes.productDetails}?${props.product.id.trim()}`} className={`
 			${getTheme(props.product.isVip).background} 
-			${appColors.borders.container} 
+			bg-white
 			relative z-20
 			block
 		  border 
@@ -72,5 +71,5 @@ export function ProductCard(props: ProductCardProps) {
 				</div>
 			</div>
 		</a>
-	</>
+	);
 }

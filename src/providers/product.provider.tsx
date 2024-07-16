@@ -62,7 +62,7 @@ export function ProductProvider(props: PropsWithChildren) {
     checkInitialization();
     return [...anyClient];
   };
-  
+
   function getAll() {
     checkInitialization();
     return [...allProducts];
@@ -70,15 +70,13 @@ export function ProductProvider(props: PropsWithChildren) {
 
 
   return (
-    <>
-      <ProductContext.Provider value={{
-        getForAnyClient,
-        getForVips,
-        getAll,
-        initProductsData
-      }}>
-        {props.children}
-      </ProductContext.Provider>
-    </>
+    <ProductContext.Provider value={{
+      getForAnyClient,
+      getForVips,
+      getAll,
+      initProductsData
+    }}>
+      {props.children}
+    </ProductContext.Provider>
   );
 }

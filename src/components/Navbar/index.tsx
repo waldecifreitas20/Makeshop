@@ -1,17 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import { utils } from "../../utils/utils";
-import { appColors } from "../../global/colors";
+/* NAVBAR COMPONENTS */
 import { MenuOptions } from "./components/MenuOptions";
-
 import { Searchbar } from "./components/Searchbar";
 import { MenuHeader } from "./components/MenuHeader";
 import { MakeshopLogo } from "./components/MakeshopLogo";
 import { NavbarBadges } from "./components/Badges";
+import { CartBadge } from "./components/CartBadge";
+/* METHODS */
 import { userServices } from "../../services/user.services";
 import { PageRouter } from "../../routes/PageRouter";
 import { routes } from "../../routes/routes";
-import { CartBadge } from "./components/CartBadge";
-import { cartServices } from "../../services/cart.services";
 
 export function Navbar() {
 	/* REFS */
@@ -64,7 +63,7 @@ export function Navbar() {
 	return (
 		<>
 			<header ref={navbarRef} className={`fixed top-0 z-30 w-full`}>
-				<nav className={`border-b-2 pt-4 pb-6 lg:pb-12 px-5 z-30  ${appColors.backgrounds.base}`}>
+				<nav className={`border-b-2 pt-4 pb-6 lg:pb-12 px-5 z-30  bg-zinc-50`}>
 
 					{/* navbar top */}
 					<div className="flex items-center md:h-4 md:inline md:float-left">

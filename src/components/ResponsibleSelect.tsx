@@ -24,14 +24,14 @@ export function ResponsibleSelect(props: ResponsibleSelect) {
   
     lg:rounded-md
   `
-  return <>
+  return (
     <select
       id={props.id ?? Math.random().toString()}
       onChange={props.onChange}
       className={`${responsibleClass} ${props.style ?? ""}`}>
       {props.children}
     </select>
-  </>
+  );
 }
 
 

@@ -13,8 +13,6 @@ import { Toast } from "../../components/Toast";
 import { envs } from "../../global/dotenv";
 import { PageRouter } from "../../routes/PageRouter";
 import { routes } from "../../routes/routes";
-import { paymentServices } from "../../services/payment.services";
-
 
 export function PurchasePage() {
   let [shippingCost, setShippingcost] = useState(0);

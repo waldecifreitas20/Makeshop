@@ -1,7 +1,7 @@
 import { Navbar } from "../../components/Navbar";
 
 export function NotFoundPage() {
-  return <>
+  return (
     <div className="flex flex-col h-screen">
       <Navbar />
       <div className="flex h-full justify-center items-center">
@@ -13,6 +13,6 @@ export function NotFoundPage() {
         </div>
       </div>
     </div>
-  </>
+  );
 
 }

@@ -6,12 +6,12 @@ interface TileProps {
 }
 
 export function Tile(props: PropsWithChildren<TileProps>) {
-  return <>
+  return (
     <div className="flex items-center size-full">
       {props.leading}
       <div className="flex flex-col items-start w-full" style={{ marginLeft: `${props.gap ?? 5}px` }}>
         {props.children}
       </div>
     </div>
-  </>
+  );
 }

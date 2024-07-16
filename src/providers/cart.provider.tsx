@@ -8,7 +8,7 @@ export const CartContext = createContext({
   clearCart: () => { },
   removeItem: (productId: string) => { },
   updateItemQtd: (itemId: string, qtd: number) => { },
-  addItem: (product: Product, qtd: number) => {  }
+  addItem: (product: Product, qtd: number) => { }
 });
 
 export function CartProvider(props: PropsWithChildren) {
@@ -46,18 +46,17 @@ export function CartProvider(props: PropsWithChildren) {
 
 
   return (
-    <>
-      <CartContext.Provider value={{
-        totalCost,
-        cartItems,
-        updateTotalCost,
-        clearCart,
-        removeItem,
-        updateItemQtd,
-        addItem,
-      }}>
-        {props.children}
-      </CartContext.Provider>
-    </>
+    <CartContext.Provider value={{
+      totalCost,
+      cartItems,
+      updateTotalCost,
+      clearCart,
+      removeItem,
+      updateItemQtd,
+      addItem,
+    }}>
+      {props.children}
+    </CartContext.Provider>
+
   );
 }

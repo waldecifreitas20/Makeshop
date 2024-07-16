@@ -1,5 +1,5 @@
 export function Searchbar() {
-  return <>
+  return (
     <form id="search-form"
       className="
       bg-white 
@@ -36,5 +36,5 @@ export function Searchbar() {
         <i className="fa-solid fa-magnifying-glass fa-lg text-gray-500"></i>
       </button>
     </form >
-  </>
+  );
 }

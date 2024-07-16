@@ -2,7 +2,6 @@ import { Children, PropsWithChildren, useEffect, useRef, useState } from "react"
 import { utils } from "../utils/utils";
 import { CarouselProps } from "../interfaces/Carousel";
 
-
 export function CarouselOneByOne(props: PropsWithChildren<CarouselProps>) {
 	const carouselRef = useRef(null);
 	const viewRef = useRef(null);
@@ -62,8 +61,7 @@ export function CarouselOneByOne(props: PropsWithChildren<CarouselProps>) {
 		});
 	});
 
-	return <>
-		{/* carousel */}
+	return (
 		<div ref={carouselRef} className={`relative ${props.height ?? 'h-[250px]'}`}>
 
 			<div className="size-full">
@@ -109,5 +107,5 @@ export function CarouselOneByOne(props: PropsWithChildren<CarouselProps>) {
 
 			</div>
 		</div>
-	</>
+	);
 }

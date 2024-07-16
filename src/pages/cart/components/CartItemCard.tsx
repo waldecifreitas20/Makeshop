@@ -23,35 +23,34 @@ export function CarItemCard(props: CarItemCard) {
   );
 
   return (
-    <>
-      <div className="
-      border 
-      rounded-lg 
-      shadow-md 
-      p-3 
-      block 
-      mb-5 
-      mx-auto
-      h-[180px] 
-      
-      px-5 
+    <div className="
+        border 
+        rounded-lg 
+        shadow-md 
+        p-3 
+        block 
+        mb-5 
+        mx-auto
+        h-[180px] 
+        
+        px-5 
       ">
-        <Tile leading={ProductImage}>
-          <div className="ml-2 w-full">
+      <Tile leading={ProductImage}>
+        <div className="ml-2 w-full">
 
-            <div className="flex justify-between">
-              <Tile gap={0}>
-                <a href={`${routes.productDetails}?${props.item.product.id.trim()}`}>
-                  <h3 className=" capitalize font-medium hover:underline hover:text-pink-400 md:text-xl">
-                    {`${props.item.product.name}`}
-                  </h3>
-                </a>
-                <p className="capitalize text-xs md:text-sm text-zinc-500 font-medium">
-                  {props.item.product.manufacturer}
-                </p>
-              </Tile>
+          <div className="flex justify-between">
+            <Tile gap={0}>
+              <a href={`${routes.productDetails}?${props.item.product.id.trim()}`}>
+                <h3 className=" capitalize font-medium hover:underline hover:text-pink-400 md:text-xl">
+                  {`${props.item.product.name}`}
+                </h3>
+              </a>
+              <p className="capitalize text-xs md:text-sm text-zinc-500 font-medium">
+                {props.item.product.manufacturer}
+              </p>
+            </Tile>
 
-              <button className="
+            <button className="
               flex
               gap-3
               items-center 
@@ -64,24 +63,23 @@ export function CarItemCard(props: CarItemCard) {
 
               md:text-sm 
               "
-                onClick={() => props.onDelete()}>Remover <i className="fa-solid fa-trash"></i></button>
+              onClick={() => props.onDelete()}>Remover <i className="fa-solid fa-trash"></i></button>
 
-            </div>
-
-            {/* PRODUCT INFO */}
-            <div className="mt-4">
-              <ProductInfo product={props.item.product} />
-              <ProductQtdSelector
-                initialValue={props.item.qtd}
-                minValue={1}
-                onChange={(value: number) => {
-                  props.onQuantityChange(value);
-                }} />
-            </div>
           </div>
-        </Tile>
 
-      </div>
-    </>
+          {/* PRODUCT INFO */}
+          <div className="mt-4">
+            <ProductInfo product={props.item.product} />
+            <ProductQtdSelector
+              initialValue={props.item.qtd}
+              minValue={1}
+              onChange={(value: number) => {
+                props.onQuantityChange(value);
+              }} />
+          </div>
+        </div>
+      </Tile>
+
+    </div>
   );
 }

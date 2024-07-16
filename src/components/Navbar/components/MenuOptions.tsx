@@ -91,15 +91,17 @@ export function MenuOptions(props: { isLoggedIn: boolean }) {
   ]
 
 
-  return <>
-    {MENU_OPTIONS.map((menuOption: MenuOption) => {
-      const isUserNotAuthenticated = menuOption.isLoginRequired && !props.isLoggedIn;
-      const isNotSmallDevice = menuOption.isLoginRequired && !utils.isSmallDevice();
+  return (
+    <>
+      {MENU_OPTIONS.map((menuOption: MenuOption) => {
+        const isUserNotAuthenticated = menuOption.isLoginRequired && !props.isLoggedIn;
+        const isNotSmallDevice = menuOption.isLoginRequired && !utils.isSmallDevice();
 
-      if (isUserNotAuthenticated || isNotSmallDevice) {
-        return <></>
-      }
-      return menuOption.child;
-    })}
-  </>
+        if (isUserNotAuthenticated || isNotSmallDevice) {
+          return <></>;
+        }
+        return menuOption.child;
+      })}
+    </>
+  );
 }

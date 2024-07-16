@@ -2,7 +2,7 @@ import { PropsWithChildren } from "react";
 
 export function Modal(props: PropsWithChildren<{ style?: string }>) {
 
-  return <>
+  return (
     <div className="fixed z-40 top-0 h-screen w-full bg-black bg-opacity-20 flex justify-center items-center">
       {/* Modal */}
       <div className={`
@@ -16,5 +16,5 @@ export function Modal(props: PropsWithChildren<{ style?: string }>) {
         {props.children}
       </div>
     </div>
-  </>
+  );
 }

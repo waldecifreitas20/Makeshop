@@ -73,7 +73,7 @@ export class PillCarousel extends Component implements Carousel {
 
 		let showButtons = this.showButtons;
 
-		return <>
+		return (
 			<div className={`flex px-4`}>
 				{showButtons ?
 
@@ -96,7 +96,7 @@ export class PillCarousel extends Component implements Carousel {
 						: <></>
 				}
 			</div>
-		</>
+		);
 	}
 
 	public componentDidMount(): void {

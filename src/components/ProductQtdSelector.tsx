@@ -35,15 +35,13 @@ export function ProductQtdSelector(props: ProductQtdSelectorProps) {
     `;
 
   return (
-    <>
-      <div className="flex items-center">
-        <span>Quantidade:</span>
-        <div className="ml-3 h-full flex items-center">
-          <button className={buttonSyle} onClick={() => decrement()}>-</button>
-          <input className="w-10 border-0 block text-lg rounded-lg mx-1 text-center" type="text" disabled value={qtd} />
-          <button className={buttonSyle} onClick={() => increment()}>+</button>
-        </div>
+    <div className="flex items-center">
+      <span>Quantidade:</span>
+      <div className="ml-3 h-full flex items-center">
+        <button className={buttonSyle} onClick={() => decrement()}>-</button>
+        <input className="w-10 border-0 block text-lg rounded-lg mx-1 text-center" type="text" disabled value={qtd} />
+        <button className={buttonSyle} onClick={() => increment()}>+</button>
       </div>
-    </>
+    </div>
   );
 }

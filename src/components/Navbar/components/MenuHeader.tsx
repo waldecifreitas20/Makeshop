@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { appColors } from "../../../global/colors";
 import { routes } from "../../../routes/routes";
 import { UserContext } from "../../../providers/user.provider";
 import { userServices } from "../../../services/user.services";
@@ -11,8 +10,8 @@ export function MenuHeader(props: { isLoggedIn: boolean }) {
   const NON_LOGGED_IN_HEADER = (
 
     <div className="pt-8 px-4">
-      <h2 className="text-white text-xl">Bem-vindo!</h2>
-      <p className="text-white text-sm mt-2">
+      <h2 className="text-black text-xl">Bem-vindo!</h2>
+      <p className="text-black text-sm mt-2">
         Faça login ou cadastre-se para aproveitar as nossas ofertas
       </p>
 
@@ -20,28 +19,28 @@ export function MenuHeader(props: { isLoggedIn: boolean }) {
         <a className={`
           block py-2 mb-2 
           rounded-full
-          border 
-          ${appColors.borders.outlinedButton} 
-          ${appColors.backgrounds.buttons.normalOutline}
+          border
+          border-transparent
+
+          bg-pink-400  hover:bg-pink-500         
           text-white 
           
           transition-all duration-300`} href={routes.login}>Fazer Login</a>
         <a className={`
           block py-2 
-          text-white  
           rounded-full 
-          
-          ${appColors.backgrounds.buttons.normal}
-          
+          text-pink-400  hover:text-white
+          border border-pink-400
+          hover:bg-pink-400       
           transition-all duration-300 `} href={routes.signUp}>Cadastre-se</a>
       </div>
     </div>
 
   );
 
-  return <>
+  return (
     <div className="
-      bg-zinc-950 
+      bg-zinc-50 
       px-2 pb-6 
       text-center 
       
@@ -57,7 +56,11 @@ export function MenuHeader(props: { isLoggedIn: boolean }) {
               </div>
 
               <div className="text-left ml-2 text-sm shrink">
-                <h2 className="text-white capitalize text-lg">Bem vindo, {userData.name.split(" ")[0].toLowerCase()}!</h2>
+                <h2 className="text-white capitalize text-lg"
+                >
+                  Bem vindo, {userData.name.split(" ")[0].toLowerCase()}!
+                </h2>
+
                 <p className="text-white">{userData.email}</p>
 
                 <div className="text-xs mt-1 text-neutral-400">
@@ -76,5 +79,5 @@ export function MenuHeader(props: { isLoggedIn: boolean }) {
         NON_LOGGED_IN_HEADER
       }
     </div>
-  </>
+  );
 }

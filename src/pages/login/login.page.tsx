@@ -113,7 +113,7 @@ export function LoginPage() {
 
 
 
-  return <>
+  return (
     <div className="px-8 pt-10">
       <BackHomeButton />
       <main className={`mt-16 mx-auto max-w-[400px] ${styles.loginCard}`}>
@@ -183,5 +183,5 @@ export function LoginPage() {
         </form>
       </main>
     </div>
-  </>;
+  );
 }

@@ -3,7 +3,7 @@ interface SpinnerProps {
 }
 
 export function Spinner(props: SpinnerProps) {
-  return <>
+  return (
     <span className={`loader mx-auto max-h-max max-w-max ${props.style}`}></span>
-  </>
+  );
 }

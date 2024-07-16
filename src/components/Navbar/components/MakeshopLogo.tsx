@@ -1,7 +1,7 @@
 import { routes } from "../../../routes/routes";
 
 export function MakeshopLogo() {
-  return <>
+  return (
     <a href={routes.home}
       className="
         text-3xl 
@@ -11,5 +11,5 @@ export function MakeshopLogo() {
 
         lg:text-4xl md:text-2xl"
     >Makeshop</a>
-  </>
+  );
 }

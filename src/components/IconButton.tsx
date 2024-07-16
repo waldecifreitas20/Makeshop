@@ -6,7 +6,7 @@ interface FloatingButtonProps {
 }
 
 export function IconButton(props: PropsWithChildren<FloatingButtonProps>) {
-	return <>
+	return (
 		<button className="h-full ms-2 z-20 cursor-default" >
 			<span className={
 				`
@@ -23,5 +23,5 @@ export function IconButton(props: PropsWithChildren<FloatingButtonProps>) {
 				{props.children}
 			</span>
 		</button>
-	</>
+	);
 }

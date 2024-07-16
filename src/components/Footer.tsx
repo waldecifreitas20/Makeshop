@@ -19,11 +19,10 @@ export function Footer() {
 	return <>
 		<footer className="px-5 lg:px-16 py-6 scale-">
 			<div className="
-            md:flex 
-            md:justify-between
-            md:grid-flow-col 
-
-            ">
+				md:flex 
+				md:justify-between
+				md:grid-flow-col 
+	    ">
 				{/* Help */}
 				<section className={STYLES.section}>
 					<h4 className={STYLES.title}>Ajuda</h4>

@@ -56,18 +56,20 @@ export class Grid extends Component {
 	}
 
 	public render(): React.ReactNode {
-		return <>
-			<div className={`${this.props.style ?? "w-[95%] mx-auto grid gap-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 grid-flow-row"}`}>
-				{this.activeItems.map((child, i) => {
-					return <span className="m-1">{child}</span>;
-				})}
-			</div>
-			{this.state.showButton ?
-				<div className="flex justify-center mt-10">
-					<button onClick={() => this.nextRow.bind(this).call(null)} className="border text-pink-500 border-pink-400 rounded-lg p-1 hover:shadow-md hover:shadow-pink-400 w-[150px] transition-all duration-200">Ver mais</button>
+		return (
+			<>
+				<div className={`${this.props.style ?? "w-[95%] mx-auto grid gap-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 grid-flow-row"}`}>
+					{this.activeItems.map((child, i) => {
+						return <span className="m-1">{child}</span>;
+					})}
 				</div>
-				: <></>
-			}
-		</>;
+				{this.state.showButton ?
+					<div className="flex justify-center mt-10">
+						<button onClick={() => this.nextRow.bind(this).call(null)} className="border text-pink-500 border-pink-400 rounded-lg p-1 hover:shadow-md hover:shadow-pink-400 w-[150px] transition-all duration-200">Ver mais</button>
+					</div>
+					: <></>
+				}
+			</>
+		);
 	}
 }

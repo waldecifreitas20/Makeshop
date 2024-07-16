@@ -12,7 +12,7 @@ interface ResponsibleInputProps {
 }
 
 export function ResponsibleInput(props: ResponsibleInputProps) {
-  return <>
+  return (
     <input
       ref={props.reference ?? useRef(null)}
       id={props.id ?? Math.random().toString()}
@@ -37,5 +37,5 @@ export function ResponsibleInput(props: ResponsibleInputProps) {
       onChange={props.onChange}
       onBlur={props.onLostFocus}
     />
-  </>
+  );
 }

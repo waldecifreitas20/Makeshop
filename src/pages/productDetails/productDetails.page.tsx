@@ -1,4 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
+import { Toast } from "../../components/Toast";
 /* COMPONENTS */
 import { Navbar } from "../../components/Navbar";
 import { productServices } from "../../services/products.services";
@@ -14,9 +15,8 @@ import { routes } from "../../routes/routes";
 import { cartServices } from "../../services/cart.services";
 import { BackHomeButton } from "../../components/BackHomeButton";
 import { CartContext } from "../../providers/cart.provider";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
-import { Toast } from "../../components/Toast";
 
 export function ProductDetailsPage() {
 

@@ -2,7 +2,7 @@ import { Pill } from "./Pill";
 import { Section } from "./Section";
 
 export function Newsletter() {
-  return <>
+  return (
     <Section
       key={"newsletter"}
       title="Fique por dentro das novidades"
@@ -46,10 +46,9 @@ export function Newsletter() {
             lg:h-full
             lg:w-72
             lg:my-0
-            lg:text-lg
-                        "
+            lg:text-lg"
         />
       </div>
     </Section>
-  </>
+  );
 }
