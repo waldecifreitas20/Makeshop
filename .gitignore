@@ -1,6 +1,7 @@
 *.pdf
 *.ignore
 .env
+mockups
 
 # Logs
 logs
