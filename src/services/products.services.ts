@@ -1,20 +1,22 @@
-import { firebase } from "../firebase";
+import { products } from "../mocks/products.json";
+
 
 async function getProducts() {
   try {
-    return await firebase.getDocuments("products")
+    return [...products];
   } catch (error: any) {
     throw Error(`Unable to fetch products. Details: ${error.message}`);
   }
 }
 
 async function getProduct(id: string) {
-  try {
-    return await firebase.getDocument("products", id);
-  } catch (error: any) {
-    console.log(error);
-    throw Error(`Unable to fetch database. Details: ${error}`);
+  const product = products.find(product => product.id === id);
+
+  if (!product) {
+    throw "Product does not exists";
   }
+
+  return product;
 }
 
 function parseToProduct(obj: any): Product {
